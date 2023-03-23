@@ -22,6 +22,7 @@ class LoginScreen extends StatelessWidget {
                 Center(
                   child: SvgPicture.asset(
                     'assets/images/hands3.svg',
+
                     width: 200,
                   ),
                 ),
