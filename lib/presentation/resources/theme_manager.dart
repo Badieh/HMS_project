@@ -12,7 +12,6 @@ ThemeData getThemeData() {
     primaryColorLight: ColorManager.lightPrimary,
     primaryColorDark: ColorManager.darkPrimary,
     disabledColor: ColorManager.grey1,
-    errorColor: ColorManager.error,
     splashColor: ColorManager.lightPrimary,
 
     // cardView theme
@@ -115,7 +114,6 @@ ThemeData getDarkThemeData() {
     primaryColorLight: ColorManager.lightPrimary,
     primaryColorDark: ColorManager.darkPrimary,
     disabledColor: ColorManager.grey,
-    errorColor: ColorManager.error,
 
     // cardView theme
     cardTheme: CardTheme(
