@@ -17,12 +17,15 @@ class MyApp extends StatelessWidget {
       title: 'HMS App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
+
         inputDecorationTheme: InputDecorationTheme(
           fillColor: Colors.grey[150],
           filled: true,
           labelStyle: const TextStyle(fontSize: 20),
           hintStyle: const TextStyle(fontSize: 20),
           contentPadding: const EdgeInsets.all(10.0),
+
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: BorderSide(

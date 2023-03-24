@@ -16,49 +16,49 @@ TextStyle _getTextStyle(
 // Regular style
 
 TextStyle getRegularStyle({
-  double fontSize = FontSize.s12,
+  double? fontSize ,
   required Color color,
 }) {
   return _getTextStyle(
-      fontSize: fontSize, color: color, fontWeight: FontWeightManager.regular);
+      fontSize: fontSize ?? FontSize.s12, color: color, fontWeight: FontWeightManager.regular);
 }
 
 // Bold style
 
 TextStyle getBoldStyle({
-  double fontSize = FontSize.s12,
+  double ?fontSize ,
   required Color color,
 }) {
   return _getTextStyle(
-      fontSize: fontSize, color: color, fontWeight: FontWeightManager.bold);
+      fontSize: fontSize ?? FontSize.s12, color: color, fontWeight: FontWeightManager.bold);
 }
 
 // Medium style
 
 TextStyle getMediumStyle({
-  double fontSize = FontSize.s12,
+  double? fontSize,
   required Color color,
 }) {
   return _getTextStyle(
-      fontSize: fontSize, color: color, fontWeight: FontWeightManager.medium);
+      fontSize: fontSize ?? FontSize.s12, color: color, fontWeight: FontWeightManager.medium);
 }
 
 // SemiBold style
 
 TextStyle getSemiBoldStyle({
-  double fontSize = FontSize.s12,
+  double? fontSize,
   required Color color,
 }) {
   return _getTextStyle(
-      fontSize: fontSize, color: color, fontWeight: FontWeightManager.semiBold);
+      fontSize: fontSize ?? FontSize.s12, color: color, fontWeight: FontWeightManager.semiBold);
 }
 
 // Light style
 
 TextStyle getLightStyle({
-  double fontSize = FontSize.s12,
+  double? fontSize,
   required Color color,
 }) {
   return _getTextStyle(
-      fontSize: fontSize, color: color, fontWeight: FontWeightManager.light);
+      fontSize: fontSize ?? FontSize.s12, color: color, fontWeight: FontWeightManager.light);
 }

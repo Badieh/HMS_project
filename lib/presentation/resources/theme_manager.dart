@@ -63,6 +63,8 @@ ThemeData getThemeData() {
 
     // input decoration theme
     inputDecorationTheme: InputDecorationTheme(
+      fillColor: Colors.grey[150],
+      filled: true,
       // content padding
       contentPadding: const EdgeInsets.all(AppPadding.p8),
 
