@@ -11,4 +11,14 @@ class AppStrings {
   static const onBoardingSubTitle4 = 'onBoardingSubTitle4';
 
   static const skip = 'skip';
+
+  // Register
+  static const createNewAccount = 'Create new account';
+  static const email = 'Email';
+  static const password = 'Password';
+  static const rememberMe = 'Remember Me';
+  static const signUp = 'Sign up';
+  static const alreadyHaveAnAccount = 'Already have an account ?';
+  static const signIn = 'Sign Ip';
+  static const orContinueWith = 'or continue with';
 }

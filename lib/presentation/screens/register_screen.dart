@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hospital/presentation/resources/assets_manager.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
+import 'package:hospital/presentation/resources/values_manager.dart';
 
 import '../../components/components.dart';
 
@@ -14,12 +18,12 @@ class RegisterScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(),
         body: Form(
           key: formKey,
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Center(
                   child: SvgPicture.asset(
@@ -27,8 +31,14 @@ class RegisterScreen extends StatelessWidget {
                     width: 200,
                   ),
                 ),
-                const Text('Create new account',
-                    style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 30,
+                ),
+                Text(AppStrings.createNewAccount,
+                    style: Theme.of(context).textTheme.headlineLarge),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 30,
+                ),
 
                 // Email
                 DefaultTextFormField(
@@ -42,6 +52,10 @@ class RegisterScreen extends StatelessWidget {
                       }
                     },
                     onFieldSubmitted: (value) {}),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 30,
+                ),
+
                 // Password
                 DefaultTextFormField(
                     controller: password,
@@ -55,32 +69,137 @@ class RegisterScreen extends StatelessWidget {
                       }
                     },
                     onFieldSubmitted: (value) {}),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 50,
+                ),
+
                 // remember me check box
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Checkbox(
-                      value: false,
+                      value: true,
                       onChanged: (bool? value) {},
-                      activeColor: Colors.blue,
-                      checkColor: Colors.white,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
-                    const Text('Remember me'),
+                    const Text(AppStrings.rememberMe),
                   ],
                 ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 60,
+                ),
+
                 // sign up button
-                DefualtButton(text: 'Sign up', onPressed: () {}),
+                ElevatedButton(
+                    onPressed: () {}, child: const Text(AppStrings.signIn)),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 40,
+                ),
+                // divider
+                Row(
+                  //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        color: ColorManager.lightGrey,
+                        height: AppSize.s1,
+                        width: AppSize.s1,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 30,
+                    ),
+                    Text(
+                      AppStrings.orContinueWith,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 30,
+                    ),
+                    Expanded(
+                      child: Container(
+                        color: ColorManager.lightGrey,
+                        height: AppSize.s1,
+                        width: AppSize.s1,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 30,
+                ),
+                // sign in options
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      borderRadius: BorderRadius.circular(AppSize.s30),
+                      onTap: () {},
+                      child: Container(
+                        height: AppSize.s65,
+                        width: AppSize.s90,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppSize.s30),
+                            border: Border.all(color: ColorManager.grey2)),
+                        child: Transform.scale(
+                          scale: 0.9,
+                          child: SvgPicture.asset(ImageAssets.facebook,
+                              fit: BoxFit.scaleDown),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      borderRadius: BorderRadius.circular(AppSize.s30),
+                      onTap: () {},
+                      child: Container(
+                        height: AppSize.s65,
+                        width: AppSize.s90,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppSize.s30),
+                            border: Border.all(color: ColorManager.grey2)),
+                        child: Transform.scale(
+                          scale: 0.8,
+                          child: SvgPicture.asset(ImageAssets.google,
+                              fit: BoxFit.scaleDown),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      borderRadius: BorderRadius.circular(AppSize.s30),
+                      onTap: () {},
+                      child: Container(
+                        height: AppSize.s65,
+                        width: AppSize.s90,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(AppSize.s30),
+                            border: Border.all(color: ColorManager.grey2)),
+                        child: Transform.scale(
+                          scale: 0.7,
+                          child: SvgPicture.asset(ImageAssets.apple,
+                              fit: BoxFit.scaleDown),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 50,
+                ),
                 // Sign in button
                 Row(
                   children: [
-                    const Text('Already have an account ?',
-                        style: TextStyle(color: Colors.grey)),
+                    Text(
+                      AppStrings.alreadyHaveAnAccount,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                     TextButton(
                       onPressed: () {},
-                      child: const Text(
-                        'Sign in',
-                        style: TextStyle(color: Colors.blue),
+                      child: Text(
+                        AppStrings.signIn,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: ColorManager.primary),
                       ),
                     ),
                   ],

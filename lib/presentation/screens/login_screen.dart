@@ -62,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                       checkColor: Colors.white,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
-                    const Text('Remember me'),
+                    const Text('Remember me',),
                   ],
                 ),
 
