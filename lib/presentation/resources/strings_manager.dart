@@ -12,13 +12,17 @@ class AppStrings {
 
   static const skip = 'skip';
 
-  // Register
+  // Register & Login
   static const createNewAccount = 'Create new account';
   static const email = 'Email';
   static const password = 'Password';
   static const rememberMe = 'Remember Me';
   static const signUp = 'Sign up';
   static const alreadyHaveAnAccount = 'Already have an account ?';
-  static const signIn = 'Sign Ip';
+  static const signIn = 'Sign In';
   static const orContinueWith = 'or continue with';
+
+  static const logInToYourAccount = 'Login To Your Account';
+  static const forgotThePassword = 'Forgot the password ?';
+  static const dontHaveAnAccount = 'Don\'t have an account ?';
 }

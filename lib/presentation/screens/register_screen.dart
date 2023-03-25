@@ -4,6 +4,7 @@ import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/screens/login_screen.dart';
 
 import '../../components/components.dart';
 
@@ -78,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Checkbox(
-                      value: true,
+                      value: false,
                       onChanged: (bool? value) {},
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
@@ -91,7 +92,7 @@ class RegisterScreen extends StatelessWidget {
 
                 // sign up button
                 ElevatedButton(
-                    onPressed: () {}, child: const Text(AppStrings.signIn)),
+                    onPressed: () {}, child: const Text(AppStrings.signUp)),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 40,
                 ),
@@ -193,7 +194,13 @@ class RegisterScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ));
+                      },
                       child: Text(
                         AppStrings.signIn,
                         style: Theme.of(context)

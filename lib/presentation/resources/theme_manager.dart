@@ -58,7 +58,7 @@ ThemeData getThemeData() {
         displayLarge:
             getBoldStyle(color: ColorManager.black, fontSize: FontSize.s35),
         headlineLarge:
-            getSemiBoldStyle(color: ColorManager.black, fontSize: FontSize.s32),
+            getSemiBoldStyle(color: ColorManager.black, fontSize: FontSize.s30),
         titleLarge:
             getMediumStyle(color: ColorManager.black, fontSize: FontSize.s25),
         bodyLarge:
@@ -113,9 +113,9 @@ ThemeData getThemeData() {
       ),
     ),
 
-    checkboxTheme: CheckboxThemeData(
+    checkboxTheme: CheckboxThemeData(shape: const StadiumBorder(),
         //checkColor: MaterialStateProperty.all(ColorManager.primary),
-        //fillColor: MaterialStateProperty.all(ColorManager.grey),
+        fillColor: MaterialStateProperty.all(ColorManager.primary),
         ),
   );
 }
