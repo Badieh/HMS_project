@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
-import 'package:hospital/presentation/screens/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
