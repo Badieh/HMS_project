@@ -18,7 +18,7 @@ ThemeData getThemeData() {
       centerTitle: true,
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
-      elevation: AppSize.s0,
+      elevation: AppSizew.s0,
       titleTextStyle:
           getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white),
     ),
@@ -27,7 +27,7 @@ ThemeData getThemeData() {
     cardTheme: CardTheme(
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
-      elevation: AppSize.s4,
+      elevation: AppSizew.s4,
     ),
 
     //button theme
@@ -41,19 +41,19 @@ ThemeData getThemeData() {
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            fixedSize: Size(AppSize.sMaxInfinite, AppSize.s60),
+            fixedSize: Size(AppSizew.sMaxInfinite, AppSizew.s60),
             foregroundColor: ColorManager.white,
             backgroundColor: ColorManager.primary,
             shadowColor: ColorManager.grey,
             padding: const EdgeInsets.symmetric(
                 vertical: AppPadding.p16, horizontal: AppPadding.p24),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppSize.s30),
+              borderRadius: BorderRadius.circular(AppSizew.s30),
             ),
             textStyle: getRegularStyle(
                 color: ColorManager.white, fontSize: FontSize.s18))),
 
-    // text theme
+    //   =======================     text theme     =============================
     textTheme: TextTheme(
         displayLarge:
             getBoldStyle(color: ColorManager.black, fontSize: FontSize.s35),
@@ -66,7 +66,7 @@ ThemeData getThemeData() {
         bodySmall:
             getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s16)),
 
-    // input decoration theme
+    // ========================      input decoration theme     ==============================
     inputDecorationTheme: InputDecorationTheme(
       fillColor: ColorManager.veryLightGrey,
       filled: true,
@@ -88,28 +88,28 @@ ThemeData getThemeData() {
       // enabled border style
       enabledBorder: OutlineInputBorder(
         borderSide:
-            BorderSide(color: ColorManager.lightGrey, width: AppSize.s1_5),
-        borderRadius: BorderRadius.circular(AppSize.s8),
+            BorderSide(color: ColorManager.lightGrey, width: AppSizew.s1_5),
+        borderRadius: BorderRadius.circular(AppSizew.s8),
       ),
 
       // focused border style
       focusedBorder: OutlineInputBorder(
         borderSide:
-            BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
-        borderRadius: BorderRadius.circular(AppSize.s8),
+            BorderSide(color: ColorManager.primary, width: AppSizew.s1_5),
+        borderRadius: BorderRadius.circular(AppSizew.s8),
       ),
 
       // error border style
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.error, width: AppSize.s1_5),
-        borderRadius: BorderRadius.circular(AppSize.s8),
+        borderSide: BorderSide(color: ColorManager.error, width: AppSizew.s1_5),
+        borderRadius: BorderRadius.circular(AppSizew.s8),
       ),
 
       // focused error border style
       focusedErrorBorder: OutlineInputBorder(
         borderSide:
-            BorderSide(color: ColorManager.primary, width: AppSize.s1_5),
-        borderRadius: BorderRadius.circular(AppSize.s8),
+            BorderSide(color: ColorManager.primary, width: AppSizew.s1_5),
+        borderRadius: BorderRadius.circular(AppSizew.s8),
       ),
     ),
 
@@ -130,7 +130,7 @@ ThemeData getDarkThemeData() {
     cardTheme: CardTheme(
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
-      elevation: AppSize.s4,
+      elevation: AppSizew.s4,
     ),
 
     // text theme

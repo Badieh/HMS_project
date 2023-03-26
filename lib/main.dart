@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
+import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:hospital/presentation/screens/register_screen.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'HMS App',
           theme: getThemeData(),
-          home: const RegisterScreen(),
+          home: const Home_Layout_Screen(),
         );
       },
     );

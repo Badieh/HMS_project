@@ -103,8 +103,8 @@ class RegisterScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         color: ColorManager.lightGrey,
-                        height: AppSize.s1,
-                        width: AppSize.s1,
+                        height: AppSizew.s1,
+                        width: AppSizew.s1,
                       ),
                     ),
                     SizedBox(
@@ -120,8 +120,8 @@ class RegisterScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         color: ColorManager.lightGrey,
-                        height: AppSize.s1,
-                        width: AppSize.s1,
+                        height: AppSizew.s1,
+                        width: AppSizew.s1,
                       ),
                     ),
                   ],
@@ -134,13 +134,13 @@ class RegisterScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      borderRadius: BorderRadius.circular(AppSize.s30),
+                      borderRadius: BorderRadius.circular(AppSizew.s30),
                       onTap: () {},
                       child: Container(
-                        height: AppSize.s65,
-                        width: AppSize.s90,
+                        height: AppSizew.s65,
+                        width: AppSizew.s90,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSize.s30),
+                            borderRadius: BorderRadius.circular(AppSizew.s30),
                             border: Border.all(color: ColorManager.grey2)),
                         child: Transform.scale(
                           scale: 0.9,
@@ -150,13 +150,13 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      borderRadius: BorderRadius.circular(AppSize.s30),
+                      borderRadius: BorderRadius.circular(AppSizew.s30),
                       onTap: () {},
                       child: Container(
-                        height: AppSize.s65,
-                        width: AppSize.s90,
+                        height: AppSizew.s65,
+                        width: AppSizew.s90,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSize.s30),
+                            borderRadius: BorderRadius.circular(AppSizew.s30),
                             border: Border.all(color: ColorManager.grey2)),
                         child: Transform.scale(
                           scale: 0.8,
@@ -166,13 +166,13 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      borderRadius: BorderRadius.circular(AppSize.s30),
+                      borderRadius: BorderRadius.circular(AppSizew.s30),
                       onTap: () {},
                       child: Container(
-                        height: AppSize.s65,
-                        width: AppSize.s90,
+                        height: AppSizew.s65,
+                        width: AppSizew.s90,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSize.s30),
+                            borderRadius: BorderRadius.circular(AppSizew.s30),
                             border: Border.all(color: ColorManager.grey2)),
                         child: Transform.scale(
                           scale: 0.7,
