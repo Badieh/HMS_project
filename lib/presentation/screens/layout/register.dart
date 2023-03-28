@@ -1,41 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/layout/register_screen.dart';
+import 'package:hospital/presentation/screens/layout/fill_profile.dart';
+import 'package:hospital/presentation/screens/layout/login.dart';
 
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
+class RegisterScreen extends StatelessWidget {
+  RegisterScreen({Key? key}) : super(key: key);
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
-    var formKey = GlobalKey<FormState>();
-
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Form(
+    return Scaffold(
+      //resizeToAvoidBottomInset: false,
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Form(
           key: formKey,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(AppPadding.p16),
             child: Column(
               children: [
                 Center(
                   child: SvgPicture.asset(
-                    'assets/images/hands3.svg',
-                    width: 200,
+                    ImageAssets.hands,
+                    width: AppSizeWidth.s200,
                   ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 30,
                 ),
-                Text(AppStrings.logInToYourAccount,
+                Text(AppStrings.createNewAccount,
                     style: Theme.of(context).textTheme.headlineLarge),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 30,
@@ -45,11 +44,11 @@ class LoginScreen extends StatelessWidget {
                 DefaultTextFormField(
                     controller: email,
                     keyboardType: TextInputType.emailAddress,
-                    label: 'Email',
+                    label: AppStrings.email,
                     prefixIcon: Icons.email_rounded,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Password can\'t be empty';
+                        return AppStrings.validator;
                       }
                     },
                     onFieldSubmitted: (value) {}),
@@ -61,12 +60,12 @@ class LoginScreen extends StatelessWidget {
                 DefaultTextFormField(
                     controller: password,
                     keyboardType: TextInputType.visiblePassword,
-                    label: 'Password',
+                    label: AppStrings.password,
                     prefixIcon: Icons.lock,
                     suffixIcon: Icons.remove_red_eye,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Password can\'t be empty';
+                        return AppStrings.validator;
                       }
                     },
                     onFieldSubmitted: (value) {}),
@@ -79,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Checkbox(
-                      value: true,
+                      value: false,
                       onChanged: (bool? value) {},
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
@@ -87,14 +86,20 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 60,
+                  height: MediaQuery.of(context).size.height / 80,
                 ),
 
                 // sign up button
                 ElevatedButton(
-                    onPressed: () {}, child: const Text(AppStrings.signIn)),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FillProfile()));
+                    },
+                    child: const Text(AppStrings.signUp)),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 40,
+                  height: MediaQuery.of(context).size.height / 45,
                 ),
                 // divider
                 Row(
@@ -103,8 +108,8 @@ class LoginScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         color: ColorManager.lightGrey,
-                        height: AppSizew.s1,
-                        width: AppSizew.s1,
+                        height: AppSizeWidth.s1,
+                        width: AppSizeWidth.s1,
                       ),
                     ),
                     SizedBox(
@@ -120,27 +125,28 @@ class LoginScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         color: ColorManager.lightGrey,
-                        height: AppSizew.s1,
-                        width: AppSizew.s1,
+                        height: AppSizeHeight.s1,
+                        width: AppSizeWidth.s1,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 30,
+                  height: MediaQuery.of(context).size.height / 45,
                 ),
                 // sign in options
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      borderRadius: BorderRadius.circular(AppSizew.s30),
+                      borderRadius: BorderRadius.circular(AppSizeWidth.s30),
                       onTap: () {},
                       child: Container(
-                        height: AppSizew.s65,
-                        width: AppSizew.s90,
+                        height: AppSizeHeight.s50,
+                        width: AppSizeWidth.s90,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSizew.s30),
+                            borderRadius:
+                                BorderRadius.circular(AppSizeWidth.s30),
                             border: Border.all(color: ColorManager.grey2)),
                         child: Transform.scale(
                           scale: 0.9,
@@ -150,13 +156,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      borderRadius: BorderRadius.circular(AppSizew.s30),
+                      borderRadius: BorderRadius.circular(AppSizeWidth.s30),
                       onTap: () {},
                       child: Container(
-                        height: AppSizew.s65,
-                        width: AppSizew.s90,
+                        height: AppSizeHeight.s50,
+                        width: AppSizeWidth.s90,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSizew.s30),
+                            borderRadius:
+                                BorderRadius.circular(AppSizeWidth.s30),
                             border: Border.all(color: ColorManager.grey2)),
                         child: Transform.scale(
                           scale: 0.8,
@@ -166,13 +173,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      borderRadius: BorderRadius.circular(AppSizew.s30),
+                      borderRadius: BorderRadius.circular(AppSizeWidth.s30),
                       onTap: () {},
                       child: Container(
-                        height: AppSizew.s65,
-                        width: AppSizew.s90,
+                        height: AppSizeHeight.s50,
+                        width: AppSizeWidth.s90,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(AppSizew.s30),
+                            borderRadius:
+                                BorderRadius.circular(AppSizeWidth.s30),
                             border: Border.all(color: ColorManager.grey2)),
                         child: Transform.scale(
                           scale: 0.7,
@@ -184,22 +192,25 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 50,
+                  height: MediaQuery.of(context).size.height / 70,
                 ),
                 // Sign in button
                 Row(
                   children: [
                     Text(
-                      AppStrings.dontHaveAnAccount,
+                      AppStrings.alreadyHaveAnAccount,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterScreen(),));
-
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ));
                       },
                       child: Text(
-                        AppStrings.signUp,
+                        AppStrings.signIn,
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall

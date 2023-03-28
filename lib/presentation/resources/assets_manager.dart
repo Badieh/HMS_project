@@ -11,6 +11,7 @@ class ImageAssets {
   static const String leftArrowIc = "$imagePath/left_arrow_ic.svg";
   static const String rightArrowIc = "$imagePath/right_arrow_ic.svg";
 
+  static const String hands = "$imagePath/hands3.svg";
   static const String facebook = "$imagePath/facebook.svg";
   static const String google = "$imagePath/google.svg";
   static const String apple = "$imagePath/apple.svg";

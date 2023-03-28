@@ -4,7 +4,7 @@ Widget DefaultTextFormField(
         {required TextEditingController controller,
         required TextInputType keyboardType,
         required String label,
-        required IconData prefixIcon,
+         IconData ?prefixIcon,
         IconData? suffixIcon,
         VoidCallback? suffixPressed,
         required FormFieldValidator<String>? validator,
@@ -29,4 +29,5 @@ Widget DefaultTextFormField(
         ),
       ),
       obscureText: isPassword,
+      onTapOutside: (value){FocusManager.instance.primaryFocus?.unfocus();},
     );

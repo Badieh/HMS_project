@@ -15,19 +15,19 @@ ThemeData getThemeData() {
     scaffoldBackgroundColor: ColorManager.white,
     // appbar theme
     appBarTheme: AppBarTheme(
-      centerTitle: true,
+      //centerTitle: true,
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
-      elevation: AppSizew.s0,
+      elevation: AppSizeWidth.s0,
       titleTextStyle:
-          getRegularStyle(fontSize: FontSize.s16, color: ColorManager.white),
+          getSemiBoldStyle(fontSize: FontSize.s25, color: ColorManager.black),
     ),
 
     // cardView theme
     cardTheme: CardTheme(
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
-      elevation: AppSizew.s4,
+      elevation: AppSizeWidth.s4,
     ),
 
     //button theme
@@ -41,14 +41,14 @@ ThemeData getThemeData() {
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            fixedSize: Size(AppSizew.sMaxInfinite, AppSizew.s60),
+            fixedSize: Size(AppSizeWidth.sMaxInfinite, AppSizeHeight.s45),
             foregroundColor: ColorManager.white,
             backgroundColor: ColorManager.primary,
             shadowColor: ColorManager.grey,
             padding: const EdgeInsets.symmetric(
                 vertical: AppPadding.p16, horizontal: AppPadding.p24),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppSizew.s30),
+              borderRadius: BorderRadius.circular(AppSizeWidth.s30),
             ),
             textStyle: getRegularStyle(
                 color: ColorManager.white, fontSize: FontSize.s18))),
@@ -88,35 +88,37 @@ ThemeData getThemeData() {
       // enabled border style
       enabledBorder: OutlineInputBorder(
         borderSide:
-            BorderSide(color: ColorManager.lightGrey, width: AppSizew.s1_5),
-        borderRadius: BorderRadius.circular(AppSizew.s8),
+            BorderSide(color: ColorManager.lightGrey, width: AppSizeWidth.s1_5),
+        borderRadius: BorderRadius.circular(AppSizeWidth.s8),
       ),
 
       // focused border style
       focusedBorder: OutlineInputBorder(
         borderSide:
-            BorderSide(color: ColorManager.primary, width: AppSizew.s1_5),
-        borderRadius: BorderRadius.circular(AppSizew.s8),
+            BorderSide(color: ColorManager.primary, width: AppSizeWidth.s1_5),
+        borderRadius: BorderRadius.circular(AppSizeWidth.s8),
       ),
 
       // error border style
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: ColorManager.error, width: AppSizew.s1_5),
-        borderRadius: BorderRadius.circular(AppSizew.s8),
+        borderSide:
+            BorderSide(color: ColorManager.error, width: AppSizeWidth.s1_5),
+        borderRadius: BorderRadius.circular(AppSizeWidth.s8),
       ),
 
       // focused error border style
       focusedErrorBorder: OutlineInputBorder(
         borderSide:
-            BorderSide(color: ColorManager.primary, width: AppSizew.s1_5),
-        borderRadius: BorderRadius.circular(AppSizew.s8),
+            BorderSide(color: ColorManager.primary, width: AppSizeWidth.s1_5),
+        borderRadius: BorderRadius.circular(AppSizeWidth.s8),
       ),
     ),
 
-    checkboxTheme: CheckboxThemeData(shape: const StadiumBorder(),
-        //checkColor: MaterialStateProperty.all(ColorManager.primary),
-        fillColor: MaterialStateProperty.all(ColorManager.primary),
-        ),
+    checkboxTheme: CheckboxThemeData(
+      shape: const StadiumBorder(),
+      //checkColor: MaterialStateProperty.all(ColorManager.primary),
+      fillColor: MaterialStateProperty.all(ColorManager.primary),
+    ),
   );
 }
 
@@ -130,7 +132,7 @@ ThemeData getDarkThemeData() {
     cardTheme: CardTheme(
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
-      elevation: AppSizew.s4,
+      elevation: AppSizeWidth.s4,
     ),
 
     // text theme
