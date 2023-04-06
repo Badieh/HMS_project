@@ -24,11 +24,11 @@ ThemeData getThemeData() {
     ),
 
     // cardView theme
-    cardTheme: CardTheme(
-      color: ColorManager.white,
-      shadowColor: ColorManager.grey,
-      elevation: AppSizeWidth.s4,
-    ),
+    // cardTheme: CardTheme(
+    //   color: ColorManager.white,
+    //   shadowColor: ColorManager.grey,
+    //   elevation: AppSizeWidth.s4,
+    // ),
 
     //button theme
     buttonTheme: ButtonThemeData(
@@ -41,12 +41,13 @@ ThemeData getThemeData() {
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+
             fixedSize: Size(AppSizeWidth.sMaxInfinite, AppSizeHeight.s45),
             foregroundColor: ColorManager.white,
             backgroundColor: ColorManager.primary,
             shadowColor: ColorManager.grey,
             padding: const EdgeInsets.symmetric(
-                vertical: AppPadding.p16, horizontal: AppPadding.p24),
+                vertical: AppPadding.p10, horizontal: AppPadding.p8),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppSizeWidth.s30),
             ),
@@ -68,6 +69,8 @@ ThemeData getThemeData() {
 
     // ========================      input decoration theme     ==============================
     inputDecorationTheme: InputDecorationTheme(
+
+
       fillColor: ColorManager.veryLightGrey,
       filled: true,
       // content padding

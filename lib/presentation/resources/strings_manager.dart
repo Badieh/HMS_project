@@ -14,7 +14,7 @@ class AppStrings {
 
   // Register & Login
   static const createNewAccount = 'Create new account';
-  static const validator = 'Field can\'t be empty';
+  static const validator = 'Field Required';
   static const email = 'Email';
   static const password = 'Password';
   static const rememberMe = 'Remember Me';
@@ -27,6 +27,8 @@ class AppStrings {
   static const dontHaveAnAccount = 'Don\'t have an account ?';
 
   // Fill Profile
+  static const fillYourProfile = 'Fill your profile';
+  static const next = 'Next';
   static const firstName = 'First Name';
   static const secondName = 'Second Name';
   static const thirdName = 'Third Name';
@@ -40,21 +42,23 @@ class AppStrings {
   static const maritalStatus = 'Marital Status';
   static const nationality = 'Nationality';
   static const bloodType = 'Blood Type';
+  static const height = 'Height';
+  static const weight = 'Weight';
+
   static const fullAddress = 'Full Address';
   static const country = 'Country';
   static const city = 'City';
   static const streetName = 'Street Name';
   static const buildingNumber = 'Building Number';
   static const appartmentNumber = 'Appartment Number';
+  static const birthPlaceCountry = 'Birth Place Country';
+  static const birthPlaceCity = 'Birth Place City';
 
-  static const height = 'Height';
-  static const weight = 'Weight';
   static const job = 'Job';
   static const jobFullAddress = 'Work Full Address';
   static const jobCountry = 'Work Country';
   static const jobCity = 'Work City';
   static const jobStreetName = 'Work Street Name ';
   static const jobBuildingNumber = 'Work Building Number';
-  static const birthPlaceCountry = 'Birth Place Country';
-  static const birthPlaceCity = 'Birth Place City';
+
 }
