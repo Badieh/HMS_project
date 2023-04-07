@@ -39,24 +39,37 @@ class AppStrings {
 
   static const religion = 'Religion';
   static const gender = 'Gender';
+  static const male = 'Male';
+  static const female = 'Female';
   static const maritalStatus = 'Marital Status';
+  static const single = 'Single';
+  static const married = 'Married';
+  static const divorced = 'Divorced';
+  static const widowed = 'Widowed';
   static const nationality = 'Nationality';
   static const bloodType = 'Blood Type';
   static const height = 'Height';
+  static const cm = 'Cm';
   static const weight = 'Weight';
+  static const kg = 'Kg';
 
-  static const fullAddress = 'Full Address';
+  static const address = 'Address';
   static const country = 'Country';
+  static const state = 'State';
   static const city = 'City';
   static const streetName = 'Street Name';
   static const buildingNumber = 'Building Number';
-  static const appartmentNumber = 'Appartment Number';
+  static const appartmentNumber = 'Appartment /Floor Number';
+  static const birthAddress = 'Birth Place';
   static const birthPlaceCountry = 'Birth Place Country';
+  static const birthPlaceState = 'Birth Place State';
   static const birthPlaceCity = 'Birth Place City';
 
-  static const job = 'Job';
+  static const jobDetails = 'Job Details';
+  static const job = 'Job Title';
   static const jobFullAddress = 'Work Full Address';
   static const jobCountry = 'Work Country';
+  static const jobState = 'Work State';
   static const jobCity = 'Work City';
   static const jobStreetName = 'Work Street Name ';
   static const jobBuildingNumber = 'Work Building Number';

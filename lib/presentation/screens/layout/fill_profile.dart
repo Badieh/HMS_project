@@ -1,6 +1,8 @@
+import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:intl/intl.dart';
@@ -19,7 +21,6 @@ class _FillProfileState extends State<FillProfile> {
   final formKey2 = GlobalKey<FormState>();
   final formKey3 = GlobalKey<FormState>();
   final formKey4 = GlobalKey<FormState>();
-  String initialCountry = 'EG';
   PhoneNumber number = PhoneNumber(isoCode: 'EG');
   final controller = PageController(viewportFraction: 1, keepPage: true);
   final TextEditingController firstName = TextEditingController();
@@ -38,29 +39,56 @@ class _FillProfileState extends State<FillProfile> {
 
   final TextEditingController religion = TextEditingController();
 
-  final TextEditingController gender = TextEditingController();
+  bool _isMale = true;
+  MaritalStatus _maritalStatus = MaritalStatus.single;
 
-//  final TextEditingController maritalStatus = TextEditingController();
   final TextEditingController nationality = TextEditingController();
 
-  final TextEditingController bloodType = TextEditingController();
+  final List<String> _bloodTypes = <String>[
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'AB+',
+    'AB-',
+    'O+',
+    'O-'
+  ];
+  String? _bloodType;
 
-  final TextEditingController fullAddress = TextEditingController();
+  late String nationalitty;
 
-  final TextEditingController country = TextEditingController();
-
-  final TextEditingController city = TextEditingController();
+  final TextEditingController heightController = TextEditingController();
+  final TextEditingController weightController = TextEditingController();
+  double _height = 170.0;
+  double _weight = 80;
 
   final TextEditingController streetName = TextEditingController();
 
   final TextEditingController appartmentNumber = TextEditingController();
 
   final TextEditingController buildingNumber = TextEditingController();
+  late String addressCountry;
+  String? addressState;
+  String? addressCity;
+  late String birthCountry;
+  String? birthState;
+  String? birthCity;
 
   final TextEditingController job = TextEditingController();
+  final TextEditingController jobBuildingNumber = TextEditingController();
+  final TextEditingController jobStreetName = TextEditingController();
+  late String jobCountry;
+  String? jobState;
+  String? jobCity;
+
   @override
   void initState() {
     dateOfBirth.text = ""; //set the initial value of text field
+    //bloodType = bloodTypes.first;
+    heightController.text = _height.toString();
+    weightController.text = _weight.toString();
+
     super.initState();
   }
 
@@ -74,11 +102,12 @@ class _FillProfileState extends State<FillProfile> {
         padding: const EdgeInsets.symmetric(
             vertical: AppPadding.p8, horizontal: AppPadding.p18),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: PageView(
-                pageSnapping: true,
+                //pageSnapping: false,
                 padEnds: false,
                 controller: controller,
                 physics: const BouncingScrollPhysics(),
@@ -141,19 +170,23 @@ class _FillProfileState extends State<FillProfile> {
   }
 
   Widget fillProfile1() {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Container(
-        padding: const EdgeInsets.all(AppPadding.p10),
-        decoration: BoxDecoration(
-          border: Border.all(color: ColorManager.secondary),
-          borderRadius: BorderRadius.circular(AppPadding.p20),
-        ),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
+      padding: const EdgeInsets.all(AppPadding.p10),
+      decoration: BoxDecoration(
+        border: Border.all(color: ColorManager.secondary),
+        borderRadius: BorderRadius.circular(AppPadding.p20),
+      ),
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Form(
           key: formKey1,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               // Profile Image
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+
               Stack(
                 alignment: Alignment.bottomRight,
                 children: [
@@ -180,7 +213,7 @@ class _FillProfileState extends State<FillProfile> {
                   ),
                 ],
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              SizedBox(height: MediaQuery.of(context).size.height / 40),
 
               // firstName
               DefaultTextFormField(
@@ -193,7 +226,7 @@ class _FillProfileState extends State<FillProfile> {
                     }
                   },
                   onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              SizedBox(height: MediaQuery.of(context).size.height / 40),
 
               // secondName
               DefaultTextFormField(
@@ -206,7 +239,7 @@ class _FillProfileState extends State<FillProfile> {
                     }
                   },
                   onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              SizedBox(height: MediaQuery.of(context).size.height / 40),
 
               // thirdName
               DefaultTextFormField(
@@ -219,7 +252,7 @@ class _FillProfileState extends State<FillProfile> {
                     }
                   },
                   onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              SizedBox(height: MediaQuery.of(context).size.height / 40),
 
               // lastName
               DefaultTextFormField(
@@ -232,7 +265,7 @@ class _FillProfileState extends State<FillProfile> {
                     }
                   },
                   onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              SizedBox(height: MediaQuery.of(context).size.height / 40),
 
               // nationalIdCard
               DefaultTextFormField(
@@ -245,7 +278,7 @@ class _FillProfileState extends State<FillProfile> {
                     }
                   },
                   onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              SizedBox(height: MediaQuery.of(context).size.height / 40),
 
               // phone
               InternationalPhoneNumberInput(
@@ -271,7 +304,7 @@ class _FillProfileState extends State<FillProfile> {
                   print('On Saved: $number');
                 },
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              SizedBox(height: MediaQuery.of(context).size.height / 40),
             ],
           ),
         ),
@@ -280,19 +313,24 @@ class _FillProfileState extends State<FillProfile> {
   }
 
   Widget fillProfile2() {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Container(
-        padding: const EdgeInsets.all(AppPadding.p10),
-        decoration: BoxDecoration(
-          border: Border.all(color: ColorManager.secondary),
-          borderRadius: BorderRadius.circular(AppPadding.p20),
-        ),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
+      padding: const EdgeInsets.all(AppPadding.p10),
+      decoration: BoxDecoration(
+        border: Border.all(color: ColorManager.secondary),
+        borderRadius: BorderRadius.circular(AppPadding.p20),
+      ),
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Form(
           key: formKey2,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // dateOfBirth
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+
               DefaultTextFormField(
                   controller: dateOfBirth,
                   keyboardType: TextInputType.none,
@@ -328,48 +366,9 @@ class _FillProfileState extends State<FillProfile> {
 
               // religion
               DefaultTextFormField(
-                  controller: firstName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.firstName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
-
-              // gender
-              DefaultTextFormField(
-                  controller: secondName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.secondName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
-
-              // Marital status
-              DefaultTextFormField(
-                  controller: thirdName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.thirdName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
-
-              // nationality
-              DefaultTextFormField(
-                  controller: lastName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.lastName,
+                  controller: religion,
+                  keyboardType: TextInputType.text,
+                  label: AppStrings.religion,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return AppStrings.validator;
@@ -379,63 +378,355 @@ class _FillProfileState extends State<FillProfile> {
               SizedBox(height: MediaQuery.of(context).size.height / 45),
 
               // blood type
-              DefaultTextFormField(
-                  controller: nationalIdCard,
-                  keyboardType: TextInputType.number,
-                  label: AppStrings.nationalIdCard,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
+              DropdownButtonFormField<String>(
+                hint: Text('Blood type'),
+                value: _bloodType,
+                icon: const Icon(Icons.bloodtype_outlined),
+                isExpanded: true,
+                elevation: 16,
+                //style: TextStyle(color: ColorManager.primary),
+                onChanged: (String? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    _bloodType = value!;
+                  });
+                },
+                items:
+                    _bloodTypes.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+
+              // gender
+              Text(
+                AppStrings.gender,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: FontSize.s18),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isMale = true;
+                      });
+                    },
+                    child: Container(
+                      width: AppSizeWidth.s90,
+                      height: AppSizeHeight.s80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeWidth.s10),
+                        border: Border.all(
+                            color: _isMale
+                                ? ColorManager.primary
+                                : ColorManager.grey),
+                        color: _isMale
+                            ? ColorManager.secondary
+                            : ColorManager.lightGrey,
+                      ),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Icon(
+                              Icons.boy,
+                              size: AppSizeHeight.s60,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Text(
+                              AppStrings.male,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _isMale = false;
+                      });
+                    },
+                    child: Container(
+                      width: AppSizeWidth.s90,
+                      height: AppSizeHeight.s80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeWidth.s10),
+                        border: Border.all(
+                            color: _isMale
+                                ? ColorManager.grey
+                                : ColorManager.primary),
+                        color: _isMale
+                            ? ColorManager.lightGrey
+                            : ColorManager.secondary,
+                      ),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Icon(
+                              Icons.girl,
+                              size: AppSizeHeight.s60,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Text(
+                              AppStrings.female,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+
+              // Marital status
+              Text(
+                AppStrings.maritalStatus,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: FontSize.s18),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _maritalStatus = MaritalStatus.single;
+                      });
+                    },
+                    child: Container(
+                      width: AppSizeWidth.s70,
+                      height: AppSizeHeight.s25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeWidth.s10),
+                        border: Border.all(
+                            color: _maritalStatus == MaritalStatus.single
+                                ? ColorManager.primary
+                                : ColorManager.lightGrey),
+                        color: _maritalStatus == MaritalStatus.single
+                            ? ColorManager.secondary
+                            : ColorManager.lightGrey,
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppStrings.single,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(fontSize: FontSize.s15),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _maritalStatus = MaritalStatus.married;
+                      });
+                    },
+                    child: Container(
+                      width: AppSizeWidth.s70,
+                      height: AppSizeHeight.s25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeWidth.s10),
+                        border: Border.all(
+                            color: _maritalStatus == MaritalStatus.married
+                                ? ColorManager.primary
+                                : ColorManager.lightGrey),
+                        color: _maritalStatus == MaritalStatus.married
+                            ? ColorManager.secondary
+                            : ColorManager.lightGrey,
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppStrings.married,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(fontSize: FontSize.s15),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _maritalStatus = MaritalStatus.divorced;
+                      });
+                    },
+                    child: Container(
+                      width: AppSizeWidth.s70,
+                      height: AppSizeHeight.s25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeWidth.s10),
+                        border: Border.all(
+                            color: _maritalStatus == MaritalStatus.divorced
+                                ? ColorManager.primary
+                                : ColorManager.lightGrey),
+                        color: _maritalStatus == MaritalStatus.divorced
+                            ? ColorManager.secondary
+                            : ColorManager.lightGrey,
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppStrings.divorced,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(fontSize: FontSize.s15),
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _maritalStatus = MaritalStatus.widow;
+                      });
+                    },
+                    child: Container(
+                      width: AppSizeWidth.s70,
+                      height: AppSizeHeight.s25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeWidth.s10),
+                        border: Border.all(
+                            color: _maritalStatus == MaritalStatus.widow
+                                ? ColorManager.primary
+                                : ColorManager.lightGrey),
+                        color: _maritalStatus == MaritalStatus.widow
+                            ? ColorManager.secondary
+                            : ColorManager.lightGrey,
+                      ),
+                      child: Center(
+                        child: Text(
+                          AppStrings.widowed,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(fontSize: FontSize.s15),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: MediaQuery.of(context).size.height / 45),
 
               // height
-              DefaultTextFormField(
-                  controller: nationalIdCard,
-                  keyboardType: TextInputType.number,
-                  label: AppStrings.nationalIdCard,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
-              // weight
-              DefaultTextFormField(
-                  controller: dateOfBirth,
-                  keyboardType: TextInputType.none,
-                  label: AppStrings.dateOfBirth,
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime(2000),
-                        firstDate: DateTime(1950),
-                        //DateTime.now() - not to allow to choose before today.
-                        lastDate: DateTime.now());
+              Row(
+                children: [
+                  Text(
+                    AppStrings.height,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontSize: FontSize.s18),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p8),
+                        width: AppSizeWidth.s60,
+                        height: AppSizeHeight.s25,
+                        child: DefaultTextFormField(
+                            controller: heightController,
+                            keyboardType: TextInputType.number,
+                            label: '',
+                            validator: (value) {},
+                            onFieldSubmitted: (value) {
+                              setState(() {
+                                _height =
+                                    double.tryParse(heightController.text)!;
+                              });
+                            }),
+                      ),
+                      Text(
+                        AppStrings.cm,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Slider(
+                  min: 0,
+                  max: 250,
+                  value: _height,
+                  onChanged: (value) {
+                    setState(() {
+                      _height = value;
+                      heightController.text = _height.toStringAsFixed(1);
+                    });
+                  }),
 
-                    if (pickedDate != null) {
-                      print(
-                          pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
-                      print(
-                          formattedDate); //formatted date output using intl package =>  2021-03-16
-                      setState(() {
-                        dateOfBirth.text =
-                            formattedDate; //set output date to TextField value.
-                      });
-                    } else {}
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              // weight
+              Row(
+                children: [
+                  Text(
+                    AppStrings.weight,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontSize: FontSize.s18),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p8),
+                        width: AppSizeWidth.s60,
+                        height: AppSizeHeight.s25,
+                        child: DefaultTextFormField(
+                            controller: weightController,
+                            keyboardType: TextInputType.number,
+                            label: '',
+                            validator: (value) {},
+                            onFieldSubmitted: (value) {
+                              setState(() {
+                                _weight =
+                                    double.tryParse(weightController.text)!;
+                              });
+                            }),
+                      ),
+                      Text(
+                        AppStrings.kg,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Slider(
+                  min: 1,
+                  max: 250,
+                  value: _weight,
+                  onChanged: (value) {
+                    setState(() {
+                      _weight = value;
+                    });
+                  }),
             ],
           ),
         ),
@@ -444,283 +735,236 @@ class _FillProfileState extends State<FillProfile> {
   }
 
   Widget fillProfile3() {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Container(
-        padding: const EdgeInsets.all(AppPadding.p10),
-        decoration: BoxDecoration(
-          border: Border.all(color: ColorManager.secondary),
-          borderRadius: BorderRadius.circular(AppPadding.p20),
-        ),
-        child: Form(
-          key: formKey2,
-          child: Column(
-            children: [
-              // streetName
-              DefaultTextFormField(
-                  controller: dateOfBirth,
-                  keyboardType: TextInputType.none,
-                  label: AppStrings.dateOfBirth,
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime(2000),
-                        firstDate: DateTime(1950),
-                        //DateTime.now() - not to allow to choose before today.
-                        lastDate: DateTime.now());
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
+      padding: const EdgeInsets.all(AppPadding.p10),
+      decoration: BoxDecoration(
+        border: Border.all(color: ColorManager.secondary),
+        borderRadius: BorderRadius.circular(AppPadding.p20),
+      ),
+      child: Form(
+        key: formKey3,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // nationality
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-                    if (pickedDate != null) {
-                      print(
-                          pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
-                      print(
-                          formattedDate); //formatted date output using intl package =>  2021-03-16
-                      setState(() {
-                        dateOfBirth.text =
-                            formattedDate; //set output date to TextField value.
-                      });
-                    } else {}
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            Text(
+              AppStrings.nationality,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontSize: FontSize.s18),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
+            CSCPicker(
+              //countryDropdownLabel: 'Nationality',
+              showStates: false,
+              //defaultCountry: CscCountry.Egypt,
 
-              // buildingNumber
-              DefaultTextFormField(
-                  controller: firstName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.firstName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              onCountryChanged: (value) {
+                setState(() {
+                  nationalitty = value;
+                });
+              },
+              onStateChanged: (value) {},
+              onCityChanged: (value) {},
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // appartmentNumber
-              DefaultTextFormField(
-                  controller: secondName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.secondName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            // appartmentNumber
+            Text(
+              AppStrings.address,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontSize: FontSize.s18),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
+            DefaultTextFormField(
+                controller: appartmentNumber,
+                keyboardType: TextInputType.number,
+                label: AppStrings.appartmentNumber,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.validator;
+                  }
+                },
+                onFieldSubmitted: (value) {}),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // city
-              DefaultTextFormField(
-                  controller: thirdName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.thirdName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            // buildingNumber
+            DefaultTextFormField(
+                controller: buildingNumber,
+                keyboardType: TextInputType.number,
+                label: AppStrings.buildingNumber,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.validator;
+                  }
+                },
+                onFieldSubmitted: (value) {}),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // country
-              DefaultTextFormField(
-                  controller: lastName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.lastName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            // streetName
+            DefaultTextFormField(
+                controller: streetName,
+                keyboardType: TextInputType.name,
+                label: AppStrings.streetName,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.validator;
+                  }
+                },
+                onFieldSubmitted: (value) {}),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // fullAddress
-              DefaultTextFormField(
-                  controller: nationalIdCard,
-                  keyboardType: TextInputType.number,
-                  label: AppStrings.nationalIdCard,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            // city  / state / country
+            CSCPicker(
+              //countryDropdownLabel: 'Count',
+              //defaultCountry: CscCountry.Egypt,
 
-              // birthPlaceCity
-              DefaultTextFormField(
-                  controller: dateOfBirth,
-                  keyboardType: TextInputType.none,
-                  label: AppStrings.dateOfBirth,
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime(2000),
-                        firstDate: DateTime(1950),
-                        //DateTime.now() - not to allow to choose before today.
-                        lastDate: DateTime.now());
-
-                    if (pickedDate != null) {
-                      print(
-                          pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
-                      print(
-                          formattedDate); //formatted date output using intl package =>  2021-03-16
-                      setState(() {
-                        dateOfBirth.text =
-                            formattedDate; //set output date to TextField value.
-                      });
-                    } else {}
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
-
-              // birthPlaceCountry
-              DefaultTextFormField(
-                  controller: nationalIdCard,
-                  keyboardType: TextInputType.number,
-                  label: AppStrings.nationalIdCard,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
-            ],
-          ),
+              onCountryChanged: (value) {
+                setState(() {
+                  addressCountry = value;
+                });
+              },
+              onStateChanged: (value) {
+                setState(() {
+                  addressState = value;
+                });
+              },
+              onCityChanged: (value) {
+                setState(() {
+                  addressCity = value;
+                });
+              },
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
+          ],
         ),
       ),
     );
   }
 
   Widget fillProfile4() {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Container(
-        padding: const EdgeInsets.all(AppPadding.p10),
-        decoration: BoxDecoration(
-          border: Border.all(color: ColorManager.secondary),
-          borderRadius: BorderRadius.circular(AppPadding.p20),
-        ),
-        child: Form(
-          key: formKey2,
-          child: Column(
-            children: [
-              // job
-              DefaultTextFormField(
-                  controller: dateOfBirth,
-                  keyboardType: TextInputType.none,
-                  label: AppStrings.dateOfBirth,
-                  onTap: () async {
-                    DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime(2000),
-                        firstDate: DateTime(1950),
-                        //DateTime.now() - not to allow to choose before today.
-                        lastDate: DateTime.now());
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
+      padding: const EdgeInsets.all(AppPadding.p10),
+      decoration: BoxDecoration(
+        border: Border.all(color: ColorManager.secondary),
+        borderRadius: BorderRadius.circular(AppPadding.p20),
+      ),
+      child: Form(
+        key: formKey4,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // birthPlaceCity / birthPlaceState  /birthPlaceCountry
+            SizedBox(height: MediaQuery.of(context).size.height / 70),
 
-                    if (pickedDate != null) {
-                      print(
-                          pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                      String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
-                      print(
-                          formattedDate); //formatted date output using intl package =>  2021-03-16
-                      setState(() {
-                        dateOfBirth.text =
-                            formattedDate; //set output date to TextField value.
-                      });
-                    } else {}
-                  },
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            Text(
+              AppStrings.birthAddress,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontSize: FontSize.s18),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
+            CSCPicker(
+              // countryDropdownLabel: 'Nationality',
+              // showStates: false,
+              //defaultCountry: CscCountry.Egypt,
 
-              // jobBuildingNumber
-              DefaultTextFormField(
-                  controller: firstName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.firstName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              onCountryChanged: (value) {
+                setState(() {
+                  birthCountry = value;
+                });
+              },
+              onStateChanged: (value) {
+                setState(() {
+                  birthState = value;
+                });
+              },
+              onCityChanged: (value) {
+                setState(() {
+                  birthCity = value;
+                });
+              },
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // jobStreetName
-              DefaultTextFormField(
-                  controller: secondName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.secondName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            // job
+            Text(
+              AppStrings.jobDetails,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontSize: FontSize.s18),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
+            DefaultTextFormField(
+                controller: job,
+                keyboardType: TextInputType.text,
+                label: AppStrings.job,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.validator;
+                  }
+                },
+                onFieldSubmitted: (value) {}),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // jobCity
-              DefaultTextFormField(
-                  controller: thirdName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.thirdName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            // jobBuildingNumber
+            DefaultTextFormField(
+                controller: jobBuildingNumber,
+                keyboardType: TextInputType.number,
+                label: AppStrings.jobBuildingNumber,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.validator;
+                  }
+                },
+                onFieldSubmitted: (value) {}),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // jobCountry
-              DefaultTextFormField(
-                  controller: lastName,
-                  keyboardType: TextInputType.name,
-                  label: AppStrings.lastName,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            // jobStreetName
+            DefaultTextFormField(
+                controller: jobStreetName,
+                keyboardType: TextInputType.name,
+                label: AppStrings.jobStreetName,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return AppStrings.validator;
+                  }
+                },
+                onFieldSubmitted: (value) {}),
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-              // jobFullAddress
-              DefaultTextFormField(
-                  controller: nationalIdCard,
-                  keyboardType: TextInputType.number,
-                  label: AppStrings.nationalIdCard,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return AppStrings.validator;
-                    }
-                  },
-                  onFieldSubmitted: (value) {}),
-              SizedBox(height: MediaQuery.of(context).size.height / 45),
-            ],
-          ),
+            // jobCity /jobState  /jobCountry
+            CSCPicker(
+              onCountryChanged: (value) {
+                setState(() {
+                  jobCountry = value;
+                });
+              },
+              onStateChanged: (value) {
+                setState(() {
+                  jobState = value;
+                });
+              },
+              onCityChanged: (value) {
+                setState(() {
+                  jobCity = value;
+                });
+              },
+            ),
+
+            SizedBox(height: MediaQuery.of(context).size.height / 45),
+          ],
         ),
       ),
     );
@@ -731,18 +975,16 @@ class _FillProfileState extends State<FillProfile> {
         duration: Duration(milliseconds: 600), curve: Curves.fastOutSlowIn);
   }
 
-  void getPhoneNumber(String phoneNumber) async {
-    PhoneNumber number =
-        await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
-
-    setState(() {
-      this.number = number;
-    });
-  }
-
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
   }
+}
+
+enum MaritalStatus {
+  single,
+  married,
+  divorced,
+  widow,
 }
