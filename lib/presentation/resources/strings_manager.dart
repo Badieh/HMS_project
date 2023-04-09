@@ -1,14 +1,12 @@
 class AppStrings {
   static const noRouteFound = 'No route found';
-  static const onBoardingTitle1 = 'onBoardingTitle1';
-  static const onBoardingTitle2 = 'onBoardingTitle2';
-  static const onBoardingTitle3 = 'onBoardingTitle3';
-  static const onBoardingTitle4 = 'onBoardingTitle4';
 
-  static const onBoardingSubTitle1 = 'onBoardingSubTitle1';
-  static const onBoardingSubTitle2 = 'onBoardingSubTitle2';
-  static const onBoardingSubTitle3 = 'onBoardingSubTitle3';
-  static const onBoardingSubTitle4 = 'onBoardingSubTitle4';
+  static const onBoardingTitle1 =
+      'Thousands of\ndoctors & experts to\nhelp your health!';
+  static const onBoardingTitle2 =
+      'All your health records\nat one place\nAny where! Anytime!';
+  static const onBoardingTitle3 =
+      'Let\'s start living\nhealthy and well\nwith us right now!';
 
   static const skip = 'skip';
 
@@ -73,5 +71,4 @@ class AppStrings {
   static const jobCity = 'Work City';
   static const jobStreetName = 'Work Street Name ';
   static const jobBuildingNumber = 'Work Building Number';
-
 }

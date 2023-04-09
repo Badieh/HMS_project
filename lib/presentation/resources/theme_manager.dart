@@ -41,7 +41,6 @@ ThemeData getThemeData() {
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-
             fixedSize: Size(AppSizeWidth.sMaxInfinite, AppSizeHeight.s45),
             foregroundColor: ColorManager.white,
             backgroundColor: ColorManager.primary,
@@ -56,10 +55,14 @@ ThemeData getThemeData() {
 
     //   =======================     text theme     =============================
     textTheme: TextTheme(
-        displayLarge:
-            getBoldStyle(color: ColorManager.black, fontSize: FontSize.s35),
-        headlineLarge:
-            getSemiBoldStyle(color: ColorManager.black, fontSize: FontSize.s30),
+        displayLarge: getBoldStyle(
+            color: ColorManager.primary,
+            fontSize: FontSize.s30,
+            height: FontSize.s1_3),
+        headlineLarge: getSemiBoldStyle(
+          color: ColorManager.black,
+          fontSize: FontSize.s30,
+        ),
         titleLarge:
             getMediumStyle(color: ColorManager.black, fontSize: FontSize.s25),
         bodyLarge:
@@ -69,8 +72,6 @@ ThemeData getThemeData() {
 
     // ========================      input decoration theme     ==============================
     inputDecorationTheme: InputDecorationTheme(
-
-
       fillColor: ColorManager.veryLightGrey,
       filled: true,
       // content padding
