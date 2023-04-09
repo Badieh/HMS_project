@@ -7,6 +7,6 @@ class OnBoardingEntity extends Equatable {
   const OnBoardingEntity({required this.url, required this.title});
 
   @override
-  
+
   List<Object?> get props => [url, title];
 }
