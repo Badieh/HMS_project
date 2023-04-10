@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Archive_Screen extends StatelessWidget {
-  const Archive_Screen({Key? key}) : super(key: key);
+class Article_Screen extends StatelessWidget {
+  const Article_Screen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

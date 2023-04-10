@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/values_manager.dart';
 
 class Profile_Screen extends StatelessWidget {
   const Profile_Screen({Key? key}) : super(key: key);
@@ -6,83 +9,261 @@ class Profile_Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          // profile data =======
-          Row(
-            children: [
-              SizedBox(
-                width: 20,
-              ),
-              Container(
-                height: 80,
-                child: Icon(
-                  Icons.person,
-                  size: 60,
-                ),
-                clipBehavior: Clip.antiAlias,
-                width: 80,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(50)),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Mina Shawky",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
-                  ),
-                  Text(
-                    "minashawky12@gmail.com",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                ],
-              )
-            ],
-          ),
-
-          Container(
-            height: 500,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: [
-                    SizedBox(width: 5,),
+                  children:
+                [
+                  Container(
+                    height: 40,
+                    width: 40,
+                    child: Image.asset(
+                     "assets/images/hands1.png",
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                  Text(
+                    "Profile",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: FontSize.s20),
+                  ),
 
-                    Expanded(
-
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              elevation: 5,
-                              fixedSize: Size(10, 300)),
-                      onPressed: () {},
-                      child: Text("Segmentation",style: TextStyle(fontSize: 20),),
-                    )),
-                    SizedBox(width: 5,),
-                    Expanded(
-                        child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 5,
-                      fixedSize: Size(10, 300)),
-                      onPressed: () {},
-                      child: Text("grading",style: TextStyle(fontSize: 20)),
-                    )),
-                    SizedBox(width: 5,),
-
-                  ],
-                ),
+                ],),
+                Icon(Icons.more_horiz_outlined)
               ],
             ),
-          )
-        ],
+            SizedBox(
+              height: AppSizeHeight.s8,
+            ),
+            // profile data =======
+            Column(
+
+              children: [
+                Container(
+                  height: 120,
+                  child: Image.asset(
+                    "assets/images/profile.png",
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  width: 120,
+                  decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(60)),
+                ),
+                SizedBox(
+                  height: AppSizeHeight.s8,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Bishoy Shehata",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize:  FontSize.s18),
+                    ),
+                    Text(
+                      "Elmasry01285@gmail.com",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize:  FontSize.s14),
+                    ),
+                  ],
+                ),
+                Divider(
+                  color: ColorManager.grey2,
+                  thickness: 1,
+                  height: 60,
+                ),
+
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:
+                  [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons. person_2_outlined,size: AppSizeHeight.s25,color: ColorManager.primary,),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    Text(
+                      "Profile",
+                      style: TextStyle( fontSize: FontSize.s18),
+                    ),
+
+                  ],),
+                Icon(Icons.arrow_forward_ios_outlined,size: AppSizeWidth.s18,)
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:
+                  [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons. notifications_active_outlined,size: AppSizeHeight.s25,color: ColorManager.primary,),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    Text(
+                      "Notification",
+                      style: TextStyle( fontSize: FontSize.s18),
+                    ),
+
+                  ],),
+                Icon(Icons.arrow_forward_ios_outlined,size: AppSizeWidth.s18,)
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:
+                  [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons. payment,size: AppSizeHeight.s25,color: ColorManager.primary,),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    Text(
+                      "Payment",
+                      style: TextStyle( fontSize: FontSize.s18),
+                    ),
+
+                  ],),
+                Icon(Icons.arrow_forward_ios_outlined,size: AppSizeWidth.s18,)
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:
+                  [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons. security,size: AppSizeHeight.s25,color: ColorManager.primary,),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    Text(
+                      "Security",
+                      style: TextStyle( fontSize: FontSize.s18),
+                    ),
+
+                  ],),
+                Icon(Icons.arrow_forward_ios_outlined,size: AppSizeWidth.s18,)
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:
+                  [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons. language,size: AppSizeHeight.s25,color: ColorManager.primary,),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    Text(
+                      "Language",
+                      style: TextStyle( fontSize: FontSize.s18),
+                    ),
+
+                  ],),
+                Icon(Icons.arrow_forward_ios_outlined,size: AppSizeWidth.s18,)
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:
+                  [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons. dark_mode_outlined,size: AppSizeHeight.s25,color: ColorManager.primary,),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    Text(
+                      "Dark Mode",
+                      style: TextStyle( fontSize: FontSize.s18),
+                    ),
+
+                  ],),
+                Icon(Icons.arrow_forward_ios_outlined,size: AppSizeWidth.s18,)
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:
+                  [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      child: Icon(Icons. logout,size: AppSizeHeight.s25,color: ColorManager.error),
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    Text(
+                      "Logout",
+                      style: TextStyle( fontSize: FontSize.s18,color: ColorManager.error),
+                    ),
+
+                  ],),
+                Icon(Icons.arrow_forward_ios_outlined,size: AppSizeWidth.s18,)
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height*.02,
+            ),
+          ],
+        ),
       ),
     );
   }
