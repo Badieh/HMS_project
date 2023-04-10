@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,66 +12,109 @@ class Home_Screen extends StatelessWidget {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(AppPadding.p10),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.015,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * 0.015,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.02,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.02,
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.width * .15,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .15,
                     clipBehavior: Clip.antiAlias,
-                    width: MediaQuery.of(context).size.width * .15,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .15,
                     child: Image.asset("assets/images/profile.png"),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .02,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .02,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text("Good Morning 👋"),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.009,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.009,
                       ),
                       Text(
                         "Andrew Ainsley",
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(
                             fontWeight: FontWeight.bold, color: Colors.black),
                       ),
                     ],
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .15,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .15,
                   ),
                   Icon(
                     Icons.notifications_active_outlined,
                     size: 28.sp,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .02,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .02,
                   ),
                   Icon(Icons.favorite_border, size: 28.sp)
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * .015,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .015,
               ),
               Container(
                 alignment: Alignment.center,
-                height: MediaQuery.of(context).size.width * .15,
-                width: MediaQuery.of(context).size.width * .85,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .width * .15,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * .85,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(10),
@@ -78,7 +122,10 @@ class Home_Screen extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * .015,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .015,
                     ),
                     Icon(
                       Icons.search,
@@ -86,30 +133,45 @@ class Home_Screen extends StatelessWidget {
                       color: Colors.grey[400],
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * .015,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .015,
                     ),
                     Text(
                       "Search",
                       style:
-                          TextStyle(fontSize: 14.sp, color: Colors.grey[400]),
+                      TextStyle(fontSize: 14.sp, color: Colors.grey[400]),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .5,
                     ),
                     Icon(Icons.filter_alt_outlined, color: Colors.blue)
                   ],
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * .015,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .015,
               ),
               Stack(
                 alignment: Alignment.bottomLeft,
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.width * .4,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .4,
                     clipBehavior: Clip.antiAlias,
-                    width: MediaQuery.of(context).size.width * .85,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .85,
                     child: Image.asset(
                       "assets/images/a1.jpg",
                       fit: BoxFit.fill,
@@ -122,7 +184,7 @@ class Home_Screen extends StatelessWidget {
                           spreadRadius: 2,
                           blurRadius: 2,
                           offset:
-                              const Offset(2, 2), // changes position of shadow
+                          const Offset(2, 2), // changes position of shadow
                         ),
                       ],
                     ),
@@ -135,49 +197,61 @@ class Home_Screen extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                           textAlign: TextAlign.center),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          fixedSize: Size(130.w, 45.h),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          elevation: 5),
+                        fixedSize: Size(130.w, 30.h),
+                      ),
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * .03,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .03,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .02,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .02,
                   ),
                   Expanded(
                       child: Text(
-                    "Doctor Speciality",
-                    style:
+                        "Doctor Speciality",
+                        style:
                         TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
-                  )),
+                      )),
                   Expanded(
                       child: Text(
-                    "See All",
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                    textAlign: TextAlign.end,
-                  )),
+                        "See All",
+                        style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue),
+                        textAlign: TextAlign.end,
+                      )),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * .02,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .02,
                   ),
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * .015,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .015,
               ),
               Container(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.width * .3,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .width * .3,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -188,18 +262,30 @@ class Home_Screen extends StatelessWidget {
                             Icons.people,
                             size: 35.sp,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "General",
                             style: TextStyle(
@@ -218,18 +304,30 @@ class Home_Screen extends StatelessWidget {
                             "assets/icons/tooth.svg",
                             fit: BoxFit.cover,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "Dentist",
                             style: TextStyle(
@@ -248,18 +346,30 @@ class Home_Screen extends StatelessWidget {
                             "assets/icons/eye.svg",
                             fit: BoxFit.cover,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "ophthalmologist",
                             style: TextStyle(
@@ -278,18 +388,30 @@ class Home_Screen extends StatelessWidget {
                             "assets/icons/nutrition.svg",
                             fit: BoxFit.cover,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "Nutrition",
                             style: TextStyle(
@@ -306,7 +428,10 @@ class Home_Screen extends StatelessWidget {
               ),
               Container(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.width * .3,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .width * .3,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -317,18 +442,30 @@ class Home_Screen extends StatelessWidget {
                             "assets/icons/neurology.svg",
                             fit: BoxFit.cover,
                           ),
-                          height: MediaQuery.of(context).size.width * 0.18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * 0.18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "neurologist",
                             style: TextStyle(
@@ -347,18 +484,30 @@ class Home_Screen extends StatelessWidget {
                             "assets/icons/pediatrics.svg",
                             fit: BoxFit.cover,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "pediatrician",
                             style: TextStyle(
@@ -377,18 +526,30 @@ class Home_Screen extends StatelessWidget {
                             "assets/icons/radiology.svg",
                             fit: BoxFit.cover,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "radiologist",
                             style: TextStyle(
@@ -407,19 +568,31 @@ class Home_Screen extends StatelessWidget {
                             Icons.more_horiz,
                             size: 30,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * .005,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * .005,
                         ),
                         Container(
                           alignment: Alignment.center,
-                          width: MediaQuery.of(context).size.width * .18,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width * .18,
                           child: const Text(
                             "More",
                             style: TextStyle(
@@ -441,19 +614,19 @@ class Home_Screen extends StatelessWidget {
                   ),
                   Expanded(
                       child: Text(
-                    "Top Doctors",
-                    style:
+                        "Top Doctors",
+                        style:
                         TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold),
-                  )),
+                      )),
                   Expanded(
                       child: Text(
-                    "See All",
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                    textAlign: TextAlign.end,
-                  )),
+                        "See All",
+                        style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue),
+                        textAlign: TextAlign.end,
+                      )),
                   const SizedBox(
                     width: 10,
                   ),
@@ -462,65 +635,81 @@ class Home_Screen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child:  Text("All",
-                          style: TextStyle(fontSize: 5.sp),
-                          textAlign: TextAlign.center),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          elevation: 2),
-                    ),
+
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("All",
+                        style: TextStyle(fontSize: 15.sp),
+                        textAlign: TextAlign.center),
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: Size(50.w, 30.h),
+
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        elevation: 2),
                   ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child:  Text(
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width/80,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
                         "General",
-                          style: TextStyle(fontSize: 5.sp),
+                        style: TextStyle(
+                            fontSize: 15.sp, color: ColorManager.primary),
                         textAlign: TextAlign.center
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          side: const BorderSide(color: Colors.blue, width: 2),
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          elevation: 2),
                     ),
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: Size(90.w, 30.h),
+
+                        side: BorderSide(
+                            color: ColorManager.primary, width: 2),
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        elevation: 2),
                   ),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child:  Text(
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width/80,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
                         "Dentist",
-                          style: TextStyle(fontSize: 5.sp),
-                          textAlign: TextAlign.center),
-                      style: ElevatedButton.styleFrom(
-                          side: const BorderSide(color: Colors.blue, width: 2),
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          elevation: 2),
-                    ),
+                        style: TextStyle(
+                            fontSize: 15.sp, color: ColorManager.primary),
+                        textAlign: TextAlign.center),
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: Size(80.w, 30.h),
+
+                        side: BorderSide(
+                            color: ColorManager.primary, width: 2),
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50)),
+                        elevation: 2),
                   ),
-                  Expanded(
-                    child: ElevatedButton(
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width/80,
+                  ),
+                   ElevatedButton(
                       onPressed: () {},
-                      child:  Text(
-                        "nutritionist",
-                          style: TextStyle(fontSize: 12.sp),
+                      child: Text(
+                          "nutritionist",
+                          style: TextStyle(
+                              fontSize: 15.sp, color: ColorManager.primary),
                           textAlign: TextAlign.center),
                       style: ElevatedButton.styleFrom(
-                          side: const BorderSide(color: Colors.blue, width: 2),
+                          fixedSize: Size(90.w, 30.h),
+
+                          side: BorderSide(
+                              color: ColorManager.primary, width: 2),
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50)),
                           elevation: 2),
                     ),
-                  ),
+
                 ],
               )
             ],
