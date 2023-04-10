@@ -9,14 +9,13 @@ ThemeData getThemeData() {
   return ThemeData(
     // main colors
     primaryColor: ColorManager.primary,
-
     disabledColor: ColorManager.grey,
     splashColor: ColorManager.secondary,
     scaffoldBackgroundColor: ColorManager.white,
     // appbar theme
     appBarTheme: AppBarTheme(
       //centerTitle: true,
-      color: ColorManager.white,
+     color: ColorManager.white,
       shadowColor: ColorManager.grey,
       elevation: AppSizeWidth.s0,
       titleTextStyle:
@@ -113,12 +112,17 @@ ThemeData getThemeData() {
         borderRadius: BorderRadius.circular(AppSizeWidth.s8),
       ),
     ),
-
     checkboxTheme: CheckboxThemeData(
       shape: const StadiumBorder(),
       //checkColor: MaterialStateProperty.all(ColorManager.primary),
       fillColor: MaterialStateProperty.all(ColorManager.primary),
     ),
+    tabBarTheme:
+        const TabBarTheme(
+
+            dividerColor: Colors.red,
+
+            indicatorColor: Colors.green),
   );
 }
 

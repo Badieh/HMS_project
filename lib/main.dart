@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'HMS App',
           theme: getThemeData(),
-          home:  SplashScreen(),
+          home: SplashScreen(),
         );
       },
     );

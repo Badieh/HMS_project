@@ -5,6 +5,7 @@ import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/screens/layout/home.dart';
 import 'package:intl/intl.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -139,22 +140,36 @@ class _FillProfileState extends State<FillProfile> {
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(AppSizeWidth.s80, AppSizeHeight.s40)),
                     onPressed: () {
+                      // if (controller.page == 0) {
+                      //   if (formKey1.currentState!.validate()) {
+                      //     nextPage();
+                      //   }
+                      // } else if (controller.page == 1) {
+                      //   if (formKey2.currentState!.validate()) {
+                      //     nextPage();
+                      //   }
+                      // } else if (controller.page == 2) {
+                      //   if (formKey3.currentState!.validate()) {
+                      //     nextPage();
+                      //   }
+                      // } else if (controller.page == 3) {
+                      //   if (formKey4.currentState!.validate()) {
+                      //     nextPage();
+                      //   }
+                      // }
                       if (controller.page == 0) {
-                        if (formKey1.currentState!.validate()) {
+
                           nextPage();
-                        }
+
                       } else if (controller.page == 1) {
-                        if (formKey2.currentState!.validate()) {
                           nextPage();
-                        }
+
                       } else if (controller.page == 2) {
-                        if (formKey3.currentState!.validate()) {
                           nextPage();
-                        }
+
                       } else if (controller.page == 3) {
-                        if (formKey4.currentState!.validate()) {
-                          nextPage();
-                        }
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Home_Screen(),));
+
                       }
                     },
                     child: const Text(
