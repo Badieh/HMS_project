@@ -1,6 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppMargin {
+  static const double m10 = 10.0;
   static const double m12 = 12.0;
   static const double m14 = 14.0;
   static const double m16 = 16.0;
@@ -41,6 +42,7 @@ class AppSizeWidth {
   static double s60 = 60.0.w;
   static double s65 = 65.0.w;
   static double s70 = 70.0.w;
+  static double s75 = 75.0.w;
   static double s80 = 80.0.w;
   static double s90 = 90.0.w;
   static double s100 = 100.0.w;
@@ -73,8 +75,12 @@ class AppSizeHeight {
   static double s70 = 70.0.h;
   static double s80 = 80.0.h;
   static double s90 = 90.0.h;
+  static double s95 = 95.0.h;
   static double s100 = 100.0.h;
   static double s120 = 120.0.h;
   static double s150 = 150.0.h;
+  static double s500 = 500.0.h;
+  static double s570 = 570.0.h;
+  static double s600 = 600.0.h;
   static double sMaxInfinite = double.maxFinite;
 }

@@ -3,11 +3,14 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 
 /// This methods is used to specify the font weight
 /// the styles are ordered by font weight from w700 to w300
-TextStyle _getTextStyle(
-    {required double fontSize,
-    required Color color,
-    required FontWeight fontWeight}) {
+TextStyle _getTextStyle({
+  required double fontSize,
+  required Color color,
+  required FontWeight fontWeight,
+  double? height,
+}) {
   return TextStyle(
+    height: height,
     fontSize: fontSize,
     color: color,
     fontWeight: fontWeight,
@@ -17,10 +20,13 @@ TextStyle _getTextStyle(
 
 // Bold style
 TextStyle getBoldStyle({
+  double? height,
+
   double? fontSize,
   required Color color,
 }) {
   return _getTextStyle(
+    height: height,
       fontSize: fontSize ?? FontSize.s12,
       color: color,
       fontWeight: FontWeightManager.bold);

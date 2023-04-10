@@ -38,6 +38,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.1.6
   flutter_screenutil: ^5.7.0
+  smooth_page_indicator: ^1.0.1
+  intl_phone_number_input: ^0.7.3+1
+  intl: ^0.18.0
+  font_awesome_flutter: ^10.4.0
+  csc_picker: ^0.2.7
+  country_state_city_picker: ^1.2.8
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  animate_do: ^3.0.2
 
 dev_dependencies:
   flutter_test:

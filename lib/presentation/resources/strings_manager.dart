@@ -1,20 +1,18 @@
 class AppStrings {
   static const noRouteFound = 'No route found';
-  static const onBoardingTitle1 = 'onBoardingTitle1';
-  static const onBoardingTitle2 = 'onBoardingTitle2';
-  static const onBoardingTitle3 = 'onBoardingTitle3';
-  static const onBoardingTitle4 = 'onBoardingTitle4';
 
-  static const onBoardingSubTitle1 = 'onBoardingSubTitle1';
-  static const onBoardingSubTitle2 = 'onBoardingSubTitle2';
-  static const onBoardingSubTitle3 = 'onBoardingSubTitle3';
-  static const onBoardingSubTitle4 = 'onBoardingSubTitle4';
+  static const onBoardingTitle1 =
+      'Thousands of\ndoctors & experts to\nhelp your health!';
+  static const onBoardingTitle2 =
+      'All your health records\nat one place\nAny where! Anytime!';
+  static const onBoardingTitle3 =
+      'Let\'s start living\nhealthy and well\nwith us right now!';
 
   static const skip = 'skip';
 
   // Register & Login
   static const createNewAccount = 'Create new account';
-  static const validator = 'Field can\'t be empty';
+  static const validator = 'Field Required';
   static const email = 'Email';
   static const password = 'Password';
   static const rememberMe = 'Remember Me';
@@ -27,6 +25,8 @@ class AppStrings {
   static const dontHaveAnAccount = 'Don\'t have an account ?';
 
   // Fill Profile
+  static const fillYourProfile = 'Fill your profile';
+  static const next = 'Next';
   static const firstName = 'First Name';
   static const secondName = 'Second Name';
   static const thirdName = 'Third Name';
@@ -37,24 +37,38 @@ class AppStrings {
 
   static const religion = 'Religion';
   static const gender = 'Gender';
+  static const male = 'Male';
+  static const female = 'Female';
   static const maritalStatus = 'Marital Status';
+  static const single = 'Single';
+  static const married = 'Married';
+  static const divorced = 'Divorced';
+  static const widowed = 'Widowed';
   static const nationality = 'Nationality';
   static const bloodType = 'Blood Type';
-  static const fullAddress = 'Full Address';
+  static const height = 'Height';
+  static const cm = 'Cm';
+  static const weight = 'Weight';
+  static const kg = 'Kg';
+
+  static const address = 'Address';
   static const country = 'Country';
+  static const state = 'State';
   static const city = 'City';
   static const streetName = 'Street Name';
   static const buildingNumber = 'Building Number';
-  static const appartmentNumber = 'Appartment Number';
+  static const appartmentNumber = 'Appartment /Floor Number';
+  static const birthAddress = 'Birth Place';
+  static const birthPlaceCountry = 'Birth Place Country';
+  static const birthPlaceState = 'Birth Place State';
+  static const birthPlaceCity = 'Birth Place City';
 
-  static const height = 'Height';
-  static const weight = 'Weight';
-  static const job = 'Job';
+  static const jobDetails = 'Job Details';
+  static const job = 'Job Title';
   static const jobFullAddress = 'Work Full Address';
   static const jobCountry = 'Work Country';
+  static const jobState = 'Work State';
   static const jobCity = 'Work City';
   static const jobStreetName = 'Work Street Name ';
   static const jobBuildingNumber = 'Work Building Number';
-  static const birthPlaceCountry = 'Birth Place Country';
-  static const birthPlaceCity = 'Birth Place City';
 }
