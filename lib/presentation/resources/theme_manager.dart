@@ -41,13 +41,12 @@ ThemeData getThemeData() {
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          elevation: AppSizeHeight.s4,
             fixedSize: Size(AppSizeWidth.sMaxInfinite, AppSizeHeight.s45),
             foregroundColor: ColorManager.white,
             backgroundColor: ColorManager.primary,
             shadowColor: ColorManager.grey,
             padding: const EdgeInsets.symmetric(
-                vertical: AppPadding.p8, horizontal: AppPadding.p16),
+                vertical: AppPadding.p16, horizontal: AppPadding.p24),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppSizeWidth.s30),
             ),

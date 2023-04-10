@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
-import 'package:hospital/presentation/screens/layout/fill_profile.dart';
+
+import 'package:hospital/presentation/screens/layout/splash.dart';
 
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'HMS App',
           theme: getThemeData(),
-          home:  FillProfile(),
+          home:  SplashScreen(),
         );
       },
     );
