@@ -24,6 +24,8 @@ class AppSizeWidth {
   static double s0 = 0.w;
   static double s1 = 1.w;
   static double s1_5 = 1.5.w;
+  static double s2 = 2.0.w;
+  static double s3 = 3.0.w;
   static double s4 = 4.0.w;
   static double s8 = 8.0.w;
   static double s12 = 12.0.w;
@@ -44,7 +46,10 @@ class AppSizeWidth {
   static double s70 = 70.0.w;
   static double s75 = 75.0.w;
   static double s80 = 80.0.w;
+  static double s85 = 85.0.w;
   static double s90 = 90.0.w;
+  static double s95 = 95.0.w;
+  static double s98 = 98.0.w;
   static double s100 = 100.0.w;
   static double s150 = 150.0.w;
   static double s200 = 200.0.w;
@@ -79,6 +84,7 @@ class AppSizeHeight {
   static double s100 = 100.0.h;
   static double s120 = 120.0.h;
   static double s150 = 150.0.h;
+  static double s200 = 200.0.h;
   static double s500 = 500.0.h;
   static double s570 = 570.0.h;
   static double s600 = 600.0.h;

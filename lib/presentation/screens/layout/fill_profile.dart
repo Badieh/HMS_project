@@ -158,18 +158,17 @@ class _FillProfileState extends State<FillProfile> {
                       //   }
                       // }
                       if (controller.page == 0) {
-
-                          nextPage();
-
+                        nextPage();
                       } else if (controller.page == 1) {
-                          nextPage();
-
+                        nextPage();
                       } else if (controller.page == 2) {
-                          nextPage();
-
+                        nextPage();
                       } else if (controller.page == 3) {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Home_Screen(),));
-
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home_Screen(),
+                            ));
                       }
                     },
                     child: const Text(

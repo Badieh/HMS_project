@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
-import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 
 class Appointment_Screen extends StatefulWidget {
   const Appointment_Screen({Key? key}) : super(key: key);
@@ -22,40 +23,61 @@ class _Appointment_ScreenState extends State<Appointment_Screen> {
               labelColor: ColorManager.primary,
               unselectedLabelColor: ColorManager.grey,
               indicatorColor: ColorManager.primary,
+              physics: const BouncingScrollPhysics(),
               tabs: const <Widget>[
                 Tab(
                   icon: FaIcon(
                     FontAwesomeIcons.calendarPlus,
                     //color: ColorManager.primary,
                   ),
-                  text: 'Upcoming',
+                  text: AppStrings.upcoming,
                 ),
                 Tab(
                   icon: FaIcon(
                     FontAwesomeIcons.calendarCheck,
                     //color: ColorManager.primary,
                   ),
-                  text: 'Completed',
+                  text: AppStrings.completed,
                 ),
                 Tab(
                   icon: FaIcon(
                     FontAwesomeIcons.calendarXmark,
                     //color: ColorManager.primary,
                   ),
-                  text: 'Cancelled',
+                  text: AppStrings.cancelled,
                 ),
               ],
             ),
             Expanded(
               child: TabBarView(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                physics: const BouncingScrollPhysics(),
                 children: <Widget>[
-                  Center(child: appointment()),
-                  Center(
-                    child: Text("It's rainy here"),
-                  ),
-                  Center(
-                    child: Text("It's sunny here"),
-                  ),
+                  ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      itemCount: 4,
+                      itemBuilder: (context, index) => appointmentDoctorCard(
+                          context: context,
+                          appointmentState: AppointmentState.upcoming)),
+                  ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      itemCount: 10,
+                      itemBuilder: (context, index) => appointmentDoctorCard(
+                          context: context,
+                          appointmentState: AppointmentState.completed)),
+                  ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      padding: EdgeInsets.symmetric(horizontal: 3),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      itemCount: 3,
+                      itemBuilder: (context, index) => appointmentDoctorCard(
+                          context: context,
+                          appointmentState: AppointmentState.cancelled)),
+
                 ],
               ),
             ),
@@ -65,43 +87,3 @@ class _Appointment_ScreenState extends State<Appointment_Screen> {
     );
   }
 }
-
-Widget appointment() => Container(
-      margin: const EdgeInsets.all(AppMargin.m10),
-      padding: const EdgeInsets.all(AppPadding.p10),
-      height: AppSizeHeight.s100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppPadding.p18),
-        color: ColorManager.veryLightGrey,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.grey.withOpacity(0.3),
-        //     spreadRadius: 1,
-        //     blurRadius: 10,
-        //     offset: Offset(0, 3),
-        //   )
-        // ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppPadding.p18),
-              color: ColorManager.grey,
-            ),
-            width: AppSizeWidth.s90,
-            height: AppSizeHeight.s100,
-          ),
-          Expanded(child: Column()),
-          CircleAvatar(
-            radius: AppSizeHeight.s20,
-            backgroundColor: ColorManager.secondary,
-            child: Icon(
-              Icons.note_add_rounded,
-              size: AppSizeHeight.s25,
-              color: ColorManager.primary,
-            ),
-          )
-        ],
-      ),
-    );

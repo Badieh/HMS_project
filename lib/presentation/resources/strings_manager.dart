@@ -71,4 +71,11 @@ class AppStrings {
   static const jobCity = 'Work City';
   static const jobStreetName = 'Work Street Name ';
   static const jobBuildingNumber = 'Work Building Number';
+
+  // Appointments Screen
+  static const notes = 'Notes';
+  static const upcoming = 'Upcoming';
+  static const completed = 'Completed';
+  static const cancelled = 'Cancelled';
+
 }
