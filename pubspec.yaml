@@ -47,6 +47,12 @@ dependencies:
   dartz: ^0.10.1
   equatable: ^2.0.5
   animate_do: ^3.0.2
+  dio: ^5.1.1
+  shared_preferences: ^2.1.0
+  bloc: ^8.1.1
+  flutter_bloc: ^8.1.2
+  conditional_builder_null_safety: ^0.0.6
+  webview_flutter: ^4.0.7
 
 dev_dependencies:
   flutter_test:

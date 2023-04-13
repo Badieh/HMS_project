@@ -7,6 +7,8 @@ class ImageAssets {
   static const onBoardingLogo2 = '$imagePath/onBoarding_2.svg';
   static const onBoardingLogo3 = '$imagePath/onBorading_3.svg';
 
+  static const imageNotFound = '$imagePath/imgnotfound.png';
+
   static const String hollowCircleIc = "$imagePath/hollow_circle_ic.svg";
   static const String solidCircleIc = "$imagePath/solid_circle_ic.svg";
   static const String leftArrowIc = "$imagePath/left_arrow_ic.svg";

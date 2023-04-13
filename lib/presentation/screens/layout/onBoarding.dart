@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hospital/data/model/OnBoardingModel.dart';
+import 'package:hospital/models/OnBoardingModel.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';

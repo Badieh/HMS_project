@@ -1,8 +1,12 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/models/articleModel.dart';
+import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/screens/webview.dart';
 
 Widget DefaultTextFormField({
   required TextEditingController controller,
@@ -384,3 +388,126 @@ IconData getAppointmentStateIcon(AppointmentState appointmentState) {
       return Icons.cancel;
   }
 }
+
+Widget buildArticle(
+        {required double height,
+        required double width,
+        required ArticleModel article,
+        required context}) =>
+    InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WebViewExample(url: article.url),
+            ));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+                width: width * 0.2,
+                height: height * 0.1,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: article.urlToImage != null
+                            ? NetworkImage(
+                                '${article.urlToImage}',
+                              )
+                            : const AssetImage(
+                                ImageAssets.imageNotFound,
+                              ) as ImageProvider,
+                        onError: (exception, stackTrace) {
+                          // Display a fallback image or an error message
+                          return;
+                        },
+                        fit: BoxFit.cover))),
+            SizedBox(
+              width: width * 0.07,
+            ),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsetsDirectional.only(end: AppPadding.p8),
+                height: height * 0.11,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Text(article.title,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyLarge),
+                      ),
+                      Text(
+                        article.publishedAt,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: width * 0.03,
+                            color: Colors.grey),
+                      ),
+                    ]),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+Widget buildListOfArticles(
+        {required double height,
+        required double width,
+        required List<ArticleModel> articles,
+        isSearch = false}) =>
+    ConditionalBuilder(
+        condition: articles.isNotEmpty,
+        builder: (context) => ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) => buildArticle(
+                height: height,
+                width: width,
+                article: articles[index],
+                context: context),
+            separatorBuilder: (context, index) => separator(),
+            itemCount: 10),
+        fallback: (context) => isSearch
+            ? Container(
+                child: Center(
+                    child: Text(
+                  'Developed by Badieh Nader',
+                  style: Theme.of(context).textTheme.bodySmall,
+                )),
+              )
+            : Center(child: CircularProgressIndicator()));
+
+Widget separator() => Padding(
+      padding: const EdgeInsetsDirectional.only(start: 20, end: 20),
+      child: Container(
+        width: double.infinity,
+        height: 1,
+        color: Colors.grey,
+      ),
+    );
+
+Widget imageFromNetwrok(String url) => Image.network(
+      url,
+      loadingBuilder: (context, child, progress) {
+        if (progress == null) return child;
+        return Center(child: CircularProgressIndicator());
+      },
+      errorBuilder: (context, error, stackTrace) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.error_outline, size: 50),
+            SizedBox(height: 10),
+            Text('Failed to load image.'),
+          ],
+        );
+      },
+    );
