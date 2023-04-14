@@ -9,10 +9,6 @@ class ImageAssets {
 
   static const imageNotFound = '$imagePath/imgnotfound.png';
 
-  static const String hollowCircleIc = "$imagePath/hollow_circle_ic.svg";
-  static const String solidCircleIc = "$imagePath/solid_circle_ic.svg";
-  static const String leftArrowIc = "$imagePath/left_arrow_ic.svg";
-  static const String rightArrowIc = "$imagePath/right_arrow_ic.svg";
 
   static const String hands = "$imagePath/hands3.svg";
   static const String facebook = "$imagePath/facebook.svg";

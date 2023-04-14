@@ -4,14 +4,14 @@ import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 
-class Appointment_Screen extends StatefulWidget {
-  const Appointment_Screen({Key? key}) : super(key: key);
+class AppointmentScreen extends StatefulWidget {
+  const AppointmentScreen({Key? key}) : super(key: key);
 
   @override
-  State<Appointment_Screen> createState() => _Appointment_ScreenState();
+  State<AppointmentScreen> createState() => _AppointmentScreenState();
 }
 
-class _Appointment_ScreenState extends State<Appointment_Screen> {
+class _AppointmentScreenState extends State<AppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,12 +1,14 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/models/articleModel.dart';
+import 'package:hospital/models/caseDiagnoseModel.dart';
+import 'package:hospital/models/treatmentModel.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/webview.dart';
+import 'package:hospital/presentation/screens/articles/webview.dart';
 
 Widget DefaultTextFormField({
   required TextEditingController controller,
@@ -184,7 +186,6 @@ Widget favouriteDoctorCard(
 
 Widget appointmentDoctorCard(
         {required BuildContext context,
-        IconData icon = Icons.favorite_border,
         required AppointmentState appointmentState}) =>
     Container(
       margin: const EdgeInsets.all(AppMargin.m10),
@@ -324,13 +325,10 @@ Widget appointmentDoctorCard(
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Icon(
-                      Icons.star_rate_outlined,
-                      size: AppSizeHeight.s17,
-                    ),
                     Text(
-                      " 4.8",
+                      "Date",
                       style: TextStyle(
                         fontSize: FontSize.s14,
                       ),
@@ -338,7 +336,15 @@ Widget appointmentDoctorCard(
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      " (4.258 reviews)",
+                      "|",
+                      style: TextStyle(
+                        fontSize: FontSize.s14,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      "Time",
                       style: TextStyle(
                         fontSize: FontSize.s14,
                       ),
@@ -389,7 +395,7 @@ IconData getAppointmentStateIcon(AppointmentState appointmentState) {
   }
 }
 
-Widget buildArticle(
+Widget buildArticleCard(
         {required double height,
         required double width,
         required ArticleModel article,
@@ -468,7 +474,7 @@ Widget buildListOfArticles(
         condition: articles.isNotEmpty,
         builder: (context) => ListView.separated(
             physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) => buildArticle(
+            itemBuilder: (context, index) => buildArticleCard(
                 height: height,
                 width: width,
                 article: articles[index],
@@ -494,20 +500,243 @@ Widget separator() => Padding(
       ),
     );
 
-Widget imageFromNetwrok(String url) => Image.network(
-      url,
-      loadingBuilder: (context, child, progress) {
-        if (progress == null) return child;
-        return Center(child: CircularProgressIndicator());
-      },
-      errorBuilder: (context, error, stackTrace) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.error_outline, size: 50),
-            SizedBox(height: 10),
-            Text('Failed to load image.'),
-          ],
-        );
-      },
-    );
+Widget caseDiagnoseCard({
+  required BuildContext context,
+  required CaseDiagnose caseDiagnose,
+}) {
+  DateTime dateTime = DateTime.parse(caseDiagnose.dateTime);
+  return Container(
+    margin: const EdgeInsets.all(AppMargin.m10),
+    padding: const EdgeInsets.all(AppPadding.p10),
+    height: AppSizeHeight.s100,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(AppPadding.p18),
+      color: ColorManager.veryLightGrey,
+    ),
+    child: Row(
+      children: [
+        // Department photo
+        Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppPadding.p18),
+            //color: ColorManager.grey,
+          ),
+          width: AppSizeWidth.s90,
+          height: AppSizeHeight.s100,
+          child: Image.network(
+            caseDiagnose.departmentIconUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                Image.asset(ImageAssets.imageNotFound),
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width / 45,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Department Name
+              Center(
+                child: Text(
+                  caseDiagnose.department,
+                  style: TextStyle(
+                    fontSize: FontSize.s20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              // Doctor Name
+              Text(
+                caseDiagnose.doctor,
+                style: TextStyle(
+                  fontSize: FontSize.s16,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              //Date and time
+              Text(
+                'Date: ${dateTime.year}/${dateTime.month}/${dateTime.second}',
+                style: TextStyle(
+                  fontSize: FontSize.s14,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                'Time: ${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
+                style: TextStyle(
+                  fontSize: FontSize.s14,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget treatmentCard({
+  required BuildContext context,
+  required CaseDiagnose caseDiagnose,
+  required Treatment treatment,
+}) {
+  //DateTime dateTime = DateTime.parse(caseDiagnose.dateTime);
+  return Container(
+    margin: const EdgeInsets.all(AppMargin.m10),
+    padding: const EdgeInsets.all(AppPadding.p10),
+    height: AppSizeHeight.s100,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(AppPadding.p18),
+      color: ColorManager.veryLightGrey,
+    ),
+    child: Row(
+      children: [
+        // Department photo
+        Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppPadding.p18),
+            //color: ColorManager.grey,
+          ),
+          width: AppSizeWidth.s90,
+          height: AppSizeHeight.s100,
+          child: Image.network(
+            caseDiagnose.departmentIconUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                Image.asset(ImageAssets.imageNotFound),
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width / 45,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Treatment Name
+              Row(
+                children: [
+                  Text(
+                    AppStrings.treatment,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 45,
+                  ),
+                  Text(
+                    treatment.treatmentName,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      //fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+              // Doctor Name
+              Row(
+                children: [
+                  Text(
+                    AppStrings.doctorName_,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 45,
+                  ),
+                  Text(
+                    treatment.treatmentName,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      //fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+
+              // Start Date
+              Row(
+                children: [
+                  Text(
+                    AppStrings.treatment,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 45,
+                  ),
+                  Text(
+                    treatment.treatmentName,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      //fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+
+              // End Date
+              Row(
+                children: [
+                  Text(
+                    AppStrings.treatment,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 45,
+                  ),
+                  Text(
+                    treatment.treatmentName,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      //fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}

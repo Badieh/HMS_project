@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
-import 'package:hospital/presentation/screens/articles/articles.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
+import 'package:hospital/presentation/screens/history.dart';
 
 import 'network/remote/dio_helper.dart';
 
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getThemeData(),
-            home: ArticlesScreen(),
+            home: HistoryScreen(),
           );
         },
       ),

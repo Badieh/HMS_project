@@ -78,4 +78,14 @@ class AppStrings {
   static const completed = 'Completed';
   static const cancelled = 'Cancelled';
 
+  // History Screen
+  static const diagnosis = 'Diagnosis';
+  static const treatment = 'Treatment';
+  static const treatment_ = 'Treatment :';
+  static const doctorName_ = 'Doctor :';
+  static const dose_ = 'Dose :';
+  static const startDate_ = 'Start Date :';
+  static const endDate_ = 'End Date :';
+  static const instructions_ = 'Instructions';
+  static const notes_ = 'Notes :';
 }
