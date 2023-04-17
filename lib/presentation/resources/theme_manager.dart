@@ -15,7 +15,7 @@ ThemeData getThemeData() {
     // appbar theme
     appBarTheme: AppBarTheme(
       //centerTitle: true,
-     color: ColorManager.white,
+      color: ColorManager.white,
       shadowColor: ColorManager.grey,
       elevation: AppSizeWidth.s0,
       titleTextStyle:
@@ -117,12 +117,11 @@ ThemeData getThemeData() {
       //checkColor: MaterialStateProperty.all(ColorManager.primary),
       fillColor: MaterialStateProperty.all(ColorManager.primary),
     ),
-    tabBarTheme:
-        const TabBarTheme(
+    tabBarTheme: const TabBarTheme(
+        dividerColor: Colors.red, indicatorColor: Colors.green),
 
-            dividerColor: Colors.red,
-
-            indicatorColor: Colors.green),
+    floatingActionButtonTheme:
+        FloatingActionButtonThemeData(backgroundColor: ColorManager.primary),
   );
 }
 

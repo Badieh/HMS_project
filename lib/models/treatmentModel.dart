@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 
 class Treatment extends Equatable {
   final String treatmentName;
+  final String departmentIconUrl;
+  final String departmentIconHash;
   final String doctor;
   final String instructions;
   final String? notes;
@@ -13,10 +15,12 @@ class Treatment extends Equatable {
       {required this.treatmentName,
       required this.doctor,
       required this.instructions,
-      required this.notes,
+      this.notes,
       required this.dose,
       required this.startDate,
-      required this.endDate});
+      required this.endDate,
+      required this.departmentIconUrl,
+      this.departmentIconHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I'});
 
   factory Treatment.fromJson(Map<String, dynamic> json) {
     return Treatment(
@@ -26,7 +30,8 @@ class Treatment extends Equatable {
         dose: json['dose'],
         startDate: json['startDate'],
         endDate: json['endDate'],
-        notes: json['notes']);
+        notes: json['notes'],
+        departmentIconUrl: json['departmentIconeUrl']);
   }
 
   @override

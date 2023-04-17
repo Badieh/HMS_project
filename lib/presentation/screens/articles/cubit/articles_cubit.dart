@@ -26,8 +26,7 @@ class ArticlesCubit extends Cubit<ArticlesStates> {
             .map((e) => ArticleModel.fromJson(e))
             .toList();
 
-       // print(articles[1]);
-
+        // print(articles[1]);
 
         emit(GetArticlesSuccessState());
       } catch (error) {

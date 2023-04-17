@@ -86,6 +86,20 @@ class AppStrings {
   static const dose_ = 'Dose :';
   static const startDate_ = 'Start Date :';
   static const endDate_ = 'End Date :';
-  static const instructions_ = 'Instructions';
+  static const instructions_ = 'Instructions :';
   static const notes_ = 'Notes :';
+
+  // Case Diagnose
+  static const caseDiagnose = 'Case Diagnose';
+  static const caseDiagnoseReport = 'Case Diagnose Report';
+  static const diagnosis_ = 'Diagnosis :';
+  static const hospitalName_ = 'Hospital Name :';
+  static const departmentName_ = 'Department Name :';
+  static const patient_ = 'Patient Name :';
+  static const date_ = 'Date :';
+  static const time_ = 'Time :';
+  static const location_ = 'Location :';
+  static const clinicalExamination_ = 'Clinical Examination :';
+
+  static const exportToPdf = 'Export to PDF';
 }

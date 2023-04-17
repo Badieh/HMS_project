@@ -3,10 +3,12 @@ import 'package:equatable/equatable.dart';
 class ArticleModel extends Equatable {
   final String url;
   final String? urlToImage;
+  final String imageHash;
   final String title;
   final String publishedAt;
 
-  ArticleModel(this.url, this.urlToImage, this.title, this.publishedAt);
+  const ArticleModel(this.url, this.urlToImage, this.title, this.publishedAt,
+      {this.imageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I'});
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
     return ArticleModel(

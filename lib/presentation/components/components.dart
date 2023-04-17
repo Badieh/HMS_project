@@ -1,5 +1,11 @@
+import 'dart:ui';
+
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
+import 'package:blurhash/blurhash.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hospital/models/articleModel.dart';
 import 'package:hospital/models/caseDiagnoseModel.dart';
 import 'package:hospital/models/treatmentModel.dart';
@@ -9,6 +15,11 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/webview.dart';
+import 'package:hospital/presentation/screens/history/case_diagnose.dart';
+
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
 Widget DefaultTextFormField({
   required TextEditingController controller,
@@ -194,14 +205,6 @@ Widget appointmentDoctorCard(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppPadding.p18),
         color: ColorManager.veryLightGrey,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.grey.withOpacity(0.3),
-        //     spreadRadius: 1,
-        //     blurRadius: 10,
-        //     offset: Offset(0, 3),
-        //   )
-        // ],
       ),
       child: Row(
         children: [
@@ -213,9 +216,11 @@ Widget appointmentDoctorCard(
             ),
             width: AppSizeWidth.s90,
             height: AppSizeHeight.s100,
-            child: Image.asset(
-              "assets/images/doc1.jpg",
-              fit: BoxFit.cover,
+            child: flutter_blurhash.BlurHash(
+              image: ImageAssets.doctorPlaceHolder,
+              hash: ImageAssets.imageHashPlaceHolder,
+              duration: const Duration(milliseconds: 500),
+              imageFit: BoxFit.cover,
             ),
           ),
           SizedBox(
@@ -396,74 +401,82 @@ IconData getAppointmentStateIcon(AppointmentState appointmentState) {
 }
 
 Widget buildArticleCard(
-        {required double height,
-        required double width,
-        required ArticleModel article,
-        required context}) =>
-    InkWell(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => WebViewExample(url: article.url),
-            ));
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                width: width * 0.2,
-                height: height * 0.1,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: article.urlToImage != null
-                            ? NetworkImage(
-                                '${article.urlToImage}',
-                              )
-                            : const AssetImage(
-                                ImageAssets.imageNotFound,
-                              ) as ImageProvider,
-                        onError: (exception, stackTrace) {
-                          // Display a fallback image or an error message
-                          return;
-                        },
-                        fit: BoxFit.cover))),
-            SizedBox(
-              width: width * 0.07,
-            ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsetsDirectional.only(end: AppPadding.p8),
-                height: height * 0.11,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        child: Text(article.title,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.bodyLarge),
-                      ),
-                      Text(
-                        article.publishedAt,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: width * 0.03,
-                            color: Colors.grey),
-                      ),
-                    ]),
+    {required double height,
+    required double width,
+    required ArticleModel article,
+    required context}) {
+  return InkWell(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WebViewExample(url: article.url),
+          ));
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(15),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+              width: width * 0.2,
+              height: height * 0.1,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                // image: DecorationImage(
+                //     image: article.urlToImage != null
+                //         ? NetworkImage(
+                //             '${article.urlToImage}',
+                //           )
+                //         : const AssetImage(
+                //             ImageAssets.imageNotFound,
+                //           ) as ImageProvider,
+                //     onError: (exception, stackTrace) {
+                //       // Display a fallback image or an error message
+                //       return;
+                //     },
+                //     fit: BoxFit.cover),
               ),
+              child: flutter_blurhash.BlurHash(
+                image: article.urlToImage,
+                hash: article.imageHash,
+                duration: const Duration(milliseconds: 500),
+                imageFit: BoxFit.cover,
+              )),
+          SizedBox(
+            width: width * 0.07,
+          ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsetsDirectional.only(end: AppPadding.p8),
+              height: height * 0.11,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Text(article.title,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ),
+                    Text(
+                      article.publishedAt,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: width * 0.03,
+                          color: Colors.grey),
+                    ),
+                  ]),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
+    ),
+  );
+}
 
 Widget buildListOfArticles(
         {required double height,
@@ -505,129 +518,129 @@ Widget caseDiagnoseCard({
   required CaseDiagnose caseDiagnose,
 }) {
   DateTime dateTime = DateTime.parse(caseDiagnose.dateTime);
-  return Container(
-    margin: const EdgeInsets.all(AppMargin.m10),
-    padding: const EdgeInsets.all(AppPadding.p10),
-    height: AppSizeHeight.s100,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(AppPadding.p18),
-      color: ColorManager.veryLightGrey,
-    ),
-    child: Row(
-      children: [
-        // Department photo
-        Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppPadding.p18),
-            //color: ColorManager.grey,
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CaseDiagnoseScreen(
+              caseDiagnose: caseDiagnose,
+            ),
+          ));
+    },
+    child: Container(
+      margin: const EdgeInsets.all(AppMargin.m10),
+      padding: const EdgeInsets.all(AppPadding.p10),
+      height: AppSizeHeight.s100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(AppPadding.p18),
+        color: ColorManager.veryLightGrey,
+      ),
+      child: Row(
+        children: [
+          // Department photo
+          Container(
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppPadding.p18),
+              //color: ColorManager.grey,
+            ),
+            width: AppSizeWidth.s90,
+            height: AppSizeHeight.s100,
+            child: flutter_blurhash.BlurHash(
+              image: caseDiagnose.departmentIconUrl,
+              hash: caseDiagnose.departmentIconHash,
+              imageFit: BoxFit.cover,
+            ),
           ),
-          width: AppSizeWidth.s90,
-          height: AppSizeHeight.s100,
-          child: Image.network(
-            caseDiagnose.departmentIconUrl,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                Image.asset(ImageAssets.imageNotFound),
+          SizedBox(
+            width: MediaQuery.of(context).size.width / 45,
           ),
-        ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width / 45,
-        ),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Department Name
-              Center(
-                child: Text(
-                  caseDiagnose.department,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Department Name
+                Center(
+                  child: Text(
+                    caseDiagnose.departmentName,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                // Doctor Name
+                Text(
+                  caseDiagnose.doctorName,
                   style: TextStyle(
-                    fontSize: FontSize.s20,
+                    fontSize: FontSize.s16,
                     fontWeight: FontWeight.bold,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-              ),
-              // Doctor Name
-              Text(
-                caseDiagnose.doctor,
-                style: TextStyle(
-                  fontSize: FontSize.s16,
-                  fontWeight: FontWeight.bold,
+                //Date and time
+                Text(
+                  'Date: ${dateTime.year}/${dateTime.month}/${dateTime.day}',
+                  style: TextStyle(
+                    fontSize: FontSize.s14,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              //Date and time
-              Text(
-                'Date: ${dateTime.year}/${dateTime.month}/${dateTime.second}',
-                style: TextStyle(
-                  fontSize: FontSize.s14,
+                Text(
+                  'Time: ${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
+                  style: TextStyle(
+                    fontSize: FontSize.s14,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                'Time: ${dateTime.hour}:${dateTime.minute}:${dateTime.second}',
-                style: TextStyle(
-                  fontSize: FontSize.s14,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }
 
 Widget treatmentCard({
   required BuildContext context,
-  required CaseDiagnose caseDiagnose,
   required Treatment treatment,
 }) {
   //DateTime dateTime = DateTime.parse(caseDiagnose.dateTime);
   return Container(
     margin: const EdgeInsets.all(AppMargin.m10),
     padding: const EdgeInsets.all(AppPadding.p10),
-    height: AppSizeHeight.s100,
+    //height: AppSizeHeight.s150,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(AppPadding.p18),
       color: ColorManager.veryLightGrey,
+      image: DecorationImage(
+        image: NetworkImage(treatment.departmentIconUrl),
+        opacity: 0.07,
+        fit: BoxFit.cover,
+      ),
     ),
     child: Row(
       children: [
-        // Department photo
-        Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppPadding.p18),
-            //color: ColorManager.grey,
-          ),
-          width: AppSizeWidth.s90,
-          height: AppSizeHeight.s100,
-          child: Image.network(
-            caseDiagnose.departmentIconUrl,
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) =>
-                Image.asset(ImageAssets.imageNotFound),
-          ),
-        ),
         SizedBox(
           width: MediaQuery.of(context).size.width / 45,
         ),
         Expanded(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Treatment Name
               Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
                     AppStrings.treatment,
@@ -652,8 +665,11 @@ Widget treatmentCard({
                   ),
                 ],
               ),
+
               // Doctor Name
               Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
                     AppStrings.doctorName_,
@@ -668,7 +684,7 @@ Widget treatmentCard({
                     width: MediaQuery.of(context).size.width / 45,
                   ),
                   Text(
-                    treatment.treatmentName,
+                    'Dr.${treatment.doctor}',
                     style: TextStyle(
                       fontSize: FontSize.s20,
                       //fontWeight: FontWeight.bold,
@@ -681,9 +697,11 @@ Widget treatmentCard({
 
               // Start Date
               Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
-                    AppStrings.treatment,
+                    AppStrings.startDate_,
                     style: TextStyle(
                       fontSize: FontSize.s20,
                       fontWeight: FontWeight.bold,
@@ -695,7 +713,7 @@ Widget treatmentCard({
                     width: MediaQuery.of(context).size.width / 45,
                   ),
                   Text(
-                    treatment.treatmentName,
+                    treatment.startDate,
                     style: TextStyle(
                       fontSize: FontSize.s20,
                       //fontWeight: FontWeight.bold,
@@ -708,9 +726,11 @@ Widget treatmentCard({
 
               // End Date
               Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
-                    AppStrings.treatment,
+                    AppStrings.endDate_,
                     style: TextStyle(
                       fontSize: FontSize.s20,
                       fontWeight: FontWeight.bold,
@@ -722,7 +742,7 @@ Widget treatmentCard({
                     width: MediaQuery.of(context).size.width / 45,
                   ),
                   Text(
-                    treatment.treatmentName,
+                    treatment.endDate,
                     style: TextStyle(
                       fontSize: FontSize.s20,
                       //fontWeight: FontWeight.bold,
@@ -733,10 +753,242 @@ Widget treatmentCard({
                 ],
               ),
 
+              // Dose
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(
+                    AppStrings.dose_,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 45,
+                  ),
+                  Text(
+                    treatment.dose,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      //fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+
+              // Instructuins
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(
+                    AppStrings.instructions_,
+                    style: TextStyle(
+                      fontSize: FontSize.s20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 45,
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 30,
+                  ),
+                  Flexible(
+                    child: AutoSizeText(
+                      treatment.instructions,
+                      style: TextStyle(
+                        fontSize: FontSize.s20,
+                        //fontWeight: FontWeight.bold,
+                      ),
+                      minFontSize: FontSize.s14,
+                      stepGranularity: FontSize.s14,
+                      maxLines: 4,
+                      //textDirection: TextDirection.ltr,
+                      textAlign: TextAlign.start,
+                      //overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+
+              if (treatment.notes != null)
+                Row(
+                  children: [
+                    Text(
+                      AppStrings.notes_,
+                      style: TextStyle(
+                        fontSize: FontSize.s20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 45,
+                    ),
+                  ],
+                ),
+              if (treatment.notes != null)
+                Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 30,
+                    ),
+                    Flexible(
+                      child: AutoSizeText(
+                        treatment.notes!,
+                        style: TextStyle(
+                          fontSize: FontSize.s20,
+                          //fontWeight: FontWeight.bold,
+                        ),
+                        minFontSize: FontSize.s14,
+                        stepGranularity: FontSize.s14,
+                        maxLines: 4,
+                        //textDirection: TextDirection.ltr,
+                        textAlign: TextAlign.start,
+                        //overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),
       ],
     ),
+  );
+}
+
+Future<String> generateImageHash(String url) async {
+  ByteData bytes = await NetworkAssetBundle(Uri.parse(url)).load(url);
+  Uint8List pixels = bytes.buffer.asUint8List();
+  var blurHash = await BlurHash.encode(pixels, 4, 3);
+  return blurHash;
+}
+
+Future<Uint8List> generatePdf(
+    {required String title, CaseDiagnose? caseDiagnose}) async {
+  final pdf = pw.Document(
+    title: title,
+  );
+  if (caseDiagnose != null) {
+    await caseDiagnoseReport(pdf: pdf, caseDiagnose: caseDiagnose);
+  }
+  //final output = await getTemporaryDirectory();
+  // final file = File('${output.path}/example.pdf');
+  //await file.writeAsBytes(await pdf.save());
+
+  return pdf.save();
+}
+
+Future<void> caseDiagnoseReport(
+    {required pdf, required CaseDiagnose caseDiagnose}) async {
+  final fontRegular = await PdfGoogleFonts.alefRegular();
+  final fontBold = await PdfGoogleFonts.alegreyaBold();
+  DateTime dateTime = DateTime.parse(caseDiagnose.dateTime);
+  final date = '${dateTime.year}/${dateTime.month}/${dateTime.day}';
+  final time = '${dateTime.hour}:${dateTime.month}:${dateTime.second}';
+
+  pdf.addPage(
+    pw.Page(
+      pageFormat: PdfPageFormat.a4,
+      build: (pw.Context context) => pw.Column(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: [
+            // Title
+            pw.Center(
+              child: pw.Text(
+                AppStrings.caseDiagnose,
+                style: pw.TextStyle(
+                  font: fontBold,
+                  fontSize: FontSize.s25,
+                  fontWeight: pw.FontWeight.bold,
+                ),
+              ),
+            ),
+
+            // Hospital Name
+            reportRow(fontBold, fontRegular, AppStrings.hospitalName_,
+                caseDiagnose.hospitalName),
+
+            // patient
+            reportRow(fontBold, fontRegular, AppStrings.patient_,
+                caseDiagnose.patientName),
+
+            // Doctor
+            reportRow(fontBold, fontRegular, AppStrings.doctorName_,
+                caseDiagnose.doctorName),
+
+            // Date
+            reportRow(fontBold, fontRegular, AppStrings.date_, date),
+
+            // Time
+            reportRow(fontBold, fontRegular, AppStrings.time_, time),
+
+            // Department Name
+            reportRow(fontBold, fontRegular, AppStrings.departmentName_,
+                caseDiagnose.departmentName),
+
+            // location
+            reportRow(fontBold, fontRegular, AppStrings.location_,
+                caseDiagnose.location),
+
+            // Clinical Examination
+            reportRow(fontBold, fontRegular, AppStrings.clinicalExamination_,
+                caseDiagnose.clinicalExamination),
+            // Diagnosis
+            reportRow(fontBold, fontRegular, AppStrings.diagnosis_,
+                caseDiagnose.diagnosis),
+
+            // Notes
+            if (caseDiagnose.notes != null)
+              reportRow(
+                  fontBold, fontRegular, AppStrings.notes_, caseDiagnose.notes),
+          ]),
+    ),
+  );
+}
+
+pw.Row reportRow(pw.Font fontBold, pw.Font fontRegular, title, text) {
+  return pw.Row(
+    //mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: pw.CrossAxisAlignment.start,
+    children: [
+      pw.Text(
+        title,
+        style: pw.TextStyle(
+          font: fontBold,
+          fontSize: FontSize.s20,
+          fontWeight: pw.FontWeight.bold,
+        ),
+      ),
+      pw.SizedBox(width: AppPadding.p14),
+      pw.Flexible(
+        child: pw.Text(
+          text,
+          style: pw.TextStyle(
+            font: fontRegular,
+            fontSize: FontSize.s20,
+            fontWeight: pw.FontWeight.normal,
+          ),
+        ),
+      ),
+    ],
   );
 }
