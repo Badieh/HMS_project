@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getThemeData(),
-            home: Home_Layout_Screen(),
+            home: HistoryScreen(),
           );
         },
       ),

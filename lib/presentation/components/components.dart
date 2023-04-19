@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 import 'package:blurhash/blurhash.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:hospital/models/articleModel.dart';
 import 'package:hospital/models/caseDiagnoseModel.dart';
 import 'package:hospital/models/treatmentModel.dart';
+import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -18,13 +20,14 @@ import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/webview.dart';
 import 'package:hospital/presentation/screens/history/case_diagnose.dart';
 
-
 import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart' as synPdf;
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
+
+import 'package:permission_handler/permission_handler.dart';
 
 Widget DefaultTextFormField({
   required TextEditingController controller,
@@ -886,25 +889,6 @@ Future<String> generateImageHash(String url) async {
   return blurHash;
 }
 
-Future<Uint8List> generatePdf(
-    {required String title, CaseDiagnose? caseDiagnose}) async {
-  var pdf = pw.Document(
-    title: title,
-  );
-  if (caseDiagnose != null) {
-    await caseDiagnoseReport(pdf: pdf, caseDiagnose: caseDiagnose);
-  }
-  // else if (isExisting == true) {
-  //   return printExistingPdf('test');
-  // }
-  //final output = await getTemporaryDirectory();
-  // final file = File('${output.path}/example.pdf');
-  //await file.writeAsBytes(await pdf.save());
-  // await file.writeAsBytes(await pdf.save());
-
-  return pdf.save();
-}
-
 Future<void> caseDiagnoseReport(
     {required pdf, required CaseDiagnose caseDiagnose}) async {
   final fontRegular = await PdfGoogleFonts.alefRegular();
@@ -1002,17 +986,99 @@ pw.Row reportRow(pw.Font fontBold, pw.Font fontRegular, title, text) {
   );
 }
 
+Future<Uint8List> generatePdf(
+    {required String title, CaseDiagnose? caseDiagnose}) async {
+  var pdf = pw.Document(
+    title: title,
+  );
+  if (caseDiagnose != null) {
+    await caseDiagnoseReport(pdf: pdf, caseDiagnose: caseDiagnose);
+  }
+  // else if (isExisting == true) {
+  //   return printExistingPdf('test');
+  // }
+  //final output = await getTemporaryDirectory();
+  // final file = File('${output.path}/example.pdf');
+  //await file.writeAsBytes(await pdf.save());
+  // await file.writeAsBytes(await pdf.save());
 
-Future<File> printExistingPdf(String pdfName) async {
-  final output = await getTemporaryDirectory();
-  final Directory appDocumentsDir =
-  await getApplicationDocumentsDirectory();
-  //final pdf = await rootBundle.load('/storage/emulated/0/Download/test.pdf');
-  //await Printing.layoutPdf(onLayout: (_) => pdf.buffer.asUint8List());
-  // final synPdf.PdfDocument document = synPdf.PdfDocument(
-  //     inputBytes:
-  //         File('/storage/emulated/0/Download/test.pdf').readAsBytesSync());
-  final file = File('${appDocumentsDir.path}/test.pdf');
-  print(appDocumentsDir.path);
-  return file;
+  return pdf.save();
 }
+
+Future<Uint8List> printPdf(String pdfName) async {
+  // final output = await getTemporaryDirectory();
+  // final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
+  // //final pdf = await rootBundle.load('/storage/emulated/0/Download/test.pdf');
+  // //await Printing.layoutPdf(onLayout: (_) => pdf.buffer.asUint8List());
+  // // final synPdf.PdfDocument document = synPdf.PdfDocument(
+  // //     inputBytes:
+  // //         File('/storage/emulated/0/Download/test.pdf').readAsBytesSync());
+  // final file = File('${appDocumentsDir.path}/test.pdf');
+  // print(appDocumentsDir.path);
+  File file = await downloadPdf(
+      url:
+          'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
+      fileName: 'test.pdf');
+  // final pdf = await rootBundle.load('$pdfName.pdf');
+  //await Printing.layoutPdf(onLayout: (_) => pdf.buffer.asUint8List());
+  return file.readAsBytes();
+}
+
+Future<File> downloadPdf(
+    {required String url, required String fileName}) async {
+  late String filePath;
+
+  var file = File('');
+
+  // Platform.isIOS comes from dart:io
+  if (Platform.isIOS) {
+    final dir = await getApplicationDocumentsDirectory();
+    filePath = '${dir.path}/$fileName';
+    file = File(filePath);
+  }
+  if (Platform.isAndroid) {
+    var status = await Permission.storage.status;
+    if (status != PermissionStatus.granted) {
+      status = await Permission.storage.request();
+    }
+    if (status.isGranted) {
+      const downloadsFolderPath = '/storage/emulated/0/Download/';
+      Directory dir = Directory(downloadsFolderPath);
+      filePath = '${dir.path}/$fileName';
+      file = File('${dir.path}/$fileName');
+    }
+  }
+
+  // load file that you want to save on user's phone
+  final response = await Dio().get(url,
+      options: Options(
+        responseType: ResponseType.bytes,
+        followRedirects: false,
+      ));
+  try {
+    await file.writeAsBytes(response.data.buffer
+        .asUint8List(response.data.offsetInBytes, response.data.lengthInBytes));
+    print('dowmloaded succesfuly in : $filePath');
+  } on FileSystemException catch (err) {
+    print(err.toString());
+    // handle error
+  }
+  return file;
+  // it can be loaded from whenever you want, e.g. some API.
+  //final byteData = await rootBundle.load('assets/$fileName');
+  // try {
+  //   await file.writeAsBytes(byteData.buffer
+  //       .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+  // } on FileSystemException catch (err) {
+  //   // handle error
+  // }
+}
+// final appStorage = await getTemporaryDirectory();
+// final file = File('${appStorage.path}/$name');
+//
+// final response = Dio().get(url,
+//     options: Options(
+//       responseType: ResponseType.bytes,
+//       followRedirects: false,
+//       receiveTimeout: Duration(seconds: 0),
+//     ));

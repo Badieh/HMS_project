@@ -8,6 +8,7 @@ import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
+import 'package:hospital/presentation/screens/pdf_preview.dart';
 import 'package:hospital/presentation/screens/pdf_printing.dart';
 
 class CaseDiagnoseScreen extends StatelessWidget {
@@ -419,6 +420,13 @@ class CaseDiagnoseScreen extends StatelessWidget {
                       title: AppStrings.caseDiagnoseReport,
                     ),
                   ));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => PdfPreviewScreen(
+              //         url: '',
+              //       ),
+              //     ));
             },
             child: const FaIcon(FontAwesomeIcons.filePdf),
             // mini: false,
