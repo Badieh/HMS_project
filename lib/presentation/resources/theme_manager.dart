@@ -45,7 +45,7 @@ ThemeData getThemeData() {
             backgroundColor: ColorManager.primary,
             shadowColor: ColorManager.grey,
             padding: const EdgeInsets.symmetric(
-                vertical: AppPadding.p16, horizontal: AppPadding.p24),
+                vertical: AppPadding.p6, horizontal: AppPadding.p8),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppSizeWidth.s30),
             ),

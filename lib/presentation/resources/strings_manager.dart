@@ -102,4 +102,14 @@ class AppStrings {
   static const clinicalExamination_ = 'Clinical Examination :';
 
   static const exportToPdf = 'Export to PDF';
+
+  // Main Screen
+  static const welcomeMessage = 'Good Morning 👋';
+  static const userName = 'Badieh Nader';
+  static const docSpeciality = 'Doctor Speciality';
+  static const seeAll = 'See All';
+  static const topDoctors = 'Top Doctors';
+  static const search= 'Search';
+  static const posterText= 'Live Better Live Healthy';
+
 }
