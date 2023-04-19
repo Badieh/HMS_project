@@ -7,7 +7,6 @@ import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
-import 'package:hospital/presentation/screens/layout/layout.dart';
 
 import 'network/remote/dio_helper.dart';
 import 'presentation/screens/history/history.dart';
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HistoryCubit()
             ..getDiagnosisList()
-            ..getTreatmentList(),
+            ..getTreatmentList()..getFilesList(),
         ),
       ],
       child: ScreenUtilInit(

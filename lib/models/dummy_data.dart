@@ -1,5 +1,6 @@
-import 'package:hospital/models/caseDiagnoseModel.dart';
-import 'package:hospital/models/treatmentModel.dart';
+import 'package:hospital/models/case_diagnose_model.dart';
+import 'package:hospital/models/file_model.dart';
+import 'package:hospital/models/treatment_model.dart';
 
 CaseDiagnose caseDiagnose1 = const CaseDiagnose(
     departmentName: 'Neurology',
@@ -25,3 +26,8 @@ Treatment treatment1 = const Treatment(
   departmentIconUrl:
       'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
 );
+
+FileModel file1 = const FileModel(
+    fileName: 'fluter',
+    fileUrl:
+        'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf');

@@ -8,10 +8,10 @@ import 'package:blurhash/blurhash.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hospital/models/articleModel.dart';
-import 'package:hospital/models/caseDiagnoseModel.dart';
-import 'package:hospital/models/treatmentModel.dart';
-import 'package:hospital/network/remote/dio_helper.dart';
+import 'package:hospital/models/article_model.dart';
+import 'package:hospital/models/case_diagnose_model.dart';
+import 'package:hospital/models/file_model.dart';
+import 'package:hospital/models/treatment_model.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -19,9 +19,10 @@ import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/webview.dart';
 import 'package:hospital/presentation/screens/history/case_diagnose.dart';
+import 'package:hospital/presentation/screens/pdf_preview.dart';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart' as synPdf;
+// import 'package:syncfusion_flutter_pdf/pdf.dart' as synPdf;
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -986,6 +987,67 @@ pw.Row reportRow(pw.Font fontBold, pw.Font fontRegular, title, text) {
   );
 }
 
+Widget fileCard({required FileModel fileModel, required context}) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PdfPreviewScreen(
+              url: fileModel.fileUrl,
+              title: fileModel.fileName,
+            ),
+          ));
+    },
+    child: Container(
+      margin: const EdgeInsets.symmetric(vertical: AppPadding.p10),
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              width: AppSizeWidth.s65,
+              // height: AppSizeWidth.s50,
+              decoration: BoxDecoration(
+                color: ColorManager.veryLightGrey,
+                borderRadius: BorderRadius.circular(AppPadding.p10),
+                border: Border.all(
+                  color: ColorManager.secondary,
+                ),
+                // gradient: LinearGradient(
+                //   begin: Alignment.topLeft,
+                //   end: Alignment.bottomRight,
+                //   colors: [
+                //     ColorManager.primary,
+                //     ColorManager.secondary,
+                //     ColorManager.white,
+                //   ],
+                // ),
+              ),
+              child: Icon(
+                Icons.file_copy,
+                color: ColorManager.primary,
+                size: AppSizeHeight.s30,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 70,
+          ),
+          Text(
+            fileModel.fileName,
+            style: TextStyle(
+              fontSize: FontSize.s16,
+              fontWeight: FontWeight.bold,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          )
+        ],
+      ),
+    ),
+  );
+}
+
 Future<Uint8List> generatePdf(
     {required String title, CaseDiagnose? caseDiagnose}) async {
   var pdf = pw.Document(
@@ -994,33 +1056,16 @@ Future<Uint8List> generatePdf(
   if (caseDiagnose != null) {
     await caseDiagnoseReport(pdf: pdf, caseDiagnose: caseDiagnose);
   }
-  // else if (isExisting == true) {
-  //   return printExistingPdf('test');
-  // }
-  //final output = await getTemporaryDirectory();
-  // final file = File('${output.path}/example.pdf');
-  //await file.writeAsBytes(await pdf.save());
-  // await file.writeAsBytes(await pdf.save());
 
   return pdf.save();
 }
 
 Future<Uint8List> printPdf(String pdfName) async {
-  // final output = await getTemporaryDirectory();
-  // final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
-  // //final pdf = await rootBundle.load('/storage/emulated/0/Download/test.pdf');
-  // //await Printing.layoutPdf(onLayout: (_) => pdf.buffer.asUint8List());
-  // // final synPdf.PdfDocument document = synPdf.PdfDocument(
-  // //     inputBytes:
-  // //         File('/storage/emulated/0/Download/test.pdf').readAsBytesSync());
-  // final file = File('${appDocumentsDir.path}/test.pdf');
-  // print(appDocumentsDir.path);
   File file = await downloadPdf(
       url:
           'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
       fileName: 'test.pdf');
-  // final pdf = await rootBundle.load('$pdfName.pdf');
-  //await Printing.layoutPdf(onLayout: (_) => pdf.buffer.asUint8List());
+
   return file.readAsBytes();
 }
 
@@ -1064,21 +1109,4 @@ Future<File> downloadPdf(
     // handle error
   }
   return file;
-  // it can be loaded from whenever you want, e.g. some API.
-  //final byteData = await rootBundle.load('assets/$fileName');
-  // try {
-  //   await file.writeAsBytes(byteData.buffer
-  //       .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-  // } on FileSystemException catch (err) {
-  //   // handle error
-  // }
 }
-// final appStorage = await getTemporaryDirectory();
-// final file = File('${appStorage.path}/$name');
-//
-// final response = Dio().get(url,
-//     options: Options(
-//       responseType: ResponseType.bytes,
-//       followRedirects: false,
-//       receiveTimeout: Duration(seconds: 0),
-//     ));

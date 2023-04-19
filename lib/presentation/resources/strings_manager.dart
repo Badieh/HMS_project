@@ -100,8 +100,10 @@ class AppStrings {
   static const time_ = 'Time :';
   static const location_ = 'Location :';
   static const clinicalExamination_ = 'Clinical Examination :';
-
   static const exportToPdf = 'Export to PDF';
+
+  // Files
+  static const files = 'Files';
 
   // Main Screen
   static const welcomeMessage = 'Good Morning 👋';

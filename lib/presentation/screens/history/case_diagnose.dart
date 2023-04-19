@@ -2,13 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hospital/models/caseDiagnoseModel.dart';
+import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
-import 'package:hospital/presentation/screens/pdf_preview.dart';
 import 'package:hospital/presentation/screens/pdf_printing.dart';
 
 class CaseDiagnoseScreen extends StatelessWidget {
@@ -23,7 +22,7 @@ class CaseDiagnoseScreen extends StatelessWidget {
     return BlocConsumer<HistoryCubit, HistoryStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        HistoryCubit cubit = HistoryCubit().get(context);
+        //HistoryCubit cubit = HistoryCubit().get(context);
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,

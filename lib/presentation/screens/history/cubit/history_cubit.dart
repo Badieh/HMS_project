@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hospital/models/caseDiagnoseModel.dart';
+import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/models/dummy_data.dart';
-import 'package:hospital/models/treatmentModel.dart';
+import 'package:hospital/models/file_model.dart';
+import 'package:hospital/models/treatment_model.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
@@ -74,7 +75,40 @@ class HistoryCubit extends Cubit<HistoryStates> {
     }
   }
 
-  // Future<void> getCaseDiagnose(CaseDiagnose caseDiagnose) async {
+  List<FileModel> filesList = [];
+  Future<void> getFilesList() async {
+    emit(GetFilesListLoadingState());
+
+    try {
+      var response =
+          await DioHelper.getData(url: AppConstants.articlesPath, query: {
+        'country': AppConstants.country,
+        'category': AppConstants.category,
+        'apiKey': AppConstants.articlesApiKey,
+      });
+      //print(response.data['articles'][1]);
+      // caseDiagnosisList = List.from(response.data['articles'])
+      //     .map((e) => CaseDiagnose.fromJson(e))
+      //     .toList();
+      // print(articles[1]);
+
+      // dummy data to be removed when api is ready
+      filesList = [
+        file1,
+        file1,
+        file1,
+        file1,
+        file1,
+        file1,
+      ];
+      emit(GetFilesListSuccessState());
+    } catch (error) {
+      print(error.toString());
+      emit(GetFilesListErrorState(error.toString()));
+    }
+  }
+
+// Future<void> getCaseDiagnose(CaseDiagnose caseDiagnose) async {
   //   emit(GetCaseDiagnoseLoadingState());
   //
   //   try {

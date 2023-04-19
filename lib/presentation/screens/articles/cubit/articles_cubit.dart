@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hospital/models/articleModel.dart';
+import 'package:hospital/models/article_model.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_states.dart';

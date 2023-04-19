@@ -22,6 +22,15 @@ class GetTreatmentListErrorState extends HistoryStates {
   GetTreatmentListErrorState(this.error);
 }
 
+class GetFilesListLoadingState extends HistoryStates {}
+
+class GetFilesListSuccessState extends HistoryStates {}
+
+class GetFilesListErrorState extends HistoryStates {
+  final String error;
+
+  GetFilesListErrorState(this.error);
+}
 // class GetCaseDiagnoseLoadingState extends HistoryStates {}
 //
 // class GetCaseDiagnoseSuccessState extends HistoryStates {}

@@ -1,23 +1,20 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hospital/models/caseDiagnoseModel.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
-import 'package:hospital/presentation/screens/pdf_printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class PdfPreviewScreen extends StatelessWidget {
-  const PdfPreviewScreen({Key? key, required this.url}) : super(key: key);
+  const PdfPreviewScreen({Key? key, required this.url, required this.title})
+      : super(key: key);
   final String url;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(url), backgroundColor: ColorManager.primary),
+      appBar: AppBar(title: Text(title), backgroundColor: ColorManager.primary),
       body: SfPdfViewer.network(
         url != ''
             ? url
@@ -30,7 +27,8 @@ class PdfPreviewScreen extends StatelessWidget {
         focusElevation: 6.0,
         onPressed: () async {
           await Printing.layoutPdf(
-              onLayout: (PdfPageFormat format) async => await printPdf(''));
+              onLayout: (PdfPageFormat format) async =>
+                  await printPdf('title'));
         },
         child: const FaIcon(FontAwesomeIcons.download),
         // mini: false,
@@ -38,7 +36,6 @@ class PdfPreviewScreen extends StatelessWidget {
     );
   }
 }
-
 // FutureBuilder<File>(
 // future: printExistingPdf(''),
 // builder: (context, snapshot) {

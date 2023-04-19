@@ -44,7 +44,7 @@ class AppSizeWidth {
   static double s40 = 40.0.w;
   static double s45 = 45.0.w;
   static double s50 = 50.0.w;
-
+  static double s55 = 55.0.w;
   static double s60 = 60.0.w;
   static double s65 = 65.0.w;
   static double s70 = 70.0.w;
