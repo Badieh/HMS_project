@@ -5,8 +5,8 @@ import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/layout/fill_profile.dart';
-import 'package:hospital/presentation/screens/layout/login.dart';
+import 'package:hospital/presentation/screens/auth/fill_profile.dart';
+import 'package:hospital/presentation/screens/auth/login.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);

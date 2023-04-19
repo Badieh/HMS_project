@@ -6,8 +6,9 @@ import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/layout/register.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../auth/register.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hospital/presentation/screens/layout/home.dart';
-import 'package:hospital/presentation/screens/layout/profile.dart';
+
+import 'package:hospital/presentation/screens/layout/view/profile.dart';
 
 class Home_Layout_Screen extends StatelessWidget {
   const Home_Layout_Screen({Key? key}) : super(key: key);
