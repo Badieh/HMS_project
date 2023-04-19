@@ -8,7 +8,7 @@ import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
-import 'package:hospital/presentation/screens/pdf_preview.dart';
+import 'package:hospital/presentation/screens/pdf_printing.dart';
 
 class CaseDiagnoseScreen extends StatelessWidget {
   final CaseDiagnose caseDiagnose;
@@ -414,7 +414,7 @@ class CaseDiagnoseScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PdfPreviewScreen(
+                    builder: (context) => PdfPrintingScreen(
                       caseDiagnose: caseDiagnose,
                       title: AppStrings.caseDiagnoseReport,
                     ),

@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
@@ -16,6 +17,10 @@ import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/webview.dart';
 import 'package:hospital/presentation/screens/history/case_diagnose.dart';
+
+
+import 'package:path_provider/path_provider.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart' as synPdf;
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -883,15 +888,19 @@ Future<String> generateImageHash(String url) async {
 
 Future<Uint8List> generatePdf(
     {required String title, CaseDiagnose? caseDiagnose}) async {
-  final pdf = pw.Document(
+  var pdf = pw.Document(
     title: title,
   );
   if (caseDiagnose != null) {
     await caseDiagnoseReport(pdf: pdf, caseDiagnose: caseDiagnose);
   }
+  // else if (isExisting == true) {
+  //   return printExistingPdf('test');
+  // }
   //final output = await getTemporaryDirectory();
   // final file = File('${output.path}/example.pdf');
   //await file.writeAsBytes(await pdf.save());
+  // await file.writeAsBytes(await pdf.save());
 
   return pdf.save();
 }
@@ -991,4 +1000,19 @@ pw.Row reportRow(pw.Font fontBold, pw.Font fontRegular, title, text) {
       ),
     ],
   );
+}
+
+
+Future<File> printExistingPdf(String pdfName) async {
+  final output = await getTemporaryDirectory();
+  final Directory appDocumentsDir =
+  await getApplicationDocumentsDirectory();
+  //final pdf = await rootBundle.load('/storage/emulated/0/Download/test.pdf');
+  //await Printing.layoutPdf(onLayout: (_) => pdf.buffer.asUint8List());
+  // final synPdf.PdfDocument document = synPdf.PdfDocument(
+  //     inputBytes:
+  //         File('/storage/emulated/0/Download/test.pdf').readAsBytesSync());
+  final file = File('${appDocumentsDir.path}/test.pdf');
+  print(appDocumentsDir.path);
+  return file;
 }
