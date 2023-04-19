@@ -531,7 +531,7 @@ Widget caseDiagnoseCard({
     child: Container(
       margin: const EdgeInsets.all(AppMargin.m10),
       padding: const EdgeInsets.all(AppPadding.p10),
-      height: AppSizeHeight.s100,
+      // height: AppSizeHeight.s100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppPadding.p18),
         color: ColorManager.veryLightGrey,
