@@ -113,5 +113,6 @@ class AppStrings {
   static const topDoctors = 'Top Doctors';
   static const search= 'Search';
   static const posterText= 'Live Better Live Healthy';
+  static const posterdetails= 'We offer safety , relaxation & love for you .';
 
 }

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:hospital/presentation/screens/layout/view/profile.dart';
-
 import 'main_cubit/main_cubit.dart';
 import 'main_cubit/main_states.dart';
 
@@ -38,7 +35,7 @@ class Home_Layout_Screen extends StatelessWidget {
 //   elevation: 0,
 //
 // ),
-              body: mainview.tabs[mainview.currentIndex],
+                body: mainview.tabs[mainview.currentIndex],
               ),
             );
           },
