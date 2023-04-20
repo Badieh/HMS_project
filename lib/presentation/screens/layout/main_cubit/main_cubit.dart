@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/articles.dart';
 import 'package:hospital/presentation/screens/history/history.dart';
 import 'package:hospital/presentation/screens/layout/view/appointment.dart';
@@ -28,59 +30,59 @@ class MainCubit extends Cubit<MainStates> {
   ];
 
   List<BottomNavigationBarItem> items = [
-    const BottomNavigationBarItem(
+     BottomNavigationBarItem(
       icon: Icon(
         Icons.home_outlined,
-        color: Colors.black,
+        color: ColorManager.black,
       ),
       label: 'Home',
       activeIcon: Icon(
         Icons.home,
-        color: Colors.blue,
+        color: ColorManager.primary,
       ),
     ),
-    const BottomNavigationBarItem(
+     BottomNavigationBarItem(
       icon: Icon(
-        Icons.calendar_month,
-        color: Colors.black,
+        Icons.calendar_month_outlined,
+        color: ColorManager.black,
       ),
       label: 'Appointment',
       activeIcon: Icon(
         Icons.calendar_month,
-        color: Colors.blue,
+        color: ColorManager.primary,
       ),
     ),
-    const BottomNavigationBarItem(
+     BottomNavigationBarItem(
       icon: Icon(
-        Icons.newspaper,
-        color: Colors.black,
+        Icons.history_outlined,
+        color: ColorManager.black,
       ),
       label: 'History',
       activeIcon: Icon(
-        Icons.newspaper,
-        color: Colors.blue,
+        Icons.history,
+        color: ColorManager.primary,
       ),
     ),
-    const BottomNavigationBarItem(
+     BottomNavigationBarItem(
       icon: Icon(
-        Icons.archive_outlined,
-        color: Colors.black,
+        Icons.article_outlined,
+        color: ColorManager.black,
       ),
-      label: 'Archive',
+      label: 'Article',
       activeIcon: Icon(
-        Icons.archive_outlined,
-        color: Colors.blue,
+        Icons.article_rounded,
+        color: ColorManager.primary,
       ),
     ),
-    const BottomNavigationBarItem(
+     BottomNavigationBarItem(
       icon: Icon(
-        Icons.person,
-        color: Colors.black,
+        Icons.person_outline,
+        color: ColorManager.black,
       ),
       label: 'Profile',
       activeIcon: Icon(
         Icons.person,
-        color: Colors.blue,
+        color: ColorManager.primary,
       ),
     ),
   ];

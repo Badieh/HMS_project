@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/presentation/screens/top_doctors.dart';
 
 class Home_Screen extends StatelessWidget {
-  const Home_Screen({Key? key}) : super(key: key);
+   Home_Screen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class Home_Screen extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * .15,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: ColorManager.lightGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -108,7 +109,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Icon(Icons.filter_alt_outlined, color: Colors.blue)
+                    Icon(Icons.filter_alt_outlined, color: ColorManager.primary)
                   ],
                 ),
               ),
@@ -134,24 +135,42 @@ class Home_Screen extends StatelessWidget {
                           spreadRadius: 2,
                           blurRadius: 2,
                           offset:
-                              const Offset(2, 2), // changes position of shadow
+                               Offset(2, 2), // changes position of shadow
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: AppSizeWidth.s200,
-                    child: Padding(
-                      padding: EdgeInsets.all(AppPadding.p8),
-                      child: Text(
-                        AppStrings.posterText,
-                        style: TextStyle(
-                            fontSize: FontSize.s25,
-
-                            color: ColorManager.primary),
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: AppSizeWidth.s150,
+                        child: Padding(
+                          padding: EdgeInsets.all(AppPadding.p8),
+                          child: Text(
+                            AppStrings.posterText,
+                            style: TextStyle(
+                                fontSize: FontSize.s20,
+                                fontFamily: "Fjalla_One",
+                                color: ColorManager.primary),
+                          ),
+                        ),
                       ),
-                    ),
-                  )
+                      SizedBox(
+                        width: AppSizeWidth.s150,
+                        child: Padding(
+                          padding: EdgeInsets.all(AppPadding.p8),
+                          child: Text(
+                            AppStrings.posterdetails,
+                            style: TextStyle(
+                                fontSize: FontSize.s13,
+                                fontFamily: "Fjalla_One",
+                                color: ColorManager.darkGrey),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+
                 ],
               ),
               SizedBox(
@@ -173,7 +192,7 @@ class Home_Screen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: FontSize.s13,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue),
+                        color: ColorManager.primary),
                     textAlign: TextAlign.end,
                   )),
 
@@ -194,11 +213,12 @@ class Home_Screen extends StatelessWidget {
                           child: Icon(
                             Icons.people,
                             size: FontSize.s35,
+                            color: ColorManager.primary,
                           ),
                           height: MediaQuery.of(context).size.width * .18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -207,7 +227,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "General",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -222,14 +242,16 @@ class Home_Screen extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          child: SvgPicture.asset(
-                            "assets/icons/tooth.svg",
-                            fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          child: FaIcon(
+                            FontAwesomeIcons.tooth,
+                            color: ColorManager.primary,
+                            size: FontSize.s35,
                           ),
                           height: MediaQuery.of(context).size.width * .18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -238,7 +260,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "Dentist",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -253,14 +275,16 @@ class Home_Screen extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          child: SvgPicture.asset(
-                            "assets/icons/eye.svg",
-                            fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          child: FaIcon(
+                            FontAwesomeIcons.solidEye,
+                            color: ColorManager.primary,
+                            size: FontSize.s35,
                           ),
                           height: MediaQuery.of(context).size.width * .18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -269,7 +293,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "ophthalmologist",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -284,14 +308,16 @@ class Home_Screen extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          child: SvgPicture.asset(
-                            "assets/icons/nutrition.svg",
-                            fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          child: FaIcon(
+                            FontAwesomeIcons.nutritionix,
+                            color: ColorManager.primary,
+                            size: FontSize.s35,
                           ),
                           height: MediaQuery.of(context).size.width * .18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -300,7 +326,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "Nutrition",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -324,14 +350,16 @@ class Home_Screen extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          child: SvgPicture.asset(
-                            "assets/icons/neurology.svg",
-                            fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          child: FaIcon(
+                            FontAwesomeIcons.neuter,
+                            color: ColorManager.primary,
+                            size: FontSize.s35,
                           ),
                           height: MediaQuery.of(context).size.width * 0.18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -340,7 +368,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "neurologist",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -355,14 +383,16 @@ class Home_Screen extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          child: SvgPicture.asset(
-                            "assets/icons/pediatrics.svg",
-                            fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          child: FaIcon(
+                            FontAwesomeIcons.baby,
+                            color: ColorManager.primary,
+                            size: FontSize.s35,
                           ),
                           height: MediaQuery.of(context).size.width * .18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -371,7 +401,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "pediatrician",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -386,14 +416,16 @@ class Home_Screen extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          child: SvgPicture.asset(
-                            "assets/icons/radiology.svg",
-                            fit: BoxFit.cover,
+                          alignment: Alignment.center,
+                          child: FaIcon(
+                            FontAwesomeIcons.xRay,
+                            color: ColorManager.primary,
+                            size: FontSize.s35,
                           ),
                           height: MediaQuery.of(context).size.width * .18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -402,7 +434,7 @@ class Home_Screen extends StatelessWidget {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "radiologist",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -417,14 +449,15 @@ class Home_Screen extends StatelessWidget {
                     Column(
                       children: [
                         Container(
-                          child: const Icon(
+                          child:  Icon(
                             Icons.more_horiz,
                             size: 30,
+                            color: ColorManager.primary,
                           ),
                           height: MediaQuery.of(context).size.width * .18,
                           width: MediaQuery.of(context).size.width * .18,
                           decoration: BoxDecoration(
-                            color: Colors.grey[300],
+                            color: ColorManager.lightGrey,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -434,7 +467,7 @@ class Home_Screen extends StatelessWidget {
                         Container(
                           alignment: Alignment.center,
                           width: MediaQuery.of(context).size.width * .18,
-                          child: const Text(
+                          child:  Text(
                             "More",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -469,7 +502,7 @@ class Home_Screen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: FontSize.s13,
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue),
+                            color: ColorManager.primary),
                         textAlign: TextAlign.end,
                       )),
 
