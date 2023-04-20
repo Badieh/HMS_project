@@ -6,7 +6,7 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hospital/presentation/screens/top_doctors.dart';
+import 'package:hospital/presentation/screens/top_doctors/top_doctors.dart';
 
 class Home_Screen extends StatelessWidget {
    Home_Screen({Key? key}) : super(key: key);
@@ -83,7 +83,7 @@ class Home_Screen extends StatelessWidget {
                 height: MediaQuery.of(context).size.width * .15,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: ColorManager.lightGrey,
+                  color: ColorManager.veryLightGrey,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -215,10 +215,10 @@ class Home_Screen extends StatelessWidget {
                             size: FontSize.s35,
                             color: ColorManager.primary,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * .16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -248,10 +248,10 @@ class Home_Screen extends StatelessWidget {
                             color: ColorManager.primary,
                             size: FontSize.s35,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * .16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -281,10 +281,10 @@ class Home_Screen extends StatelessWidget {
                             color: ColorManager.primary,
                             size: FontSize.s35,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * .16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -314,10 +314,10 @@ class Home_Screen extends StatelessWidget {
                             color: ColorManager.primary,
                             size: FontSize.s35,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * .16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -343,7 +343,7 @@ class Home_Screen extends StatelessWidget {
               ),
               Container(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.width * .3,
+                // height: MediaQuery.of(context).size.width * .25,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -352,14 +352,14 @@ class Home_Screen extends StatelessWidget {
                         Container(
                           alignment: Alignment.center,
                           child: FaIcon(
-                            FontAwesomeIcons.neuter,
+                            FontAwesomeIcons.brain,
                             color: ColorManager.primary,
                             size: FontSize.s35,
                           ),
-                          height: MediaQuery.of(context).size.width * 0.18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * 0.16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -389,10 +389,10 @@ class Home_Screen extends StatelessWidget {
                             color: ColorManager.primary,
                             size: FontSize.s35,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * .16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -422,10 +422,10 @@ class Home_Screen extends StatelessWidget {
                             color: ColorManager.primary,
                             size: FontSize.s35,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * .16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -454,10 +454,10 @@ class Home_Screen extends StatelessWidget {
                             size: 30,
                             color: ColorManager.primary,
                           ),
-                          height: MediaQuery.of(context).size.width * .18,
-                          width: MediaQuery.of(context).size.width * .18,
+                          height: MediaQuery.of(context).size.width * .16,
+                          width: MediaQuery.of(context).size.width * .16,
                           decoration: BoxDecoration(
-                            color: ColorManager.lightGrey,
+                            color: ColorManager.lightPrimary,
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -482,9 +482,9 @@ class Home_Screen extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height:MediaQuery.of(context).size.height*.008,),
               Row(
                 children: [
-
                   Expanded(
                     child: Text(
                       AppStrings.topDoctors,
