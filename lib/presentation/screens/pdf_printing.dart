@@ -3,6 +3,7 @@ import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:printing/printing.dart';
+import 'package:quickalert/quickalert.dart';
 
 class PdfPrintingScreen extends StatelessWidget {
   const PdfPrintingScreen(
@@ -25,6 +26,14 @@ class PdfPrintingScreen extends StatelessWidget {
           caseDiagnose: caseDiagnose,
           imagePathsList: imagePathsList,
         ),
+        onPrinted: (BuildContext context) {
+          Navigator.pop(context);
+          QuickAlert.show(
+            context: context,
+            type: QuickAlertType.success,
+            text: 'File uploaded succesfuly',
+          );
+        },
       ),
     );
   }

@@ -19,7 +19,7 @@ import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/webview.dart';
 import 'package:hospital/presentation/screens/history/case_diagnose.dart';
-import 'package:hospital/presentation/screens/pdf_preview.dart';
+import 'package:hospital/presentation/screens/pdf_preview_cloud.dart';
 
 import 'package:path_provider/path_provider.dart';
 // import 'package:syncfusion_flutter_pdf/pdf.dart' as synPdf;
@@ -993,7 +993,7 @@ Widget fileCard({required FileModel fileModel, required context}) {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PdfPreviewScreen(
+            builder: (context) => PdfPreviewCloudScreen(
               url: fileModel.fileUrl,
               title: fileModel.fileName,
             ),

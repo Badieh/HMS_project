@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +13,7 @@ import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
+import 'package:hospital/presentation/screens/pdf_preview_device.dart';
 import 'package:hospital/presentation/screens/pdf_printing.dart';
 
 class HistoryCubit extends Cubit<HistoryStates> {
@@ -113,10 +117,40 @@ class HistoryCubit extends Cubit<HistoryStates> {
     }
   }
 
-  Future<void> pickFile() async {
+  Future<void> pickFile(context) async {
     emit(PickFileLoadingState());
 
     try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        allowMultiple: true,
+        type: FileType.custom,
+        allowedExtensions: [
+          'pdf',
+        ],
+      );
+
+      if (result != null) {
+        File file = File(result.files.single.path!);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PdfPreviewDevice(
+                file: file,
+                cubit: HistoryCubit(),
+              ),
+            ));
+      } else {
+        // User canceled the picker
+      }
+      // String? outputFile = await FilePicker.platform.saveFile(
+      //   dialogTitle: 'Please select an output file:',
+      //   fileName: 'output-file.pdf',
+      // );
+      //
+      // if (outputFile == null) {
+      //   // User canceled the picker
+      // }
+
       emit(GetFilesListSuccessState());
     } catch (error) {
       print(error.toString());
@@ -141,7 +175,7 @@ class HistoryCubit extends Cubit<HistoryStates> {
   }
 
   Future<void> uploadFile() async {
-    await pickFile();
+    // await pickFile();
     emit(UploadFileLoadingState());
     try {
       //   var response =

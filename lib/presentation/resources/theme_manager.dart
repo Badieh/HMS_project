@@ -7,6 +7,7 @@ import 'values_manager.dart';
 
 ThemeData getThemeData() {
   return ThemeData(
+    useMaterial3:  true,
     // main colors
     primaryColor: ColorManager.primary,
     disabledColor: ColorManager.grey,

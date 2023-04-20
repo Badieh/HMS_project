@@ -38,7 +38,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HistoryCubit()
             ..getDiagnosisList()
-            ..getTreatmentList()..getFilesList(),
+            ..getTreatmentList()
+            ..getFilesList(),
         ),
       ],
       child: ScreenUtilInit(
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getThemeData(),
-            home: HistoryScreen(),
+            home: Home_Layout_Screen(),
           );
         },
       ),

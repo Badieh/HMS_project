@@ -104,6 +104,9 @@ class AppStrings {
 
   // Files
   static const files = 'Files';
+  static const scanImage = 'Scan Image';
+  static const chooseAction = 'Choose an action ';
+
 
   // Main Screen
   static const welcomeMessage = 'Good Morning 👋';

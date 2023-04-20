@@ -6,8 +6,8 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class PdfPreviewScreen extends StatelessWidget {
-  const PdfPreviewScreen({Key? key, required this.url, required this.title})
+class PdfPreviewCloudScreen extends StatelessWidget {
+  const PdfPreviewCloudScreen({Key? key, required this.url, required this.title})
       : super(key: key);
   final String url;
   final String title;
