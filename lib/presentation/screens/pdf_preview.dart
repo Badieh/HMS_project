@@ -28,7 +28,7 @@ class PdfPreviewScreen extends StatelessWidget {
         onPressed: () async {
           await Printing.layoutPdf(
               onLayout: (PdfPageFormat format) async =>
-                  await printPdf('title'));
+                  await printPdf(title, url));
         },
         child: const FaIcon(FontAwesomeIcons.download),
         // mini: false,

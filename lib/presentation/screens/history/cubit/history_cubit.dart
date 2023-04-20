@@ -1,11 +1,16 @@
+import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/models/file_model.dart';
 import 'package:hospital/models/treatment_model.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
+import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
+import 'package:hospital/presentation/screens/pdf_printing.dart';
 
 class HistoryCubit extends Cubit<HistoryStates> {
   HistoryCubit() : super(HistoryInitialState());
@@ -108,6 +113,55 @@ class HistoryCubit extends Cubit<HistoryStates> {
     }
   }
 
+  Future<void> pickFile() async {
+    emit(PickFileLoadingState());
+
+    try {
+      emit(GetFilesListSuccessState());
+    } catch (error) {
+      print(error.toString());
+      emit(GetFilesListErrorState(error.toString()));
+    }
+  }
+
+  Future<void> scanImage(context) async {
+    try {
+      final imagesPathsList = await CunningDocumentScanner.getPictures();
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PdfPrintingScreen(
+                title: 'aloha', imagePathsList: imagesPathsList),
+          ));
+      //await generatePdf(title: '', imagePathsList: imagesPathsList);
+    } catch (error) {
+      print('error scaning images : ${error.toString()}');
+    }
+  }
+
+  Future<void> uploadFile() async {
+    await pickFile();
+    emit(UploadFileLoadingState());
+    try {
+      //   var response =
+      //   await DioHelper.postData(url: AppConstants.articlesPath, query: {
+      //     'country': AppConstants.country,
+      //     'category': AppConstants.category,
+      //     'apiKey': AppConstants.articlesApiKey,
+      //   }, data: null);
+      //print(response.data['articles'][1]);
+      // caseDiagnosisList = List.from(response.data['articles'])
+      //     .map((e) => CaseDiagnose.fromJson(e))
+      //     .toList();
+      // print(articles[1]);
+
+      emit(UploadFileSuccessState());
+    } catch (error) {
+      print(error.toString());
+      emit(UploadFileErrorState(error.toString()));
+    }
+  }
 // Future<void> getCaseDiagnose(CaseDiagnose caseDiagnose) async {
   //   emit(GetCaseDiagnoseLoadingState());
   //

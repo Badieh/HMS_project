@@ -31,6 +31,27 @@ class GetFilesListErrorState extends HistoryStates {
 
   GetFilesListErrorState(this.error);
 }
+
+class UploadFileLoadingState extends HistoryStates {}
+
+class UploadFileSuccessState extends HistoryStates {}
+
+class UploadFileErrorState extends HistoryStates {
+  final String error;
+
+  UploadFileErrorState(this.error);
+}
+
+class PickFileLoadingState extends HistoryStates {}
+
+class PickFileSuccessState extends HistoryStates {}
+
+class PickFileErrorState extends HistoryStates {
+  final String error;
+
+  PickFileErrorState(this.error);
+}
+
 // class GetCaseDiagnoseLoadingState extends HistoryStates {}
 //
 // class GetCaseDiagnoseSuccessState extends HistoryStates {}

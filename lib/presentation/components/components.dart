@@ -1049,21 +1049,49 @@ Widget fileCard({required FileModel fileModel, required context}) {
 }
 
 Future<Uint8List> generatePdf(
-    {required String title, CaseDiagnose? caseDiagnose}) async {
+    {required String title,
+    CaseDiagnose? caseDiagnose,
+    List<String>? imagePathsList}) async {
   var pdf = pw.Document(
     title: title,
   );
+  // if we send a case diagnose report to generate report
   if (caseDiagnose != null) {
     await caseDiagnoseReport(pdf: pdf, caseDiagnose: caseDiagnose);
+  }
+  // if we send an image to convert it to pdf
+  else if (imagePathsList != null && imagePathsList.length == 1) {
+    final image = pw.MemoryImage(
+      File(imagePathsList.first).readAsBytesSync(),
+    );
+    pdf.addPage(pw.Page(build: (pw.Context context) {
+      return pw.Center(
+        child: pw.Image(image),
+      ); // Center
+    })); //
+  }
+  // if we send multiple images to convert them into 1 pdf
+  else if (imagePathsList != null) {
+    imagePathsList.forEach((element) {
+      final image = pw.MemoryImage(
+        File(element).readAsBytesSync(),
+      );
+      pdf.addPage(pw.Page(build: (pw.Context context) {
+        return pw.Center(
+          child: pw.Image(image),
+        ); // Center
+      }));
+    });
   }
 
   return pdf.save();
 }
 
-Future<Uint8List> printPdf(String pdfName) async {
+Future<Uint8List> printPdf(String pdfName, String url) async {
   File file = await downloadPdf(
-      url:
-          'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
+      url: url != ''
+          ? url
+          : 'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
       fileName: 'test.pdf');
 
   return file.readAsBytes();

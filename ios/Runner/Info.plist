@@ -51,5 +51,7 @@
     <true/>
     <key>UIFileSharingEnabled</key>
     <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>Camera Permission Description</string>
 </dict>
 </plist>

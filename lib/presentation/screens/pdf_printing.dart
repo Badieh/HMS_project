@@ -6,10 +6,11 @@ import 'package:printing/printing.dart';
 
 class PdfPrintingScreen extends StatelessWidget {
   const PdfPrintingScreen(
-      {Key? key, required this.title, required this.caseDiagnose})
+      {Key? key, required this.title, this.caseDiagnose, this.imagePathsList})
       : super(key: key);
   final String title;
-  final CaseDiagnose caseDiagnose;
+  final CaseDiagnose? caseDiagnose;
+  final List<String>? imagePathsList;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,11 @@ class PdfPrintingScreen extends StatelessWidget {
         canChangeOrientation: false,
         canChangePageFormat: false,
         canDebug: false,
-        build: (format) =>
-            generatePdf(title: title, caseDiagnose: caseDiagnose),
+        build: (format) => generatePdf(
+          title: title,
+          caseDiagnose: caseDiagnose,
+          imagePathsList: imagePathsList,
+        ),
       ),
     );
   }
