@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hospital/presentation/screens/history/diagnoses_tab.dart';
-import 'package:hospital/presentation/screens/history/files_tab.dart';
+import 'package:hospital/presentation/screens/history/diagnose/diagnoses_tab.dart';
+import 'package:hospital/presentation/screens/history/files/files_tab.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
-import 'package:hospital/presentation/screens/history/treatment_tab.dart';
+import 'package:hospital/presentation/screens/history/treatment/treatment_tab.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({Key? key}) : super(key: key);

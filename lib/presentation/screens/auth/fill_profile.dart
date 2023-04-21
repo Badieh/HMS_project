@@ -5,11 +5,11 @@ import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:intl/intl.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../layout/view/home.dart';
 
 class FillProfile extends StatefulWidget {
   FillProfile({Key? key}) : super(key: key);
@@ -168,7 +168,7 @@ class _FillProfileState extends State<FillProfile> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
+                              builder: (context) => HomeLayoutScreen(),
                             ));
                       }
                     },

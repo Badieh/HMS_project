@@ -243,7 +243,7 @@ class Top_Doctors_Screen extends StatelessWidget {
                                       child: Row(
                                         children: [
                                           Text(
-                                            doctor.Degree,
+                                            doctor.degree,
                                             style: TextStyle(
                                               fontSize: FontSize.s14,
                                             ),
@@ -259,7 +259,7 @@ class Top_Doctors_Screen extends StatelessWidget {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                           Text(
-                                            doctor.Position,
+                                            doctor.position,
                                             style: TextStyle(
                                               fontSize: FontSize.s14,
                                             ),

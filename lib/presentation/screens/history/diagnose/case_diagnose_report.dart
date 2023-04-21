@@ -9,10 +9,13 @@ import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
 import 'package:hospital/presentation/screens/pdf_printing.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
-class CaseDiagnoseScreen extends StatelessWidget {
+class CaseDiagnoseReportScreen extends StatelessWidget {
   final CaseDiagnose caseDiagnose;
-  const CaseDiagnoseScreen({Key? key, required this.caseDiagnose})
+  const CaseDiagnoseReportScreen({Key? key, required this.caseDiagnose})
       : super(key: key);
 
   @override
@@ -434,4 +437,101 @@ class CaseDiagnoseScreen extends StatelessWidget {
       },
     );
   }
+}
+
+Future<void> caseDiagnoseReport(
+    {required pdf, required CaseDiagnose caseDiagnose}) async {
+  final fontRegular = await PdfGoogleFonts.alefRegular();
+  final fontBold = await PdfGoogleFonts.alegreyaBold();
+  DateTime dateTime = DateTime.parse(caseDiagnose.dateTime);
+  final date = '${dateTime.year}/${dateTime.month}/${dateTime.day}';
+  final time = '${dateTime.hour}:${dateTime.month}:${dateTime.second}';
+
+  pdf.addPage(
+    pw.Page(
+      pageFormat: PdfPageFormat.a4,
+      build: (pw.Context context) => pw.Column(
+          mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: [
+            // Title
+            pw.Center(
+              child: pw.Text(
+                AppStrings.caseDiagnose,
+                style: pw.TextStyle(
+                  font: fontBold,
+                  fontSize: FontSize.s25,
+                  fontWeight: pw.FontWeight.bold,
+                ),
+              ),
+            ),
+
+            // Hospital Name
+            reportRow(fontBold, fontRegular, AppStrings.hospitalName_,
+                caseDiagnose.hospitalName),
+
+            // patient
+            reportRow(fontBold, fontRegular, AppStrings.patient_,
+                caseDiagnose.patientName),
+
+            // Doctor
+            reportRow(fontBold, fontRegular, AppStrings.doctorName_,
+                caseDiagnose.doctorName),
+
+            // Date
+            reportRow(fontBold, fontRegular, AppStrings.date_, date),
+
+            // Time
+            reportRow(fontBold, fontRegular, AppStrings.time_, time),
+
+            // Department Name
+            reportRow(fontBold, fontRegular, AppStrings.departmentName_,
+                caseDiagnose.departmentName),
+
+            // location
+            reportRow(fontBold, fontRegular, AppStrings.location_,
+                caseDiagnose.location),
+
+            // Clinical Examination
+            reportRow(fontBold, fontRegular, AppStrings.clinicalExamination_,
+                caseDiagnose.clinicalExamination),
+            // Diagnosis
+            reportRow(fontBold, fontRegular, AppStrings.diagnosis_,
+                caseDiagnose.diagnosis),
+
+            // Notes
+            if (caseDiagnose.notes != null)
+              reportRow(
+                  fontBold, fontRegular, AppStrings.notes_, caseDiagnose.notes),
+          ]),
+    ),
+  );
+}
+
+pw.Row reportRow(pw.Font fontBold, pw.Font fontRegular, title, text) {
+  return pw.Row(
+    //mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: pw.CrossAxisAlignment.start,
+    children: [
+      pw.Text(
+        title,
+        style: pw.TextStyle(
+          font: fontBold,
+          fontSize: FontSize.s20,
+          fontWeight: pw.FontWeight.bold,
+        ),
+      ),
+      pw.SizedBox(width: AppPadding.p14),
+      pw.Flexible(
+        child: pw.Text(
+          text,
+          style: pw.TextStyle(
+            font: fontRegular,
+            fontSize: FontSize.s20,
+            fontWeight: pw.FontWeight.normal,
+          ),
+        ),
+      ),
+    ],
+  );
 }

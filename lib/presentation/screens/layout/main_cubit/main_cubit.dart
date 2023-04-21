@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +9,7 @@ import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/articles.dart';
 import 'package:hospital/presentation/screens/history/history.dart';
-import 'package:hospital/presentation/screens/layout/view/appointment.dart';
+import 'package:hospital/presentation/screens/appointments/appointment.dart';
 import 'package:hospital/presentation/screens/layout/view/home.dart';
 import 'package:hospital/presentation/screens/layout/view/profile.dart';
 
@@ -46,19 +47,22 @@ class MainCubit extends Cubit<MainStates> {
           SizedBox(
             width: AppSizeWidth.s18,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                AppStrings.welcomeMessage,
-                style: TextStyle(fontSize: FontSize.s20),
-              ),
-              Text(
-                AppStrings.userName,
-                style: TextStyle(fontSize: FontSize.s16),
-              ),
-            ],
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(
+                  AppStrings.welcomeMessage,
+
+                  style: TextStyle(fontSize: FontSize.s20),
+                ),
+                AutoSizeText(
+                  AppStrings.userName,
+                  style: TextStyle(fontSize: FontSize.s16),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -93,8 +97,7 @@ class MainCubit extends Cubit<MainStates> {
             height: AppSizeHeight.s40,
             width: AppSizeWidth.s40,
             clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
             child: Image.asset(
               ImageAssets.hands1,
             ),

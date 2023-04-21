@@ -1,6 +1,7 @@
+import 'package:hospital/models/appointment_model.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/models/file_model.dart';
-import 'package:hospital/models/top_doctors_model.dart';
+import 'package:hospital/models/doctor_model.dart';
 import 'package:hospital/models/treatment_model.dart';
 
 CaseDiagnose caseDiagnose1 = const CaseDiagnose(
@@ -32,11 +33,25 @@ FileModel file1 = const FileModel(
     fileName: 'fluter',
     fileUrl:
         'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf');
-TopDoctorModel Doctor1 = const TopDoctorModel(
-    name: 'Dr. John Smith',
-    specialty: 'Cardiologist',
-    imageUrl: 'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
-    National_ID_Card: '555-1234',
-    hospitalName: 'HMS Application',
-    Degree: 'D',
-    Position: 'Master');
+
+DoctorModel Doctor1 = const DoctorModel(
+  name: 'Dr. John Smith',
+  specialty: 'Cardiologist',
+  imageUrl:
+      'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
+  nationalIDCard: '555-1234',
+  hospitalName: 'HMS Application',
+  degree: 'D',
+  position: 'Master',
+);
+
+AppointmentModel appointment1 = AppointmentModel(
+  doctorName: 'Dr. John Smith',
+  hospitalName: 'General Hospital',
+  doctorImageUrl:
+      'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
+  date: '2023-05-01',
+  startTime: '14:00',
+  endTime: '15:00',
+  department: 'neurology',
+);

@@ -1,8 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/models/dummy_data.dart';
-import 'package:hospital/models/top_doctors_model.dart';
-import 'package:hospital/network/remote/dio_helper.dart';
-import 'package:hospital/presentation/resources/constants_manager.dart';
+import 'package:hospital/models/doctor_model.dart';
 import 'package:hospital/presentation/screens/top_doctors/cubit/top_doctors_stats.dart';
 
 class TopDoctorsCubit extends Cubit<TopDoctorsState> {
@@ -11,7 +9,7 @@ class TopDoctorsCubit extends Cubit<TopDoctorsState> {
   static TopDoctorsCubit get(context) => BlocProvider.of(context);
 
 
-  List<TopDoctorModel> topDoctors = [];
+  List<DoctorModel> topDoctors = [];
   void getTopDoctors() async {
     if (topDoctors.isEmpty) {
       emit(GetTopDoctorsLoadingState());

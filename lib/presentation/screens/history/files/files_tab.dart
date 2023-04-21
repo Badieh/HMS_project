@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
+import 'package:hospital/presentation/screens/history/files/file_card.dart';
 
 class FilesTab extends StatelessWidget {
   const FilesTab({Key? key, required this.cubit}) : super(key: key);
@@ -24,7 +24,7 @@ class FilesTab extends StatelessWidget {
               clipBehavior: Clip.antiAliasWithSaveLayer,
               itemCount: cubit.filesList.length,
               itemBuilder: (context, index) =>
-                  fileCard(fileModel: cubit.filesList[index], context: context),
+                  FileCard(fileModel: cubit.filesList[index]),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 crossAxisSpacing: AppSizeWidth.s10,
@@ -79,7 +79,6 @@ class FilesTab extends StatelessWidget {
                       GestureDetector(
                         onTap: () async {
                           await cubit.pickFile(context);
-
                         },
                         child: Column(children: [
                           CircleAvatar(

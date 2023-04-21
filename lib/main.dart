@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
+import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
@@ -33,18 +34,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // layout
         BlocProvider(
           create: (context) => MainCubit(),
         ),
+        // articles
         BlocProvider(
           create: (context) => ArticlesCubit()..getArticles(),
         ),
+        // history
         BlocProvider(
           create: (context) => HistoryCubit()
             ..getDiagnosisList()
             ..getTreatmentList()
             ..getFilesList(),
         ),
+        // appointments
+        BlocProvider(
+          create: (context) => AppointmentsCubit()
+            ..getUpcomingAppointmentsList()
+            ..getCompletedAppointmentsList()
+            ..getCancelledAppointmentsList(),
+        ),
+        // TopDoctors
         BlocProvider(create: (context) => TopDoctorsCubit()..getTopDoctors()),
       ],
       child: ScreenUtilInit(
