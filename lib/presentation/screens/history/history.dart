@@ -15,7 +15,9 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HistoryCubit, HistoryStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+
+      },
       builder: (context, state) {
         HistoryCubit cubit = HistoryCubit().get(context);
 

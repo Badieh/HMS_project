@@ -64,6 +64,7 @@ class AppSizeHeight {
   static double s0 = 0.h;
   static double s1 = 1.h;
   static double s1_5 = 1.5.h;
+  static double s2 = 2.h;
   static double s4 = 4.0.h;
   static double s8 = 8.0.h;
   static double s10 = 10.0.h;
