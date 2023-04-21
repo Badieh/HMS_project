@@ -50,7 +50,9 @@ class FilesTab extends StatelessWidget {
                     actions: [
                       // scan
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () async {
+                          await cubit.scanImage(context);
+                        },
                         child: Column(children: [
                           CircleAvatar(
                             radius: AppSizeHeight.s30,
@@ -77,6 +79,7 @@ class FilesTab extends StatelessWidget {
                       GestureDetector(
                         onTap: () async {
                           await cubit.pickFile(context);
+
                         },
                         child: Column(children: [
                           CircleAvatar(

@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:printing/printing.dart';
 import 'package:quickalert/quickalert.dart';
 
 class PdfPrintingScreen extends StatelessWidget {
   const PdfPrintingScreen(
-      {Key? key, required this.title, this.caseDiagnose, this.imagePathsList})
+      {Key? key,
+      required this.title,
+      this.caseDiagnose,
+      this.imagePathsList,
+      this.cubit})
       : super(key: key);
   final String title;
   final CaseDiagnose? caseDiagnose;
   final List<String>? imagePathsList;
-
+  final HistoryCubit? cubit;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +34,27 @@ class PdfPrintingScreen extends StatelessWidget {
         ),
         onPrinted: (BuildContext context) {
           Navigator.pop(context);
-          QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            text: 'File uploaded succesfuly',
-          );
+
+          if (imagePathsList != null && cubit != null) {
+            QuickAlert.show(
+              context: context,
+              barrierDismissible: false,
+              type: QuickAlertType.success,
+              width: MediaQuery.of(context).size.width,
+              widget: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Pdf Created!',
+                      style: TextStyle(
+                          fontSize: FontSize.s22, fontWeight: FontWeight.bold)),
+                  Text('please upload the pdf file',
+                      style: TextStyle(
+                          fontSize: FontSize.s20, fontWeight: FontWeight.w500)),
+                ],
+              ),
+              animType: QuickAlertAnimType.slideInDown,
+            );
+          }
         },
       ),
     );

@@ -24,11 +24,15 @@ class PdfPreviewDevice extends StatelessWidget {
         hoverElevation: 6.0,
         focusElevation: 6.0,
         onPressed: () async {
-          await cubit.uploadFile().then((value) => QuickAlert.show(
-                context: context,
-                type: QuickAlertType.success,
-                text: 'File uploaded succesfuly',
-              ));
+          await cubit.uploadFile(file : file).then((value) {
+            Navigator.pop(context);
+            Navigator.pop(context);
+            return QuickAlert.show(
+              context: context,
+              type: QuickAlertType.success,
+              text: 'File uploaded succesfuly',
+            );
+          });
         },
         child: const Icon(Icons.upload),
         // mini: false,

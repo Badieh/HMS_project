@@ -987,7 +987,7 @@ pw.Row reportRow(pw.Font fontBold, pw.Font fontRegular, title, text) {
   );
 }
 
-Widget fileCard({required FileModel fileModel, required context}) {
+Widget fileCard({required FileModel fileModel, required context,}) {
   return GestureDetector(
     onTap: () {
       Navigator.push(

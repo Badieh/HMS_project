@@ -10,7 +10,6 @@ import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/models/file_model.dart';
 import 'package:hospital/models/treatment_model.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
-import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
 import 'package:hospital/presentation/screens/pdf_preview_device.dart';
@@ -166,7 +165,9 @@ class HistoryCubit extends Cubit<HistoryStates> {
           context,
           MaterialPageRoute(
             builder: (context) => PdfPrintingScreen(
-                title: 'aloha', imagePathsList: imagesPathsList),
+                title: 'aloha',
+                imagePathsList: imagesPathsList,
+                cubit: HistoryCubit()),
           ));
       //await generatePdf(title: '', imagePathsList: imagesPathsList);
     } catch (error) {
@@ -174,7 +175,7 @@ class HistoryCubit extends Cubit<HistoryStates> {
     }
   }
 
-  Future<void> uploadFile() async {
+  Future<void> uploadFile({required File file}) async {
     // await pickFile();
     emit(UploadFileLoadingState());
     try {
@@ -190,6 +191,7 @@ class HistoryCubit extends Cubit<HistoryStates> {
       //     .toList();
       // print(articles[1]);
 
+      await getFilesList();
       emit(UploadFileSuccessState());
     } catch (error) {
       print(error.toString());
