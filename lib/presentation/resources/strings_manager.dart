@@ -107,15 +107,16 @@ class AppStrings {
   static const scanImage = 'Scan Image';
   static const chooseAction = 'Choose an action ';
 
-
   // Main Screen
   static const welcomeMessage = 'Good Morning 👋';
   static const userName = 'Badieh Nader';
   static const docSpeciality = 'Doctor Speciality';
   static const seeAll = 'See All';
   static const topDoctors = 'Top Doctors';
-  static const search= 'Search';
-  static const posterText= 'Live Better Live Healthy';
-  static const posterdetails= 'We offer safety , relaxation & love for you .';
+  static const search = 'Search';
+  static const posterText = 'Live Better Live Healthy';
+  static const posterdetails = 'We offer safety , relaxation & love for you .';
 
+  // profile
+  static const profile = 'Profile';
 }

@@ -7,7 +7,7 @@ import 'values_manager.dart';
 
 ThemeData getThemeData() {
   return ThemeData(
-    useMaterial3:  true,
+    useMaterial3: false,
     // main colors
     primaryColor: ColorManager.primary,
     disabledColor: ColorManager.grey,
@@ -15,6 +15,7 @@ ThemeData getThemeData() {
     scaffoldBackgroundColor: ColorManager.white,
     // appbar theme
     appBarTheme: AppBarTheme(
+      foregroundColor: ColorManager.black,
       //centerTitle: true,
       color: ColorManager.white,
       shadowColor: ColorManager.grey,

@@ -168,7 +168,7 @@ class _FillProfileState extends State<FillProfile> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Home_Screen(),
+                              builder: (context) => HomeScreen(),
                             ));
                       }
                     },

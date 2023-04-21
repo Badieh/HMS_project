@@ -1,44 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
 import 'main_cubit/main_cubit.dart';
 import 'main_cubit/main_states.dart';
 
-class Home_Layout_Screen extends StatelessWidget {
-  const Home_Layout_Screen({Key? key}) : super(key: key);
+class HomeLayoutScreen extends StatelessWidget {
+  const HomeLayoutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => MainCubit(),
-        child: BlocConsumer<MainCubit, MainStates>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            var mainview = MainCubit.get(context);
-            return SafeArea(
-              child: Scaffold(
-                bottomNavigationBar: BottomNavigationBar(
-                  backgroundColor: Colors.white,
-                  type: BottomNavigationBarType.shifting,
-                  items: mainview.items,
-                  selectedLabelStyle: TextStyle(fontSize: 10),
-                  selectedItemColor: Colors.blue,
-                  unselectedItemColor: Colors.black,
-                  unselectedLabelStyle: TextStyle(fontSize: 10),
-                  showUnselectedLabels: true,
-                  currentIndex: mainview.currentIndex,
-                  onTap: (index) {
-                    mainview.ChangeNavBarIndex(index);
-                  },
-                ),
-// appBar: AppBar(
-//   backgroundColor: Colors.transparent,
-//   elevation: 0,
-//
-// ),
-                body: mainview.tabs[mainview.currentIndex],
-              ),
-            );
-          },
-        ));
+    return BlocConsumer<MainCubit, MainStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var cubit = MainCubit.get(context);
+        return SafeArea(
+          child: Scaffold(
+            appBar: cubit.appBars[cubit.currentIndex],
+            bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: Colors.white,
+              type: BottomNavigationBarType.shifting,
+              items: cubit.items,
+              selectedLabelStyle: TextStyle(fontSize: FontSize.s10),
+              selectedItemColor: Colors.blue,
+              unselectedItemColor: Colors.black,
+              unselectedLabelStyle: TextStyle(fontSize: FontSize.s10),
+              showUnselectedLabels: true,
+              currentIndex: cubit.currentIndex,
+              onTap: (index) {
+                cubit.ChangeNavBarIndex(index);
+              },
+            ),
+            body: cubit.tabs[cubit.currentIndex],
+          ),
+        );
+      },
+    );
   }
 }

@@ -27,7 +27,7 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 Center(
                   child: SvgPicture.asset(
-                    ImageAssets.hands,
+                    ImageAssets.hands3,
                     width: AppSizeWidth.s200,
                   ),
                 ),

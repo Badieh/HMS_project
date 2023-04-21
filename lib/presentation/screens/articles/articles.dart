@@ -12,18 +12,13 @@ class ArticlesScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     double height = size.height;
     double width = size.width;
-    return BlocProvider(
-      create: (context) => ArticlesCubit()..getArticles(),
-      child: BlocConsumer<ArticlesCubit, ArticlesStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          var articles = ArticlesCubit.get(context).articles;
-          return Scaffold(
-            body: buildListOfArticles(
-                height: height, width: width, articles: articles),
-          );
-        },
-      ),
+    return BlocConsumer<ArticlesCubit, ArticlesStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var articles = ArticlesCubit.get(context).articles;
+        return buildListOfArticles(
+            height: height, width: width, articles: articles);
+      },
     );
   }
 }

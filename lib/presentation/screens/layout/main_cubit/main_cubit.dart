@@ -1,7 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/articles/articles.dart';
 import 'package:hospital/presentation/screens/history/history.dart';
@@ -19,18 +22,106 @@ class MainCubit extends Cubit<MainStates> {
   int currentIndex = 0;
 
   final tabs = [
-    Home_Screen(),
+    HomeScreen(),
     AppointmentScreen(),
     HistoryScreen(),
     ArticlesScreen(),
     Profile_Screen(),
   ];
-  final titles = [
-
+  final titles = [];
+  final List appBars = [
+    AppBar(
+      toolbarHeight: AppSizeHeight.s70,
+      title: Row(
+        // mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: AppSizeHeight.s55,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Image.asset(ImageAssets.profile),
+          ),
+          SizedBox(
+            width: AppSizeWidth.s18,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppStrings.welcomeMessage,
+                style: TextStyle(fontSize: FontSize.s20),
+              ),
+              Text(
+                AppStrings.userName,
+                style: TextStyle(fontSize: FontSize.s16),
+              ),
+            ],
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.notifications_active_outlined,
+            size: AppSizeHeight.s28,
+          ),
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.favorite_border,
+            size: AppSizeHeight.s28,
+          ),
+        ),
+      ],
+    ),
+    null,
+    null,
+    AppBar(
+      title: const Text('Articles'),
+    ),
+    AppBar(
+      toolbarHeight: AppSizeHeight.s70,
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: AppSizeHeight.s40,
+            width: AppSizeWidth.s40,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50)),
+            child: Image.asset(
+              ImageAssets.hands1,
+            ),
+          ),
+          SizedBox(
+            width: AppSizeWidth.s18,
+          ),
+          Text(
+            AppStrings.profile,
+            style: TextStyle(fontSize: FontSize.s20),
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.more_horiz,
+            size: AppSizeHeight.s28,
+          ),
+        ),
+      ],
+    ),
   ];
 
   List<BottomNavigationBarItem> items = [
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(
         Icons.home_outlined,
         color: ColorManager.black,
@@ -41,7 +132,7 @@ class MainCubit extends Cubit<MainStates> {
         color: ColorManager.primary,
       ),
     ),
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(
         Icons.calendar_month_outlined,
         color: ColorManager.black,
@@ -52,7 +143,7 @@ class MainCubit extends Cubit<MainStates> {
         color: ColorManager.primary,
       ),
     ),
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(
         Icons.history_outlined,
         color: ColorManager.black,
@@ -63,7 +154,7 @@ class MainCubit extends Cubit<MainStates> {
         color: ColorManager.primary,
       ),
     ),
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(
         Icons.article_outlined,
         color: ColorManager.black,
@@ -74,7 +165,7 @@ class MainCubit extends Cubit<MainStates> {
         color: ColorManager.primary,
       ),
     ),
-     BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(
         Icons.person_outline,
         color: ColorManager.black,
