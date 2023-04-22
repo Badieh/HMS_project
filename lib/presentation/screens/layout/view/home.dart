@@ -5,6 +5,7 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hospital/presentation/screens/layout/view/search.dart';
 import 'package:hospital/presentation/screens/top_doctors/top_doctors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -30,31 +31,36 @@ class HomeScreen extends StatelessWidget {
                 color: ColorManager.veryLightGrey,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .015,
-                      ),
-                      Icon(
-                        Icons.search,
-                        size: FontSize.s30,
-                        color: Colors.grey[400],
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * .015,
-                      ),
-                      Text(
-                        AppStrings.search,
-                        style: TextStyle(
-                            fontSize: FontSize.s14, color: Colors.grey[400]),
-                      ),
-                    ],
-                  ),
-                  Icon(Icons.filter_alt_outlined, color: ColorManager.primary)
-                ],
+              child: InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Search_Screen()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * .015,
+                        ),
+                        Icon(
+                          Icons.search,
+                          size: FontSize.s30,
+                          color: Colors.grey[400],
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * .015,
+                        ),
+                        Text(
+                          AppStrings.search,
+                          style: TextStyle(
+                              fontSize: FontSize.s14, color: Colors.grey[400]),
+                        ),
+                      ],
+                    ),
+                    Icon(Icons.filter_alt_outlined, color: ColorManager.primary)
+                  ],
+                ),
               ),
             ),
             SizedBox(

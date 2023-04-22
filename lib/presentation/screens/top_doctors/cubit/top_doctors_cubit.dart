@@ -29,7 +29,7 @@ class TopDoctorsCubit extends Cubit<TopDoctorsState> {
         // print(articles[1]);
         topDoctors = [
           Doctor1,
-          Doctor1,
+          Doctor2,
           Doctor1,
           Doctor1,
         ];
@@ -44,5 +44,7 @@ class TopDoctorsCubit extends Cubit<TopDoctorsState> {
   }
   // emit the new list of doctors to the UI
   emit(topDoctors);
+
+
 
 }

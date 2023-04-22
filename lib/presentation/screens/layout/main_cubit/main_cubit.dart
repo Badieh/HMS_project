@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
@@ -58,7 +59,7 @@ class MainCubit extends Cubit<MainStates> {
                   style: TextStyle(fontSize: FontSize.s20),
                 ),
                 AutoSizeText(
-                  AppStrings.userName,
+                  AppStrings.docName,
                   style: TextStyle(fontSize: FontSize.s16),
                 ),
               ],

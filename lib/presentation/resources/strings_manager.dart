@@ -109,7 +109,7 @@ class AppStrings {
 
   // Main Screen
   static const welcomeMessage = 'Good Morning 👋';
-  static const userName = 'Badieh Nader';
+  static const docName = 'Badieh Nader';
   static const docSpeciality = 'Doctor Speciality';
   static const seeAll = 'See All';
   static const topDoctors = 'Top Doctors';
@@ -119,4 +119,17 @@ class AppStrings {
 
   // profile
   static const profile = 'Profile';
+
+
+
+// doctor details
+
+  static const docdegree = 'doctor degree';
+  static const docposition = 'doctor position';
+  static const noofpatient_ = '5,000+';
+  static const yearsofexperience_ = '10+';
+  static const noofpatient_txt = 'patients';
+  static const yearsofexperience_txt = 'years of experience';
+  static const aboutthedoctor = 'About Me';
+
 }

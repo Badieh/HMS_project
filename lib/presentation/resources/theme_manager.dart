@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/style_manager.dart';
 
@@ -15,13 +16,13 @@ ThemeData getThemeData() {
     scaffoldBackgroundColor: ColorManager.white,
     // appbar theme
     appBarTheme: AppBarTheme(
-      foregroundColor: ColorManager.black,
       //centerTitle: true,
       color: ColorManager.white,
-      shadowColor: ColorManager.grey,
+      shadowColor: ColorManager.secondary,
       elevation: AppSizeWidth.s0,
       titleTextStyle:
           getSemiBoldStyle(fontSize: FontSize.s25, color: ColorManager.black),
+      systemOverlayStyle: SystemUiOverlayStyle.light,
     ),
 
     // cardView theme

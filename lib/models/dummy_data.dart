@@ -43,8 +43,21 @@ DoctorModel Doctor1 = const DoctorModel(
   hospitalName: 'HMS Application',
   degree: 'D',
   position: 'Master',
+  noOfPatient: "5500",
+  yearsOfExperience: "5.5",
 );
-
+DoctorModel Doctor2 = const DoctorModel(
+  name: 'Dr. Badeih Nader',
+  specialty: 'Cardiologist',
+  imageUrl:
+  'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
+  nationalIDCard: '555-1234',
+  hospitalName: 'HMS Application',
+  degree: 'D',
+  position: 'Master',
+  noOfPatient: "5500",
+  yearsOfExperience: "5.5",
+);
 AppointmentModel appointment1 = AppointmentModel(
   doctorName: 'Dr. John Smith',
   hospitalName: 'General Hospital',
