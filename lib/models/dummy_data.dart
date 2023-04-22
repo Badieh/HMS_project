@@ -1,5 +1,6 @@
 import 'package:hospital/models/appointment_model.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
+import 'package:hospital/models/clinics_schedule_model.dart';
 import 'package:hospital/models/file_model.dart';
 import 'package:hospital/models/doctor_model.dart';
 import 'package:hospital/models/treatment_model.dart';
@@ -50,7 +51,7 @@ DoctorModel Doctor2 = const DoctorModel(
   name: 'Dr. Badeih Nader',
   specialty: 'Cardiologist',
   imageUrl:
-  'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
+      'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
   nationalIDCard: '555-1234',
   hospitalName: 'HMS Application',
   degree: 'D',
@@ -58,7 +59,7 @@ DoctorModel Doctor2 = const DoctorModel(
   noOfPatient: "5500",
   yearsOfExperience: "5.5",
 );
-AppointmentModel appointment1 = AppointmentModel(
+AppointmentModel appointment1 = const AppointmentModel(
   doctorName: 'Dr. John Smith',
   hospitalName: 'General Hospital',
   doctorImageUrl:
@@ -67,4 +68,12 @@ AppointmentModel appointment1 = AppointmentModel(
   startTime: '14:00',
   endTime: '15:00',
   department: 'neurology',
+);
+
+ClinicsScheduleModel clinicsScheduleModel_1 = const ClinicsScheduleModel(
+  day: 1,
+  startTime: "9:00 AM",
+  endTime: "5:00 PM",
+  isAvailable: true,
+  notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 );
