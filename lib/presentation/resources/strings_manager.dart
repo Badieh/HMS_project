@@ -131,5 +131,10 @@ class AppStrings {
   static const noofpatient_txt = 'patients';
   static const yearsofexperience_txt = 'years of experience';
   static const aboutthedoctor = 'About Me';
+  static const viewmore = ' view more';
+  static const viewless = ' view less';
+  static const workTime = 'work time';
+  static const bookAppointment = 'Book Appointment';
+
 
 }

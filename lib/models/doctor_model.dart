@@ -12,9 +12,10 @@ class DoctorModel extends Equatable {
   final String? notes;
   final String noOfPatient;
   final String yearsOfExperience;
+  final String aboutMe;
 
 
-  const DoctorModel( {
+  const DoctorModel({
     required this.name,
     required this.specialty,
     required this.imageUrl,
@@ -26,6 +27,7 @@ class DoctorModel extends Equatable {
     this.notes,
     required this.noOfPatient,
     required this.yearsOfExperience,
+    required this.aboutMe,
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
@@ -39,8 +41,9 @@ class DoctorModel extends Equatable {
       degree: json['Degree'],
       position: json['Position'],
       notes: json['notes'],
-      noOfPatient: '',
-      yearsOfExperience: '',
+      noOfPatient: json['noOfPatient'],
+      yearsOfExperience: json['yearsOfExperience'],
+      aboutMe: json['aboutMe'],
     );
   }
 
@@ -55,7 +58,8 @@ class DoctorModel extends Equatable {
         degree,
         position,
         noOfPatient,
-        yearsOfExperience
+        yearsOfExperience,
+        aboutMe
 
       ];
 }
