@@ -10,6 +10,8 @@ ThemeData getThemeData() {
   return ThemeData(
     useMaterial3: true,
     // main colors
+    colorScheme:
+        ColorScheme.fromSwatch(primarySwatch: ColorManager.materialPrimary),
     primaryColor: ColorManager.primary,
     disabledColor: ColorManager.grey,
     splashColor: ColorManager.secondary,
