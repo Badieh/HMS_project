@@ -4,7 +4,6 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_states.dart';
 
-
 class HomeLayoutScreen extends StatelessWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
 

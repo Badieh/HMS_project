@@ -21,12 +21,11 @@ TextStyle _getTextStyle({
 // Bold style
 TextStyle getBoldStyle({
   double? height,
-
   double? fontSize,
   required Color color,
 }) {
   return _getTextStyle(
-    height: height,
+      height: height,
       fontSize: fontSize ?? FontSize.s12,
       color: color,
       fontWeight: FontWeightManager.bold);

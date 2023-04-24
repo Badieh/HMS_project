@@ -13,8 +13,8 @@ class AppConstants {
 // my apikey : 97a2f0178be846b897d27b8f38d8571c
   static const articlesBaseUrl = 'https://newsapi.org/';
   static const articlesPath = '${articlesBaseUrl}v2/top-headlines';
-  static const country ='us';
-  static const category ='health';
+  static const country = 'us';
+  static const category = 'health';
   static const articlesApiKey = '97a2f0178be846b897d27b8f38d8571c';
 
   static const mainBaseUrl = '';

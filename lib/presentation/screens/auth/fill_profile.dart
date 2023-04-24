@@ -10,7 +10,6 @@ import 'package:intl/intl.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-
 class FillProfile extends StatefulWidget {
   FillProfile({Key? key}) : super(key: key);
 

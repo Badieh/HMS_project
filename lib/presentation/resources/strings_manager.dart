@@ -120,8 +120,6 @@ class AppStrings {
   // profile
   static const profile = 'Profile';
 
-
-
 // doctor details
 
   static const docdegree = 'doctor degree';
@@ -136,5 +134,8 @@ class AppStrings {
   static const workTime = 'work time';
   static const bookAppointment = 'Book Appointment';
 
-
+  // book appointment
+  static const selectDate = 'Select a Date';
+  static const selectTime = 'Select a Time';
+  static const writeProblem = 'Write Your Problem';
 }

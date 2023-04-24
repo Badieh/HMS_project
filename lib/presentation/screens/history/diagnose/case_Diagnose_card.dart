@@ -6,7 +6,6 @@ import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 import 'package:hospital/presentation/screens/history/diagnose/case_diagnose_report.dart';
 
-
 class CaseDiagnoseCard extends StatelessWidget {
   const CaseDiagnoseCard({Key? key, required this.caseDiagnose})
       : super(key: key);

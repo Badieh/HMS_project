@@ -14,7 +14,6 @@ class DoctorModel extends Equatable {
   final String yearsOfExperience;
   final String aboutMe;
 
-
   const DoctorModel({
     required this.name,
     required this.specialty,
@@ -60,6 +59,5 @@ class DoctorModel extends Equatable {
         noOfPatient,
         yearsOfExperience,
         aboutMe
-
       ];
 }

@@ -19,7 +19,6 @@ class _WebViewExampleState extends State<WebViewExample> {
 
   @override
   void initState() {
-
     super.initState();
 
     // #docregion platform_features

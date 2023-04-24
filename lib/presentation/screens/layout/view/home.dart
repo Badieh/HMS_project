@@ -32,8 +32,9 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: InkWell(
-                onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Search_Screen()));
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Search_Screen()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

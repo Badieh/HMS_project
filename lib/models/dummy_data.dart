@@ -95,3 +95,12 @@ ClinicsScheduleModel clinicsScheduleModel_3 = const ClinicsScheduleModel(
   isAvailable: true,
   notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 );
+
+ClinicsScheduleModel clinicsScheduleModel_4 = const ClinicsScheduleModel(
+  day: 1,
+  startTime: "12:00 AM",
+  endTime: "3:00 PM",
+  isAvailable: true,
+  notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+);
+

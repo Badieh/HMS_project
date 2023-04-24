@@ -1,24 +1,32 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/models/clinics_schedule_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/book_appointments/cubit/book_appointment_cubit.dart';
 import 'package:hospital/presentation/screens/book_appointments/cubit/book_appointment_states.dart';
-import 'package:hospital/presentation/screens/book_appointments/time_card.dart';
+import 'package:hospital/presentation/screens/layout/layout.dart';
+import 'package:lottie/lottie.dart';
+import 'package:quickalert/quickalert.dart';
 
 class BookAppointment extends StatelessWidget {
-  const BookAppointment(
+  BookAppointment(
       {Key? key, required this.title, required this.clinicsScheduleList})
       : super(key: key);
   final String title;
   final List<ClinicsScheduleModel> clinicsScheduleList;
+
+  final TextEditingController problemController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BookAppointmentCubit()
-        ..getclinicsScheduleList(clinicsScheduleList: clinicsScheduleList),
+        ..getclinicsScheduleList(clinicsScheduleList: clinicsScheduleList)
+        ..getTimesOfDay(DateTime.now().weekday),
       child: BlocConsumer<BookAppointmentCubit, BookAppointmentStates>(
           listener: (context, state) {
         BookAppointmentCubit cubit = BookAppointmentCubit().get(context);
@@ -30,63 +38,160 @@ class BookAppointment extends StatelessWidget {
           ),
           body: Padding(
             padding: const EdgeInsets.all(AppPadding.p12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Select a Date',
-                  style: TextStyle(
-                      fontSize: FontSize.s20, fontWeight: FontWeight.w600),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppSizeHeight.s16),
-                    color: ColorManager.lightPrimary,
-                  ),
-                  child: CalendarDatePicker(
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2024),
-                    // to be used to turn off days
-                    selectableDayPredicate: (day) {
-                      // if (day.weekday == 1) return false;
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppStrings.selectDate,
+                      style: TextStyle(
+                          fontSize: FontSize.s22, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 60,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(AppSizeHeight.s16),
+                        color: ColorManager.lightPrimary,
+                      ),
+                      child: CalendarDatePicker(
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2024),
+                        // to be used to turn off days
+                        selectableDayPredicate: (day) {
+                          // if (day.weekday == 1) return false;
 
-                      return true;
-                    },
-                    onDateChanged: (DateTime value) {
-                      cubit.getTimesOfDay(value.weekday);
-                    },
-                  ),
-                ),
-                Text(
-                  'Select a Time',
-                  style: TextStyle(
-                      fontSize: FontSize.s20, fontWeight: FontWeight.w600),
-                ),
-                Expanded(
-                  child: ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: AppPadding.p4),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    itemCount: cubit.modifiedClinicsScheduleList.length,
-                    itemBuilder: (context, index) => GestureDetector(
-                      onTap: () {},
-                      child: RadioListTile(
-                        value:
-                            " ${cubit.modifiedClinicsScheduleList[index].startTime} -${cubit.modifiedClinicsScheduleList[index].endTime}",
-                        groupValue: cubit.selectedTime,
-                        onChanged: (value) {
-                          cubit.changeSelectedTime(value!);
+                          return true;
+                        },
+                        onDateChanged: (DateTime value) {
+                          cubit.getTimesOfDay(value.weekday);
                         },
                       ),
                     ),
-                    separatorBuilder: (context, index) => SizedBox(
-                      height: MediaQuery.of(context).size.height / 45,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 60,
                     ),
-                  ),
-                )
-              ],
+                    Text(
+                      AppStrings.selectTime,
+                      style: TextStyle(
+                          fontSize: FontSize.s22, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 60,
+                    ),
+                    ConditionalBuilder(
+                        condition: cubit.modifiedClinicsScheduleList.isNotEmpty,
+                        builder: (context) => Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(AppSizeHeight.s16),
+                                color: ColorManager.lightPrimary,
+                              ),
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: AppPadding.p4),
+                                clipBehavior: Clip.antiAlias,
+                                itemCount:
+                                    cubit.modifiedClinicsScheduleList.length,
+                                itemBuilder: (context, index) => RadioListTile(
+                                  //dense: true,
+                                  //tileColor: ColorManager.lightPrimary,
+                                  visualDensity:
+                                      VisualDensity.adaptivePlatformDensity,
+                                  title: Text(
+                                    '${cubit.modifiedClinicsScheduleList[index].startTime} - ${cubit.modifiedClinicsScheduleList[index].endTime}',
+                                    style: TextStyle(
+                                        fontSize: FontSize.s18,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  value: index,
+                                  groupValue: cubit.selectedTimeIndex == -1
+                                      ? null
+                                      : cubit.selectedTimeIndex,
+                                  onChanged: (int? value) {
+                                    cubit.changeSelectedTime(
+                                      value!,
+                                      cubit.modifiedClinicsScheduleList[index]
+                                          .startTime,
+                                      cubit.modifiedClinicsScheduleList[index]
+                                          .endTime,
+                                    );
+                                  },
+                                  activeColor: ColorManager.primary,
+                                ),
+                              ),
+                            ),
+                        fallback: (context) => Center(
+                            child: Lottie.asset(
+                                'assets/images/emtyJobCart.json'))),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 60,
+                    ),
+                    Text(
+                      AppStrings.writeProblem,
+                      style: TextStyle(
+                          fontSize: FontSize.s22, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 60,
+                    ),
+                    TextFormField(
+                        controller: problemController,
+                        decoration: InputDecoration(
+                            fillColor: ColorManager.lightPrimary),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppStrings.validator;
+                          }
+                        },
+                        onTapOutside: (value) {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        maxLines: 5,
+                        minLines: 1),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          bottomNavigationBar: BottomAppBar(
+            elevation: AppSizeHeight.s16,
+            surfaceTintColor: Colors.transparent,
+            height: AppSizeHeight.s65,
+            color: ColorManager.white,
+            child: ElevatedButton(
+              onPressed: () async {
+                if (formKey.currentState!.validate()) {
+                  await cubit.bookAppointment();
+
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeLayoutScreen(),
+                      ));
+                  QuickAlert.show(
+                    context: context,
+                    barrierDismissible: false,
+                    type: QuickAlertType.success,
+                    width: MediaQuery.of(context).size.width,
+                    title: 'Appointment Created',
+                    animType: QuickAlertAnimType.slideInDown,
+                  );
+
+                }
+              },
+              child: Text(
+                AppStrings.bookAppointment,
+                style: TextStyle(
+                    fontSize: FontSize.s16, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         );

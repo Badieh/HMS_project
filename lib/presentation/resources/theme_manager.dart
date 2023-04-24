@@ -10,8 +10,8 @@ ThemeData getThemeData() {
   return ThemeData(
     useMaterial3: true,
     // main colors
-    colorScheme:
-        ColorScheme.fromSwatch(primarySwatch: ColorManager.materialPrimary),
+    // colorScheme:
+    //     ColorScheme.fromSwatch(primarySwatch: ColorManager.materialPrimary),
     primaryColor: ColorManager.primary,
     disabledColor: ColorManager.grey,
     splashColor: ColorManager.secondary,
@@ -124,9 +124,11 @@ ThemeData getThemeData() {
     ),
     tabBarTheme: const TabBarTheme(
         dividerColor: Colors.red, indicatorColor: Colors.green),
-
     floatingActionButtonTheme:
         FloatingActionButtonThemeData(backgroundColor: ColorManager.primary),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: ColorManager.white,
+    ),
   );
 }
 

@@ -67,6 +67,7 @@ dependencies:
   readmore: ^2.2.0
   table_calendar: ^3.0.9
   dynamic_color: ^1.6.3
+  lottie: ^2.3.2
 
 dev_dependencies:
   flutter_test:
