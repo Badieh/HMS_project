@@ -9,6 +9,7 @@ import 'package:hospital/presentation/screens/appointments/cubit/appointment_cub
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
+import 'package:hospital/presentation/screens/top_doctors/top_doctor_details_cubit/top_doctors_details_cubit.dart';
 import 'network/remote/dio_helper.dart';
 import 'presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
@@ -57,6 +58,8 @@ class MyApp extends StatelessWidget {
         ),
         // TopDoctors
         BlocProvider(create: (context) => TopDoctorsCubit()..getTopDoctors()),
+        BlocProvider(create: (context) => TopDoctorsDetailsCubit()..getTopDoctorsDetails()),
+
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
