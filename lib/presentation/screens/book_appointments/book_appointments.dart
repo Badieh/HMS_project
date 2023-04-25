@@ -12,6 +12,8 @@ import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quickalert/quickalert.dart';
 
+import '../../resources/assets_manager.dart';
+
 class BookAppointment extends StatelessWidget {
   BookAppointment(
       {Key? key, required this.title, required this.clinicsScheduleList})
@@ -21,12 +23,17 @@ class BookAppointment extends StatelessWidget {
 
   final TextEditingController problemController = TextEditingController();
   var formKey = GlobalKey<FormState>();
+  List<String> monthNames = [
+    '', // index 0 is unused
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => BookAppointmentCubit()
         ..getclinicsScheduleList(clinicsScheduleList: clinicsScheduleList)
-        ..getTimesOfDay(DateTime.now().weekday),
+        ..getTimesOfDay(date: DateTime.now()),
       child: BlocConsumer<BookAppointmentCubit, BookAppointmentStates>(
           listener: (context, state) {
         BookAppointmentCubit cubit = BookAppointmentCubit().get(context);
@@ -45,6 +52,32 @@ class BookAppointment extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      AppStrings.writeProblem,
+                      style: TextStyle(
+                          fontSize: FontSize.s22, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 60,
+                    ),
+                    TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: problemController,
+                        decoration: InputDecoration(
+                            fillColor: ColorManager.lightPrimary),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppStrings.validator;
+                          }
+                        },
+                        onTapOutside: (value) {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        maxLines: 5,
+                        minLines: 1),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height / 60,
+                    ),
                     Text(
                       AppStrings.selectDate,
                       style: TextStyle(
@@ -69,7 +102,7 @@ class BookAppointment extends StatelessWidget {
                           return true;
                         },
                         onDateChanged: (DateTime value) {
-                          cubit.getTimesOfDay(value.weekday);
+                          cubit.getTimesOfDay(date: value);
                         },
                       ),
                     ),
@@ -117,45 +150,25 @@ class BookAppointment extends StatelessWidget {
                                       : cubit.selectedTimeIndex,
                                   onChanged: (int? value) {
                                     cubit.changeSelectedTime(
-                                      value!,
-                                      cubit.modifiedClinicsScheduleList[index]
-                                          .startTime,
-                                      cubit.modifiedClinicsScheduleList[index]
-                                          .endTime,
-                                    );
+                                        newIndex: value!,
+                                        startTime: cubit
+                                            .modifiedClinicsScheduleList[index]
+                                            .startTime,
+                                        endTime: cubit
+                                            .modifiedClinicsScheduleList[index]
+                                            .endTime,
+                                        day: cubit
+                                            .modifiedClinicsScheduleList[index]
+                                            .day);
                                   },
                                   activeColor: ColorManager.primary,
                                 ),
                               ),
                             ),
                         fallback: (context) => Center(
-                            child: Lottie.asset(
-                                'assets/images/emtyJobCart.json'))),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 60,
-                    ),
-                    Text(
-                      AppStrings.writeProblem,
-                      style: TextStyle(
-                          fontSize: FontSize.s22, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 60,
-                    ),
-                    TextFormField(
-                        controller: problemController,
-                        decoration: InputDecoration(
-                            fillColor: ColorManager.lightPrimary),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return AppStrings.validator;
-                          }
-                        },
-                        onTapOutside: (value) {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                        },
-                        maxLines: 5,
-                        minLines: 1),
+                                child: Lottie.asset(
+                              ImageAssets.notAvailable,
+                            ))),
                   ],
                 ),
               ),
@@ -182,9 +195,10 @@ class BookAppointment extends StatelessWidget {
                     type: QuickAlertType.success,
                     width: MediaQuery.of(context).size.width,
                     title: 'Appointment Created',
+                    text:
+                        'On ${cubit.date.day} of ${monthNames[cubit.date.month]} \nFrom ${cubit.selectedStartTime} To ${cubit.selectedEndTime}',
                     animType: QuickAlertAnimType.slideInDown,
                   );
-
                 }
               },
               child: Text(

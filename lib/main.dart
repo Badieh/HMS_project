@@ -9,9 +9,7 @@ import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
 import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
-import 'package:hospital/presentation/screens/book_appointments/cubit/book_appointment_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
-import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'network/remote/dio_helper.dart';
 import 'presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
@@ -72,17 +70,30 @@ class MyApp extends StatelessWidget {
             title: 'HMS App',
             theme: getThemeData(),
             home: BookAppointment(
-                title: 'Book Appointment',
-                clinicsScheduleList: [
-                  clinicsScheduleModel_1,
-                  clinicsScheduleModel_1,
-                  clinicsScheduleModel_2,
-                  clinicsScheduleModel_3,
-                  clinicsScheduleModel_1,
-                ]),
+              title: 'Book Appointment',
+              clinicsScheduleList: [
+                clinicsScheduleModel_1,
+                clinicsScheduleModel_4,
+                clinicsScheduleModel_1,
+                clinicsScheduleModel_2,
+                clinicsScheduleModel_4,
+                clinicsScheduleModel_3,
+                clinicsScheduleModel_1,
+              ]),
           );
         },
       ),
     );
   }
 }
+// BookAppointment(
+// title: 'Book Appointment',
+// clinicsScheduleList: [
+// clinicsScheduleModel_1,
+// clinicsScheduleModel_4,
+// clinicsScheduleModel_1,
+// clinicsScheduleModel_2,
+// clinicsScheduleModel_4,
+// clinicsScheduleModel_3,
+// clinicsScheduleModel_1,
+// ])
