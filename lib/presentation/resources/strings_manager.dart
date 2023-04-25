@@ -138,4 +138,6 @@ class AppStrings {
   static const selectDate = 'Select a Date';
   static const selectTime = 'Select a Time';
   static const writeProblem = 'Write Your Problem';
+  static const appointmentCreated = 'Appointment Created';
+
 }

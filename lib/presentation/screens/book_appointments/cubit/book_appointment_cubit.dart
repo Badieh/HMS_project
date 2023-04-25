@@ -17,16 +17,19 @@ class BookAppointmentCubit extends Cubit<BookAppointmentStates> {
   List<ClinicsScheduleModel> modifiedClinicsScheduleList = [];
   String selectedStartTime = '';
   String selectedEndTime = '';
-  int date = 0;
-  void getTimesOfDay(int day) {
-    print('day is $day');
+  int selectedDay = 0;
+  late DateTime date;
+  void getTimesOfDay({required DateTime date}) {
+    print('day is ${date.weekday}');
+    this.date = date;
     modifiedClinicsScheduleList = [];
     clinicsScheduleList.forEach((element) {
-      if (element.day == day) {
+      if (element.day == date.weekday) {
         modifiedClinicsScheduleList.add(element);
       }
     });
     if (modifiedClinicsScheduleList.isNotEmpty) {
+      selectedDay = modifiedClinicsScheduleList.first.day;
       selectedStartTime = modifiedClinicsScheduleList.first.startTime;
       selectedEndTime = modifiedClinicsScheduleList.first.endTime;
     }
@@ -37,18 +40,23 @@ class BookAppointmentCubit extends Cubit<BookAppointmentStates> {
   }
 
   int selectedTimeIndex = -1; // Initialize to the first time slot index
-  void changeSelectedTime(int newIndex, String startTime, String endTime) {
+  void changeSelectedTime({
+    required int newIndex,
+    required String startTime,
+    required String endTime,
+    required int day,
+  }) {
     selectedTimeIndex = newIndex;
     selectedStartTime = startTime;
     selectedEndTime = endTime;
-
+    selectedDay = day;
     print(selectedStartTime);
     print(selectedEndTime);
     emit(ChangeSelectedTime());
   }
 
   Future<void> bookAppointment() async {
-    if (date != 0 &&
+    if (selectedDay != 0 &&
         selectedStartTime.isNotEmpty &&
         selectedEndTime.isNotEmpty) {
       emit(BookAppointmentLoadingState());
