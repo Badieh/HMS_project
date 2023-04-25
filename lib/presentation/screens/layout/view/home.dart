@@ -5,7 +5,7 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hospital/presentation/screens/layout/view/search.dart';
+import 'package:hospital/presentation/screens/layout/view/search/search.dart';
 import 'package:hospital/presentation/screens/top_doctors/top_doctors.dart';
 
 class HomeScreen extends StatelessWidget {

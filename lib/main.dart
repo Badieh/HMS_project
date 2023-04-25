@@ -2,14 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
-import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
+import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'network/remote/dio_helper.dart';
 import 'presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
@@ -58,7 +57,6 @@ class MyApp extends StatelessWidget {
         ),
         // TopDoctors
         BlocProvider(create: (context) => TopDoctorsCubit()..getTopDoctors()),
-        // Book appointment
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
@@ -69,31 +67,10 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getThemeData(),
-            home: BookAppointment(
-              title: 'Book Appointment',
-              clinicsScheduleList: [
-                clinicsScheduleModel_1,
-                clinicsScheduleModel_4,
-                clinicsScheduleModel_1,
-                clinicsScheduleModel_2,
-                clinicsScheduleModel_4,
-                clinicsScheduleModel_3,
-                clinicsScheduleModel_1,
-              ]),
+            home: HomeLayoutScreen(),
           );
         },
       ),
     );
   }
 }
-// BookAppointment(
-// title: 'Book Appointment',
-// clinicsScheduleList: [
-// clinicsScheduleModel_1,
-// clinicsScheduleModel_4,
-// clinicsScheduleModel_1,
-// clinicsScheduleModel_2,
-// clinicsScheduleModel_4,
-// clinicsScheduleModel_3,
-// clinicsScheduleModel_1,
-// ])

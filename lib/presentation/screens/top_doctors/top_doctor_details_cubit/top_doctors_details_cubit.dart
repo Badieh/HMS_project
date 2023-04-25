@@ -8,22 +8,23 @@ class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
 
   static TopDoctorsDetailsCubit get(context) => BlocProvider.of(context);
 
+
   List<ClinicsScheduleModel> topDoctorsDetails = [];
   void getTopDoctorsDetails() async {
     if (topDoctorsDetails.isEmpty) {
       emit(GetTopDoctorsDetailsLoadingState());
 
       try {
-        //   var response =
-        //   await DioHelper.getData(url: AppConstants.articlesPath, query: {
-        //     'country': AppConstants.country,
-        //     'category': AppConstants.category,
-        //     'apiKey': AppConstants.articlesApiKey,
-        //   });
-        //   //print(response.data['articles'][1]);
-        //   topDoctorsDetails = List.from(response.data['topDoctorsDetails'])
-        //       .map((e) => TopDoctorModel.fromJson(e))
-        //       .toList();
+      //   var response =
+      //   await DioHelper.getData(url: AppConstants.articlesPath, query: {
+      //     'country': AppConstants.country,
+      //     'category': AppConstants.category,
+      //     'apiKey': AppConstants.articlesApiKey,
+      //   });
+      //   //print(response.data['articles'][1]);
+      //   topDoctorsDetails = List.from(response.data['topDoctorsDetails'])
+      //       .map((e) => TopDoctorModel.fromJson(e))
+      //       .toList();
 
         // print(articles[1]);
         topDoctorsDetails = [
@@ -34,14 +35,16 @@ class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
         ];
         emit(GetTopDoctorsDetailsSuccessState());
       } catch (error) {
-        //   print(error.toString());
-        //   emit(GetTopDoctorsDetailsErrorState(error.toString()));
+      //   print(error.toString());
+      //   emit(GetTopDoctorsDetailsErrorState(error.toString()));
       }
-      // } else {
+    // } else {
       emit(GetTopDoctorsDetailsSuccessState());
     }
   }
-
   // emit the new list of doctors to the UI
   emit(topDoctorsDetails);
+
+
+
 }

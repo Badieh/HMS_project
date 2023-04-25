@@ -92,6 +92,11 @@ class AppSizeHeight {
   static double s150 = 150.0.h;
   static double s200 = 200.0.h;
   static double s500 = 500.0.h;
+  static double s520 = 520.0.h;
+  static double s540 = 540.0.h;
+
+  static double s550 = 550.0.h;
+
   static double s570 = 570.0.h;
   static double s600 = 600.0.h;
   static double sMaxInfinite = double.maxFinite;

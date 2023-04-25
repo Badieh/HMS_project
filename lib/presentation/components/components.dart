@@ -18,6 +18,8 @@ Widget DefaultTextFormField({
   required TextInputType keyboardType,
   required String label,
   IconData? prefixIcon,
+  TextAlign textAlign =TextAlign.center,
+  bool autoFocus=false,
   IconData? suffixIcon,
   VoidCallback? suffixPressed,
   required FormFieldValidator<String>? validator,
@@ -29,13 +31,16 @@ Widget DefaultTextFormField({
   bool enabled = true,
 }) =>
     TextFormField(
-      textAlign: TextAlign.center,
+
+      textAlign:textAlign ,
       controller: controller,
       keyboardType: keyboardType,
       validator: validator,
       onFieldSubmitted: onFieldSubmitted,
+      autofocus: autoFocus,
       textInputAction: TextInputAction,
       decoration: InputDecoration(
+
         labelText: label,
         prefixIcon: prefixIcon == null
             ? null
