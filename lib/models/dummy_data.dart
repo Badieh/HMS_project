@@ -36,6 +36,7 @@ FileModel file1 = const FileModel(
         'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf');
 
 DoctorModel Doctor1 = const DoctorModel(
+  id : "1",
   name: 'Dr. John Smith',
   specialty: 'Cardiologist',
   imageUrl:
@@ -50,6 +51,7 @@ DoctorModel Doctor1 = const DoctorModel(
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
 );
 DoctorModel Doctor2 = const DoctorModel(
+  id : '2',
   name: 'Dr. Badeih Nader',
   specialty: 'Cardiologist',
   imageUrl:

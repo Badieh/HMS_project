@@ -31,3 +31,13 @@ class GetCancelledAppointmentsErrorState extends AppointmentStates {
 
   GetCancelledAppointmentsErrorState(this.error);
 }
+
+class GetClinicsScheduleListLoadingState extends AppointmentStates {}
+
+class GetClinicsScheduleListSuccessState extends AppointmentStates {}
+
+class GetClinicsScheduleListErrorState extends AppointmentStates {
+  final String error;
+
+  GetClinicsScheduleListErrorState(this.error);
+}

@@ -8,9 +8,9 @@ class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
 
   static TopDoctorsDetailsCubit get(context) => BlocProvider.of(context);
 
-  List<ClinicsScheduleModel> topDoctorsDetails = [];
-  void getTopDoctorsDetails() async {
-    if (topDoctorsDetails.isEmpty) {
+  List<ClinicsScheduleModel> clinicsScheduleList = [];
+  Future<void> getTopDoctorsDetails({required String docId}) async {
+    if (clinicsScheduleList.isEmpty) {
       emit(GetTopDoctorsDetailsLoadingState());
 
       try {
@@ -26,7 +26,7 @@ class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
         //       .toList();
 
         // print(articles[1]);
-        topDoctorsDetails = [
+        clinicsScheduleList = [
           clinicsScheduleModel_1,
           clinicsScheduleModel_1,
           clinicsScheduleModel_1,
@@ -34,14 +34,12 @@ class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
         ];
         emit(GetTopDoctorsDetailsSuccessState());
       } catch (error) {
-        //   print(error.toString());
-        //   emit(GetTopDoctorsDetailsErrorState(error.toString()));
+        print(error.toString());
+        emit(GetTopDoctorsDetailsErrorState(error.toString()));
       }
       // } else {
-      emit(GetTopDoctorsDetailsSuccessState());
     }
   }
 
   // emit the new list of doctors to the UI
-  emit(topDoctorsDetails);
 }

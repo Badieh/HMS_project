@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/appointments/appointment_card.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_states.dart';
+import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
 
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({Key? key}) : super(key: key);
@@ -66,10 +68,71 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                             horizontal: AppPadding.p4),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         itemCount: cubit.cancelledAppointments.length,
-                        itemBuilder: (context, index) => AppointmentCard(
-                              appointmentState: AppointmentState.upcoming,
-                              appointmentModel:
-                                  cubit.upcomingAppointments[index],
+                        itemBuilder: (context, index) => Column(
+                              children: [
+                                AppointmentCard(
+                                  appointmentState: AppointmentState.upcoming,
+                                  appointmentModel:
+                                      cubit.upcomingAppointments[index],
+                                ),
+                                separator(),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: AppPadding.p8,
+                                      bottom: AppPadding.p2),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                            fixedSize: Size(AppSizeWidth.s150,
+                                                AppSizeHeight.s30),
+                                            backgroundColor: ColorManager.white,
+                                            foregroundColor:
+                                                ColorManager.primary,
+                                            side: BorderSide(
+                                                color: ColorManager.primary,
+                                                width: 2)),
+                                        child: const Text(
+                                          AppStrings.cancel,
+                                          style: TextStyle(),
+                                        ),
+                                      ),
+                                      //SizedBox(width: MediaQuery.of(context).size.width/45,),
+                                      ElevatedButton(
+                                        onPressed: () async {
+                                          await cubit.getClinicsSchedule(
+                                              docId: cubit
+                                                  .upcomingAppointments[index]
+                                                  .doctorName);
+
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                            builder: (context) {
+                                              return BookAppointmentScreen(
+                                                  title: AppStrings
+                                                      .rescheduleAppointment,
+                                                  clinicsScheduleList: cubit
+                                                      .clinicsScheduleList);
+                                            },
+                                          ));
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          fixedSize: Size(
+                                            AppSizeWidth.s150,
+                                            AppSizeHeight.s30,
+                                          ),
+                                        ),
+                                        child: const Text(
+                                          AppStrings.reschedule,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             )),
                     ListView.builder(
                         physics: const BouncingScrollPhysics(),

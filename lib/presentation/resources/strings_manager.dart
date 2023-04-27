@@ -77,6 +77,8 @@ class AppStrings {
   static const upcoming = 'Upcoming';
   static const completed = 'Completed';
   static const cancelled = 'Cancelled';
+  static const reschedule ='Reschedule' ;
+  static const cancel = 'Cancel';
 
   // History Screen
   static const diagnosis = 'Diagnosis';
@@ -133,11 +135,13 @@ class AppStrings {
   static const viewless = ' view less';
   static const workTime = 'work time';
   static const bookAppointment = 'Book Appointment';
+  static const rescheduleAppointment = 'Reschedule Appointment';
 
   // book appointment
   static const selectDate = 'Select a Date';
   static const selectTime = 'Select a Time';
   static const writeProblem = 'Write Your Problem';
   static const appointmentCreated = 'Appointment Created';
+  static const appointmentRescheduled = 'Appointment Rescheduled';
 
 }

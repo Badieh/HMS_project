@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class DoctorModel extends Equatable {
+  final String id;
   final String name;
   final String specialty;
   final String imageUrl;
@@ -16,6 +17,7 @@ class DoctorModel extends Equatable {
 
   const DoctorModel({
     required this.name,
+    required this.id,
     required this.specialty,
     required this.imageUrl,
     this.imageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I',
@@ -32,6 +34,7 @@ class DoctorModel extends Equatable {
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
       name: json['name'],
+      id: json['id'],
       specialty: json['specialty'],
       imageUrl: json['imageUrl'],
       imageHash: json['imageHash'],
@@ -48,6 +51,7 @@ class DoctorModel extends Equatable {
 
   @override
   List<Object> get props => [
+        id,
         name,
         specialty,
         imageUrl,
