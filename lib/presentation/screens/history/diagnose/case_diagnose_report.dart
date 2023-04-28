@@ -8,7 +8,7 @@ import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
-import 'package:hospital/presentation/screens/pdf_printing.dart';
+import 'package:hospital/presentation/screens/history/files/pdf_printing.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';

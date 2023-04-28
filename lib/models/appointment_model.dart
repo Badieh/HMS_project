@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class AppointmentModel extends Equatable {
+  final String id;
   final String hospitalName;
   final String doctorName;
   final String department;
@@ -12,6 +13,7 @@ class AppointmentModel extends Equatable {
 
   const AppointmentModel(
       {required this.doctorName,
+      required this.id,
       required this.hospitalName,
       required this.department,
       required this.doctorImageUrl,
@@ -30,11 +32,13 @@ class AppointmentModel extends Equatable {
       date: json['date'],
       startTime: json['startTime'],
       endTime: json['endTime'],
+      id: json['id'],
     );
   }
 
   @override
   List<Object?> get props => [
+        id,
         doctorName,
         hospitalName,
         department,

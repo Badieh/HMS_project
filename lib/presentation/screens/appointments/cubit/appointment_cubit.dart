@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/models/appointment_model.dart';
+import 'package:hospital/models/clinics_schedule_model.dart';
 import 'package:hospital/models/dummy_data.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_states.dart';
 
 class AppointmentsCubit extends Cubit<AppointmentStates> {
@@ -101,5 +103,69 @@ class AppointmentsCubit extends Cubit<AppointmentStates> {
       print(error.toString());
       emit(GetCancelledAppointmentsErrorState(error.toString()));
     }
+  }
+
+  List<ClinicsScheduleModel> clinicsScheduleList = [];
+  Future<void> getClinicsSchedule({required String docId}) async {
+    if (clinicsScheduleList.isEmpty) {
+      emit(GetClinicsScheduleListLoadingState());
+
+      try {
+        //   var response =
+        //   await DioHelper.getData(url: AppConstants.articlesPath, query: {
+        //     'country': AppConstants.country,
+        //     'category': AppConstants.category,
+        //     'apiKey': AppConstants.articlesApiKey,
+        //   });
+        //   //print(response.data['articles'][1]);
+        //   topDoctorsDetails = List.from(response.data['topDoctorsDetails'])
+        //       .map((e) => TopDoctorModel.fromJson(e))
+        //       .toList();
+
+        // print(articles[1]);
+        clinicsScheduleList = [
+          clinicsScheduleModel_1,
+          clinicsScheduleModel_1,
+          clinicsScheduleModel_1,
+          clinicsScheduleModel_1,
+        ];
+        emit(GetClinicsScheduleListSuccessState());
+      } catch (error) {
+        print(error.toString());
+        emit(GetClinicsScheduleListErrorState(error.toString()));
+      }
+      // } else {
+    }
+  }
+
+  Future<void> cancelAppointment({required String appointmentId}) async {
+    emit(CancelAppointmentLoadingState());
+
+    try {
+      //   var response =
+      //   await DioHelper.getData(url: AppConstants.articlesPath, query: {
+      //     'country': AppConstants.country,
+      //     'category': AppConstants.category,
+      //     'apiKey': AppConstants.articlesApiKey,
+      //   });
+      //   //print(response.data['articles'][1]);
+      //   topDoctorsDetails = List.from(response.data['topDoctorsDetails'])
+      //       .map((e) => TopDoctorModel.fromJson(e))
+      //       .toList();
+
+      // print(articles[1]);
+
+      getUpcomingAppointmentsList();
+      emit(CancelAppointmentSuccessState());
+    } catch (error) {
+      print(error.toString());
+      emit(CancelAppointmentErrorState(error.toString()));
+    }
+  }
+
+  String selectedReason = AppStrings.reason1;
+  changeSelectedReason({required String index}) {
+    selectedReason = index;
+    emit(ChangeReasonIndexState());
   }
 }

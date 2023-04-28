@@ -3,7 +3,7 @@ import 'package:hospital/models/file_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/pdf_preview_cloud.dart';
+import 'package:hospital/presentation/screens/history/files/pdf_preview_cloud.dart';
 
 class FileCard extends StatelessWidget {
   const FileCard({Key? key, required this.fileModel}) : super(key: key);

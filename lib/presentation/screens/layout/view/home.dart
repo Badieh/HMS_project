@@ -444,7 +444,7 @@ class HomeScreen extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Top_Doctors_Screen()));
+                          builder: (context) => TopDoctorsScreen()));
                     },
                     child: Text(
                       AppStrings.seeAll,

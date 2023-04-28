@@ -13,9 +13,8 @@ import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:lottie/lottie.dart';
 import 'package:quickalert/quickalert.dart';
 
-
-class BookAppointment extends StatelessWidget {
-  BookAppointment(
+class BookAppointmentScreen extends StatelessWidget {
+  BookAppointmentScreen(
       {Key? key, required this.title, required this.clinicsScheduleList})
       : super(key: key);
   final String title;
@@ -36,7 +35,7 @@ class BookAppointment extends StatelessWidget {
         ..getTimesOfDay(date: DateTime.now()),
       child: BlocConsumer<BookAppointmentCubit, BookAppointmentStates>(
           listener: (context, state) {
-        BookAppointmentCubit cubit = BookAppointmentCubit().get(context);
+        //BookAppointmentCubit cubit = BookAppointmentCubit().get(context);
       }, builder: (context, state) {
         BookAppointmentCubit cubit = BookAppointmentCubit().get(context);
         return Scaffold(
@@ -182,23 +181,38 @@ class BookAppointment extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 if (formKey.currentState!.validate()) {
-                  await cubit.bookAppointment();
-
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeLayoutScreen(),
-                      ));
-                  QuickAlert.show(
-                    context: context,
-                    barrierDismissible: false,
-                    type: QuickAlertType.success,
-                    width: MediaQuery.of(context).size.width,
-                    title: AppStrings.appointmentCreated,
-                    text:
-                        'On ${cubit.date.day} of ${monthNames[cubit.date.month]} \nFrom ${cubit.selectedStartTime} To ${cubit.selectedEndTime}',
-                    animType: QuickAlertAnimType.slideInDown,
-                  );
+                  if (cubit.selectedStartTime.isNotEmpty &&
+                      cubit.selectedEndTime.isNotEmpty) {
+                    await cubit.bookAppointment();
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeLayoutScreen(),
+                        ));
+                    QuickAlert.show(
+                      context: context,
+                      backgroundColor: ColorManager.lightPrimary,
+                      barrierDismissible: false,
+                      type: QuickAlertType.success,
+                      width: MediaQuery.of(context).size.width,
+                      title: title == AppStrings.bookAppointment
+                          ? AppStrings.appointmentCreated
+                          : AppStrings.appointmentRescheduled,
+                      text:
+                          'On ${cubit.date.day} of ${monthNames[cubit.date.month]} \nFrom ${cubit.selectedStartTime} To ${cubit.selectedEndTime}',
+                      animType: QuickAlertAnimType.slideInDown,
+                    );
+                  } else {
+                    QuickAlert.show(
+                      backgroundColor: ColorManager.lightPrimary,
+                      context: context,
+                      barrierDismissible: false,
+                      type: QuickAlertType.warning,
+                      width: MediaQuery.of(context).size.width,
+                      title: AppStrings.plsSelectTime,
+                      animType: QuickAlertAnimType.slideInDown,
+                    );
+                  }
                 }
               },
               child: Text(

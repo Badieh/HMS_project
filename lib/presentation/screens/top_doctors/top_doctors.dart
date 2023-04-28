@@ -2,16 +2,17 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
 import 'package:hospital/presentation/screens/top_doctors/cubit/top_doctors_stats.dart';
 import 'package:hospital/presentation/screens/top_doctors/top_doctors_details.dart';
 
-import '../../resources/color_manager.dart';
-import '../../resources/font_manager.dart';
 
-class Top_Doctors_Screen extends StatelessWidget {
-  const Top_Doctors_Screen({Key? key}) : super(key: key);
+
+class TopDoctorsScreen extends StatelessWidget {
+  const TopDoctorsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -29,7 +30,7 @@ class Top_Doctors_Screen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_outlined),
+            icon: const Icon(Icons.arrow_back_outlined),
             color: ColorManager.black,
           ),
           title: Text("Top Doctors",
