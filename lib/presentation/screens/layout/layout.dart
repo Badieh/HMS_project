@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_states.dart';
+import 'package:hospital/presentation/screens/top_doctors/top_doctors.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
@@ -31,6 +33,21 @@ class HomeLayoutScreen extends StatelessWidget {
               },
             ),
             body: cubit.tabs[cubit.currentIndex],
+            floatingActionButton: cubit.currentIndex == 1
+                ? FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TopDoctorsScreen(),
+                          ));
+                    },
+                    child: Icon(
+                      Icons.add,
+                      size: AppSizeHeight.s30,
+                    ),
+                  )
+                : null,
           ),
         );
       },

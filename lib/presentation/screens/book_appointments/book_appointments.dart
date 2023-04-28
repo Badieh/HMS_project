@@ -209,7 +209,7 @@ class BookAppointmentScreen extends StatelessWidget {
                       barrierDismissible: false,
                       type: QuickAlertType.warning,
                       width: MediaQuery.of(context).size.width,
-                      title: 'Please select a Time',
+                      title: AppStrings.plsSelectTime,
                       animType: QuickAlertAnimType.slideInDown,
                     );
                   }

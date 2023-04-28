@@ -12,8 +12,8 @@ import 'package:hospital/models/treatment_model.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_states.dart';
-import 'package:hospital/presentation/screens/pdf_preview_device.dart';
-import 'package:hospital/presentation/screens/pdf_printing.dart';
+import 'package:hospital/presentation/screens/history/files/pdf_preview_device.dart';
+import 'package:hospital/presentation/screens/history/files/pdf_printing.dart';
 
 class HistoryCubit extends Cubit<HistoryStates> {
   HistoryCubit() : super(HistoryInitialState());

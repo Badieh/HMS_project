@@ -77,7 +77,7 @@ class AppStrings {
   static const upcoming = 'Upcoming';
   static const completed = 'Completed';
   static const cancelled = 'Cancelled';
-  static const reschedule ='Reschedule' ;
+  static const reschedule = 'Reschedule';
   static const cancel = 'Cancel';
 
   // History Screen
@@ -140,8 +140,26 @@ class AppStrings {
   // book appointment
   static const selectDate = 'Select a Date';
   static const selectTime = 'Select a Time';
+  static const plsSelectTime = 'Please Select a Time';
   static const writeProblem = 'Write Your Problem';
   static const appointmentCreated = 'Appointment Created';
   static const appointmentRescheduled = 'Appointment Rescheduled';
 
+  // cancel appointment
+  static const cancelAppointment = 'Cancel Appointment';
+  static const back = 'Back';
+  static const yesCancel = 'Yes,Cancel';
+  static const areSure =
+      'Are you sure that you want to cancel your Appointmrnt ?';
+  static const appointmentCancelled = 'Appointment Cancelled';
+  static const submit = 'Submit';
+
+  static const reason1 = 'I want to change to another doctor';
+  static const reason2 = 'I want to change package';
+  static const reason3 = 'I don\'t wand to consult';
+  static const reason4 = 'I have recovered from the disease';
+  static const reason5 = 'I have founf a suitable medicine';
+  static const reason6 = 'I just want to cancel';
+  static const reason7 = 'I don\'t want to tell';
+  static const reason8 = 'Other';
 }

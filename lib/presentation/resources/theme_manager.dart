@@ -125,7 +125,7 @@ ThemeData getThemeData() {
     tabBarTheme: const TabBarTheme(
         dividerColor: Colors.red, indicatorColor: Colors.green),
     floatingActionButtonTheme:
-        FloatingActionButtonThemeData(backgroundColor: ColorManager.primary),
+        FloatingActionButtonThemeData(backgroundColor: ColorManager.primary,foregroundColor: ColorManager.white),
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: ColorManager.white,
     ),

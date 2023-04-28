@@ -23,3 +23,4 @@ class BookAppointmentErrorState extends BookAppointmentStates {
 
   BookAppointmentErrorState(this.error);
 }
+
