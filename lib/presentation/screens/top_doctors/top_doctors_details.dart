@@ -9,6 +9,7 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
+import 'package:hospital/presentation/screens/top_doctors/top_doctor_details_cubit/data_table.dart';
 import 'package:hospital/presentation/screens/top_doctors/top_doctor_details_cubit/top_doctors_details_cubit.dart';
 import 'package:hospital/presentation/screens/top_doctors/top_doctor_details_cubit/top_doctors_details_stats.dart';
 import 'package:readmore/readmore.dart';
@@ -21,6 +22,8 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
   final DoctorModel doctorModel;
   @override
   Widget build(BuildContext context) {
+    double cellHeight = MediaQuery.of(context).size.height * 0.05;
+
     var size = MediaQuery.of(context).size;
     return BlocProvider(
       create: (context) =>
@@ -50,6 +53,7 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
                     color: ColorManager.green,
                   ),
                 ),
+
                 IconButton(
                   onPressed: () {},
                   icon: Icon(
@@ -322,6 +326,18 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
                     SizedBox(
                       height: size.height * .03,
                     ),
+
+
+              MyTable(
+                data: [
+                  ['Row 1, Column 1', 'Row 1, Column 2', 'Row 1, Column 3'],
+                  ['Row 2, Column 1', 'Row 2, Column 2', 'Row 2, Column 3'],
+                  ['Row 3, Column 1', 'Row 3, Column 2', 'Row 3, Column 3'],
+                ],
+              ),
+                    SizedBox(
+                      height: size.height * .015,
+                    ),
                   ],
                 ),
               ),
@@ -360,6 +376,7 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
     );
   }
 }
+
 class Employee {
   Employee(this.id, this.name, this.designation, this.salary);
   final int id;
