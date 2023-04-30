@@ -18,7 +18,7 @@ Widget DefaultTextFormField({
   required TextInputType keyboardType,
   required String label,
   IconData? prefixIcon,
-  TextAlign textAlign =TextAlign.center,
+  TextAlign textAlign =TextAlign.start,
   bool autoFocus=false,
   IconData? suffixIcon,
   VoidCallback? suffixPressed,

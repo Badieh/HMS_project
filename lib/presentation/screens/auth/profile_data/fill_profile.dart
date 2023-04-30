@@ -5,19 +5,23 @@ import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_1.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_2.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_3.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_4.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:intl/intl.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class FillProfile extends StatefulWidget {
-  FillProfile({Key? key}) : super(key: key);
+class FillProfileScreen extends StatefulWidget {
+  FillProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<FillProfile> createState() => _FillProfileState();
+  State<FillProfileScreen> createState() => _FillProfileScreenState();
 }
 
-class _FillProfileState extends State<FillProfile> {
+class _FillProfileScreenState extends State<FillProfileScreen> {
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
   final formKey3 = GlobalKey<FormState>();
@@ -43,8 +47,6 @@ class _FillProfileState extends State<FillProfile> {
   bool _isMale = true;
   MaritalStatus _maritalStatus = MaritalStatus.single;
 
-  final TextEditingController nationality = TextEditingController();
-
   final List<String> _bloodTypes = <String>[
     'A+',
     'A-',
@@ -57,12 +59,12 @@ class _FillProfileState extends State<FillProfile> {
   ];
   String? _bloodType;
 
-  late String nationalitty;
-
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   double _height = 170.0;
   double _weight = 80;
+
+  late String nationalitty;
 
   final TextEditingController streetName = TextEditingController();
 
@@ -72,6 +74,7 @@ class _FillProfileState extends State<FillProfile> {
   late String addressCountry;
   String? addressState;
   String? addressCity;
+
   late String birthCountry;
   String? birthState;
   String? birthCity;
@@ -115,10 +118,10 @@ class _FillProfileState extends State<FillProfile> {
                 scrollDirection: Axis.horizontal,
                 onPageChanged: (index) {},
                 children: [
-                  fillProfile1(),
-                  fillProfile2(),
-                  fillProfile3(),
-                  fillProfile4(),
+                  ProfileData1Screen(),
+                  ProfileData2Screen(),
+                  ProfileData3Screen(),
+                  ProfileData4Screen(),
                 ],
               ),
             ),

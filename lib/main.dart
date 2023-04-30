@@ -8,6 +8,8 @@ import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/fill_profile.dart';
 import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
@@ -59,7 +61,8 @@ class MyApp extends StatelessWidget {
         ),
         // TopDoctors
         BlocProvider(create: (context) => TopDoctorsCubit()..getTopDoctors()),
-        // Book appointment
+        // fill profile
+        BlocProvider(create: (context) => ProfileDataCubit(),),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
@@ -70,7 +73,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getThemeData(),
-            home:HomeLayoutScreen()
+            home:FillProfileScreen()
           );
         },
       ),
