@@ -146,7 +146,6 @@ class TopDoctorsScreen extends StatelessWidget {
                                   left: AppSizeHeight.s8,
                                   right: AppSizeHeight.s8),
                               width: double.infinity,
-                              height: MediaQuery.of(context).size.height * 0.2,
                               decoration: BoxDecoration(
                                   color: ColorManager.white,
                                   borderRadius:
