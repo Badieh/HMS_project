@@ -11,18 +11,17 @@ import 'package:intl/intl.dart';
 
 class ProfileData2Screen extends StatelessWidget {
   ProfileData2Screen({Key? key}) : super(key: key);
-  final formKey2 = GlobalKey<FormState>();
+  static final formKey2 = GlobalKey<FormState>();
 
-  final TextEditingController dateOfBirth = TextEditingController();
+  static final TextEditingController dateOfBirth = TextEditingController();
 
-  final TextEditingController religion = TextEditingController();
+  static final TextEditingController religion = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileDataCubit, ProfileDataStates>(
       listener: (context, state) {},
       builder: (context, state) {
         ProfileDataCubit cubit = ProfileDataCubit().get(context);
-        dateOfBirth.text = ""; //set the initial value of text field
         //bloodType = bloodTypes.first;
         cubit.heightController.text = cubit.height.toStringAsFixed(1);
         cubit.weightController.text = cubit.weight.toStringAsFixed(1);
@@ -73,20 +72,42 @@ class ProfileData2Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeDate(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // religion
-                  DefaultTextFormField(
-                      controller: religion,
-                      keyboardType: TextInputType.text,
-                      label: AppStrings.religion,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppStrings.validator;
-                        }
-                      },
-                      onFieldSubmitted: (value) {}),
+                  // DefaultTextFormField(
+                  //     controller: religion,
+                  //     keyboardType: TextInputType.text,
+                  //     label: AppStrings.religion,
+                  //     validator: (value) {
+                  //       if (value == null || value.isEmpty) {
+                  //         return AppStrings.validator;
+                  //       }
+                  //     },
+                  //     onFieldSubmitted: (value) {}),
+                  DropdownButtonFormField<String>(
+                    hint: const Text('Religion'),
+                    value: cubit.religion,
+                    icon: const Icon(Icons.bloodtype_outlined),
+                    isExpanded: true,
+                    elevation: 16,
+                    //style: TextStyle(color: ColorManager.primary),
+                    onChanged: (String? value) {
+                      // This is called when the user selects an item.
+                      cubit.changeReligion(value: value!);
+                    },
+                    items: cubit.religions
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                  ),
+
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // blood type
@@ -207,146 +228,6 @@ class ProfileData2Screen extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-                  // Marital status
-                  Text(
-                    AppStrings.maritalStatus,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(fontSize: FontSize.s18),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 45),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.single);
-                        },
-                        child: Container(
-                          width: AppSizeWidth.s70,
-                          height: AppSizeHeight.s25,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(AppSizeWidth.s10),
-                            border: Border.all(
-                                color:
-                                    cubit.maritalStatus == MaritalStatus.single
-                                        ? ColorManager.primary
-                                        : ColorManager.lightGrey),
-                            color: cubit.maritalStatus == MaritalStatus.single
-                                ? ColorManager.secondary
-                                : ColorManager.lightGrey,
-                          ),
-                          child: Center(
-                            child: Text(
-                              AppStrings.single,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(fontSize: FontSize.s15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.married);
-                        },
-                        child: Container(
-                          width: AppSizeWidth.s70,
-                          height: AppSizeHeight.s25,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(AppSizeWidth.s10),
-                            border: Border.all(
-                                color:
-                                    cubit.maritalStatus == MaritalStatus.married
-                                        ? ColorManager.primary
-                                        : ColorManager.lightGrey),
-                            color: cubit.maritalStatus == MaritalStatus.married
-                                ? ColorManager.secondary
-                                : ColorManager.lightGrey,
-                          ),
-                          child: Center(
-                            child: Text(
-                              AppStrings.married,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(fontSize: FontSize.s15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.divorced);
-                        },
-                        child: Container(
-                          width: AppSizeWidth.s70,
-                          height: AppSizeHeight.s25,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(AppSizeWidth.s10),
-                            border: Border.all(
-                                color: cubit.maritalStatus ==
-                                        MaritalStatus.divorced
-                                    ? ColorManager.primary
-                                    : ColorManager.lightGrey),
-                            color: cubit.maritalStatus == MaritalStatus.divorced
-                                ? ColorManager.secondary
-                                : ColorManager.lightGrey,
-                          ),
-                          child: Center(
-                            child: Text(
-                              AppStrings.divorced,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(fontSize: FontSize.s15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.widow);
-                        },
-                        child: Container(
-                          width: AppSizeWidth.s70,
-                          height: AppSizeHeight.s25,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(AppSizeWidth.s10),
-                            border: Border.all(
-                                color:
-                                    cubit.maritalStatus == MaritalStatus.widow
-                                        ? ColorManager.primary
-                                        : ColorManager.lightGrey),
-                            color: cubit.maritalStatus == MaritalStatus.widow
-                                ? ColorManager.secondary
-                                : ColorManager.lightGrey,
-                          ),
-                          child: Center(
-                            child: Text(
-                              AppStrings.widowed,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(fontSize: FontSize.s15),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 45),
-
                   // height
                   Row(
                     children: [
@@ -372,8 +253,14 @@ class ProfileData2Screen extends StatelessWidget {
                                 label: '',
                                 validator: (value) {},
                                 onFieldSubmitted: (value) {
-                                  cubit.height = double.tryParse(
-                                      cubit.heightController.text)!;
+                                  if (double.tryParse(
+                                          cubit.heightController.text)! <
+                                      250) {
+                                    cubit.height = double.tryParse(
+                                        cubit.heightController.text)!;
+                                  } else {
+                                    cubit.height = 250;
+                                  }
                                 }),
                           ),
                           Text(
@@ -418,8 +305,14 @@ class ProfileData2Screen extends StatelessWidget {
                                 label: '',
                                 validator: (value) {},
                                 onFieldSubmitted: (value) {
-                                  cubit.weight = double.tryParse(
-                                      cubit.weightController.text)!;
+                                  if (double.tryParse(
+                                          cubit.weightController.text)! <
+                                      250) {
+                                    cubit.weight = double.tryParse(
+                                        cubit.weightController.text)!;
+                                  } else {
+                                    cubit.weight = 250;
+                                  }
                                 }),
                           ),
                           Text(

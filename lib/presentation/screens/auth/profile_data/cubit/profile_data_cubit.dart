@@ -8,6 +8,23 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
 
   ProfileDataCubit get(context) => BlocProvider.of(context);
 
+  String? date;
+  void changeDate(String value) {
+    date = value;
+    emit(ChangeDateState());
+  }
+
+  final List<String> religions = <String>[
+    'Muslim',
+    'Christian',
+    'Jewish',
+  ];
+  String? religion;
+  void changeReligion({required String value}) {
+    religion = value;
+    emit(ChangeReligionState());
+  }
+
   final List<String> bloodTypes = <String>[
     'A+',
     'A-',
@@ -54,6 +71,34 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
     //weightController.text = value.toStringAsFixed(1);
 
     emit(ChangeWeightState());
+  }
+
+  String? nationalitty;
+
+  void changeNationality(String value) {
+    nationalitty = value;
+    emit(ChangeNationalityState());
+  }
+
+  String? addressCountry;
+
+  String? addressState;
+
+  String? addressCity;
+
+  void changeAddressCountry(String value) {
+    addressCountry = value;
+    emit(ChangeAddressCountryState());
+  }
+
+  void changeAdressCity(String value) {
+    addressCity = value;
+    emit(ChangeAddressCityState());
+  }
+
+  void changeAdressState(String value) {
+    addressState = value;
+    emit(ChangeAddressStateState());
   }
 }
 

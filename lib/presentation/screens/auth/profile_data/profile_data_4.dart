@@ -14,7 +14,7 @@ class ProfileData4Screen extends StatefulWidget {
 }
 
 class _ProfileData4ScreenState extends State<ProfileData4Screen> {
-  final formKey4 = GlobalKey<FormState>();
+  static final formKey4 = GlobalKey<FormState>();
 
   late String birthCountry;
 
@@ -22,11 +22,12 @@ class _ProfileData4ScreenState extends State<ProfileData4Screen> {
 
   String? birthCity;
 
-  final TextEditingController job = TextEditingController();
+  static final TextEditingController job = TextEditingController();
 
-  final TextEditingController jobBuildingNumber = TextEditingController();
+  static final TextEditingController jobBuildingNumber =
+      TextEditingController();
 
-  final TextEditingController jobStreetName = TextEditingController();
+  static final TextEditingController jobStreetName = TextEditingController();
 
   late String jobCountry;
 
@@ -43,114 +44,116 @@ class _ProfileData4ScreenState extends State<ProfileData4Screen> {
         border: Border.all(color: ColorManager.secondary),
         borderRadius: BorderRadius.circular(AppPadding.p20),
       ),
-      child: Form(
-        key: formKey4,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // birthPlaceCity / birthPlaceState  /birthPlaceCountry
-            SizedBox(height: MediaQuery.of(context).size.height / 70),
+      child: SingleChildScrollView(
+        child: Form(
+          key: formKey4,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // birthPlaceCity / birthPlaceState  /birthPlaceCountry
+              SizedBox(height: MediaQuery.of(context).size.height / 70),
 
-            Text(
-              AppStrings.birthAddress,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(fontSize: FontSize.s18),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-            CSCPicker(
-              // countryDropdownLabel: 'Nationality',
-              // showStates: false,
-              //defaultCountry: CscCountry.Egypt,
+              Text(
+                AppStrings.birthAddress,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: FontSize.s18),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              CSCPicker(
+                // countryDropdownLabel: 'Nationality',
+                // showStates: false,
+                //defaultCountry: CscCountry.Egypt,
 
-              onCountryChanged: (value) {
-                setState(() {
-                  birthCountry = value;
-                });
-              },
-              onStateChanged: (value) {
-                setState(() {
-                  birthState = value;
-                });
-              },
-              onCityChanged: (value) {
-                setState(() {
-                  birthCity = value;
-                });
-              },
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-
-            // job
-            Text(
-              AppStrings.jobDetails,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge
-                  ?.copyWith(fontSize: FontSize.s18),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-            DefaultTextFormField(
-                controller: job,
-                keyboardType: TextInputType.text,
-                label: AppStrings.job,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppStrings.validator;
-                  }
+                onCountryChanged: (value) {
+                  setState(() {
+                    birthCountry = value;
+                  });
                 },
-                onFieldSubmitted: (value) {}),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-
-            // jobBuildingNumber
-            DefaultTextFormField(
-                controller: jobBuildingNumber,
-                keyboardType: TextInputType.number,
-                label: AppStrings.jobBuildingNumber,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppStrings.validator;
-                  }
+                onStateChanged: (value) {
+                  setState(() {
+                    birthState = value;
+                  });
                 },
-                onFieldSubmitted: (value) {}),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-
-            // jobStreetName
-            DefaultTextFormField(
-                controller: jobStreetName,
-                keyboardType: TextInputType.name,
-                label: AppStrings.jobStreetName,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return AppStrings.validator;
-                  }
+                onCityChanged: (value) {
+                  setState(() {
+                    birthCity = value;
+                  });
                 },
-                onFieldSubmitted: (value) {}),
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-            // jobCity /jobState  /jobCountry
-            CSCPicker(
-              onCountryChanged: (value) {
-                setState(() {
-                  jobCountry = value;
-                });
-              },
-              onStateChanged: (value) {
-                setState(() {
-                  jobState = value;
-                });
-              },
-              onCityChanged: (value) {
-                setState(() {
-                  jobCity = value;
-                });
-              },
-            ),
+              // job
+              Text(
+                AppStrings.jobDetails,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontSize: FontSize.s18),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+              DefaultTextFormField(
+                  controller: job,
+                  keyboardType: TextInputType.text,
+                  label: AppStrings.job,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.validator;
+                    }
+                  },
+                  onFieldSubmitted: (value) {}),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-            SizedBox(height: MediaQuery.of(context).size.height / 45),
-          ],
+              // jobBuildingNumber
+              DefaultTextFormField(
+                  controller: jobBuildingNumber,
+                  keyboardType: TextInputType.number,
+                  label: AppStrings.jobBuildingNumber,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.validator;
+                    }
+                  },
+                  onFieldSubmitted: (value) {}),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+
+              // jobStreetName
+              DefaultTextFormField(
+                  controller: jobStreetName,
+                  keyboardType: TextInputType.name,
+                  label: AppStrings.jobStreetName,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return AppStrings.validator;
+                    }
+                  },
+                  onFieldSubmitted: (value) {}),
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+
+              // jobCity /jobState  /jobCountry
+              CSCPicker(
+                onCountryChanged: (value) {
+                  setState(() {
+                    jobCountry = value;
+                  });
+                },
+                onStateChanged: (value) {
+                  setState(() {
+                    jobState = value;
+                  });
+                },
+                onCityChanged: (value) {
+                  setState(() {
+                    jobCity = value;
+                  });
+                },
+              ),
+
+              SizedBox(height: MediaQuery.of(context).size.height / 45),
+            ],
+          ),
         ),
       ),
     );
