@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -14,6 +15,7 @@ import 'package:hospital/presentation/screens/layout/view/home.dart';
 import 'package:hospital/presentation/screens/layout/view/notification.dart';
 import 'package:hospital/presentation/screens/layout/view/profile.dart';
 
+import '../../routes/routes.dart';
 import 'main_states.dart';
 
 class MainCubit extends Cubit<MainStates> {
@@ -71,7 +73,7 @@ class MainCubit extends Cubit<MainStates> {
       actions: [
         IconButton(
           onPressed: () {
-            // Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotificationScreen()));
+            Get.toNamed(Routes.notificationScreen);
 
           },
           icon: Icon(

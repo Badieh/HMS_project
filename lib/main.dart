@@ -13,6 +13,7 @@ import 'package:hospital/presentation/screens/book_appointments/book_appointment
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:hospital/presentation/screens/layout/view/notification.dart';
+import 'package:hospital/presentation/screens/routes/routes.dart';
 import 'network/remote/dio_helper.dart';
 import 'presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
@@ -72,8 +73,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getThemeData(),
-            home:HomeLayoutScreen()
-          );
+            initialRoute:AppRoutes.splashScreen,
+            getPages: AppRoutes.routes,            );
         },
       ),
     );

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/auth/register.dart';
+
+import '../routes/routes.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -89,7 +92,11 @@ class LoginScreen extends StatelessWidget {
 
                 // sign up button
                 ElevatedButton(
-                    onPressed: () {}, child: const Text(AppStrings.signIn)),
+                    onPressed: () {
+                      Get.toNamed(Routes.homeLayoutScreen);
+
+
+                    }, child: const Text(AppStrings.signIn)),
                 SizedBox(height: MediaQuery.of(context).size.height / 45),
                 // divider
                 Row(
