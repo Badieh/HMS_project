@@ -328,8 +328,8 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
                     ),
 
 
-              MyTable(
-                data: [
+                 MyTable(
+                 data: [
                   ['Row 1, Column 1', 'Row 1, Column 2', 'Row 1, Column 3'],
                   ['Row 2, Column 1', 'Row 2, Column 2', 'Row 2, Column 3'],
                   ['Row 3, Column 1', 'Row 3, Column 2', 'Row 3, Column 3'],
@@ -377,10 +377,3 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
   }
 }
 
-class Employee {
-  Employee(this.id, this.name, this.designation, this.salary);
-  final int id;
-  final String name;
-  final String designation;
-  final int salary;
-}
