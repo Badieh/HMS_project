@@ -9,7 +9,7 @@ class MyTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double cellHeight = MediaQuery.of(context).size.height * 0.05;
+    double cellHeight = MediaQuery.of(context).size.height * 0.06;
 
     return Table(
       border: TableBorder.all(
@@ -28,7 +28,7 @@ class MyTable extends StatelessWidget {
               child: Container(
                 height: cellHeight,
                 child: Center(
-                  child: Text(cellData),
+                  child: Text(cellData,textAlign: TextAlign.center,),
                 ),
               ),
             );

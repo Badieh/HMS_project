@@ -11,12 +11,15 @@ import 'package:hospital/presentation/screens/articles/articles.dart';
 import 'package:hospital/presentation/screens/history/history.dart';
 import 'package:hospital/presentation/screens/appointments/appointment.dart';
 import 'package:hospital/presentation/screens/layout/view/home.dart';
+import 'package:hospital/presentation/screens/layout/view/notification.dart';
 import 'package:hospital/presentation/screens/layout/view/profile.dart';
 
 import 'main_states.dart';
 
 class MainCubit extends Cubit<MainStates> {
-  MainCubit() : super(MainInitialState());
+
+  MainCubit(BuildContext context) : super(MainInitialState());
+
 
   static MainCubit get(context) => BlocProvider.of(context);
 
@@ -67,7 +70,10 @@ class MainCubit extends Cubit<MainStates> {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            // Navigator.of(context).push(MaterialPageRoute(builder: (context) => NotificationScreen()));
+
+          },
           icon: Icon(
             Icons.notifications_active_outlined,
             size: AppSizeHeight.s28,

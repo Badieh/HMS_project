@@ -50,7 +50,6 @@ class Search_Screen extends StatelessWidget {
                 ),
                 isEmpty ? Container(
                     width: double.infinity,
-                    height: AppSizeHeight.s540,
                     child: doctorList()) : doctorList(),
               ],
             ),
@@ -67,7 +66,6 @@ Widget doctorList() {
           padding:
               EdgeInsets.only(left: AppSizeHeight.s8, right: AppSizeHeight.s8),
           width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.2,
           decoration: BoxDecoration(
               color: ColorManager.white,
               borderRadius: BorderRadius.circular(AppSizeHeight.s25)),
