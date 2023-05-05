@@ -13,7 +13,7 @@ class ProfileData1Screen extends StatelessWidget {
   static final formKey1 = GlobalKey<FormState>();
   static final TextEditingController firstName = TextEditingController();
 
-  static  final TextEditingController secondName = TextEditingController();
+  static final TextEditingController secondName = TextEditingController();
 
   static final TextEditingController thirdName = TextEditingController();
 
@@ -23,7 +23,9 @@ class ProfileData1Screen extends StatelessWidget {
 
   static final TextEditingController phone = TextEditingController();
 
-  static  PhoneNumber number = PhoneNumber(isoCode: 'EG');
+  final PhoneNumber number = PhoneNumber(
+    isoCode: 'EG',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +80,7 @@ class ProfileData1Screen extends StatelessWidget {
 
                   // firstName
                   DefaultTextFormField(
+                      TextInputAction: TextInputAction.next,
                       controller: firstName,
                       keyboardType: TextInputType.name,
                       label: AppStrings.firstName,
@@ -91,6 +94,7 @@ class ProfileData1Screen extends StatelessWidget {
 
                   // secondName
                   DefaultTextFormField(
+                      TextInputAction: TextInputAction.next,
                       controller: secondName,
                       keyboardType: TextInputType.name,
                       label: AppStrings.secondName,
@@ -104,6 +108,7 @@ class ProfileData1Screen extends StatelessWidget {
 
                   // thirdName
                   DefaultTextFormField(
+                      TextInputAction: TextInputAction.next,
                       controller: thirdName,
                       keyboardType: TextInputType.name,
                       label: AppStrings.thirdName,
@@ -118,6 +123,7 @@ class ProfileData1Screen extends StatelessWidget {
                   // lastName
                   DefaultTextFormField(
                       controller: lastName,
+                      TextInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
                       label: AppStrings.lastName,
                       validator: (value) {
@@ -132,6 +138,7 @@ class ProfileData1Screen extends StatelessWidget {
                   DefaultTextFormField(
                       controller: nationalIdCard,
                       keyboardType: TextInputType.number,
+                      TextInputAction: TextInputAction.next,
                       label: AppStrings.nationalIdCard,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -162,6 +169,7 @@ class ProfileData1Screen extends StatelessWidget {
                     keyboardType: const TextInputType.numberWithOptions(
                         signed: true, decimal: true),
                     onSaved: (PhoneNumber number) {
+                      phone.text = number.toString();
                       print('On Saved: $number');
                     },
                   ),

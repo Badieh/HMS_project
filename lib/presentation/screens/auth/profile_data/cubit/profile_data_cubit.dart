@@ -41,13 +41,20 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
     emit(ChangeBloodTypeState());
   }
 
-  bool isMale = true;
-  void changeGender() {
-    isMale = !isMale;
+  bool isGender = false;
+  bool? isMale;
+  void changeGender(bool? value) {
+    isMale = value;
+
+    if (value != null) {
+      isGender = true;
+    } else {
+      isGender = false;
+    }
     emit(ChangeGenderState());
   }
 
-  MaritalStatus maritalStatus = MaritalStatus.single;
+  MaritalStatus maritalStatus = MaritalStatus.none;
 
   void changeMaritalStatus({required MaritalStatus status}) {
     maritalStatus = status;
@@ -68,7 +75,7 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
   double weight = 80;
   void changeWeight(double value) {
     weight = value;
-    //weightController.text = value.toStringAsFixed(1);
+    weightController.text = value.toStringAsFixed(1);
 
     emit(ChangeWeightState());
   }
@@ -80,7 +87,7 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
     emit(ChangeNationalityState());
   }
 
-  String? addressCountry;
+  String? addressCountry = 'Egypt';
 
   String? addressState;
 
@@ -100,9 +107,75 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
     addressState = value;
     emit(ChangeAddressStateState());
   }
+
+  String? birthCountry;
+
+  String? birthState;
+
+  String? birthCity;
+
+  void changeBirthCountry(String value) {
+    birthCountry = value;
+    emit(ChangeBirthCountryState());
+  }
+
+  void changeBirthCity(String value) {
+    birthCity = value;
+    emit(ChangeBirthCityState());
+  }
+
+  void changeBirthState(String value) {
+    birthState = value;
+    emit(ChangeBirthStateState());
+  }
+
+  String? jobCountry;
+
+  String? jobState;
+
+  String? jobCity;
+
+  void changeJobCountry(String value) {
+    birthCountry = value;
+    emit(ChangeJobCountryState());
+  }
+
+  void changeJobCity(String value) {
+    birthCity = value;
+    emit(ChangeJobCityState());
+  }
+
+  void changeJobState(String value) {
+    birthState = value;
+    emit(ChangeJobStateState());
+  }
+
+  final pageController = PageController(viewportFraction: 1, keepPage: true);
+  double currentPage = 0;
+  bool endReached = false;
+  void nextPage() {
+    pageController.nextPage(
+        duration: Duration(milliseconds: 600), curve: Curves.fastOutSlowIn);
+    currentPage = pageController.page! + 1;
+    if (currentPage == 3) {
+      endReached = true;
+    }
+    print(currentPage);
+    emit(ChangePage());
+  }
+
+  void previousPage() {
+    pageController.previousPage(
+        duration: Duration(milliseconds: 600), curve: Curves.fastOutSlowIn);
+    currentPage = pageController.page! + 1;
+
+    print(currentPage);
+    emit(ChangePage());
+  }
 }
 
 enum MaritalStatus {
+  none,
   single,
   married,
   divorced,

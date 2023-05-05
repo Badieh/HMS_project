@@ -39,7 +39,6 @@ class ProfileData3Screen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   // Marital status
                   Text(
                     AppStrings.maritalStatus,
@@ -54,20 +53,25 @@ class ProfileData3Screen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.single);
+                          if (cubit.maritalStatus != MaritalStatus.single) {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.single);
+                          } else {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.none);
+                          }
                         },
                         child: Container(
                           width: AppSizeWidth.s70,
                           height: AppSizeHeight.s25,
                           decoration: BoxDecoration(
                             borderRadius:
-                            BorderRadius.circular(AppSizeWidth.s10),
+                                BorderRadius.circular(AppSizeWidth.s10),
                             border: Border.all(
                                 color:
-                                cubit.maritalStatus == MaritalStatus.single
-                                    ? ColorManager.primary
-                                    : ColorManager.lightGrey),
+                                    cubit.maritalStatus == MaritalStatus.single
+                                        ? ColorManager.primary
+                                        : ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.single
                                 ? ColorManager.secondary
                                 : ColorManager.lightGrey,
@@ -85,20 +89,25 @@ class ProfileData3Screen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.married);
+                          if (cubit.maritalStatus != MaritalStatus.married) {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.married);
+                          } else {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.none);
+                          }
                         },
                         child: Container(
                           width: AppSizeWidth.s70,
                           height: AppSizeHeight.s25,
                           decoration: BoxDecoration(
                             borderRadius:
-                            BorderRadius.circular(AppSizeWidth.s10),
+                                BorderRadius.circular(AppSizeWidth.s10),
                             border: Border.all(
                                 color:
-                                cubit.maritalStatus == MaritalStatus.married
-                                    ? ColorManager.primary
-                                    : ColorManager.lightGrey),
+                                    cubit.maritalStatus == MaritalStatus.married
+                                        ? ColorManager.primary
+                                        : ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.married
                                 ? ColorManager.secondary
                                 : ColorManager.lightGrey,
@@ -116,18 +125,23 @@ class ProfileData3Screen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.divorced);
+                          if (cubit.maritalStatus != MaritalStatus.divorced) {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.divorced);
+                          } else {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.none);
+                          }
                         },
                         child: Container(
                           width: AppSizeWidth.s70,
                           height: AppSizeHeight.s25,
                           decoration: BoxDecoration(
                             borderRadius:
-                            BorderRadius.circular(AppSizeWidth.s10),
+                                BorderRadius.circular(AppSizeWidth.s10),
                             border: Border.all(
                                 color: cubit.maritalStatus ==
-                                    MaritalStatus.divorced
+                                        MaritalStatus.divorced
                                     ? ColorManager.primary
                                     : ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.divorced
@@ -147,20 +161,25 @@ class ProfileData3Screen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cubit.changeMaritalStatus(
-                              status: MaritalStatus.widow);
+                          if (cubit.maritalStatus != MaritalStatus.widow) {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.widow);
+                          } else {
+                            cubit.changeMaritalStatus(
+                                status: MaritalStatus.none);
+                          }
                         },
                         child: Container(
                           width: AppSizeWidth.s70,
                           height: AppSizeHeight.s25,
                           decoration: BoxDecoration(
                             borderRadius:
-                            BorderRadius.circular(AppSizeWidth.s10),
+                                BorderRadius.circular(AppSizeWidth.s10),
                             border: Border.all(
                                 color:
-                                cubit.maritalStatus == MaritalStatus.widow
-                                    ? ColorManager.primary
-                                    : ColorManager.lightGrey),
+                                    cubit.maritalStatus == MaritalStatus.widow
+                                        ? ColorManager.primary
+                                        : ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.widow
                                 ? ColorManager.secondary
                                 : ColorManager.lightGrey,
@@ -192,6 +211,7 @@ class ProfileData3Screen extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
                   CSCPicker(
+                    defaultCountry: CscCountry.Egypt,
                     currentCountry: cubit.nationalitty ?? 'Country',
                     //countryDropdownLabel: 'Nationality',
                     showStates: false,
@@ -218,6 +238,7 @@ class ProfileData3Screen extends StatelessWidget {
                   DefaultTextFormField(
                       controller: appartmentNumber,
                       keyboardType: TextInputType.number,
+                      TextInputAction: TextInputAction.next,
                       label: AppStrings.appartmentNumber,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -231,6 +252,7 @@ class ProfileData3Screen extends StatelessWidget {
                   DefaultTextFormField(
                       controller: buildingNumber,
                       keyboardType: TextInputType.number,
+                      TextInputAction: TextInputAction.next,
                       label: AppStrings.buildingNumber,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -244,6 +266,7 @@ class ProfileData3Screen extends StatelessWidget {
                   DefaultTextFormField(
                       controller: streetName,
                       keyboardType: TextInputType.name,
+                      TextInputAction: TextInputAction.next,
                       label: AppStrings.streetName,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -255,6 +278,7 @@ class ProfileData3Screen extends StatelessWidget {
 
                   // city  / state / country
                   CSCPicker(
+                    defaultCountry: CscCountry.Egypt,
                     currentCountry: cubit.addressCountry ?? 'Country',
                     currentCity: cubit.addressCity ?? 'City',
                     currentState: cubit.addressState ?? 'State',
@@ -268,6 +292,7 @@ class ProfileData3Screen extends StatelessWidget {
                       if (value != null) {
                         cubit.changeAdressState(value);
                       }
+                      print(value);
                     },
                     onCityChanged: (value) {
                       if (value != null) {

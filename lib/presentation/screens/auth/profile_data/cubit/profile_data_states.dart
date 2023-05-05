@@ -23,3 +23,17 @@ class ChangeAddressCountryState extends ProfileDataStates {}
 class ChangeAddressCityState extends ProfileDataStates {}
 
 class ChangeAddressStateState extends ProfileDataStates {}
+
+class ChangeBirthCountryState extends ProfileDataStates {}
+
+class ChangeBirthCityState extends ProfileDataStates {}
+
+class ChangeBirthStateState extends ProfileDataStates {}
+
+class ChangeJobCountryState extends ProfileDataStates {}
+
+class ChangeJobCityState extends ProfileDataStates {}
+
+class ChangeJobStateState extends ProfileDataStates {}
+
+class ChangePage extends ProfileDataStates {}

@@ -23,8 +23,8 @@ class ProfileData2Screen extends StatelessWidget {
       builder: (context, state) {
         ProfileDataCubit cubit = ProfileDataCubit().get(context);
         //bloodType = bloodTypes.first;
-        cubit.heightController.text = cubit.height.toStringAsFixed(1);
-        cubit.weightController.text = cubit.weight.toStringAsFixed(1);
+        // cubit.heightController.text = cubit.height.toStringAsFixed(1);
+        // cubit.weightController.text = cubit.weight.toStringAsFixed(1);
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
           padding: const EdgeInsets.all(AppPadding.p10),
@@ -46,6 +46,7 @@ class ProfileData2Screen extends StatelessWidget {
                   DefaultTextFormField(
                       controller: dateOfBirth,
                       keyboardType: TextInputType.none,
+                      TextInputAction: TextInputAction.next,
                       label: AppStrings.dateOfBirth,
                       onTap: () async {
                         DateTime? pickedDate = await showDatePicker(
@@ -91,7 +92,7 @@ class ProfileData2Screen extends StatelessWidget {
                   DropdownButtonFormField<String>(
                     hint: const Text('Religion'),
                     value: cubit.religion,
-                    icon: const Icon(Icons.bloodtype_outlined),
+
                     isExpanded: true,
                     elevation: 16,
                     //style: TextStyle(color: ColorManager.primary),
@@ -146,8 +147,14 @@ class ProfileData2Screen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          if (!cubit.isMale) {
-                            cubit.changeGender();
+                          // send true in case of male
+                          // send null in case of noothing choosen
+                          if (cubit.isGender == false) {
+                            cubit.changeGender(true);
+                          } else if (!cubit.isMale!) {
+                            cubit.changeGender(true);
+                          } else {
+                            cubit.changeGender(null);
                           }
                         },
                         child: Container(
@@ -157,10 +164,10 @@ class ProfileData2Screen extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s10),
                             border: Border.all(
-                                color: cubit.isMale
+                                color: (cubit.isGender && cubit.isMale!)
                                     ? ColorManager.primary
                                     : ColorManager.grey),
-                            color: cubit.isMale
+                            color: (cubit.isGender && cubit.isMale!)
                                 ? ColorManager.secondary
                                 : ColorManager.lightGrey,
                           ),
@@ -186,8 +193,15 @@ class ProfileData2Screen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if (cubit.isMale) {
-                            cubit.changeGender();
+                          // send false in case of male
+                          // send true in case of female
+                          // send null in case of noothing choosen
+                          if (cubit.isGender == false) {
+                            cubit.changeGender(false);
+                          } else if (cubit.isMale!) {
+                            cubit.changeGender(false);
+                          } else {
+                            cubit.changeGender(null);
                           }
                         },
                         child: Container(
@@ -197,12 +211,12 @@ class ProfileData2Screen extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s10),
                             border: Border.all(
-                                color: cubit.isMale
-                                    ? ColorManager.grey
-                                    : ColorManager.primary),
-                            color: cubit.isMale
-                                ? ColorManager.lightGrey
-                                : ColorManager.secondary,
+                                color: (cubit.isGender && !cubit.isMale!)
+                                    ? ColorManager.primary
+                                    : ColorManager.grey),
+                            color: (cubit.isGender && !cubit.isMale!)
+                                ? ColorManager.secondary
+                                : ColorManager.lightGrey,
                           ),
                           child: Stack(
                             children: [
@@ -249,9 +263,14 @@ class ProfileData2Screen extends StatelessWidget {
                             child: DefaultTextFormField(
                                 textAlign: TextAlign.center,
                                 controller: cubit.heightController,
+                                TextInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.number,
                                 label: '',
-                                validator: (value) {},
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return AppStrings.validator;
+                                  }
+                                },
                                 onFieldSubmitted: (value) {
                                   if (double.tryParse(
                                           cubit.heightController.text)! <
@@ -300,10 +319,15 @@ class ProfileData2Screen extends StatelessWidget {
                             height: AppSizeHeight.s35,
                             child: DefaultTextFormField(
                                 textAlign: TextAlign.center,
+                                TextInputAction: TextInputAction.next,
                                 controller: cubit.weightController,
                                 keyboardType: TextInputType.number,
                                 label: '',
-                                validator: (value) {},
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return AppStrings.validator;
+                                  }
+                                },
                                 onFieldSubmitted: (value) {
                                   if (double.tryParse(
                                           cubit.weightController.text)! <
