@@ -34,8 +34,8 @@ class AppointmentCard extends StatelessWidget {
             width: AppSizeWidth.s90,
             height: AppSizeHeight.s90,
             child: flutter_blurhash.BlurHash(
-              image: appointmentModel.doctorImageUrl,
-              hash: appointmentModel.doctorImageHash!,
+              image: appointmentModel.departmentImageUrl,
+              hash: appointmentModel.departmentImageHash!,
               duration: const Duration(milliseconds: 500),
               imageFit: BoxFit.cover,
             ),
@@ -50,82 +50,87 @@ class AppointmentCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          appointmentModel.doctorName,
-                          style: TextStyle(
-                            fontSize: FontSize.s14,
-                            fontWeight: FontWeight.bold,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        appointmentModel.doctorName,
+                        style: TextStyle(
+                          fontSize: FontSize.s14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(
+                        height: AppSizeHeight.s4,
+                      ),
+                      Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: AppPadding.p10),
+                          // width: AppSizeWidth.s98,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color:
+                                    getAppointmentStateColor(appointmentState)),
                           ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        SizedBox(
-                          height: AppSizeHeight.s4,
-                        ),
-                        Container(
-                            width: AppSizeWidth.s98,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(
-                                  color: getAppointmentStateColor(
-                                      appointmentState)),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  getAppointmentStateIcon(appointmentState),
-                                  size: AppSizeHeight.s16,
-                                  color: getAppointmentStateColor(
-                                      appointmentState),
-                                ),
-                                Text(
-                                  getAppointmentState(appointmentState),
-                                  style: TextStyle(
-                                      fontSize: FontSize.s14,
-                                      fontWeight: FontWeight.w600,
-                                      color: getAppointmentStateColor(
-                                          appointmentState)),
-                                ),
-                              ],
-                            )),
-                      ],
-                    ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                getAppointmentStateIcon(appointmentState),
+                                size: AppSizeHeight.s16,
+                                color:
+                                    getAppointmentStateColor(appointmentState),
+                              ),
+                              Text(
+                                " ${getAppointmentState(appointmentState)}",
+                                style: TextStyle(
+                                    fontSize: FontSize.s14,
+                                    fontWeight: FontWeight.w600,
+                                    color: getAppointmentStateColor(
+                                        appointmentState)),
+                              ),
+                            ],
+                          )),
+                    ],
                   ),
-                  CircleAvatar(
-                    radius: AppSizeHeight.s20,
-                    backgroundColor: ColorManager.secondary,
-                    child: IconButton(
-                      onPressed: () {},
-                      tooltip: AppStrings.notes,
-                      splashColor: ColorManager.darkGrey,
-                      splashRadius: AppSizeHeight.s25,
-                      icon: Icon(Icons.note_add_rounded),
-                      iconSize: AppSizeHeight.s25,
-                      color: ColorManager.primary,
-                    ),
-                  )
+                  const Spacer(),
+                  // CircleAvatar(
+                  //   radius: AppSizeHeight.s20,
+                  //   backgroundColor: ColorManager.secondary,
+                  //   child: IconButton(
+                  //     onPressed: () {},
+                  //     tooltip: AppStrings.notes,
+                  //     splashColor: ColorManager.darkGrey,
+                  //     splashRadius: AppSizeHeight.s25,
+                  //     icon: Icon(Icons.note_add_rounded),
+                  //     iconSize: AppSizeHeight.s25,
+                  //     color: ColorManager.primary,
+                  //   ),
+                  // )
                 ],
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      appointmentModel.department,
-                      style: TextStyle(
-                        fontSize: FontSize.s14,
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.28,
+                    child: Center(
+                      child: Text(
+                        appointmentModel.department,
+                        style: TextStyle(
+                          fontSize: FontSize.s14,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                    Text(
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.01,
+                    child: Text(
                       "|",
                       style: TextStyle(
                         fontSize: FontSize.s14,
@@ -133,16 +138,22 @@ class AppointmentCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Text(
-                      appointmentModel.hospitalName,
-                      style: TextStyle(
-                        fontSize: FontSize.s14,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: AppPadding.p8),
+                    width: MediaQuery.of(context).size.width * 0.28,
+                    child: Center(
+                      child: Text(
+                        appointmentModel.hospitalName,
+                        style: TextStyle(
+                          fontSize: FontSize.s14,
+                        ),
+                         maxLines: 1,
+                         overflow: TextOverflow.ellipsis,
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,

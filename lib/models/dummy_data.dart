@@ -69,7 +69,7 @@ AppointmentModel appointment1 = const AppointmentModel(
   id: '1',
   doctorName: 'Dr. John Smith',
   hospitalName: 'General Hospital',
-  doctorImageUrl:
+  departmentImageUrl:
       'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
   date: '2023-05-01',
   startTime: '14:00',

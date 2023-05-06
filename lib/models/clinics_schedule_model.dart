@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class ClinicsScheduleModel extends Equatable {
+
   final int day;
   final String startTime;
   final String endTime;

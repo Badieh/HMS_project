@@ -5,7 +5,7 @@ import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/auth/fill_profile.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/fill_profile.dart';
 import 'package:hospital/presentation/screens/auth/login.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -95,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => FillProfile()));
+                              builder: (context) => FillProfileScreen()));
                     },
                     child: const Text(AppStrings.signUp)),
                 SizedBox(

@@ -62,7 +62,9 @@ class BookAppointmentScreen extends StatelessWidget {
                     TextFormField(
                         keyboardType: TextInputType.text,
                         controller: problemController,
+                        autofocus: true,
                         decoration: InputDecoration(
+                            hintText: AppStrings.howHelp,
                             fillColor: ColorManager.lightPrimary),
                         validator: (value) {
                           if (value == null || value.isEmpty) {

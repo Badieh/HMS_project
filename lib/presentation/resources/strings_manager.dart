@@ -144,6 +144,7 @@ class AppStrings {
   static const writeProblem = 'Write Your Problem';
   static const appointmentCreated = 'Appointment Created';
   static const appointmentRescheduled = 'Appointment Rescheduled';
+  static const howHelp = 'How can we help you ?..';
 
   // cancel appointment
   static const cancelAppointment = 'Cancel Appointment';
