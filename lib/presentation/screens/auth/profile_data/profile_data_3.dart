@@ -245,7 +245,9 @@ class ProfileData3Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeAppartmentNumber(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // buildingNumber
@@ -259,7 +261,9 @@ class ProfileData3Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeBuildingNumber(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // streetName
@@ -273,7 +277,9 @@ class ProfileData3Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeStreetName(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // city  / state / country

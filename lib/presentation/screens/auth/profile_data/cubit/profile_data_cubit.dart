@@ -1,16 +1,57 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class ProfileDataCubit extends Cubit<ProfileDataStates> {
   ProfileDataCubit() : super(ProfileDtateInitialState());
 
   ProfileDataCubit get(context) => BlocProvider.of(context);
 
-  String? date;
+  String? firstName;
+  String? secondName;
+  String? thirdName;
+  String? lastName;
+  String? phone;
+  String? nationalId;
+  void changeFirstName(String value) {
+    secondName = value;
+    emit(ChangeFirstNameState());
+  }
+
+  void changeSecondName(String value) {
+    firstName = value;
+    emit(ChangeSecondNameState());
+  }
+
+  void changeThirdName(String value) {
+    thirdName = value;
+    emit(ChangeThirdNameState());
+  }
+
+  void changeLastName(String value) {
+    lastName = value;
+    emit(ChangeLastNameState());
+  }
+
+  void changeNationalId(String value) {
+    nationalId = value;
+    emit(ChangeNationalIdState());
+  }
+
+  void changePhone(String? value) {
+    phone = value;
+    emit(ChangePhoneState());
+  }
+
+  String? dateofBirth;
   void changeDate(String value) {
-    date = value;
+    dateofBirth = value;
     emit(ChangeDateState());
   }
 
@@ -87,11 +128,29 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
     emit(ChangeNationalityState());
   }
 
+  String? appartmentNumber;
+  String? buildingNumber;
+  String? streetName;
   String? addressCountry = 'Egypt';
 
   String? addressState;
 
   String? addressCity;
+
+  void changeAppartmentNumber(String value) {
+    appartmentNumber = value;
+    emit(ChangeAppartmentNumber());
+  }
+
+  void changeBuildingNumber(String value) {
+    buildingNumber = value;
+    emit(ChangeBuildingNumber());
+  }
+
+  void changeStreetName(String value) {
+    streetName = value;
+    emit(ChangeStreetName());
+  }
 
   void changeAddressCountry(String value) {
     addressCountry = value;
@@ -183,6 +242,104 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
 
     print(currentPage);
     emit(ChangePage());
+  }
+
+  Future<bool> submit({
+    required BuildContext context,
+  }) async {
+    if (firstName == null ||
+        secondName == null ||
+        thirdName == null ||
+        lastName == null ||
+        nationalId == null ||
+        phone == null ||
+        nationalitty == null ||
+        appartmentNumber == null ||
+        buildingNumber == null ||
+        streetName == null ||
+        addressCountry == null ||
+        dateofBirth == null) {
+      //quick alert Please Complete your Mandatory Data
+      QuickAlert.show(
+        backgroundColor: ColorManager.lightPrimary,
+        context: context,
+        barrierDismissible: false,
+        type: QuickAlertType.warning,
+        width: MediaQuery.of(context).size.width,
+        widget: const Text(AppStrings.mandatoryData),
+        animType: QuickAlertAnimType.slideInDown,
+      );
+      print(firstName);
+      print(secondName);
+      print(thirdName);
+      print('last name $lastName');
+      print(nationalId);
+      print(phone);
+      print(dateofBirth);
+      print('ap $appartmentNumber');
+      print(buildingNumber);
+      print(streetName);
+      print(addressCountry);
+      return false;
+    } else if (addressState == null) {
+      // quick Alert address state is incomplete
+      QuickAlert.show(
+        backgroundColor: ColorManager.lightPrimary,
+        context: context,
+        barrierDismissible: false,
+        type: QuickAlertType.warning,
+        width: MediaQuery.of(context).size.width,
+        widget: const Text(AppStrings.stateEmpty),
+        animType: QuickAlertAnimType.slideInDown,
+      );
+      return false;
+    } else if (!isGender) {
+      // quick Alert Gender is incomplete
+      QuickAlert.show(
+        backgroundColor: ColorManager.lightPrimary,
+        context: context,
+        barrierDismissible: false,
+        type: QuickAlertType.warning,
+        width: MediaQuery.of(context).size.width,
+        widget: const Text('Please Choose your Gender'),
+        animType: QuickAlertAnimType.slideInDown,
+      );
+      return false;
+    } else {
+      emit(SubmitLoadingState());
+
+      try {
+        //   var response =
+        //   await DioHelper.getData(url: AppConstants.articlesPath, query: {
+        //     'country': AppConstants.country,
+        //     'category': AppConstants.category,
+        //     'apiKey': AppConstants.articlesApiKey,
+        //   });
+        //   //print(response.data['articles'][1]);
+        //   topDoctorsDetails = List.from(response.data['topDoctorsDetails'])
+        //       .map((e) => TopDoctorModel.fromJson(e))
+        //       .toList();
+
+        // print(articles[1]);
+
+        emit(SubmitSuccefulState());
+        return true;
+      } catch (error) {
+        print(error.toString());
+        emit(SubmitErrorState(error.toString()));
+        QuickAlert.show(
+          backgroundColor: ColorManager.lightPrimary,
+          context: context,
+          barrierDismissible: false,
+          type: QuickAlertType.error,
+          width: MediaQuery.of(context).size.width,
+          title: 'Error',
+          text: 'Something went wrong , contact Adminstrator',
+          animType: QuickAlertAnimType.slideInDown,
+        );
+        return false;
+      }
+    }
   }
 }
 

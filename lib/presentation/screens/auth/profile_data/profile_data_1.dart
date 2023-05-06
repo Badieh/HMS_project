@@ -10,6 +10,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class ProfileData1Screen extends StatelessWidget {
   ProfileData1Screen({Key? key}) : super(key: key);
+
   static final formKey1 = GlobalKey<FormState>();
   static final TextEditingController firstName = TextEditingController();
 
@@ -21,17 +22,19 @@ class ProfileData1Screen extends StatelessWidget {
 
   static final TextEditingController nationalIdCard = TextEditingController();
 
-  static final TextEditingController phone = TextEditingController();
+  static final TextEditingController phoneController = TextEditingController();
 
   static PhoneNumber phoneNumber = PhoneNumber(
     isoCode: 'EG',
   );
-
+  static bool isPhoneValid = false;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileDataCubit, ProfileDataStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        ProfileDataCubit cubit = ProfileDataCubit().get(context);
+
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
           padding: const EdgeInsets.all(AppPadding.p10),
@@ -89,7 +92,9 @@ class ProfileData1Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeFirstName(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 40),
 
                   // secondName
@@ -103,7 +108,9 @@ class ProfileData1Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeSecondName(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 40),
 
                   // thirdName
@@ -117,7 +124,9 @@ class ProfileData1Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeThirdName(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 40),
 
                   // lastName
@@ -131,7 +140,9 @@ class ProfileData1Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeLastName(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 40),
 
                   // nationalIdCard
@@ -145,16 +156,26 @@ class ProfileData1Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeNationalId(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 40),
 
                   // phone
                   InternationalPhoneNumberInput(
+                    validator: (value) {
+                      if (phoneController.text.isEmpty ||
+                          isPhoneValid == false) {
+                        return AppStrings.phoneValidator;
+                      }
+                    },
                     spaceBetweenSelectorAndTextField: AppSizeWidth.s0,
                     onInputChanged: (PhoneNumber number) {
                       print(number.phoneNumber);
                     },
                     onInputValidated: (bool value) {
+                      isPhoneValid = value;
+
                       print(value);
                     },
                     selectorConfig: SelectorConfig(
@@ -164,12 +185,23 @@ class ProfileData1Screen extends StatelessWidget {
                     autoValidateMode: AutovalidateMode.disabled,
                     selectorTextStyle: const TextStyle(color: Colors.black),
                     initialValue: phoneNumber,
-                    textFieldController: phone,
+                    textFieldController: phoneController,
                     formatInput: true,
                     keyboardType: const TextInputType.numberWithOptions(
                         signed: true, decimal: true),
+                    // onFieldSubmitted: (value) {
+                    //   phoneNumber = PhoneNumber(phoneNumber: value);
+                    //   phone.text = value;
+                    // },
                     onFieldSubmitted: (value) {
-                      phoneNumber = PhoneNumber(phoneNumber: value);
+                      if (isPhoneValid) {
+                        cubit.changePhone(phoneController.text);
+                        print('phone is  ${phoneController.text}');
+                        print(cubit.phone);
+                      } else {
+                        print('phone deleted');
+                        cubit.changePhone(value);
+                      }
                     },
                     onSaved: (PhoneNumber number) {
                       phoneNumber = number;

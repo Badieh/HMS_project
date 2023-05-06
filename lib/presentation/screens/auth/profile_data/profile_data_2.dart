@@ -66,6 +66,8 @@ class ProfileData2Screen extends StatelessWidget {
 
                           dateOfBirth.text =
                               formattedDate; //set output date to TextField value.
+                          cubit.changeDate(formattedDate);
+
                         } else {}
                       },
                       validator: (value) {
@@ -74,7 +76,6 @@ class ProfileData2Screen extends StatelessWidget {
                         }
                       },
                       onFieldSubmitted: (value) {
-                        cubit.changeDate(value);
                       }),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
@@ -268,7 +269,7 @@ class ProfileData2Screen extends StatelessWidget {
                                 label: '',
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return AppStrings.validator;
+                                    return '';
                                   }
                                 },
                                 onFieldSubmitted: (value) {
@@ -325,7 +326,7 @@ class ProfileData2Screen extends StatelessWidget {
                                 label: '',
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return AppStrings.validator;
+                                    return '';
                                   }
                                 },
                                 onFieldSubmitted: (value) {
