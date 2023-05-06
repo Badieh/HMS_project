@@ -7,8 +7,8 @@ import 'package:hospital/models/treatment_model.dart';
 
 CaseDiagnose caseDiagnose1 = const CaseDiagnose(
     departmentName: 'Neurology',
-    doctorName: 'Bisho',
-    location: 'location',
+    doctorName: 'Bishoy Shehata Morris',
+    location: '8 fouad street Alexandria',
     complaint: 'complaint',
     diagnosis: 'diagnosis',
     clinicalExamination: 'clinicalExamination',
@@ -16,11 +16,11 @@ CaseDiagnose caseDiagnose1 = const CaseDiagnose(
     notes: 'notes',
     departmentIconUrl:
         'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
-    hospitalName: 'El72ona bgd Hospital',
-    patientName: 'Michael');
+    hospitalName: 'Mabaret El asafra ',
+    patientName: 'Michael Emad Ramzy');
 
 Treatment treatment1 = const Treatment(
-  doctor: 'Bisho',
+  doctor: 'Bishoy Shehata Morris',
   treatmentName: 'Congestal',
   instructions: 'Take 1 bill after each meal for 30 days',
   dose: '3',

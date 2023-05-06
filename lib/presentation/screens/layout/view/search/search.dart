@@ -60,6 +60,7 @@ class Search_Screen extends StatelessWidget {
 
 Widget doctorList() {
   return ListView.separated(
+    shrinkWrap:true ,
       physics: BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return Container(
@@ -73,8 +74,8 @@ Widget doctorList() {
             children: [
               Container(
                 clipBehavior: Clip.antiAlias,
-                height: MediaQuery.of(context).size.height * 0.18,
-                width: MediaQuery.of(context).size.height * 0.17,
+                width: AppSizeWidth.s90,
+                height: AppSizeHeight.s90,
                 child: Image.network(ImageAssets.doctorPlaceHolder),
                 decoration: BoxDecoration(
                     color: ColorManager.grey2,

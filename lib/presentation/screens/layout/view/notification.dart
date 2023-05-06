@@ -25,33 +25,36 @@ class NotificationScreen extends StatelessWidget {
         ),
         body: ListView.separated(
             itemBuilder: (context, index) {
-              return Card(
-                child: ListTile(
-                  iconColor: ColorManager.primary,
-                  leading: Icon(Icons.notification_important),
-                  title: Text('Notification Title'),
-                  subtitle: ReadMoreText(
-                    AppStrings.loremIpson,
-                    textAlign: TextAlign.justify,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: AppStrings.viewmore,
-                    trimExpandedText: AppStrings.viewless,
-                    trimLines: 2,
-                    lessStyle: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: ColorManager.primary),
-                    moreStyle: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: ColorManager.primary),
-                    style: TextStyle(
-                        fontSize: FontSize.s15,
-                        height: AppSizeHeight.s1_5,
-                        color: ColorManager.darkGrey),
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p6),
+                child: Card(
+                  child: ListTile(
+                    iconColor: ColorManager.primary,
+                    leading: Icon(Icons.notification_important),
+                    title: Text('Notification Title'),
+                    subtitle: ReadMoreText(
+                      AppStrings.loremIpson,
+                      textAlign: TextAlign.justify,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: AppStrings.viewmore,
+                      trimExpandedText: AppStrings.viewless,
+                      trimLines: 2,
+                      lessStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: ColorManager.primary),
+                      moreStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: ColorManager.primary),
+                      style: TextStyle(
+                          fontSize: FontSize.s15,
+                          height: AppSizeHeight.s1_5,
+                          color: ColorManager.darkGrey),
+                    ),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      // Action to perform when the user taps the card
+                    },
                   ),
-                  trailing: Icon(Icons.arrow_forward),
-                  onTap: () {
-                    // Action to perform when the user taps the card
-                  },
                 ),
               );
             },

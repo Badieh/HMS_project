@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
@@ -7,6 +8,8 @@ import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/presentation/screens/layout/view/search/search.dart';
 import 'package:hospital/presentation/screens/top_doctors/top_doctors.dart';
+
+import '../../routes/routes.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -33,8 +36,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Search_Screen()));
+                 Get.toNamed(Routes.searchScreen);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +61,6 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Icon(Icons.filter_alt_outlined, color: ColorManager.primary)
                   ],
                 ),
               ),
@@ -90,35 +91,40 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: AppSizeWidth.s150,
-                      child: Padding(
-                        padding: EdgeInsets.all(AppPadding.p8),
-                        child: Text(
-                          AppStrings.posterText,
-                          style: TextStyle(
-                              fontSize: FontSize.s20,
-                              fontFamily: "Fjalla_One",
-                              color: ColorManager.primary),
+                Container(
+                  height: MediaQuery.of(context).size.width * .4,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: AppSizeWidth.s150,
+                        child: Padding(
+                          padding: EdgeInsets.all(AppPadding.p8),
+                          child: Text(
+                            AppStrings.posterText,
+                            style: TextStyle(
+                                fontSize: FontSize.s20,
+                                fontFamily: "Fjalla_One",
+                                color: ColorManager.primary),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: AppSizeWidth.s150,
-                      child: Padding(
-                        padding: EdgeInsets.all(AppPadding.p8),
-                        child: Text(
-                          AppStrings.posterdetails,
-                          style: TextStyle(
-                              fontSize: FontSize.s13,
-                              fontFamily: "Fjalla_One",
-                              color: ColorManager.darkGrey),
+                      SizedBox(
+                        width: AppSizeWidth.s150,
+                        child: Padding(
+                          padding: EdgeInsets.all(AppPadding.p8),
+                          child: Text(
+                          overflow: TextOverflow.ellipsis,
+                            maxLines: 3
+                            ,AppStrings.posterdetails,
+                            style: TextStyle(
+                                fontSize: FontSize.s13,
+                                fontFamily: "Fjalla_One",
+                                color: ColorManager.darkGrey),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -154,10 +154,8 @@ class TopDoctorsScreen extends StatelessWidget {
                                 children: [
                                   Container(
                                     clipBehavior: Clip.antiAlias,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.17,
-                                    width: MediaQuery.of(context).size.height *
-                                        0.17,
+                                    width: AppSizeWidth.s90,
+                                    height: AppSizeHeight.s90,
                                     child: Image.network(doctor.imageUrl),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(

@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:hospital/presentation/screens/layout/view/notification.dart';
+import 'package:hospital/presentation/screens/layout/view/search/search.dart';
 import 'package:hospital/presentation/screens/splash/splash.dart';
 
 class AppRoutes {
@@ -20,6 +21,11 @@ class AppRoutes {
         name: Routes.notificationScreen,
         page: () => NotificationScreen()
     ),
+    GetPage(
+        name: Routes.searchScreen,
+        page: () => Search_Screen()
+    ),
+
   ];
 }
 
@@ -27,8 +33,9 @@ class Routes {
 
   static const splashScreen = '/splashScreen';
   static const welcomeView = '/welcomeView';
-  static const notificationScreen = '/notificationScreen';
   static const homeLayoutScreen = '/homeLayoutScreen';
+  static const searchScreen = '/searchScreen';
+  static const notificationScreen = '/notificationScreen';
 
 
 

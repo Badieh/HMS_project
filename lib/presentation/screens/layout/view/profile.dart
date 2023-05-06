@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+
+import '../../routes/routes.dart';
 
 class Profile_Screen extends StatelessWidget {
   const Profile_Screen({Key? key}) : super(key: key);
@@ -84,34 +87,39 @@ class Profile_Screen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      child: Icon(
-                        Icons.notifications_active_outlined,
-                        size: AppSizeHeight.s25,
-                        color: ColorManager.primary,
+            InkWell(
+              onTap: (){
+               Get.toNamed(Routes.notificationScreen);
+              }
+              ,child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        child: Icon(
+                          Icons.notifications_active_outlined,
+                          size: AppSizeHeight.s25,
+                          color: ColorManager.primary,
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50)),
                       ),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
-                    ),
-                    Text(
-                      "Notification",
-                      style: TextStyle(fontSize: FontSize.s18),
-                    ),
-                  ],
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: AppSizeWidth.s18,
-                )
-              ],
+                      Text(
+                        "Notification",
+                        style: TextStyle(fontSize: FontSize.s18),
+                      ),
+                    ],
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    size: AppSizeWidth.s18,
+                  )
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,

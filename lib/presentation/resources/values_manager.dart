@@ -57,6 +57,7 @@ class AppSizeWidth {
   static double s100 = 100.0.w;
   static double s150 = 150.0.w;
   static double s200 = 200.0.w;
+  static double s285 = 285.0.w;
   static double sMaxInfinite = double.maxFinite;
 }
 
