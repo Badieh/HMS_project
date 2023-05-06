@@ -153,13 +153,25 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
   final pageController = PageController(viewportFraction: 1, keepPage: true);
   double currentPage = 0;
   bool endReached = false;
+  void changePage(int index) {
+    currentPage = index.toDouble();
+    if (currentPage == 3) {
+      endReached = true;
+    } else {
+      endReached = false;
+    }
+    print(currentPage);
+
+    emit(ChangePage());
+  }
+
   void nextPage() {
     pageController.nextPage(
         duration: Duration(milliseconds: 600), curve: Curves.fastOutSlowIn);
-    currentPage = pageController.page! + 1;
-    if (currentPage == 3) {
-      endReached = true;
-    }
+    // currentPage = pageController.page! + 1;
+    // if (currentPage == 3) {
+    //   endReached = true;
+    // }
     print(currentPage);
     emit(ChangePage());
   }
@@ -167,7 +179,7 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
   void previousPage() {
     pageController.previousPage(
         duration: Duration(milliseconds: 600), curve: Curves.fastOutSlowIn);
-    currentPage = pageController.page! + 1;
+    // currentPage = pageController.page! + 1;
 
     print(currentPage);
     emit(ChangePage());

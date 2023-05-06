@@ -23,7 +23,7 @@ class ProfileData1Screen extends StatelessWidget {
 
   static final TextEditingController phone = TextEditingController();
 
-  final PhoneNumber number = PhoneNumber(
+  static PhoneNumber phoneNumber = PhoneNumber(
     isoCode: 'EG',
   );
 
@@ -163,13 +163,17 @@ class ProfileData1Screen extends StatelessWidget {
                     ignoreBlank: false,
                     autoValidateMode: AutovalidateMode.disabled,
                     selectorTextStyle: const TextStyle(color: Colors.black),
-                    initialValue: number,
+                    initialValue: phoneNumber,
                     textFieldController: phone,
                     formatInput: true,
                     keyboardType: const TextInputType.numberWithOptions(
                         signed: true, decimal: true),
+                    onFieldSubmitted: (value) {
+                      phoneNumber = PhoneNumber(phoneNumber: value);
+                    },
                     onSaved: (PhoneNumber number) {
-                      phone.text = number.toString();
+                      phoneNumber = number;
+                      // phone.text = number.toString();
                       print('On Saved: $number');
                     },
                   ),

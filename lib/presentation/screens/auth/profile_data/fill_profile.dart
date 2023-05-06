@@ -11,6 +11,8 @@ import 'package:hospital/presentation/screens/auth/profile_data/profile_data_3.d
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_4.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../layout/layout.dart';
+
 class FillProfileScreen extends StatelessWidget {
   FillProfileScreen({Key? key}) : super(key: key);
 
@@ -37,7 +39,9 @@ class FillProfileScreen extends StatelessWidget {
                     controller: cubit.pageController,
                     physics: const BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    onPageChanged: (index) {},
+                    onPageChanged: (index) {
+                      cubit.changePage(index);
+                    },
                     children: [
                       ProfileData1Screen(),
                       ProfileData2Screen(),
@@ -50,21 +54,22 @@ class FillProfileScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            fixedSize:
-                                Size(AppSizeWidth.s80, AppSizeHeight.s40)),
-                        onPressed: () {
-                          cubit.previousPage();
-                        },
-                        child: const Text(
-                          AppStrings.back,
-                          //style: Theme.of(context).textTheme.bodySmall,
-                        )),
+                    // ElevatedButton(
+                    //     style: ElevatedButton.styleFrom(
+                    //         fixedSize:
+                    //             Size(AppSizeWidth.s80, AppSizeHeight.s20)),
+                    //     onPressed: () {
+                    //       cubit.previousPage();
+                    //     },
+                    //     child: const Text(
+                    //       AppStrings.back,
+                    //       //style: Theme.of(context).textTheme.bodySmall,
+                    //     )),
                     SmoothPageIndicator(
                       controller: cubit.pageController,
                       count: 4,
-                      effect: ScrollingDotsEffect(
+                      effect: ExpandingDotsEffect(
+                        //type: SwapType.yRotation,
                         dotHeight: AppSizeHeight.s16,
                         dotWidth: AppSizeWidth.s16,
                         activeDotColor: ColorManager.primary,
@@ -74,7 +79,7 @@ class FillProfileScreen extends StatelessWidget {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             fixedSize:
-                                Size(AppSizeWidth.s80, AppSizeHeight.s40)),
+                                Size(AppSizeWidth.s80, AppSizeHeight.s20)),
                         onPressed: () {
                           if (cubit.pageController.page == 0) {
                             if (ProfileData1Screen.formKey1.currentState!
@@ -94,7 +99,11 @@ class FillProfileScreen extends StatelessWidget {
                           } else if (cubit.pageController.page == 3) {
                             if (ProfileData4Screen.formKey4.currentState!
                                 .validate()) {
-                              cubit.nextPage();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeLayoutScreen(),
+                                  ));
                             }
                           }
                           // if (cubit.pageController.page == 0) {
