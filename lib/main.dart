@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getLightThemeData(),
-            initialRoute: AppRoutes.splashScreen,
+            initialRoute: AppRoutes.fillProfileScreen,
             getPages: AppRoutes.routes,
 
           );

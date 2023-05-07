@@ -15,22 +15,18 @@ class AppRoutes {
     GetPage(name: Routes.homeLayoutScreen, page: () => HomeLayoutScreen()),
     GetPage(name: Routes.notificationScreen, page: () => NotificationScreen()),
     GetPage(name: Routes.searchScreen, page: () => Search_Screen()),
-    GetPage(
-        name: Routes.favouriteScreen,
-        page: () => FavouriteScreen()
-    ),
+    GetPage(name: Routes.favouriteScreen, page: () => FavouriteScreen()),
+    GetPage(name: Routes.fillProfile, page: () => FillProfileScreen()),
   ];
 }
 
 class Routes {
-
   static const splashScreen = '/splashScreen';
   static const welcomeView = '/welcomeView';
   static const homeLayoutScreen = '/homeLayoutScreen';
   static const searchScreen = '/searchScreen';
   static const notificationScreen = '/notificationScreen';
   static const favouriteScreen = '/favouriteScreen';
-
 
   static const fillProfile = '/fillProfile';
 }

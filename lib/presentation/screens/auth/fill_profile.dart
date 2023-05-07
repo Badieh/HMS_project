@@ -99,7 +99,10 @@ class FillProfileScreen extends StatelessWidget {
                           } else if (cubit.pageController.page == 3) {
                             if (ProfileData4Screen.formKey4.currentState!
                                 .validate()) {
+                              print('test');
                               if (await cubit.submit(context: context)) {
+                                print(
+                                    'bos aho ${await cubit.submit(context: context)}');
                                 Get.toNamed(Routes.homeLayoutScreen);
                               }
                             }
