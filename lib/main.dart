@@ -64,7 +64,9 @@ class MyApp extends StatelessWidget {
         // TopDoctors
         BlocProvider(create: (context) => TopDoctorsCubit()..getTopDoctors()),
         // Profile Data Cubit
-        BlocProvider(create: (context) => ProfileDataCubit(),),
+        BlocProvider(
+          create: (context) => ProfileDataCubit(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
@@ -74,9 +76,11 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
-            theme: getThemeData(),
-            initialRoute: AppRoutes.fillProfileScreen,
+            theme: ThemeData.dark(useMaterial3: true,),
+            initialRoute: AppRoutes.homeLayoutScreen,
             getPages: AppRoutes.routes,
+            themeMode: ThemeMode.dark,
+
           );
         },
       ),

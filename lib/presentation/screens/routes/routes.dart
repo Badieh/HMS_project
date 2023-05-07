@@ -8,6 +8,7 @@ import 'package:hospital/presentation/screens/splash/splash.dart';
 class AppRoutes {
   static const splashScreen = Routes.splashScreen;
   static const fillProfileScreen = Routes.fillProfile;
+  static const homeLayoutScreen = Routes.homeLayoutScreen;
   static final routes = [
     GetPage(name: Routes.splashScreen, page: () => SplashScreen()),
     GetPage(name: Routes.homeLayoutScreen, page: () => HomeLayoutScreen()),

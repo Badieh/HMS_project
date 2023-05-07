@@ -9,7 +9,7 @@ class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
   static TopDoctorsDetailsCubit get(context) => BlocProvider.of(context);
 
   List<ClinicsScheduleModel> clinicsScheduleList = [];
-  Future<void> getTopDoctorsDetails({required String docId}) async {
+  Future<void> getTopDoctorsDetails({required int docId}) async {
     if (clinicsScheduleList.isEmpty) {
       emit(GetTopDoctorsDetailsLoadingState());
 

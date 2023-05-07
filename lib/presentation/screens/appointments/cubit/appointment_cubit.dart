@@ -138,7 +138,7 @@ class AppointmentsCubit extends Cubit<AppointmentStates> {
     }
   }
 
-  Future<void> cancelAppointment({required String appointmentId}) async {
+  Future<void> cancelAppointment({required int appointmentId}) async {
     emit(CancelAppointmentLoadingState());
 
     try {

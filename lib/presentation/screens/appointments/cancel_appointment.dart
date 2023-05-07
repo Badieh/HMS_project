@@ -11,7 +11,7 @@ import 'package:quickalert/quickalert.dart';
 class CancelAppointmentScreen extends StatelessWidget {
   CancelAppointmentScreen({Key? key, required this.appointmentId})
       : super(key: key);
-  final String appointmentId;
+  final int appointmentId;
   final TextEditingController problemController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 

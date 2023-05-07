@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class AppointmentModel extends Equatable {
-  final String id;
+  final int id;
   final String hospitalName;
   final String doctorName;
   final String department;
