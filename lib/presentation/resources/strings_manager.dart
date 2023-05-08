@@ -13,6 +13,7 @@ class AppStrings {
   // Register & Login
   static const createNewAccount = 'Create new account';
   static const validator = 'Field Required';
+  static const phoneValidator = 'Phone number is Invalid';
   static const email = 'Email';
   static const password = 'Password';
   static const rememberMe = 'Remember Me';
@@ -51,6 +52,8 @@ class AppStrings {
   static const weight = 'Weight';
   static const kg = 'Kg';
 
+  static const mandatoryData = 'Please Complete your Mandatory Data';
+  static const stateEmpty = 'Address state is incomplete';
   static const address = 'Address';
   static const country = 'Country';
   static const state = 'State';
@@ -145,6 +148,7 @@ class AppStrings {
   static const writeProblem = 'Write Your Problem';
   static const appointmentCreated = 'Appointment Created';
   static const appointmentRescheduled = 'Appointment Rescheduled';
+  static const howHelp = 'How can we help you ?..';
 
   // cancel appointment
   static const cancelAppointment = 'Cancel Appointment';

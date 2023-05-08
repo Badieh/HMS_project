@@ -16,7 +16,7 @@ CaseDiagnose caseDiagnose1 = const CaseDiagnose(
     notes: 'notes',
     departmentIconUrl:
         'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
-    hospitalName: 'Mabaret El asafra ',
+    hospitalName: hospitalName,
     patientName: 'Michael Emad Ramzy');
 
 Treatment treatment1 = const Treatment(
@@ -36,13 +36,13 @@ FileModel file1 = const FileModel(
         'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf');
 
 DoctorModel Doctor1 = const DoctorModel(
-  id: "1",
+  id: 1,
   name: 'Dr. John Smith',
   specialty: 'Cardiologist',
   imageUrl:
       'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
   nationalIDCard: '555-1234',
-  hospitalName: 'HMS Application',
+  hospitalName: hospitalName,
   degree: 'D',
   position: 'Master',
   noOfPatient: "5500",
@@ -51,13 +51,13 @@ DoctorModel Doctor1 = const DoctorModel(
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
 );
 DoctorModel Doctor2 = const DoctorModel(
-  id: '2',
+  id: 2,
   name: 'Dr. Badeih Nader',
   specialty: 'Cardiologist',
   imageUrl:
       'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
   nationalIDCard: '555-1234',
-  hospitalName: 'HMS Application',
+  hospitalName: hospitalName,
   degree: 'D',
   position: 'Master',
   noOfPatient: "5500",
@@ -66,10 +66,10 @@ DoctorModel Doctor2 = const DoctorModel(
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
 );
 AppointmentModel appointment1 = const AppointmentModel(
-  id: '1',
+  id: 1,
   doctorName: 'Dr. John Smith',
-  hospitalName: 'General Hospital',
-  doctorImageUrl:
+  hospitalName: hospitalName,
+  departmentImageUrl:
       'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
   date: '2023-05-01',
   startTime: '14:00',
@@ -78,6 +78,7 @@ AppointmentModel appointment1 = const AppointmentModel(
 );
 
 ClinicsScheduleModel clinicsScheduleModel_1 = const ClinicsScheduleModel(
+  clinicScheduleId: 1,
   day: 1,
   startTime: "9:00 AM",
   endTime: "5:00 PM",
@@ -86,6 +87,7 @@ ClinicsScheduleModel clinicsScheduleModel_1 = const ClinicsScheduleModel(
 );
 ClinicsScheduleModel clinicsScheduleModel_2 = const ClinicsScheduleModel(
   day: 2,
+  clinicScheduleId: 2,
   startTime: "5:00 pM",
   endTime: "10:00 PM",
   isAvailable: true,
@@ -93,6 +95,7 @@ ClinicsScheduleModel clinicsScheduleModel_2 = const ClinicsScheduleModel(
 );
 ClinicsScheduleModel clinicsScheduleModel_3 = const ClinicsScheduleModel(
   day: 3,
+  clinicScheduleId: 3,
   startTime: "5:00 pM",
   endTime: "10:00 PM",
   isAvailable: true,
@@ -101,8 +104,11 @@ ClinicsScheduleModel clinicsScheduleModel_3 = const ClinicsScheduleModel(
 
 ClinicsScheduleModel clinicsScheduleModel_4 = const ClinicsScheduleModel(
   day: 1,
+  clinicScheduleId: 4,
   startTime: "12:00 AM",
   endTime: "3:00 PM",
   isAvailable: true,
   notes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 );
+
+const String hospitalName = 'General Hospital';

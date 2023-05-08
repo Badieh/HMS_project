@@ -11,7 +11,7 @@ import 'package:quickalert/quickalert.dart';
 class CancelAppointmentScreen extends StatelessWidget {
   CancelAppointmentScreen({Key? key, required this.appointmentId})
       : super(key: key);
-  final String appointmentId;
+  final int appointmentId;
   final TextEditingController problemController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
@@ -24,169 +24,171 @@ class CancelAppointmentScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text(AppStrings.cancelAppointment),
+            title: const Text(AppStrings.cancelAppointment),
           ),
-          body: Form(
-            key: formKey,
-            child: Column(children: [
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason1,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
-                ),
+          body: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              child: Column(children: [
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason1,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason1,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason2,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  value: AppStrings.reason1,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason2,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason2,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason3,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  value: AppStrings.reason2,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason3,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason3,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason4,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  value: AppStrings.reason3,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason4,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason4,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason5,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  value: AppStrings.reason4,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason5,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason5,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason6,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  value: AppStrings.reason5,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason6,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason6,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason7,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  value: AppStrings.reason6,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason7,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason7,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              RadioListTile<String>(
-                //dense: true,
-                //tileColor: ColorManager.lightPrimary,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(
-                  AppStrings.reason8,
-                  style: TextStyle(
-                      fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  value: AppStrings.reason7,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
+                RadioListTile<String>(
+                  //dense: true,
+                  //tileColor: ColorManager.lightPrimary,
+                  visualDensity: VisualDensity.adaptivePlatformDensity,
+                  title: Text(
+                    AppStrings.reason8,
+                    style: TextStyle(
+                        fontSize: FontSize.s16, fontWeight: FontWeight.w500),
+                  ),
 
-                value: AppStrings.reason8,
-                groupValue: cubit.selectedReason,
-                onChanged: (String? value) {
-                  cubit.changeSelectedReason(index: value!);
-                },
-                activeColor: ColorManager.primary,
-              ),
-              if (cubit.selectedReason == AppStrings.reason8)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.p16, vertical: AppPadding.p8),
-                  child: TextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: problemController,
-                      decoration: InputDecoration(
-                          fillColor: ColorManager.lightPrimary,
-                          hintText: 'Let us know if there is a problem..'),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return AppStrings.validator;
-                        }
-                      },
-                      onTapOutside: (value) {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                      },
-                      maxLines: 5,
-                      minLines: 2),
+                  value: AppStrings.reason8,
+                  groupValue: cubit.selectedReason,
+                  onChanged: (String? value) {
+                    cubit.changeSelectedReason(index: value!);
+                  },
+                  activeColor: ColorManager.primary,
                 ),
-            ]),
+                if (cubit.selectedReason == AppStrings.reason8)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.p16, vertical: AppPadding.p8),
+                    child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: problemController,
+                        decoration: InputDecoration(
+                            fillColor: ColorManager.lightPrimary,
+                            hintText: 'Let us know if there is a problem..'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return AppStrings.validator;
+                          }
+                        },
+                        onTapOutside: (value) {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        maxLines: 5,
+                        minLines: 2),
+                  ),
+              ]),
+            ),
           ),
           bottomNavigationBar: BottomAppBar(
             elevation: AppSizeHeight.s16,

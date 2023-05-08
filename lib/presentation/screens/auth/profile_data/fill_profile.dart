@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -10,8 +9,9 @@ import 'package:hospital/presentation/screens/auth/profile_data/profile_data_1.d
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_2.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_3.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_4.dart';
-import 'package:hospital/presentation/screens/routes/routes.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../layout/layout.dart';
 
 class FillProfileScreen extends StatelessWidget {
   FillProfileScreen({Key? key}) : super(key: key);
@@ -80,7 +80,7 @@ class FillProfileScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             fixedSize:
                                 Size(AppSizeWidth.s80, AppSizeHeight.s20)),
-                        onPressed: () async {
+                        onPressed: () {
                           if (cubit.pageController.page == 0) {
                             if (ProfileData1Screen.formKey1.currentState!
                                 .validate()) {
@@ -99,9 +99,11 @@ class FillProfileScreen extends StatelessWidget {
                           } else if (cubit.pageController.page == 3) {
                             if (ProfileData4Screen.formKey4.currentState!
                                 .validate()) {
-                              if (await cubit.submit(context: context)) {
-                                Get.toNamed(Routes.homeLayoutScreen);
-                              }
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeLayoutScreen(),
+                                  ));
                             }
                           }
                           // if (cubit.pageController.page == 0) {
