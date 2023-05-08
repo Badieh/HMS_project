@@ -76,10 +76,9 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
-            theme: ThemeData.dark(useMaterial3: true,),
-            initialRoute: AppRoutes.homeLayoutScreen,
+            theme: getLightThemeData(),
+            initialRoute: AppRoutes.splashScreen,
             getPages: AppRoutes.routes,
-            themeMode: ThemeMode.dark,
 
           );
         },

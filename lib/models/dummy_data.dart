@@ -40,7 +40,7 @@ DoctorModel Doctor1 = const DoctorModel(
   name: 'Dr. John Smith',
   specialty: 'Cardiologist',
   imageUrl:
-      'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
+      'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
   nationalIDCard: '555-1234',
   hospitalName: hospitalName,
   degree: 'D',
@@ -55,7 +55,7 @@ DoctorModel Doctor2 = const DoctorModel(
   name: 'Dr. Badeih Nader',
   specialty: 'Cardiologist',
   imageUrl:
-      'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
+      'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
   nationalIDCard: '555-1234',
   hospitalName: hospitalName,
   degree: 'D',
@@ -70,7 +70,7 @@ AppointmentModel appointment1 = const AppointmentModel(
   doctorName: 'Dr. John Smith',
   hospitalName: hospitalName,
   departmentImageUrl:
-      'https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png',
+      'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
   date: '2023-05-01',
   startTime: '14:00',
   endTime: '15:00',

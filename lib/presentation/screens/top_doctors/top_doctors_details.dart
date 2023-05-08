@@ -61,13 +61,7 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
                     size: AppSizeHeight.s28,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.more_horiz_outlined,
-                    size: AppSizeHeight.s28,
-                  ),
-                ),
+
               ],
             ),
             body: Container(
@@ -98,7 +92,7 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
                             height: size.height * 0.17,
                             width: size.height * 0.17,
                             child: Image.network(
-                                "https://com-neurology-a2.sites.medinfo.ufl.edu/files/2011/08/gator-color-brain.png"),
+                                doctorModel.imageUrl),
                             decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(AppSizeHeight.s25)),
@@ -330,10 +324,11 @@ class TopDoctorsDetailsScreen extends StatelessWidget {
 
                  MyTable(
                  data: [
-                  ['Row 1, Column 1', 'Row 1, Column 2', 'Row 1, Column 3'],
-                  ['Row 2, Column 1', 'Row 2, Column 2', 'Row 2, Column 3'],
-                  ['Row 3, Column 1', 'Row 3, Column 2', 'Row 3, Column 3'],
-                ],
+                  ['From', 'To','Date', '# patients'],
+                  ['1 PM', '1.30 PM' ,'5/4/2023','1'],
+                   ['2 PM', '3.30 PM','5/4/2023','3'],
+
+                 ],
               ),
                     SizedBox(
                       height: size.height * .015,
