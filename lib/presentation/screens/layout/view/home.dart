@@ -442,7 +442,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    AppStrings.topDoctors,
+                    AppStrings.Doctors,
                     style: TextStyle(
                         fontSize: FontSize.s17, fontWeight: FontWeight.bold),
                   ),

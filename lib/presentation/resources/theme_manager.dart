@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/style_manager.dart';
 
@@ -12,7 +13,7 @@ ThemeData getThemeData() {
     // main colors
     // colorScheme:
     //     ColorScheme.fromSwatch(primarySwatch: ColorManager.materialPrimary),
-    primaryColor: ColorManager.primary,
+    primaryColor:Get.isDarkMode? Colors.red :ColorManager.primary,
     disabledColor: ColorManager.grey,
     splashColor: ColorManager.secondary,
     scaffoldBackgroundColor: ColorManager.white,

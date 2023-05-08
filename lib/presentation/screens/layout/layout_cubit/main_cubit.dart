@@ -82,7 +82,9 @@ class MainCubit extends Cubit<MainStates> {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(Routes.favouriteScreen);
+          },
           icon: Icon(
             Icons.favorite_border,
             size: AppSizeHeight.s28,
@@ -118,15 +120,7 @@ class MainCubit extends Cubit<MainStates> {
           ),
         ],
       ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.more_horiz,
-            size: AppSizeHeight.s28,
-          ),
-        ),
-      ],
+
     ),
   ];
 

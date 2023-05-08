@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
+import 'package:hospital/presentation/screens/layout/view/favourite/favourite_screen.dart';
 import 'package:hospital/presentation/screens/layout/view/notification.dart';
 import 'package:hospital/presentation/screens/layout/view/search/search.dart';
 import 'package:hospital/presentation/screens/splash/splash.dart';
@@ -25,7 +26,10 @@ class AppRoutes {
         name: Routes.searchScreen,
         page: () => Search_Screen()
     ),
-
+    GetPage(
+        name: Routes.favouriteScreen,
+        page: () => FavouriteScreen()
+    ),
   ];
 }
 
@@ -36,6 +40,7 @@ class Routes {
   static const homeLayoutScreen = '/homeLayoutScreen';
   static const searchScreen = '/searchScreen';
   static const notificationScreen = '/notificationScreen';
+  static const favouriteScreen = '/favouriteScreen';
 
 
 

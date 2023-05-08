@@ -73,7 +73,7 @@ class Profile_Screen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50)),
                     ),
                     Text(
-                      "Profile",
+                      "Edit Profile",
                       style: TextStyle(fontSize: FontSize.s18),
                     ),
                   ],
@@ -121,102 +121,39 @@ class Profile_Screen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .02,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      child: Icon(
-                        Icons.payment,
-                        size: AppSizeHeight.s25,
-                        color: ColorManager.primary,
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
-                    ),
-                    Text(
-                      "Payment",
-                      style: TextStyle(fontSize: FontSize.s18),
-                    ),
-                  ],
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: AppSizeWidth.s18,
-                )
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .02,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      child: Icon(
-                        Icons.security,
-                        size: AppSizeHeight.s25,
-                        color: ColorManager.primary,
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
-                    ),
-                    Text(
-                      "Security",
-                      style: TextStyle(fontSize: FontSize.s18),
-                    ),
-                  ],
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: AppSizeWidth.s18,
-                )
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .02,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      child: Icon(
-                        Icons.language,
-                        size: AppSizeHeight.s25,
-                        color: ColorManager.primary,
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
-                    ),
-                    Text(
-                      "Language",
-                      style: TextStyle(fontSize: FontSize.s18),
-                    ),
-                  ],
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: AppSizeWidth.s18,
-                )
-              ],
-            ),
+
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * .02,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Row(
+            //       children: [
+            //         Container(
+            //           height: 40,
+            //           width: 40,
+            //           child: Icon(
+            //             Icons.language,
+            //             size: AppSizeHeight.s25,
+            //             color: ColorManager.primary,
+            //           ),
+            //           clipBehavior: Clip.antiAlias,
+            //           decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(50)),
+            //         ),
+            //         Text(
+            //           "Language",
+            //           style: TextStyle(fontSize: FontSize.s18),
+            //         ),
+            //       ],
+            //     ),
+            //     Icon(
+            //       Icons.arrow_forward_ios_outlined,
+            //       size: AppSizeWidth.s18,
+            //     )
+            //   ],
+            // ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
             ),
@@ -243,10 +180,9 @@ class Profile_Screen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: AppSizeWidth.s18,
-                )
+               Switch(value: false, onChanged: (value){},  activeColor: ColorManager.primary,
+                 inactiveThumbColor: ColorManager.grey,
+                 inactiveTrackColor: ColorManager.lightGrey,),
               ],
             ),
             SizedBox(
@@ -273,10 +209,7 @@ class Profile_Screen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: AppSizeWidth.s18,
-                )
+
               ],
             ),
             SizedBox(

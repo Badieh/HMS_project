@@ -2,9 +2,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/screens/routes/routes.dart';
 import 'package:hospital/presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
 import 'package:hospital/presentation/screens/top_doctors/cubit/top_doctors_stats.dart';
 import 'package:hospital/presentation/screens/top_doctors/top_doctors_details.dart';
@@ -28,23 +31,15 @@ class TopDoctorsScreen extends StatelessWidget {
           backgroundColor: ColorManager.lightGrey,
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
-            },
+              Get.offAllNamed(Routes.homeLayoutScreen);
+              },
             icon: const Icon(Icons.arrow_back_outlined),
             color: ColorManager.black,
           ),
-          title: Text("Top Doctors",
+          title: Text(AppStrings.Doctors,
               style: TextStyle(
                   fontWeight: FontWeight.bold, fontSize: FontSize.s20)),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.search, color: ColorManager.black)),
-            IconButton(
-                onPressed: () {},
-                icon:
-                    Icon(Icons.more_horiz_outlined, color: ColorManager.black)),
-          ],
+          
         ),
         body: Padding(
             padding: EdgeInsets.all(AppSizeHeight.s12),
