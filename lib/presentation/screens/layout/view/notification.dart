@@ -63,6 +63,8 @@ class NotificationScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * .02,
               );
             },
-            itemCount: 3));
+            itemCount: 3)
+
+    );
   }
 }

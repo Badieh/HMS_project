@@ -103,7 +103,7 @@ class FillProfileScreen extends StatelessWidget {
                               if (await cubit.submit(context: context)) {
                                 print(
                                     'bos aho ${await cubit.submit(context: context)}');
-                                Get.toNamed(Routes.homeLayoutScreen);
+                                Get.offAllNamed(Routes.homeLayoutScreen);
                               }
                             }
                           }

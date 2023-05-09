@@ -1,5 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
 
 class AppConstants {
   static const splashDelay = 3;
@@ -19,6 +24,153 @@ class AppConstants {
 
   static const mainBaseUrl = '';
   static const mainApiKey = '';
+
+  static const List<String> specializations = [
+    'Anesthetics',
+    'Cardiology',
+    'Ear, nose and throat (ENT)',
+    'Gastroenterology',
+    'General Surgery',
+    'Gynecology',
+    'Hematology',
+    'Neonatal Unit',
+    'Neurology',
+    'Nutrition and dietetics',
+    'Obstetrics and gynecology units',
+    'Oncology',
+    'Ophthalmology',
+    'Orthopedics',
+    'Physiotherapy',
+    'Renal Unit',
+    'Sexual Health',
+    'Urology',
+    'Dentistry',
+    'neorocycatric',
+  ];
+  static List<Widget> specializationIcons = [
+    FaIcon(
+      FontAwesomeIcons.syringe,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Anesthetics
+    FaIcon(
+      FontAwesomeIcons.heartPulse,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Cardiology
+    FaIcon(
+      FontAwesomeIcons.earListen,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Ear, nose and throat (ENT)
+    FaIcon(
+      FontAwesomeIcons.nutritionix,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Gastroenterology
+    Icon(
+      Icons.healing,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // General Surgery
+    Icon(
+      Icons.woman,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Gynecology
+    FaIcon(
+      FontAwesomeIcons.droplet,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Hematology
+    FaIcon(
+      FontAwesomeIcons.baby,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Neonatal Unit
+    FaIcon(
+      FontAwesomeIcons.brain,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Neurology
+    FaIcon(
+      FontAwesomeIcons.appleWhole,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Nutrition and dietetics
+    Icon(
+      Icons.pregnant_woman,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Obstetrics and gynecology units
+    FaIcon(
+      FontAwesomeIcons.disease,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Oncology
+    FaIcon(
+      FontAwesomeIcons.eye,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Ophthalmology
+    FaIcon(
+      FontAwesomeIcons.xRay,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Orthopedics
+    FaIcon(
+      FontAwesomeIcons.personWalking,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Physiotherapy
+    Icon(
+      Icons.medication_liquid,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Renal Unit
+    FaIcon(
+      FontAwesomeIcons.heart,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Sexual Health
+    FaIcon(
+      FontAwesomeIcons.toilet,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Urology
+    FaIcon(
+      FontAwesomeIcons.tooth,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // Dentistry
+    FaIcon(
+      FontAwesomeIcons.brain,
+      color: ColorManager.primary,
+      size: FontSize.s30,
+    ), // neurology
+  ];
+
+  static const List<String> degrees = [
+    'Bachelor',
+    'Postgraduate Diploma',
+    'Egyptian Associate degree',
+    'Fellowship',
+    'Royal Membership',
+    'Master',
+    'PhD',
+  ];
+
+  static const List<String> positions = [
+    'Internship Doctor',
+    'Resident Doctor',
+    'Specialist Doctor',
+    'Senior Specialist',
+    'Consultant Doctor',
+    'Senior Consultant',
+    'Chief Resident',
+    'Head of Department',
+    'Medical Director',
+  ];
 }
 
 class MyBlocObserver extends BlocObserver {

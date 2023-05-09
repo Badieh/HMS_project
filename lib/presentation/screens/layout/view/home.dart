@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                 Get.toNamed(Routes.searchScreen);
+                  Get.toNamed(Routes.searchScreen);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,9 +113,9 @@ class HomeScreen extends StatelessWidget {
                         child: Padding(
                           padding: EdgeInsets.all(AppPadding.p8),
                           child: Text(
-                          overflow: TextOverflow.ellipsis,
-                            maxLines: 3
-                            ,AppStrings.posterdetails,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            AppStrings.posterdetails,
                             style: TextStyle(
                                 fontSize: FontSize.s13,
                                 fontFamily: "Fjalla_One",
@@ -141,13 +141,18 @@ class HomeScreen extends StatelessWidget {
                           fontSize: FontSize.s17, fontWeight: FontWeight.bold),
                     )),
                 Expanded(
-                    child: Text(
-                  AppStrings.seeAll,
-                  style: TextStyle(
-                      fontSize: FontSize.s13,
-                      fontWeight: FontWeight.bold,
-                      color: ColorManager.primary),
-                  textAlign: TextAlign.end,
+                    child: InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.specializations);
+                  },
+                  child: Text(
+                    AppStrings.seeAll,
+                    style: TextStyle(
+                        fontSize: FontSize.s13,
+                        fontWeight: FontWeight.bold,
+                        color: ColorManager.primary),
+                    textAlign: TextAlign.end,
+                  ),
                 )),
               ],
             ),
