@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
+import 'package:hospital/network/bindings/dark_mode_binding.dart';
 import 'package:hospital/presentation/screens/auth/fill_profile.dart';
 import 'package:hospital/presentation/screens/auth/login.dart';
 import 'package:hospital/presentation/screens/auth/register.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
 import 'package:hospital/presentation/screens/layout/view/favourite/favourite_screen.dart';
 import 'package:hospital/presentation/screens/layout/view/notification.dart';
+import 'package:hospital/presentation/screens/layout/view/profile.dart';
 import 'package:hospital/presentation/screens/layout/view/search/search.dart';
 import 'package:hospital/presentation/screens/specializations/specializations.dart';
 import 'package:hospital/presentation/screens/splash/onBoarding.dart';
@@ -17,7 +19,7 @@ class AppRoutes {
 
   static final routes = [
     GetPage(name: Routes.splashScreen, page: () => SplashScreen()),
-    GetPage(name: Routes.homeLayoutScreen, page: () => HomeLayoutScreen()),
+    GetPage(name: Routes.homeLayoutScreen, page: () => HomeLayoutScreen(),binding:DarkModeBinding()),
     GetPage(name: Routes.notificationScreen, page: () => NotificationScreen()),
     GetPage(name: Routes.searchScreen, page: () => Search_Screen()),
     GetPage(name: Routes.favouriteScreen, page: () => FavouriteScreen()),
@@ -27,8 +29,11 @@ class AppRoutes {
     GetPage(name: Routes.specializations, page: () => SpecializationsScreen()),
     GetPage(name: Routes.doctors, page: () => TopDoctorsScreen()),
     GetPage(name: Routes.onBoarding, page: () => OnBoardingScreen()),
+    GetPage(name: Routes.profile, page: () => Profile_Screen(),binding:DarkModeBinding() ),
+
   ];
 }
+
 
 class Routes {
   static const splashScreen = '/splashScreen';
@@ -43,5 +48,6 @@ class Routes {
   static const specializations = '/specializations';
   static const doctors = '/doctors';
   static const onBoarding = '/onBoading';
+  static const profile = '/profile';
 
 }

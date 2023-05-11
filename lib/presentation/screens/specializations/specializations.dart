@@ -1,3 +1,4 @@
+import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,15 +24,29 @@ class SpecializationsScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: const Text('Specializations'),
-              actionsIconTheme: IconThemeData(size: 30),
+              actionsIconTheme: IconThemeData(size: FontSize.s30),
               actions: [
-                IconButton(
-                    onPressed: () {
-                      cubit.changeViewType();
-                    },
-                    icon: cubit.viewType
-                        ? Icon(Icons.grid_view)
-                        : Icon(Icons.list))
+
+                     AnimatedIconButton(
+                     duration: const Duration(milliseconds: 300),
+                      onPressed: () {
+                        cubit.changeViewType();
+                      },
+                      icons:  <AnimatedIconItem>[
+                      AnimatedIconItem(
+                      icon: Icon(Icons.grid_view,color: ColorManager.primary,),
+                      ),
+                      AnimatedIconItem(
+                      icon: Icon(Icons.list,color :ColorManager.primary),
+                      ),
+                      ],
+
+
+                  )
+
+                    // cubit.viewType
+                    //     ? Icon(Icons.grid_view)
+                    //     : Icon(Icons.list))
               ],
             ),
             body: cubit.viewType ? showList() : showGrid(),

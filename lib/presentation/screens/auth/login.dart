@@ -143,6 +143,7 @@ class LoginScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeWidth.s30),
+
                               border: Border.all(color: ColorManager.grey2)),
                           child: Transform.scale(
                             scale: 0.9,

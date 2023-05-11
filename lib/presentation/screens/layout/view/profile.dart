@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hospital/network/controller/dark_mode_controller.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -7,9 +8,14 @@ import 'package:hospital/presentation/resources/values_manager.dart';
 import '../../routes/routes.dart';
 
 class Profile_Screen extends StatelessWidget {
-  const Profile_Screen({Key? key}) : super(key: key);
+   Profile_Screen({Key? key}) : super(key: key);
+    final darkModeControler = Get.find<DarkModeController>();
+   final darkMode = 'Dark Mode'.obs;
+   final lightMode = "Light Mode".obs;
 
-  @override
+
+
+   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15),
@@ -157,7 +163,7 @@ class Profile_Screen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
             ),
-            Row(
+            Obx(() => Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
@@ -166,7 +172,7 @@ class Profile_Screen extends StatelessWidget {
                       height: 40,
                       width: 40,
                       child: Icon(
-                        Icons.dark_mode_outlined,
+                        Get.isDarkMode? Icons.dark_mode_outlined: Icons.sunny,
                         size: AppSizeHeight.s25,
                         color: ColorManager.primary,
                       ),
@@ -175,16 +181,27 @@ class Profile_Screen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(50)),
                     ),
                     Text(
-                      "Dark Mode",
+                       Get.isDarkMode? darkMode.value : lightMode.value,
                       style: TextStyle(fontSize: FontSize.s18),
                     ),
                   ],
                 ),
-               Switch(value: false, onChanged: (value){},  activeColor: ColorManager.primary,
-                 inactiveThumbColor: ColorManager.grey,
-                 inactiveTrackColor: ColorManager.lightGrey,),
+                 Switch(
+
+                    value: darkModeControler.switchValue.value,
+                    onChanged: (value) {
+                      darkModeControler.changeTheme();
+                      darkModeControler.switchValue.value = value;
+                    },
+                      activeColor: ColorManager.primary,
+                      inactiveThumbColor: ColorManager.grey,
+                      inactiveTrackColor: ColorManager.lightGrey
+                  ),
+
+
+
               ],
-            ),
+            ),),
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
             ),
@@ -205,7 +222,7 @@ class Profile_Screen extends StatelessWidget {
                     Text(
                       "Logout",
                       style: TextStyle(
-                          fontSize: FontSize.s18, color: ColorManager.error),
+                          fontSize: FontSize.s18,),
                     ),
                   ],
                 ),

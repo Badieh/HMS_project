@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/style_manager.dart';
 
@@ -36,6 +37,15 @@ ThemeData getLightThemeData() {
       color: ColorManager.white,
       shadowColor: ColorManager.grey,
       elevation: AppSizeWidth.s4,
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: ColorManager.white, // Set the background color
+      selectedItemColor: ColorManager.primary, // Set the selected item color
+      unselectedItemColor: Colors.grey,
+      selectedIconTheme: IconThemeData(color:ColorManager.primary ),
+      unselectedIconTheme: IconThemeData(color:ColorManager.darkGrey ),
+      selectedLabelStyle: TextStyle(color: ColorManager.primary),
+      unselectedLabelStyle: TextStyle(color: ColorManager.grey),
     ),
 
     //button theme
@@ -141,32 +151,34 @@ ThemeData getDarkThemeData() {
   return ThemeData(
     useMaterial3: true,
     // main colors
-    // colorScheme: ColorScheme.dark(
-    //     onPrimary: ColorManager.white,
-    //     primary: ColorManager.primary,
-    //     secondary: ColorManager.secondary),
+    colorScheme: ColorScheme.dark(
+        onPrimary: ColorManager.black,
+        primary: ColorManager.primary,
+        secondary: ColorManager.secondary),
 
     // primarySwatch:ColorManager.myCustomColor,
     primaryColor: ColorManager.primary,
     disabledColor: ColorManager.grey,
     splashColor: ColorManager.secondary,
-    scaffoldBackgroundColor: ColorManager.white,
+    scaffoldBackgroundColor: ColorManager.black,
     // appbar theme
     appBarTheme: AppBarTheme(
       //centerTitle: true,
-      color: ColorManager.white,
+      color: ColorManager.black,
       shadowColor: ColorManager.secondary,
       elevation: AppSizeWidth.s0,
       titleTextStyle:
-          getSemiBoldStyle(fontSize: FontSize.s25, color: ColorManager.black),
+          getSemiBoldStyle(fontSize: FontSize.s25, color: ColorManager.white),
       systemOverlayStyle: SystemUiOverlayStyle.light,
     ),
 
     // cardView theme
     cardTheme: CardTheme(
-      color: ColorManager.white,
-      shadowColor: ColorManager.grey,
+      color: ColorManager.lightBlack,
+      shadowColor: ColorManager.lightPrimary,
       elevation: AppSizeWidth.s4,
+      surfaceTintColor: ColorManager.lightBlack
+
     ),
 
     //button theme
@@ -183,7 +195,7 @@ ThemeData getDarkThemeData() {
             fixedSize: Size(AppSizeWidth.sMaxInfinite, AppSizeHeight.s45),
             foregroundColor: ColorManager.white,
             backgroundColor: ColorManager.primary,
-            shadowColor: ColorManager.grey,
+            shadowColor: ColorManager.secondary,
             padding: const EdgeInsets.symmetric(
                 vertical: AppPadding.p6, horizontal: AppPadding.p8),
             shape: RoundedRectangleBorder(
@@ -194,16 +206,27 @@ ThemeData getDarkThemeData() {
 
     //   =======================     text theme     =============================
     textTheme: TextTheme(
+
         displayLarge:
-            getBoldStyle(color: ColorManager.black, fontSize: FontSize.s35),
+            getBoldStyle(color: ColorManager.white, fontSize: FontSize.s35),
         headlineLarge:
-            getSemiBoldStyle(color: ColorManager.black, fontSize: FontSize.s30),
+            getSemiBoldStyle(color: ColorManager.white, fontSize: FontSize.s30),
         titleLarge:
-            getMediumStyle(color: ColorManager.black, fontSize: FontSize.s25),
+            getMediumStyle(color: ColorManager.white, fontSize: FontSize.s25),
         bodyLarge:
-            getRegularStyle(color: ColorManager.black, fontSize: FontSize.s18),
+            getRegularStyle(color: ColorManager.white, fontSize: FontSize.s18),
         bodySmall:
             getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s16)),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(color:ColorManager.primary ),
+      unselectedIconTheme: IconThemeData(color:ColorManager.grey ),
+      backgroundColor: Colors.black, // Set the background color
+      selectedItemColor: ColorManager.primary, // Set the selected item color
+      unselectedItemColor: Colors.grey,
+      selectedLabelStyle: TextStyle(color: ColorManager.primary),
+      unselectedLabelStyle: TextStyle(color: ColorManager.grey),
+    ),
 
     // ========================      input decoration theme     ==============================
     inputDecorationTheme: InputDecorationTheme(
@@ -266,5 +289,5 @@ ThemeData getDarkThemeData() {
       backgroundColor: ColorManager.white,
     ),
   );
-  ;
+
 }

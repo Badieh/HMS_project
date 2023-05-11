@@ -263,6 +263,7 @@ class ProfileData2Screen extends StatelessWidget {
                             height: AppSizeHeight.s35,
                             child: DefaultTextFormField(
                                 textAlign: TextAlign.center,
+
                                 controller: cubit.heightController,
                                 TextInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.number,

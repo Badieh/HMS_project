@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
@@ -23,15 +24,16 @@ class FavouriteScreen extends StatelessWidget {
     }, builder: (context, state) {
       var doctorsCubit = TopDoctorsCubit.get(context);
       return Scaffold(
+        backgroundColor: context.theme.colorScheme.background,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: context.theme.colorScheme.background,
           title: Text(AppStrings.favouriteScreentitle,style: TextStyle(fontSize: FontSize.s20),),
         ),
         body: Container(
           decoration: BoxDecoration(
             boxShadow:  [
               BoxShadow(
-                color: ColorManager.lightPrimary,
+                color: Get.isDarkMode ? ColorManager.black: ColorManager.lightPrimary,
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: Offset(0, 3), // changes position of shadow
@@ -58,7 +60,7 @@ class FavouriteScreen extends StatelessWidget {
                         left: AppSizeHeight.s8, right: AppSizeHeight.s8),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: ColorManager.white,
+                        color:Get.isDarkMode? ColorManager.lightBlack: ColorManager.white,
                         borderRadius: BorderRadius.circular(AppSizeHeight.s25)),
                     child: Row(
                       children: [

@@ -26,15 +26,15 @@ class TopDoctorsScreen extends StatelessWidget {
     }, builder: (context, state) {
       var doctorsCubit = TopDoctorsCubit.get(context);
       return Scaffold(
-        backgroundColor: ColorManager.lightGrey,
+        backgroundColor: context.theme.colorScheme.background,
         appBar: AppBar(
-          backgroundColor: ColorManager.lightGrey,
+          backgroundColor: Get.isDarkMode ? ColorManager.black:ColorManager.lightGrey,
           leading: IconButton(
             onPressed: () {
               Get.offAllNamed(Routes.homeLayoutScreen);
               },
             icon: const Icon(Icons.arrow_back_outlined),
-            color: ColorManager.black,
+            color: Get.isDarkMode ? ColorManager.white:ColorManager.black,
           ),
           title: Text(AppStrings.Doctors,
               style: TextStyle(
@@ -74,7 +74,7 @@ class TopDoctorsScreen extends StatelessWidget {
                               fixedSize: Size(90.w, 30.h),
                               side: BorderSide(
                                   color: ColorManager.primary, width: 2),
-                              backgroundColor: Colors.white,
+                              backgroundColor: Get.isDarkMode ? ColorManager.black: ColorManager.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                               elevation: 2),
@@ -92,7 +92,7 @@ class TopDoctorsScreen extends StatelessWidget {
                               fixedSize: Size(80.w, 30.h),
                               side: BorderSide(
                                   color: ColorManager.primary, width: 2),
-                              backgroundColor: Colors.white,
+                              backgroundColor: Get.isDarkMode ? ColorManager.black: ColorManager.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                               elevation: 2),
@@ -110,7 +110,7 @@ class TopDoctorsScreen extends StatelessWidget {
                               fixedSize: Size(90.w, 30.h),
                               side: BorderSide(
                                   color: ColorManager.primary, width: 2),
-                              backgroundColor: Colors.white,
+                              backgroundColor: Get.isDarkMode ? ColorManager.black: ColorManager.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
                               elevation: 2),
@@ -142,7 +142,7 @@ class TopDoctorsScreen extends StatelessWidget {
                                   right: AppSizeHeight.s8),
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  color: ColorManager.white,
+                                  color:Get.isDarkMode ?  ColorManager.lightBlack:ColorManager.white,
                                   borderRadius:
                                       BorderRadius.circular(AppSizeHeight.s25)),
                               child: Row(
@@ -259,6 +259,7 @@ class TopDoctorsScreen extends StatelessWidget {
                                                 "|",
                                                 style: TextStyle(
                                                   fontSize: FontSize.s14,
+
                                                 ),
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,

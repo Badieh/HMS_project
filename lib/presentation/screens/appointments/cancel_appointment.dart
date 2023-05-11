@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
@@ -174,7 +175,7 @@ class CancelAppointmentScreen extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         controller: problemController,
                         decoration: InputDecoration(
-                            fillColor: ColorManager.lightPrimary,
+                            fillColor: Get.isDarkMode ? ColorManager.lightBlack :ColorManager.lightPrimary,
                             hintText: 'Let us know if there is a problem..'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -204,8 +205,9 @@ class CancelAppointmentScreen extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.pop(context);
                     return QuickAlert.show(
+                      confirmBtnColor: ColorManager.green,
                       context: context,
-                      backgroundColor: ColorManager.lightPrimary,
+                      backgroundColor:Get.isDarkMode? ColorManager.darkGrey: ColorManager.lightPrimary,
                       barrierDismissible: false,
                       type: QuickAlertType.success,
                       width: MediaQuery.of(context).size.width,

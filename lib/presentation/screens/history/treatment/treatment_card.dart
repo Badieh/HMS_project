@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:hospital/models/treatment_model.dart';
 import 'package:hospital/presentation/components/text_utils.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
@@ -20,7 +21,7 @@ class TreatmentCard extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppPadding.p18),
-        color: ColorManager.veryLightGrey,
+        color: Get.isDarkMode ? ColorManager.lightBlack :ColorManager.veryLightGrey,
         image: DecorationImage(
           image: NetworkImage(treatment.departmentIconUrl),
           opacity: 0.07,
@@ -37,7 +38,7 @@ class TreatmentCard extends StatelessWidget {
               isUndeLine: false,
               fontWeight: FontWeight.bold,
               text: AppStrings.treatment_,
-              color: ColorManager.black,
+              color: Get.isDarkMode ? ColorManager.white :ColorManager.black,
               fontsize: FontSize.s22),
           Row(
             children: [
@@ -56,7 +57,7 @@ class TreatmentCard extends StatelessWidget {
                     isUndeLine: false,
                     fontWeight: FontWeight.bold,
                     text: treatment.treatmentName,
-                    color: Colors.grey.shade700,
+                    color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                     fontsize: FontSize.s15),
               ),
             ],
@@ -70,7 +71,7 @@ class TreatmentCard extends StatelessWidget {
               isUndeLine: false,
               fontWeight: FontWeight.bold,
               text: AppStrings.doctorName_,
-              color: ColorManager.black,
+              color: Get.isDarkMode ? ColorManager.white :ColorManager.black,
               fontsize: FontSize.s22),
           Row(
             children: [
@@ -89,7 +90,7 @@ class TreatmentCard extends StatelessWidget {
                     isUndeLine: false,
                     fontWeight: FontWeight.bold,
                     text: 'Dr.${treatment.doctor}',
-                    color: Colors.grey.shade700,
+                    color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                     fontsize: FontSize.s15),
               ),
             ],
@@ -104,7 +105,7 @@ class TreatmentCard extends StatelessWidget {
               isUndeLine: false,
               fontWeight: FontWeight.bold,
               text: AppStrings.startDate_,
-              color: ColorManager.black,
+              color: Get.isDarkMode ? ColorManager.white :ColorManager.black,
               fontsize: FontSize.s22),
           Row(
             children: [
@@ -123,7 +124,7 @@ class TreatmentCard extends StatelessWidget {
                     isUndeLine: false,
                     fontWeight: FontWeight.bold,
                     text: treatment.startDate,
-                    color: Colors.grey.shade700,
+                    color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                     fontsize: FontSize.s15),
               ),
             ],
@@ -137,7 +138,7 @@ class TreatmentCard extends StatelessWidget {
               isUndeLine: false,
               fontWeight: FontWeight.bold,
               text: AppStrings.endDate_,
-              color: ColorManager.black,
+              color: Get.isDarkMode ? ColorManager.white :ColorManager.black,
               fontsize: FontSize.s22),
           Row(
             children: [
@@ -156,7 +157,7 @@ class TreatmentCard extends StatelessWidget {
                     isUndeLine: false,
                     fontWeight: FontWeight.bold,
                     text: treatment.endDate,
-                    color: Colors.grey.shade700,
+                    color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                     fontsize: FontSize.s15),
               ),
             ],
@@ -170,7 +171,7 @@ class TreatmentCard extends StatelessWidget {
               isUndeLine: false,
               fontWeight: FontWeight.bold,
               text: AppStrings.dose_,
-              color: ColorManager.black,
+              color: Get.isDarkMode ? ColorManager.white :ColorManager.black,
               fontsize: FontSize.s22),
           Row(
             children: [
@@ -189,7 +190,7 @@ class TreatmentCard extends StatelessWidget {
                     isUndeLine: false,
                     fontWeight: FontWeight.bold,
                     text: treatment.dose,
-                    color: Colors.grey.shade700,
+                    color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                     fontsize: FontSize.s15),
               ),
             ],
@@ -205,7 +206,7 @@ class TreatmentCard extends StatelessWidget {
               isUndeLine: false,
               fontWeight: FontWeight.bold,
               text: AppStrings.instructions_,
-              color: ColorManager.black,
+              color: Get.isDarkMode ? ColorManager.white :ColorManager.black,
               fontsize: FontSize.s22),
           Row(
             children: [
@@ -224,7 +225,7 @@ class TreatmentCard extends StatelessWidget {
                     isUndeLine: false,
                     fontWeight: FontWeight.bold,
                     text: treatment.instructions,
-                    color: Colors.grey.shade700,
+                    color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                     fontsize: FontSize.s15),
               ),
             ],

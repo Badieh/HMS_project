@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/models/clinics_schedule_model.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
@@ -27,6 +28,7 @@ class BookAppointmentScreen extends StatelessWidget {
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -65,7 +67,13 @@ class BookAppointmentScreen extends StatelessWidget {
                         autofocus: true,
                         decoration: InputDecoration(
                             hintText: AppStrings.howHelp,
-                            fillColor: ColorManager.lightPrimary),
+                            hintStyle: TextStyle(
+                                color: Get.isDarkMode
+                                    ? ColorManager.grey
+                                    : ColorManager.grey),
+                            fillColor: Get.isDarkMode
+                                ? ColorManager.lightBlack
+                                : ColorManager.lightPrimary),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return AppStrings.validator;
@@ -90,7 +98,9 @@ class BookAppointmentScreen extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppSizeHeight.s16),
-                        color: ColorManager.lightPrimary,
+                        color: Get.isDarkMode
+                            ? ColorManager.lightBlack
+                            : ColorManager.lightPrimary,
                       ),
                       child: CalendarDatePicker(
                         initialDate: DateTime.now(),
@@ -124,7 +134,9 @@ class BookAppointmentScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius:
                                     BorderRadius.circular(AppSizeHeight.s16),
-                                color: ColorManager.lightPrimary,
+                                color: Get.isDarkMode
+                                    ? ColorManager.lightBlack
+                                    : ColorManager.lightPrimary,
                               ),
                               child: ListView.builder(
                                 shrinkWrap: true,
@@ -192,8 +204,9 @@ class BookAppointmentScreen extends StatelessWidget {
                           builder: (context) => HomeLayoutScreen(),
                         ));
                     QuickAlert.show(
+                      confirmBtnColor: ColorManager.green,
                       context: context,
-                      backgroundColor: ColorManager.lightPrimary,
+                      backgroundColor: Get.isDarkMode ? ColorManager.white: ColorManager.lightPrimary,
                       barrierDismissible: false,
                       type: QuickAlertType.success,
                       width: MediaQuery.of(context).size.width,

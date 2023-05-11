@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -29,7 +30,7 @@ class CaseDiagnoseCard extends StatelessWidget {
         // height: AppSizeHeight.s100,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppPadding.p18),
-          color: ColorManager.veryLightGrey,
+          color: Get.isDarkMode ? ColorManager.lightBlack :ColorManager.veryLightGrey,
         ),
         child: Row(
           children: [

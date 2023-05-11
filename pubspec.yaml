@@ -69,6 +69,8 @@ dependencies:
   dynamic_color: ^1.6.3
   lottie: ^2.3.2
   get: ^4.6.5
+  animated_icon_button: ^1.0.2
+  get_storage: ^2.1.1
 
 
 

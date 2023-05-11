@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hospital/models/dummy_data.dart';
+import 'package:hospital/network/controller/dark_mode_controller.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
@@ -22,6 +24,8 @@ import 'presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+
   Bloc.observer = MyBlocObserver();
   await CacheHelper.init();
   // Initialize articles baseurl
@@ -82,6 +86,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'HMS App',
             theme: getLightThemeData(),
+            darkTheme: getDarkThemeData(),
+            themeMode: DarkModeController().ThemeDataGet,
             initialRoute: AppRoutes.splashScreen,
             getPages: AppRoutes.routes,
           );

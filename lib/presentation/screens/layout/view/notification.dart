@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
@@ -17,7 +18,7 @@ class NotificationScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back_outlined),
-            color: ColorManager.black,
+            color: Get.isDarkMode ? ColorManager.white: ColorManager.black,
           ),
           title: Text(AppStrings.notificationScreenTitle,
               style: TextStyle(
@@ -34,7 +35,7 @@ class NotificationScreen extends StatelessWidget {
                     title: Text('Notification Title'),
                     subtitle: ReadMoreText(
                       AppStrings.loremIpson,
-                      textAlign: TextAlign.justify,
+                      textAlign: TextAlign.start,
                       trimMode: TrimMode.Line,
                       trimCollapsedText: AppStrings.viewmore,
                       trimExpandedText: AppStrings.viewless,
@@ -48,7 +49,7 @@ class NotificationScreen extends StatelessWidget {
                       style: TextStyle(
                           fontSize: FontSize.s15,
                           height: AppSizeHeight.s1_5,
-                          color: ColorManager.darkGrey),
+                          color: Get.isDarkMode ? ColorManager.grey : ColorManager.darkGrey),
                     ),
                     trailing: Icon(Icons.arrow_forward),
                     onTap: () {

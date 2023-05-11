@@ -128,13 +128,14 @@ class AppConstants {
       color: ColorManager.primary,
       size: FontSize.s30,
     ), // Renal Unit
-    FaIcon(
-      FontAwesomeIcons.heart,
+    Icon(
+      Icons.male,
       color: ColorManager.primary,
       size: FontSize.s30,
     ), // Sexual Health
     FaIcon(
-      FontAwesomeIcons.toilet,
+      FontAwesomeIcons.toilet
+      ,
       color: ColorManager.primary,
       size: FontSize.s30,
     ), // Urology
