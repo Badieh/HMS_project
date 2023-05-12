@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -91,7 +92,12 @@ class ProfileData2Screen extends StatelessWidget {
                   //     },
                   //     onFieldSubmitted: (value) {}),
                   DropdownButtonFormField<String>(
-                    hint: const Text('Religion'),
+                    decoration: InputDecoration(
+                      fillColor: Get.isDarkMode? ColorManager.lightBlack :ColorManager.lightGrey,
+
+                    ),
+                    hint:  Text('Religion',style :TextStyle(color: Get.isDarkMode? ColorManager.secondary :ColorManager.grey)),
+
                     value: cubit.religion,
 
                     isExpanded: true,
@@ -114,7 +120,11 @@ class ProfileData2Screen extends StatelessWidget {
 
                   // blood type
                   DropdownButtonFormField<String>(
-                    hint: Text('Blood type'),
+                    decoration: InputDecoration(
+                      fillColor: Get.isDarkMode? ColorManager.lightBlack :ColorManager.lightGrey,
+
+                    ),
+                    hint: Text('Blood type',style :TextStyle(color: Get.isDarkMode? ColorManager.secondary :ColorManager.grey)),
                     value: cubit.bloodType,
                     icon: const Icon(Icons.bloodtype_outlined),
                     isExpanded: true,
@@ -167,10 +177,10 @@ class ProfileData2Screen extends StatelessWidget {
                             border: Border.all(
                                 color: (cubit.isGender && cubit.isMale!)
                                     ? ColorManager.primary
-                                    : ColorManager.grey),
+                                    : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.grey),
                             color: (cubit.isGender && cubit.isMale!)
-                                ? ColorManager.secondary
-                                : ColorManager.lightGrey,
+                                ? ColorManager.primary
+                                : Get.isDarkMode ? ColorManager.lightBlack:ColorManager.lightGrey,
                           ),
                           child: Stack(
                             children: [
@@ -216,8 +226,8 @@ class ProfileData2Screen extends StatelessWidget {
                                     ? ColorManager.primary
                                     : ColorManager.grey),
                             color: (cubit.isGender && !cubit.isMale!)
-                                ? ColorManager.secondary
-                                : ColorManager.lightGrey,
+                                ? ColorManager.error
+                                : Get.isDarkMode ? ColorManager.lightBlack:ColorManager.lightGrey,
                           ),
                           child: Stack(
                             children: [
@@ -293,6 +303,7 @@ class ProfileData2Screen extends StatelessWidget {
                     ],
                   ),
                   Slider(
+                    inactiveColor: Get.isDarkMode ? ColorManager.grey : ColorManager.darkGrey,
                     min: 0,
                     max: 250,
                     value: cubit.height,
@@ -350,6 +361,8 @@ class ProfileData2Screen extends StatelessWidget {
                     ],
                   ),
                   Slider(
+                    inactiveColor: Get.isDarkMode ? ColorManager.grey : ColorManager.darkGrey,
+
                     min: 1,
                     max: 250,
                     value: cubit.weight,

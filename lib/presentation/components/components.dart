@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:blurhash/blurhash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -40,20 +41,24 @@ Widget DefaultTextFormField({
       autofocus: autoFocus,
       textInputAction: TextInputAction,
       decoration: InputDecoration(
-
+        fillColor: Get.isDarkMode? ColorManager.lightBlack :ColorManager.lightGrey,
         labelText: label,
+        labelStyle: TextStyle(color: Get.isDarkMode? ColorManager.secondary :ColorManager.grey),
         prefixIcon: prefixIcon == null
             ? null
             : Icon(
                 prefixIcon,
                 size: 25,
+          color:Get.isDarkMode? ColorManager.primary :ColorManager.black,
               ),
         suffixIcon: suffixIcon == null
             ? null
             : IconButton(
-                icon: Icon(suffixIcon),
+                icon: Icon(suffixIcon,color:Get.isDarkMode? ColorManager.secondary :ColorManager.grey,
+                ),
                 onPressed: suffixPressed,
-              ),
+
+        ),
       ),
       obscureText: isPassword,
       onTapOutside: (value) {

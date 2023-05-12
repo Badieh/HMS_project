@@ -1,6 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -71,10 +72,10 @@ class ProfileData3Screen extends StatelessWidget {
                                 color:
                                     cubit.maritalStatus == MaritalStatus.single
                                         ? ColorManager.primary
-                                        : ColorManager.lightGrey),
+                                        : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.single
                                 ? ColorManager.secondary
-                                : ColorManager.lightGrey,
+                                : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey,
                           ),
                           child: Center(
                             child: Text(
@@ -107,10 +108,10 @@ class ProfileData3Screen extends StatelessWidget {
                                 color:
                                     cubit.maritalStatus == MaritalStatus.married
                                         ? ColorManager.primary
-                                        : ColorManager.lightGrey),
+                                        : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.married
                                 ? ColorManager.secondary
-                                : ColorManager.lightGrey,
+                                : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey,
                           ),
                           child: Center(
                             child: Text(
@@ -143,10 +144,10 @@ class ProfileData3Screen extends StatelessWidget {
                                 color: cubit.maritalStatus ==
                                         MaritalStatus.divorced
                                     ? ColorManager.primary
-                                    : ColorManager.lightGrey),
+                                    : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.divorced
                                 ? ColorManager.secondary
-                                : ColorManager.lightGrey,
+                                : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey,
                           ),
                           child: Center(
                             child: Text(
@@ -179,10 +180,10 @@ class ProfileData3Screen extends StatelessWidget {
                                 color:
                                     cubit.maritalStatus == MaritalStatus.widow
                                         ? ColorManager.primary
-                                        : ColorManager.lightGrey),
+                                        : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey),
                             color: cubit.maritalStatus == MaritalStatus.widow
                                 ? ColorManager.secondary
-                                : ColorManager.lightGrey,
+                                : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightGrey,
                           ),
                           child: Center(
                             child: Text(

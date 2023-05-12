@@ -28,15 +28,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  ColorManager.white,
+      backgroundColor:  Get.isDarkMode ?ColorManager.black:ColorManager.white,
       body: Center(
         child: FadeOutUp(
           delay: const Duration(milliseconds: 2400),
           child: BounceInDown(
             child: Container(
-                color:  ColorManager.white,
                 child: SvgPicture.asset(
-                  ImageAssets.splashLightLogo,
+                  Get.isDarkMode ? ImageAssets.splashDarkLogo :ImageAssets.splashLightLogo,
                   fit: BoxFit.cover,
                   height: AppSizeHeight.s500,
                 )),
