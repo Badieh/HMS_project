@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/components/text_utils.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
@@ -67,7 +68,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text: caseDiagnose.hospitalName,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
 
@@ -100,7 +101,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text: caseDiagnose.patientName,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -133,7 +134,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text: caseDiagnose.doctorName,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -166,7 +167,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text: '${dateTime.year}/${dateTime.month}/${dateTime.day}',
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -199,7 +200,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text:  '${dateTime.hour}:${dateTime.month}:${dateTime.second}',
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -234,7 +235,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text:  caseDiagnose.departmentName,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -267,7 +268,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text:  caseDiagnose.location,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -301,7 +302,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text:  caseDiagnose.clinicalExamination,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -335,7 +336,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text:  caseDiagnose.diagnosis,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],
@@ -377,7 +378,7 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
                               isUndeLine: false,
                               fontWeight: FontWeight.bold,
                               text:  caseDiagnose.notes!,
-                              color: Colors.grey.shade700,
+                              color: Get.isDarkMode ? ColorManager.grey2 :Colors.grey.shade700,
                               fontsize: FontSize.s15),
                         ),
                       ],

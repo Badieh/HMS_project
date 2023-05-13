@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hospital/models/file_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -30,7 +31,7 @@ class FileCard extends StatelessWidget {
                 width: AppSizeWidth.s65,
                 // height: AppSizeWidth.s50,
                 decoration: BoxDecoration(
-                  color: ColorManager.veryLightGrey,
+                  color: Get.isDarkMode ? ColorManager.lightBlack :ColorManager.veryLightGrey,
                   borderRadius: BorderRadius.circular(AppPadding.p10),
                   border: Border.all(
                     color: ColorManager.secondary,

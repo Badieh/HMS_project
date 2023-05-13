@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.width * .15,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: ColorManager.veryLightGrey,
+                color: Get.isDarkMode ? ColorManager.lightBlack: ColorManager.veryLightGrey,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: InkWell(
@@ -174,12 +174,12 @@ class HomeScreen extends StatelessWidget {
                         child: Icon(
                           Icons.people,
                           size: FontSize.s35,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                         ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -206,13 +206,13 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: FaIcon(
                           FontAwesomeIcons.tooth,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                           size: FontSize.s35,
                         ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -239,13 +239,13 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: FaIcon(
                           FontAwesomeIcons.solidEye,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                           size: FontSize.s35,
                         ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -272,13 +272,13 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: FaIcon(
                           FontAwesomeIcons.nutritionix,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                           size: FontSize.s35,
                         ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -314,13 +314,13 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: FaIcon(
                           FontAwesomeIcons.brain,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                           size: FontSize.s35,
                         ),
                         height: MediaQuery.of(context).size.width * 0.16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -347,13 +347,13 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: FaIcon(
                           FontAwesomeIcons.baby,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                           size: FontSize.s35,
                         ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -380,13 +380,13 @@ class HomeScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: FaIcon(
                           FontAwesomeIcons.xRay,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                           size: FontSize.s35,
                         ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -413,12 +413,12 @@ class HomeScreen extends StatelessWidget {
                         child: Icon(
                           Icons.more_horiz,
                           size: 30,
-                          color: ColorManager.primary,
+                          color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
                         ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
-                          color: ColorManager.lightPrimary,
+                          color:Get.isDarkMode? ColorManager.lightBlack : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
@@ -501,7 +501,7 @@ class HomeScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(90.w, 30.h),
                         side: BorderSide(color: ColorManager.primary, width: 2),
-                        backgroundColor: Colors.white,
+                        backgroundColor: Get.isDarkMode ? ColorManager.black :ColorManager.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                         elevation: 2),
@@ -519,7 +519,7 @@ class HomeScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(80.w, 30.h),
                         side: BorderSide(color: ColorManager.primary, width: 2),
-                        backgroundColor: Colors.white,
+                        backgroundColor: Get.isDarkMode ? ColorManager.black :ColorManager.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                         elevation: 2),
@@ -537,7 +537,7 @@ class HomeScreen extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         fixedSize: Size(90.w, 30.h),
                         side: BorderSide(color: ColorManager.primary, width: 2),
-                        backgroundColor: Colors.white,
+                        backgroundColor: Get.isDarkMode ? ColorManager.black :ColorManager.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50)),
                         elevation: 2),

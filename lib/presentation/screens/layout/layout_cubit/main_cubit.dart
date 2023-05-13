@@ -128,56 +128,46 @@ class MainCubit extends Cubit<MainStates> {
     BottomNavigationBarItem(
       icon: Icon(
         Icons.home_outlined,
-        color: ColorManager.black,
       ),
       label: 'Home',
       activeIcon: Icon(
         Icons.home,
-        color: ColorManager.primary,
       ),
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.calendar_month_outlined,
-        color: ColorManager.black,
       ),
       label: 'Appointment',
       activeIcon: Icon(
         Icons.calendar_month,
-        color: ColorManager.primary,
       ),
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.history_outlined,
-        color: ColorManager.black,
       ),
       label: 'History',
       activeIcon: Icon(
         Icons.history,
-        color: ColorManager.primary,
       ),
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.article_outlined,
-        color: ColorManager.black,
       ),
       label: 'Article',
       activeIcon: Icon(
         Icons.article_rounded,
-        color: ColorManager.primary,
       ),
     ),
     BottomNavigationBarItem(
       icon: Icon(
         Icons.person_outline,
-        color: ColorManager.black,
       ),
       label: 'Profile',
       activeIcon: Icon(
         Icons.person,
-        color: ColorManager.primary,
       ),
     ),
   ];

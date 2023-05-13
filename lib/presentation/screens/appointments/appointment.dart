@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -175,7 +176,11 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         backgroundColor: ColorManager.white,
         context: context,
         builder: (context) {
-          return SizedBox(
+          return Container(
+              decoration: BoxDecoration(
+                color: Get.isDarkMode ? ColorManager.lightBlack:ColorManager.white ,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizeHeight.s20))
+              ),
             height: MediaQuery.of(context).size.height / 3,
             child: Padding(
               padding: const EdgeInsets.all(AppPadding.p8),

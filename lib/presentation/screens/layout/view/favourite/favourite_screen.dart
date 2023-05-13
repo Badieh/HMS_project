@@ -23,18 +23,16 @@ class FavouriteScreen extends StatelessWidget {
     }, builder: (context, state) {
       var doctorsCubit = DoctorsCubit.get(context);
       return Scaffold(
+        backgroundColor: context.theme.colorScheme.background,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Text(
-            AppStrings.favouriteScreentitle,
-            style: TextStyle(fontSize: FontSize.s20),
-          ),
+          backgroundColor: context.theme.colorScheme.background,
+          title: Text(AppStrings.favouriteScreentitle,style: TextStyle(fontSize: FontSize.s20),),
         ),
         body: Container(
           decoration: BoxDecoration(
-            boxShadow: [
+            boxShadow:  [
               BoxShadow(
-                color: ColorManager.lightPrimary,
+                color: Get.isDarkMode ? ColorManager.black: ColorManager.lightPrimary,
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: Offset(0, 3), // changes position of shadow
@@ -42,7 +40,7 @@ class FavouriteScreen extends StatelessWidget {
             ],
           ),
           padding: EdgeInsets.only(top: AppPadding.p6),
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height ,
           width: double.infinity,
           child: ListView.separated(
               physics: BouncingScrollPhysics(),
@@ -54,11 +52,12 @@ class FavouriteScreen extends StatelessWidget {
                         builder: (context) => DoctorDetailsScreen()));
                   },
                   child: Container(
+
                     padding: EdgeInsets.only(
                         left: AppSizeHeight.s8, right: AppSizeHeight.s8),
                     width: double.infinity,
                     decoration: BoxDecoration(
-                        color: ColorManager.white,
+                        color:Get.isDarkMode? ColorManager.lightBlack: ColorManager.white,
                         borderRadius: BorderRadius.circular(AppSizeHeight.s25)),
                     child: Row(
                       children: [
@@ -68,6 +67,7 @@ class FavouriteScreen extends StatelessWidget {
                           height: AppSizeHeight.s120,
                           child: Image.network(doctor.imageUrl),
                           decoration: BoxDecoration(
+
                               borderRadius:
                                   BorderRadius.circular(AppSizeHeight.s25)),
                         ),

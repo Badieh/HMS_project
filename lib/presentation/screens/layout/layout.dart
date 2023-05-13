@@ -19,12 +19,12 @@ class HomeLayoutScreen extends StatelessWidget {
           child: Scaffold(
             appBar: cubit.appBars[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               type: BottomNavigationBarType.shifting,
               items: cubit.items,
               selectedLabelStyle: TextStyle(fontSize: FontSize.s10),
-              selectedItemColor: Colors.blue,
-              unselectedItemColor: Colors.black,
+              // selectedItemColor: Colors.blue,
+              // unselectedItemColor: Colors.black,
               unselectedLabelStyle: TextStyle(fontSize: FontSize.s10),
               showUnselectedLabels: true,
               currentIndex: cubit.currentIndex,

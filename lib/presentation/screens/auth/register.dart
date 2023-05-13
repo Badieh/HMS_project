@@ -147,6 +147,8 @@ class RegisterScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeWidth.s30),
+                              color: Get.isDarkMode ? ColorManager.lightGrey :Colors.transparent,
+
                               border: Border.all(color: ColorManager.grey2)),
                           child: Transform.scale(
                             scale: 0.9,
@@ -164,6 +166,8 @@ class RegisterScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeWidth.s30),
+                              color: Get.isDarkMode ? ColorManager.lightGrey :Colors.transparent,
+
                               border: Border.all(color: ColorManager.grey2)),
                           child: Transform.scale(
                             scale: 0.8,
@@ -181,6 +185,8 @@ class RegisterScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeWidth.s30),
+                              color: Get.isDarkMode ? ColorManager.lightGrey :Colors.transparent,
+
                               border: Border.all(color: ColorManager.grey2)),
                           child: Transform.scale(
                             scale: 0.7,
