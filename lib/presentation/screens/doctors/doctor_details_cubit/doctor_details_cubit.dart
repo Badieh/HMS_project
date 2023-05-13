@@ -1,17 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/models/clinics_schedule_model.dart';
 import 'package:hospital/models/dummy_data.dart';
-import 'package:hospital/presentation/screens/top_doctors/top_doctor_details_cubit/top_doctors_details_stats.dart';
+import 'package:hospital/presentation/screens/doctors/doctor_details_cubit/doctor_details_states.dart';
 
-class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
-  TopDoctorsDetailsCubit() : super(TopDoctorsDetailsInitialState());
+class DoctorDetailsCubit extends Cubit<DoctorsDetailsStates> {
+  DoctorDetailsCubit() : super(DoctorDetailsInitialState());
 
-  static TopDoctorsDetailsCubit get(context) => BlocProvider.of(context);
+  static DoctorDetailsCubit get(context) => BlocProvider.of(context);
 
-  List<ClinicsScheduleModel> clinicsScheduleList = [];
-  Future<void> getTopDoctorsDetails({required int docId}) async {
+  static List<ClinicsScheduleModel> clinicsScheduleList = [];
+  Future<void> getDoctorDetails({required int docId}) async {
     if (clinicsScheduleList.isEmpty) {
-      emit(GetTopDoctorsDetailsLoadingState());
+      emit(GetDoctorDetailsLoadingState());
 
       try {
         //   var response =
@@ -28,18 +28,21 @@ class TopDoctorsDetailsCubit extends Cubit<TopDoctorsDetailsState> {
         // print(articles[1]);
         clinicsScheduleList = [
           clinicsScheduleModel_1,
+          clinicsScheduleModel_4,
           clinicsScheduleModel_1,
-          clinicsScheduleModel_1,
+          clinicsScheduleModel_2,
+          clinicsScheduleModel_4,
+          clinicsScheduleModel_3,
           clinicsScheduleModel_1,
         ];
-        emit(GetTopDoctorsDetailsSuccessState());
+        emit(GetDoctorDetailsSuccessState());
       } catch (error) {
         print(error.toString());
-        emit(GetTopDoctorsDetailsErrorState(error.toString()));
+        emit(GetDoctorDetailsErrorState(error.toString()));
       }
       // } else {
     }
   }
 
-  // emit the new list of doctors to the UI
+
 }

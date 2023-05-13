@@ -5,9 +5,9 @@ import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
-import 'package:hospital/presentation/screens/top_doctors/cubit/top_doctors_stats.dart';
-import 'package:hospital/presentation/screens/top_doctors/top_doctors_details.dart';
+import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
+import 'package:hospital/presentation/screens/doctors/cubit/doctors_states.dart';
+import 'package:hospital/presentation/screens/doctors/doctor_details.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({Key? key}) : super(key: key);
@@ -16,20 +16,23 @@ class FavouriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return BlocConsumer<TopDoctorsCubit, TopDoctorsState>(
+    return BlocConsumer<DoctorsCubit, DoctorsStates>(
         listener: (context, state) {
       // var doctorsCubit = TopDoctorsCubit.get(context);
       // doctorsCubit.getTopDoctors();
     }, builder: (context, state) {
-      var doctorsCubit = TopDoctorsCubit.get(context);
+      var doctorsCubit = DoctorsCubit.get(context);
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text(AppStrings.favouriteScreentitle,style: TextStyle(fontSize: FontSize.s20),),
+          title: Text(
+            AppStrings.favouriteScreentitle,
+            style: TextStyle(fontSize: FontSize.s20),
+          ),
         ),
         body: Container(
           decoration: BoxDecoration(
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: ColorManager.lightPrimary,
                 spreadRadius: 2,
@@ -39,21 +42,18 @@ class FavouriteScreen extends StatelessWidget {
             ],
           ),
           padding: EdgeInsets.only(top: AppPadding.p6),
-          height: MediaQuery.of(context).size.height ,
+          height: MediaQuery.of(context).size.height,
           width: double.infinity,
           child: ListView.separated(
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                var doctor = doctorsCubit.topDoctors[index];
+                var doctor = doctorsCubit.doctors[index];
                 return InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => TopDoctorsDetailsScreen(
-                              doctorModel: doctorsCubit.topDoctors[index],
-                            )));
+                        builder: (context) => DoctorDetailsScreen()));
                   },
                   child: Container(
-
                     padding: EdgeInsets.only(
                         left: AppSizeHeight.s8, right: AppSizeHeight.s8),
                     width: double.infinity,
@@ -68,7 +68,6 @@ class FavouriteScreen extends StatelessWidget {
                           height: AppSizeHeight.s120,
                           child: Image.network(doctor.imageUrl),
                           decoration: BoxDecoration(
-
                               borderRadius:
                                   BorderRadius.circular(AppSizeHeight.s25)),
                         ),
@@ -195,7 +194,7 @@ class FavouriteScreen extends StatelessWidget {
                     color: Colors.transparent,
                     height: MediaQuery.of(context).size.height * .009,
                   ),
-              itemCount: doctorsCubit.topDoctors.length),
+              itemCount: doctorsCubit.doctors.length),
         ),
       );
     });

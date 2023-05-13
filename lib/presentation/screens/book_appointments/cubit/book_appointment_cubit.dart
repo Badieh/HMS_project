@@ -2,13 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/models/clinics_schedule_model.dart';
 import 'package:hospital/presentation/screens/book_appointments/cubit/book_appointment_states.dart';
+import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
 
 class BookAppointmentCubit extends Cubit<BookAppointmentStates> {
   BookAppointmentCubit() : super(BookAppointmentInitialState());
 
-  BookAppointmentCubit get(context) => BlocProvider.of(context);
+  static BookAppointmentCubit get(context) => BlocProvider.of(context);
 
-  List<ClinicsScheduleModel> clinicsScheduleList = [];
+  List<ClinicsScheduleModel> clinicsScheduleList =
+      DoctorsCubit.clinicsScheduleList;
   void getclinicsScheduleList(
       {required List<ClinicsScheduleModel> clinicsScheduleList}) {
     this.clinicsScheduleList = clinicsScheduleList;
@@ -19,6 +21,7 @@ class BookAppointmentCubit extends Cubit<BookAppointmentStates> {
   String selectedEndTime = '';
   int selectedDay = 0;
   late DateTime date;
+
   void getTimesOfDay({required DateTime date}) {
     print('day is ${date.weekday}');
     this.date = date;
@@ -28,11 +31,11 @@ class BookAppointmentCubit extends Cubit<BookAppointmentStates> {
         modifiedClinicsScheduleList.add(element);
       }
     });
-    if (modifiedClinicsScheduleList.isNotEmpty) {
-      selectedDay = modifiedClinicsScheduleList.first.day;
-      selectedStartTime = modifiedClinicsScheduleList.first.startTime;
-      selectedEndTime = modifiedClinicsScheduleList.first.endTime;
-    }
+    // if (modifiedClinicsScheduleList.isNotEmpty) {
+    //   selectedDay = modifiedClinicsScheduleList.first.day;
+    //   selectedStartTime = modifiedClinicsScheduleList.first.startTime;
+    //   selectedEndTime = modifiedClinicsScheduleList.first.endTime;
+    // }
 
     print(modifiedClinicsScheduleList);
     print('no of times is ${modifiedClinicsScheduleList.length}');
@@ -56,11 +59,15 @@ class BookAppointmentCubit extends Cubit<BookAppointmentStates> {
   }
 
   Future<void> bookAppointment() async {
+    emit(BookAppointmentLoadingState());
+
     if (selectedDay != 0 &&
         selectedStartTime.isNotEmpty &&
         selectedEndTime.isNotEmpty) {
-      emit(BookAppointmentLoadingState());
       try {
+        print('selected start time is $selectedStartTime');
+        print('selected start time is $selectedEndTime');
+        print('selected day is $selectedDay');
         // var response =
         //     await DioHelper.getData(url: AppConstants.articlesPath, query: {
         //   'country': AppConstants.country,

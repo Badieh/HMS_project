@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
-import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
+import 'package:hospital/presentation/screens/doctors/cubit/doctors_states.dart';
+import 'package:hospital/presentation/screens/doctors/doctors.dart';
 import 'package:hospital/presentation/screens/routes/routes.dart';
-import 'package:hospital/presentation/screens/specializations/cubit/specializations_cubit.dart';
-import 'package:hospital/presentation/screens/specializations/cubit/specializations_states.dart';
 
 class SpecializationsScreen extends StatelessWidget {
   const SpecializationsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SpecializationsCubit, SpecializationsStates>(
+    return BlocConsumer<DoctorsCubit, DoctorsStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          SpecializationsCubit cubit = SpecializationsCubit().get(context);
+          DoctorsCubit cubit = DoctorsCubit.get(context);
+
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Specializations'),
+              title: const Text(AppStrings.specializations),
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  //Get.offAllNamed(Routes.homeLayoutScreen);
+                },
+                icon: const Icon(Icons.arrow_back_outlined),
+                color: ColorManager.black,
+              ),
               actionsIconTheme: IconThemeData(size: 30),
               actions: [
                 IconButton(
@@ -34,12 +42,12 @@ class SpecializationsScreen extends StatelessWidget {
                         : Icon(Icons.list))
               ],
             ),
-            body: cubit.viewType ? showList() : showGrid(),
+            body: cubit.viewType ? showList(cubit) : showGrid(cubit),
           );
         });
   }
 
-  Widget showList() => ListView.separated(
+  Widget showList(DoctorsCubit cubit) => ListView.separated(
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return Padding(
@@ -50,9 +58,16 @@ class SpecializationsScreen extends StatelessWidget {
               leading: AppConstants.specializationIcons[index],
               title: Text(AppConstants.specializations[index]),
               trailing: const Icon(Icons.arrow_forward),
-              onTap: () {
-                // Action to perform when the user taps the card
-                Get.toNamed(Routes.doctors);
+              onTap: () async {
+                cubit.specialization = index;
+                await cubit.getDoctors();
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DoctorsScreen(),
+                    ));
+                //Get.toNamed(Routes.doctors);
               },
             ),
           ),
@@ -65,16 +80,23 @@ class SpecializationsScreen extends StatelessWidget {
       },
       itemCount: AppConstants.specializations.length);
 
-  Widget showGrid() => GridView.builder(
+  Widget showGrid(cubit) => GridView.builder(
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
         itemBuilder: (context, index) {
           return InkWell(
             radius: 30,
             borderRadius: BorderRadius.circular(80),
-            onTap: () {
-              Get.toNamed(Routes.doctors);
+            onTap: () async {
+              cubit.specialization = index;
+              await cubit.getDoctors();
+              Get.offAllNamed(Routes.doctors);
 
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => DoctorsScreen(),
+              //     ));
             },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

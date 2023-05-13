@@ -12,7 +12,6 @@ import 'package:hospital/presentation/screens/articles/articles.dart';
 import 'package:hospital/presentation/screens/history/history.dart';
 import 'package:hospital/presentation/screens/appointments/appointment.dart';
 import 'package:hospital/presentation/screens/layout/view/home.dart';
-import 'package:hospital/presentation/screens/layout/view/notification.dart';
 import 'package:hospital/presentation/screens/layout/view/profile.dart';
 
 import '../../routes/routes.dart';
@@ -83,7 +82,8 @@ class MainCubit extends Cubit<MainStates> {
         ),
         IconButton(
           onPressed: () {
-            Get.toNamed(Routes.favouriteScreen);
+
+            //Get.toNamed(Routes.favouriteScreen);
           },
           icon: Icon(
             Icons.favorite_border,

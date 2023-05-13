@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
@@ -6,10 +7,9 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hospital/presentation/screens/layout/view/search/search.dart';
-import 'package:hospital/presentation/screens/top_doctors/top_doctors.dart';
-
-import '../../routes/routes.dart';
+import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
+import 'package:hospital/presentation/screens/doctors/doctors.dart';
+import 'package:hospital/presentation/screens/routes/routes.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -144,6 +144,9 @@ class HomeScreen extends StatelessWidget {
                     child: InkWell(
                   onTap: () {
                     Get.toNamed(Routes.specializations);
+
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => SpecializationsScreen()));
                   },
                   child: Text(
                     AppStrings.seeAll,
@@ -453,9 +456,11 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      final doctorsCubit = context.read<DoctorsCubit>();
+                      await doctorsCubit.getDoctors();
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => TopDoctorsScreen()));
+                          builder: (context) => DoctorsScreen()));
                     },
                     child: Text(
                       AppStrings.seeAll,

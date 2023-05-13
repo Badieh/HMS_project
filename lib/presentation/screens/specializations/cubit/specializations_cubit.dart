@@ -4,7 +4,9 @@ import 'package:hospital/presentation/screens/specializations/cubit/specializati
 class SpecializationsCubit extends Cubit<SpecializationsStates> {
   SpecializationsCubit() : super(SpecializationInitialState());
 
-  SpecializationsCubit get(context) => BlocProvider.of(context);
+  static SpecializationsCubit get(context) => BlocProvider.of(context);
+
+  var specialization ;
 
   // Use False for GridView $ True for LisView
   bool viewType = false;

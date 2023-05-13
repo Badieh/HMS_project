@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:intl/intl.dart';
 
 class AppConstants {
   static const splashDelay = 3;
@@ -171,6 +172,14 @@ class AppConstants {
     'Head of Department',
     'Medical Director',
   ];
+
+  static final List<String> monthNames = [
+    '', // index 0 is unused
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  static final List<String> weekDayNames = DateFormat.E().dateSymbols.WEEKDAYS;
 }
 
 class MyBlocObserver extends BlocObserver {

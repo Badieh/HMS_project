@@ -3,22 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
-import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
+import 'package:hospital/presentation/screens/book_appointments/cubit/book_appointment_cubit.dart';
+import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
-import 'package:hospital/presentation/screens/layout/layout.dart';
-import 'package:hospital/presentation/screens/layout/view/notification.dart';
 import 'package:hospital/presentation/screens/routes/routes.dart';
 import 'package:hospital/presentation/screens/specializations/cubit/specializations_cubit.dart';
 import 'network/remote/dio_helper.dart';
 import 'presentation/screens/layout/layout_cubit/main_cubit.dart';
-import 'presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,12 +59,18 @@ class MyApp extends StatelessWidget {
             ..getCompletedAppointmentsList()
             ..getCancelledAppointmentsList(),
         ),
-        // TopDoctors
-        BlocProvider(create: (context) => TopDoctorsCubit()..getTopDoctors()),
+        // Doctors
+        BlocProvider(create: (context) => DoctorsCubit()),
         // Profile Data Cubit
         BlocProvider(
           create: (context) => ProfileDataCubit(),
         ),
+        // book appointment
+        BlocProvider(
+          create: (context) =>
+              BookAppointmentCubit()..getTimesOfDay(date: DateTime.now()),
+        ),
+
         // Specializations
         BlocProvider(
           create: (context) => SpecializationsCubit(),

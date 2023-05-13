@@ -117,10 +117,10 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                               MaterialPageRoute(
                                             builder: (context) {
                                               return BookAppointmentScreen(
-                                                  title: AppStrings
-                                                      .rescheduleAppointment,
-                                                  clinicsScheduleList: cubit
-                                                      .clinicsScheduleList);
+                                                // cubit: cubit,
+                                                title: AppStrings
+                                                    .rescheduleAppointment,
+                                              );
                                             },
                                           ));
                                         },
