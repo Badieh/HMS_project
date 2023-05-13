@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
@@ -23,7 +24,6 @@ class SpecializationsScreen extends StatelessWidget {
 
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Specializations'),
               actionsIconTheme: IconThemeData(size: FontSize.s30),
               title: const Text(AppStrings.specializations),
               leading: IconButton(
@@ -34,29 +34,28 @@ class SpecializationsScreen extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back_outlined),
                 color: ColorManager.black,
               ),
-              actionsIconTheme: IconThemeData(size: 30),
               actions: [
-
-                     AnimatedIconButton(
-                     duration: const Duration(milliseconds: 300),
-                      onPressed: () {
-                        cubit.changeViewType();
-                      },
-                      icons:  <AnimatedIconItem>[
-                      AnimatedIconItem(
-                      icon: Icon(Icons.grid_view,color: ColorManager.primary,),
+                AnimatedIconButton(
+                  duration: const Duration(milliseconds: 300),
+                  onPressed: () {
+                    cubit.changeViewType();
+                  },
+                  icons: <AnimatedIconItem>[
+                    AnimatedIconItem(
+                      icon: Icon(
+                        Icons.grid_view,
+                        color: ColorManager.primary,
                       ),
-                      AnimatedIconItem(
-                      icon: Icon(Icons.list,color :ColorManager.primary),
-                      ),
-                      ],
+                    ),
+                    AnimatedIconItem(
+                      icon: Icon(Icons.list, color: ColorManager.primary),
+                    ),
+                  ],
+                )
 
-
-                  )
-
-                    // cubit.viewType
-                    //     ? Icon(Icons.grid_view)
-                    //     : Icon(Icons.list))
+                // cubit.viewType
+                //     ? Icon(Icons.grid_view)
+                //     : Icon(Icons.list))
               ],
             ),
             body: cubit.viewType ? showList(cubit) : showGrid(cubit),

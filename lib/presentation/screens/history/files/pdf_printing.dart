@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/components/components.dart';
-import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
 import 'package:printing/printing.dart';
@@ -22,7 +21,9 @@ class PdfPrintingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title), backgroundColor: ColorManager.primary),
+      appBar: AppBar(
+        title: Text(title),
+      ),
       body: PdfPreview(
         canChangeOrientation: false,
         canChangePageFormat: false,

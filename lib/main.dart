@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/network/controller/dark_mode_controller.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
@@ -19,7 +18,6 @@ import 'package:hospital/presentation/screens/routes/routes.dart';
 import 'package:hospital/presentation/screens/specializations/cubit/specializations_cubit.dart';
 import 'network/remote/dio_helper.dart';
 import 'presentation/screens/layout/layout_cubit/main_cubit.dart';
-import 'presentation/screens/top_doctors/cubit/top_doctors_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

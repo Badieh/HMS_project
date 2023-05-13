@@ -92,8 +92,10 @@ Page resource error:
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: WebViewWidget(controller: _controller),
+    return SafeArea(
+      child: Scaffold(
+        body: WebViewWidget(controller: _controller),
+      ),
     );
   }
 }

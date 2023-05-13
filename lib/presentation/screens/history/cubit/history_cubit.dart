@@ -165,7 +165,8 @@ class HistoryCubit extends Cubit<HistoryStates> {
           context,
           MaterialPageRoute(
             builder: (context) => PdfPrintingScreen(
-                title: 'aloha',
+                title: '',
+                // imagesPathsList!.last.split('/').last,
                 imagePathsList: imagesPathsList,
                 cubit: HistoryCubit()),
           ));

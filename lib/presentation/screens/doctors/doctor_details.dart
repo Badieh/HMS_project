@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:hospital/models/doctor_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -80,7 +81,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                     width: double.infinity,
                     height: size.height * 0.2,
                     decoration: BoxDecoration(
-                        color: ColorManager.white,
+                        color: Get.isDarkMode ?  ColorManager.lightBlack:ColorManager.white,
                         borderRadius: BorderRadius.circular(AppSizeHeight.s25)),
                     child: Row(
                       children: [
