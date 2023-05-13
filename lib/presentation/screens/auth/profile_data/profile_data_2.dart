@@ -226,7 +226,7 @@ class ProfileData2Screen extends StatelessWidget {
                                     ? ColorManager.primary
                                     : ColorManager.grey),
                             color: (cubit.isGender && !cubit.isMale!)
-                                ? ColorManager.error
+                                ? ColorManager.pink
                                 : Get.isDarkMode ? ColorManager.lightBlack:ColorManager.lightGrey,
                           ),
                           child: Stack(

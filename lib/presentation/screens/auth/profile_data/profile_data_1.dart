@@ -27,7 +27,6 @@ class ProfileData1Screen extends StatelessWidget {
 
   static PhoneNumber phoneNumber = PhoneNumber(
     isoCode: 'EG',
-
   );
   static bool isPhoneValid = false;
   @override
@@ -164,11 +163,20 @@ class ProfileData1Screen extends StatelessWidget {
                   SizedBox(height: MediaQuery.of(context).size.height / 40),
 
                   // phone
-                  InternationalPhoneNumberInput(inputDecoration: InputDecoration(
-                    fillColor: Get.isDarkMode ? ColorManager.lightBlack:ColorManager.lightGrey,
-                    hintStyle: TextStyle(color: Get.isDarkMode ? ColorManager.secondary:ColorManager.grey,),
-                      hintText: "Phone Number"
-                  ),
+                  InternationalPhoneNumberInput(
+                    hintText: 'search',
+                    inputDecoration: InputDecoration(
+                        fillColor: Get.isDarkMode
+                            ? ColorManager.lightBlack
+                            : ColorManager.lightGrey,
+                        hintStyle: TextStyle(
+                          color: Get.isDarkMode
+                              ? ColorManager.secondary
+                              : ColorManager.grey,
+                        ),
+                        hintText: "Phone Number"
+
+                    ),
                     validator: (value) {
                       if (phoneController.text.isEmpty ||
                           isPhoneValid == false) {
@@ -185,12 +193,14 @@ class ProfileData1Screen extends StatelessWidget {
                       print(value);
                     },
                     selectorConfig: SelectorConfig(
-
                       selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                     ),
                     ignoreBlank: false,
                     autoValidateMode: AutovalidateMode.disabled,
-                    selectorTextStyle: TextStyle(color: Get.isDarkMode ? ColorManager.white: ColorManager.black),
+                    selectorTextStyle: TextStyle(
+                        color: Get.isDarkMode
+                            ? ColorManager.white
+                            : ColorManager.black),
                     initialValue: phoneNumber,
                     textFieldController: phoneController,
                     formatInput: true,
@@ -214,7 +224,11 @@ class ProfileData1Screen extends StatelessWidget {
                       phoneNumber = number;
                       // phone.text = number.toString();
                       print('On Saved: $number');
-                    },textStyle: TextStyle(color: Get.isDarkMode ? ColorManager.white:ColorManager.black),
+                    },
+                    textStyle: TextStyle(
+                        color: Get.isDarkMode
+                            ? ColorManager.white
+                            : ColorManager.black),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 40),
                 ],

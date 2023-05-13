@@ -32,7 +32,6 @@ class SpecializationsScreen extends StatelessWidget {
                   //Get.offAllNamed(Routes.homeLayoutScreen);
                 },
                 icon: const Icon(Icons.arrow_back_outlined),
-                color: ColorManager.black,
               ),
               actions: [
                 AnimatedIconButton(
@@ -77,13 +76,7 @@ class SpecializationsScreen extends StatelessWidget {
               onTap: () async {
                 cubit.specialization = index;
                 await cubit.getDoctors();
-
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DoctorsScreen(),
-                    ));
-                //Get.toNamed(Routes.doctors);
+                Get.offAllNamed(Routes.doctors);
               },
             ),
           ),

@@ -16,6 +16,8 @@ class ColorManager {
   static Color lightGrey = const Color(0xffe8e8e8);
   static Color veryLightGrey = const Color(0xfff5f5f5);
 
+  static Color pink = Colors.pinkAccent;
+
   static Color white = const Color(0xffFFFFFF);
   static Color error = const Color(0xffe61f34); // red
   // color

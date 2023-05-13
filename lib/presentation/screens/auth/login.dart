@@ -143,11 +143,11 @@ class LoginScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeWidth.s30),
-                              color: Get.isDarkMode ? ColorManager.lightGrey :Colors.transparent,
-
+                              color: Get.isDarkMode
+                                  ? ColorManager.lightGrey
+                                  : Colors.transparent,
                               border: Border.all(color: ColorManager.grey2)),
                           child: Transform.scale(
-
                             scale: 0.9,
                             child: SvgPicture.asset(ImageAssets.facebook,
                                 fit: BoxFit.scaleDown),
@@ -163,8 +163,9 @@ class LoginScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeWidth.s30),
-                              color: Get.isDarkMode ? ColorManager.lightGrey :Colors.transparent,
-
+                              color: Get.isDarkMode
+                                  ? ColorManager.lightGrey
+                                  : Colors.transparent,
                               border: Border.all(color: ColorManager.grey2)),
                           child: Transform.scale(
                             scale: 0.8,
@@ -182,7 +183,9 @@ class LoginScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeWidth.s30),
-                              color: Get.isDarkMode ? ColorManager.lightGrey :Colors.transparent,
+                              color: Get.isDarkMode
+                                  ? ColorManager.lightGrey
+                                  : Colors.transparent,
                               border: Border.all(color: ColorManager.grey2)),
                           child: Transform.scale(
                             scale: 0.7,
