@@ -47,6 +47,10 @@ class FavouriteScreen extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 var doctor = doctorsCubit.doctors[index];
+                int keyDegree = doctor.degree.keys.elementAt(index);
+                String valueDegree = doctor.degree[keyDegree]!;
+                int keyPos = doctor.position.keys.elementAt(index);
+                String valuePos = doctor.position[keyPos]!;
                 return InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -151,7 +155,7 @@ class FavouriteScreen extends StatelessWidget {
                                   SizedBox(
                                     width: size.width * 0.24,
                                     child: AutoSizeText(
-                                      doctor.degree,
+                                      '$valueDegree',
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),
@@ -173,7 +177,7 @@ class FavouriteScreen extends StatelessWidget {
                                   SizedBox(
                                     width: size.width * 0.24,
                                     child: AutoSizeText(
-                                      doctor.position,
+                                      '$valuePos',
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),

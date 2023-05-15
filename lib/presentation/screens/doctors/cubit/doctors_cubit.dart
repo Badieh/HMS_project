@@ -39,6 +39,9 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
           Doctor2,
           Doctor1,
           Doctor1,
+
+
+
         ];
         emit(GetDoctorsSuccessState());
       } catch (error) {
@@ -122,6 +125,10 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
           Doctor2,
           Doctor1,
           Doctor1,
+          Doctor2,
+          Doctor2,
+          Doctor2,
+
         ];
         emit(GetDoctorsSuccessState());
       } catch (error) {

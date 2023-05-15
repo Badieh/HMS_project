@@ -8,14 +8,14 @@ class DoctorModel extends Equatable {
   final String imageHash;
   final String hospitalName;
   final String nationalIDCard;
-  final String degree;
-  final String position;
+  Map<int , String> degree;
+  Map<int , String> position;
   final String? notes;
-  final String noOfPatient;
-  final String yearsOfExperience;
+  final int noOfPatient;
+  final double yearsOfExperience;
   final String aboutMe;
 
-  const DoctorModel({
+   DoctorModel({
     required this.name,
     required this.id,
     required this.specialty,
@@ -40,8 +40,8 @@ class DoctorModel extends Equatable {
       imageHash: json['imageHash'],
       hospitalName: json['hospitalName'],
       nationalIDCard: json['National_ID_Card'],
-      degree: json['Degree'],
-      position: json['Position'],
+      degree:  Map<int , String>.from(json['degree']),
+      position:  Map<int , String>.from(json['position']),
       notes: json['notes'],
       noOfPatient: json['noOfPatient'],
       yearsOfExperience: json['yearsOfExperience'],

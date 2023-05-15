@@ -32,7 +32,10 @@ class DoctorDetailsScreen extends StatelessWidget {
       builder: (context, state) {
         DoctorsCubit cubit = DoctorsCubit.get(context);
         final DoctorModel doctorModel = cubit.selectedDoctor;
-
+        int keyDegree = cubit.selectedDoctor.id;
+        String valueDegree = doctorModel.degree[keyDegree]!;
+        int keyPos = cubit.selectedDoctor.id;
+        String valuePos = doctorModel.position[keyPos]!;
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -128,7 +131,20 @@ class DoctorDetailsScreen extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     child: AutoSizeText(
-                                      doctorModel.specialty,
+                                      '$valueDegree',
+                                      style: TextStyle(
+                                        fontSize: FontSize.s12,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: size.height * .01,
+                                  ),
+                                  SizedBox(
+                                    child: AutoSizeText(
+                                      '$valuePos',
                                       style: TextStyle(
                                         fontSize: FontSize.s12,
                                       ),
@@ -188,7 +204,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                               Container(
                                 width: MediaQuery.of(context).size.width * .18,
                                 child: Text(
-                                  doctorModel.noOfPatient,
+                                 doctorModel.noOfPatient.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: FontSize.s18,
@@ -241,7 +257,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                               ),
                               Container(
                                 child: Text(
-                                  doctorModel.yearsOfExperience,
+                                  doctorModel.yearsOfExperience.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: FontSize.s18,

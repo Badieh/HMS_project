@@ -67,12 +67,20 @@ class DoctorsScreen extends StatelessWidget {
                           physics: BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
                             var doctor = doctorsCubit.doctors[index];
+                            int keyDegree = doctor.degree.keys.elementAt(index);
+                            String valueDegree = doctor.degree[keyDegree]!;
+                            int keyPos = doctor.position.keys.elementAt(index);
+                            String valuePos = doctor.position[keyPos]!;
                             return InkWell(
                               onTap: () async {
                                 doctorsCubit.selectedDoctor =
                                     doctorsCubit.doctors[index];
                                 await doctorsCubit.getDoctorDetails(
                                     docId: doctorsCubit.doctors[index].id);
+                                print('===============================================');
+
+                                print(doctorsCubit.doctors.length);
+                                print('===============================================');
 
                                 Get.toNamed(Routes.doctorDetails);
 
@@ -196,7 +204,7 @@ class DoctorsScreen extends StatelessWidget {
                                               SizedBox(
                                                 width: size.width * 0.24,
                                                 child: AutoSizeText(
-                                                  doctor.degree,
+                                                    '$valueDegree' ,
                                                   style: TextStyle(
                                                     fontSize: FontSize.s14,
                                                   ),
@@ -220,7 +228,8 @@ class DoctorsScreen extends StatelessWidget {
                                               SizedBox(
                                                 width: size.width * 0.24,
                                                 child: AutoSizeText(
-                                                  doctor.position,
+                                                  '$valuePos',
+                                                  // 'Key: $key, Value: $value'
                                                   style: TextStyle(
                                                     fontSize: FontSize.s14,
                                                   ),
