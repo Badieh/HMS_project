@@ -51,7 +51,6 @@ class NotificationScreen extends StatelessWidget {
                           height: AppSizeHeight.s1_5,
                           color: Get.isDarkMode ? ColorManager.grey : ColorManager.darkGrey),
                     ),
-                    trailing: Icon(Icons.arrow_forward),
                     onTap: () {
                       // Action to perform when the user taps the card
                     },

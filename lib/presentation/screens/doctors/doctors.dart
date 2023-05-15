@@ -32,9 +32,8 @@ class DoctorsScreen extends StatelessWidget {
       // }
       return Scaffold(
         backgroundColor:
-            Get.isDarkMode ? ColorManager.black : ColorManager.lightGrey,
+            Get.isDarkMode ? ColorManager.black : ColorManager.lightPrimary,
         appBar: AppBar(
-          backgroundColor: ColorManager.lightGrey,
           leading: IconButton(
             onPressed: () {
               doctorsCubit.specialization = null;
@@ -51,95 +50,18 @@ class DoctorsScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold, fontSize: FontSize.s20)),
         ),
         body: Padding(
-            padding: EdgeInsets.all(AppSizeHeight.s12),
+            padding: EdgeInsets.symmetric(horizontal: AppSizeHeight.s12),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text("All",
-                              style: TextStyle(fontSize: 15.sp),
-                              textAlign: TextAlign.center),
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(50.w, 30.h),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                              elevation: 2),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 80,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text("General",
-                              style: TextStyle(
-                                  fontSize: 15.sp, color: ColorManager.primary),
-                              textAlign: TextAlign.center),
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(90.w, 30.h),
-                              side: BorderSide(
-                                  color: ColorManager.primary, width: 2),
-                              backgroundColor: Get.isDarkMode
-                                  ? ColorManager.black
-                                  : ColorManager.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                              elevation: 2),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 80,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text("Dentist",
-                              style: TextStyle(
-                                  fontSize: 15.sp, color: ColorManager.primary),
-                              textAlign: TextAlign.center),
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(80.w, 30.h),
-                              side: BorderSide(
-                                  color: ColorManager.primary, width: 2),
-                              backgroundColor: Get.isDarkMode
-                                  ? ColorManager.black
-                                  : ColorManager.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                              elevation: 2),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 80,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text("nutritionist",
-                              style: TextStyle(
-                                  fontSize: 15.sp, color: ColorManager.primary),
-                              textAlign: TextAlign.center),
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(90.w, 30.h),
-                              side: BorderSide(
-                                  color: ColorManager.primary, width: 2),
-                              backgroundColor: Get.isDarkMode
-                                  ? ColorManager.black
-                                  : ColorManager.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                              elevation: 2),
-                        ),
-                      ],
-                    ),
-                  ),
+
                   SizedBox(
-                    height: AppSizeHeight.s12,
+                    height: AppSizeHeight.s10,
                   ),
                   ConditionalBuilder(
                     condition: doctorsCubit.doctors.isNotEmpty,
                     builder: (context) => Container(
-                      height: MediaQuery.of(context).size.height * .8,
+                      height: MediaQuery.of(context).size.height * .9,
                       width: double.infinity,
                       child: ListView.separated(
                           physics: BouncingScrollPhysics(),

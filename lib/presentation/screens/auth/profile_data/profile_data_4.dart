@@ -1,6 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -51,6 +52,13 @@ class ProfileData4Screen extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
                   CSCPicker(
+                    dropdownDecoration: BoxDecoration(
+                        color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey
+                    ),
+                    disabledDropdownDecoration: BoxDecoration(
+                    color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey,
+
+                  ),
                     currentCountry: cubit.birthCountry ?? 'Birth Country',
                     currentCity: cubit.birthCity ?? 'Birth City',
                     currentState: cubit.birthState ?? 'Birth State',
@@ -125,6 +133,13 @@ class ProfileData4Screen extends StatelessWidget {
 
                   // jobCity /jobState  /jobCountry
                   CSCPicker(
+                    dropdownDecoration: BoxDecoration(
+                        color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey
+                    ),
+                    disabledDropdownDecoration: BoxDecoration(
+                  color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey,
+
+                  ),
                     currentCountry: cubit.jobCountry ?? 'Job Country',
                     currentCity: cubit.jobCity ?? 'Job City',
                     currentState: cubit.jobState ?? 'Job State',

@@ -194,8 +194,8 @@ ThemeData getDarkThemeData() {
         style: ElevatedButton.styleFrom(
             fixedSize: Size(AppSizeWidth.sMaxInfinite, AppSizeHeight.s45),
             foregroundColor: ColorManager.white,
-            backgroundColor: ColorManager.primary,
-            shadowColor: ColorManager.secondary,
+            backgroundColor: ColorManager.lightBlack,
+            shadowColor: ColorManager.white,
             padding: const EdgeInsets.symmetric(
                 vertical: AppPadding.p6, horizontal: AppPadding.p8),
             shape: RoundedRectangleBorder(
@@ -230,7 +230,7 @@ ThemeData getDarkThemeData() {
 
     // ========================      input decoration theme     ==============================
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: ColorManager.veryLightGrey,
+      fillColor: ColorManager.lightBlack,
       filled: true,
       // content padding
       contentPadding: const EdgeInsets.all(AppPadding.p8),

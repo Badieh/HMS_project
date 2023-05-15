@@ -212,6 +212,9 @@ class ProfileData3Screen extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
                   CSCPicker(
+                    dropdownDecoration: BoxDecoration(
+                        color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey
+                    ),
                     defaultCountry: CscCountry.Egypt,
                     currentCountry: cubit.nationalitty ?? 'Country',
                     //countryDropdownLabel: 'Nationality',
@@ -285,6 +288,13 @@ class ProfileData3Screen extends StatelessWidget {
 
                   // city  / state / country
                   CSCPicker(
+                    dropdownDecoration: BoxDecoration(
+                      color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey,
+
+                    ),disabledDropdownDecoration: BoxDecoration(
+                    color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey,
+
+                  ),
                     defaultCountry: CscCountry.Egypt,
                     currentCountry: cubit.addressCountry ?? 'Country',
                     currentCity: cubit.addressCity ?? 'City',

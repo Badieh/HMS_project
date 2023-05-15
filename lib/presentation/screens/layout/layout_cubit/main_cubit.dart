@@ -30,7 +30,7 @@ class MainCubit extends Cubit<MainStates> {
     AppointmentScreen(),
     HistoryScreen(),
     ArticlesScreen(),
-    Profile_Screen(),
+    ProfileScreen(),
   ];
   final titles = [];
 

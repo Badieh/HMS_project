@@ -17,16 +17,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(AppPadding.p12),
+      padding: const EdgeInsets.all(AppPadding.p12),
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 20),
               alignment: Alignment.center,
               height: MediaQuery.of(context).size.width * .15,
               width: MediaQuery.of(context).size.width,
@@ -77,10 +77,6 @@ class HomeScreen extends StatelessWidget {
                   height: MediaQuery.of(context).size.width * .4,
                   clipBehavior: Clip.antiAlias,
                   width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    "assets/images/a1.jpg",
-                    fit: BoxFit.fill,
-                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
@@ -88,9 +84,13 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.lightBlueAccent.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 2,
-                        offset: Offset(2, 2), // changes position of shadow
+                        offset: const Offset(2, 2), // changes position of shadow
                       ),
                     ],
+                  ),
+                  child: Image.asset(
+                    "assets/images/a1.jpg",
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Container(
@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: AppSizeWidth.s150,
                         child: Padding(
-                          padding: EdgeInsets.all(AppPadding.p8),
+                          padding: const EdgeInsets.all(AppPadding.p8),
                           child: Text(
                             AppStrings.posterText,
                             style: TextStyle(
@@ -113,7 +113,7 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         width: AppSizeWidth.s150,
                         child: Padding(
-                          padding: EdgeInsets.all(AppPadding.p8),
+                          padding: const EdgeInsets.all(AppPadding.p8),
                           child: Text(
                             overflow: TextOverflow.ellipsis,
                             maxLines: 3,
@@ -173,13 +173,6 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       Container(
-                        child: Icon(
-                          Icons.people,
-                          size: FontSize.s35,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                        ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -188,13 +181,20 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: Icon(
+                          Icons.people,
+                          size: FontSize.s35,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "General",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -210,13 +210,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        child: FaIcon(
-                          FontAwesomeIcons.tooth,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -225,13 +218,20 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: FaIcon(
+                          FontAwesomeIcons.tooth,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                          size: FontSize.s35,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "Dentist",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -247,13 +247,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        child: FaIcon(
-                          FontAwesomeIcons.solidEye,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -262,13 +255,20 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: FaIcon(
+                          FontAwesomeIcons.solidEye,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                          size: FontSize.s35,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "ophthalmologist",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -284,13 +284,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        child: FaIcon(
-                          FontAwesomeIcons.nutritionix,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -299,13 +292,20 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: FaIcon(
+                          FontAwesomeIcons.nutritionix,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                          size: FontSize.s35,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "Nutrition",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -330,13 +330,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        child: FaIcon(
-                          FontAwesomeIcons.brain,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
                         height: MediaQuery.of(context).size.width * 0.16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -345,13 +338,20 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: FaIcon(
+                          FontAwesomeIcons.brain,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                          size: FontSize.s35,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "neurologist",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -367,13 +367,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        child: FaIcon(
-                          FontAwesomeIcons.baby,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -382,13 +375,20 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: FaIcon(
+                          FontAwesomeIcons.baby,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                          size: FontSize.s35,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "pediatrician",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -404,13 +404,6 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        child: FaIcon(
-                          FontAwesomeIcons.xRay,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -419,13 +412,20 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: FaIcon(
+                          FontAwesomeIcons.xRay,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                          size: FontSize.s35,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "radiologist",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -440,13 +440,6 @@ class HomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       Container(
-                        child: Icon(
-                          Icons.more_horiz,
-                          size: 30,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                        ),
                         height: MediaQuery.of(context).size.width * .16,
                         width: MediaQuery.of(context).size.width * .16,
                         decoration: BoxDecoration(
@@ -455,6 +448,13 @@ class HomeScreen extends StatelessWidget {
                               : ColorManager.lightPrimary,
                           borderRadius: BorderRadius.circular(50),
                         ),
+                        child: Icon(
+                          Icons.more_horiz,
+                          size: 30,
+                          color: Get.isDarkMode
+                              ? ColorManager.white
+                              : ColorManager.primary,
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * .005,
@@ -462,7 +462,7 @@ class HomeScreen extends StatelessWidget {
                       Container(
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width * .18,
-                        child: Text(
+                        child: const Text(
                           "More",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -478,112 +478,69 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * .008,
+              height: MediaQuery.of(context).size.height * .04,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    AppStrings.Doctors,
-                    style: TextStyle(
-                        fontSize: FontSize.s17, fontWeight: FontWeight.bold),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: Text(
+            //         AppStrings.Doctors,
+            //         style: TextStyle(
+            //             fontSize: FontSize.s17, fontWeight: FontWeight.bold),
+            //       ),
+            //     ),
+            //     TextButton(
+            //         onPressed: () async {
+            //           final doctorsCubit = context.read<DoctorsCubit>();
+            //           await doctorsCubit.getDoctors();
+            //           Navigator.of(context).push(MaterialPageRoute(
+            //               builder: (context) => DoctorsScreen()));
+            //         },
+            //         child: Text(
+            //           AppStrings.seeAll,
+            //           style: TextStyle(
+            //               fontSize: FontSize.s13,
+            //               fontWeight: FontWeight.bold,
+            //               color: ColorManager.primary),
+            //           textAlign: TextAlign.end,
+            //         )),
+            //   ],
+            // ),
+            Container(
+
+              width:MediaQuery.of(context).size.width,
+               alignment: Alignment.center,
+               child : ElevatedButton(
+                  onPressed: ()  async {
+                    final doctorsCubit = context.read<DoctorsCubit>();
+                    await doctorsCubit.getDoctors();
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => DoctorsScreen()));
+                    },
+                  style: ElevatedButton.styleFrom(
+                    alignment: Alignment.center,
+                      fixedSize: Size(MediaQuery.of(context).size.width, 25.h),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AppSizeHeight.s10)),
+                      elevation: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                     Row(
+                       children: [
+                         FaIcon(FontAwesomeIcons.userDoctor,size: AppSizeHeight.s20,color: ColorManager.white ,),
+                         SizedBox(width: AppSizeWidth.s8,),
+                         Text("Hospital Doctors",
+                             style: TextStyle(fontSize: FontSize.s15),
+                             textAlign: TextAlign.center),
+                       ],
+                     ),
+                      Icon(Icons.arrow_forward_ios,size:  AppSizeHeight.s20,)
+                    ],
                   ),
                 ),
-                TextButton(
-                    onPressed: () async {
-                      final doctorsCubit = context.read<DoctorsCubit>();
-                      await doctorsCubit.getDoctors();
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => DoctorsScreen()));
-                    },
-                    child: Text(
-                      AppStrings.seeAll,
-                      style: TextStyle(
-                          fontSize: FontSize.s13,
-                          fontWeight: FontWeight.bold,
-                          color: ColorManager.primary),
-                      textAlign: TextAlign.end,
-                    )),
-              ],
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("All",
-                        style: TextStyle(fontSize: FontSize.s15),
-                        textAlign: TextAlign.center),
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: Size(50.w, 30.h),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        elevation: 2),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 80,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("General",
-                        style: TextStyle(
-                            fontSize: FontSize.s15,
-                            color: ColorManager.primary),
-                        textAlign: TextAlign.center),
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: Size(90.w, 30.h),
-                        side: BorderSide(color: ColorManager.primary, width: 2),
-                        backgroundColor: Get.isDarkMode
-                            ? ColorManager.black
-                            : ColorManager.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        elevation: 2),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 80,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Dentist",
-                        style: TextStyle(
-                            fontSize: FontSize.s15,
-                            color: ColorManager.primary),
-                        textAlign: TextAlign.center),
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: Size(80.w, 30.h),
-                        side: BorderSide(color: ColorManager.primary, width: 2),
-                        backgroundColor: Get.isDarkMode
-                            ? ColorManager.black
-                            : ColorManager.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        elevation: 2),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 80,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("nutritionist",
-                        style: TextStyle(
-                            fontSize: FontSize.s15,
-                            color: ColorManager.primary),
-                        textAlign: TextAlign.center),
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: Size(90.w, 30.h),
-                        side: BorderSide(color: ColorManager.primary, width: 2),
-                        backgroundColor: Get.isDarkMode
-                            ? ColorManager.black
-                            : ColorManager.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        elevation: 2),
-                  ),
-                ],
-              ),
+
+
             )
           ],
         ),

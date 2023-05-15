@@ -57,7 +57,7 @@ class BookAppointmentScreen extends StatelessWidget {
                       autofocus: true,
                       decoration: InputDecoration(
                           hintText: AppStrings.howHelp,
-                          fillColor: ColorManager.lightPrimary),
+                          ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppStrings.validator;
@@ -82,7 +82,7 @@ class BookAppointmentScreen extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSizeHeight.s16),
-                      color: ColorManager.lightPrimary,
+                      color:Get.isDarkMode ?ColorManager.lightBlack : ColorManager.lightPrimary,
                     ),
                     child: CalendarDatePicker(
                       initialDate: DateTime.now(),
@@ -116,7 +116,7 @@ class BookAppointmentScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeHeight.s16),
-                              color: ColorManager.lightPrimary,
+                              color: Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightPrimary,
                             ),
                             child: ListView.builder(
                               shrinkWrap: true,
@@ -182,8 +182,9 @@ class BookAppointmentScreen extends StatelessWidget {
                   cubit.selectedTimeIndex = -1;
                   Get.offAllNamed(Routes.homeLayoutScreen);
                   QuickAlert.show(
+                      confirmBtnColor: ColorManager.green,
                     context: context,
-                    backgroundColor: ColorManager.lightPrimary,
+                    backgroundColor: ColorManager.white,
                     barrierDismissible: false,
                     type: QuickAlertType.success,
                     width: MediaQuery.of(context).size.width,

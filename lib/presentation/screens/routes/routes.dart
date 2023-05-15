@@ -31,7 +31,7 @@ class AppRoutes {
     GetPage(name: Routes.specializations, page: () => SpecializationsScreen()),
     GetPage(name: Routes.doctors, page: () => DoctorsScreen()),
     GetPage(name: Routes.onBoarding, page: () => OnBoardingScreen()),
-    GetPage(name: Routes.profile, page: () => Profile_Screen(),binding:DarkModeBinding() ),
+    GetPage(name: Routes.profile, page: () => ProfileScreen(),binding:DarkModeBinding() ),
 
     GetPage(name: Routes.bookAppointment, page: () => BookAppointmentScreen(title: '',)),
     GetPage(name: Routes.doctorDetails, page: () => DoctorDetailsScreen()),

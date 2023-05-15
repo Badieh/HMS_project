@@ -35,7 +35,8 @@ class CaseDiagnoseReportScreen extends StatelessWidget {
             title: Text(
               AppStrings.caseDiagnose,
               style: Theme.of(context).textTheme.titleLarge,
-            ),
+
+            ),elevation: 5,shadowColor: ColorManager.white,
           ),
           body: Padding(
             padding: const EdgeInsets.all(AppPadding.p8),

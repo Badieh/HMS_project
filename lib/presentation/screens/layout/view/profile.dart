@@ -7,8 +7,8 @@ import 'package:hospital/presentation/resources/values_manager.dart';
 
 import '../../routes/routes.dart';
 
-class Profile_Screen extends StatelessWidget {
-   Profile_Screen({Key? key}) : super(key: key);
+class ProfileScreen extends StatelessWidget {
+   ProfileScreen({Key? key}) : super(key: key);
     final darkModeControler = Get.find<DarkModeController>();
    final darkMode = 'Dark Mode'.obs;
    final lightMode = "Light Mode".obs;
@@ -197,9 +197,6 @@ class Profile_Screen extends StatelessWidget {
                       inactiveThumbColor: ColorManager.grey,
                       inactiveTrackColor: ColorManager.lightGrey
                   ),
-
-
-
               ],
             ),),
             SizedBox(
