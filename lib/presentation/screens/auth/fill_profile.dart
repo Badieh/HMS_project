@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_1.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_2.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_3.dart';
@@ -18,10 +18,10 @@ class FillProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileDataCubit, ProfileDataStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        ProfileDataCubit cubit = ProfileDataCubit().get(context);
+        AuthCubit cubit = AuthCubit.get(context);
         return Scaffold(
           appBar: AppBar(
             title: const Text(AppStrings.fillYourProfile),
@@ -100,26 +100,13 @@ class FillProfileScreen extends StatelessWidget {
                             if (ProfileData4Screen.formKey4.currentState!
                                 .validate()) {
                               print('test');
-                              if (await cubit.submit(context: context)) {
+                              if (await cubit.submitProfileData(context: context)) {
                                 print(
-                                    'bos aho ${await cubit.submit(context: context)}');
+                                    'bos aho ${await cubit.submitProfileData(context: context)}');
                                 Get.offAllNamed(Routes.homeLayoutScreen);
                               }
                             }
                           }
-                          // if (cubit.pageController.page == 0) {
-                          //   cubit.nextPage();
-                          // } else if (cubit.pageController.page == 1) {
-                          //   cubit.nextPage();
-                          // } else if (cubit.pageController.page == 2) {
-                          //   cubit.nextPage();
-                          // } else if (cubit.pageController.page == 3) {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //         builder: (context) => HomeLayoutScreen(),
-                          //       ));
-                          // }
                         },
                         child: Text(
                           !cubit.endReached

@@ -1,17 +1,24 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hospital/models/error_model.dart';
+import 'package:hospital/models/user_model.dart';
+import 'package:hospital/network/remote/cache_helper.dart';
+import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
-class ProfileDataCubit extends Cubit<ProfileDataStates> {
-  ProfileDataCubit() : super(ProfileDtateInitialState());
+class AuthCubit extends Cubit<AuthStates> {
+  AuthCubit() : super(AuthInitialState());
 
-  ProfileDataCubit get(context) => BlocProvider.of(context);
+  static AuthCubit get(context) => BlocProvider.of(context);
 
   String? firstName;
   String? secondName;
@@ -244,7 +251,7 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
     emit(ChangePage());
   }
 
-  Future<bool> submit({
+  Future<bool> submitProfileData({
     required BuildContext context,
   }) async {
     if (firstName == null ||
@@ -339,6 +346,97 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
         );
         return false;
       }
+    }
+  }
+
+  ErrorModel? errorModel;
+  RegisterUserModel? registerUserModel;
+  LoginUserModel? loginUserModel;
+
+  Future<void> register(
+      {required String email, required String password}) async {
+    emit(RegisterLoadingState());
+    print('email : $email');
+    print('password : $password');
+
+    try {
+      // get data from API
+      var response =
+          await DioHelper.postData(url: AppConstants.registerPath, data: {
+        'email': email,
+        'password': password,
+        'role': 'patient',
+      });
+      print('Got Data from Api');
+      // Saving data in UserModel
+      registerUserModel = RegisterUserModel.fromJson(response.data);
+      print('User is :${registerUserModel?.user.email}');
+      print('Access token :${registerUserModel?.tokens.accessToken.token}');
+      print('Refresh token ${registerUserModel?.tokens.refreshToken.token}');
+      // Saving Access token and Refresh token for future use
+      await CacheHelper.saveData(
+          key: 'accessToken',
+          value: registerUserModel?.tokens.accessToken.token);
+      AppConstants.accessToken = await CacheHelper.getData(key: 'accessToken');
+      await CacheHelper.saveData(
+          key: 'refreshsToken',
+          value: registerUserModel?.tokens.refreshToken.token);
+      AppConstants.refreshToken =
+          await CacheHelper.getData(key: 'refreshsToken');
+
+      emit(RegisterSuccesfulState());
+    } on DioError catch (error) {
+      errorModel = ErrorModel.fromJson(json: error.response?.data);
+      if (kDebugMode) {
+        print(error.toString());
+        print('Error code :${errorModel?.statusCode}');
+        print('Error Message :${errorModel?.message}');
+        // print('Error Stack :${errorModel?.stack}');
+      }
+
+      emit(RegisterErrorState(error.toString()));
+    }
+  }
+
+  Future<void> login({required String email, required String password}) async {
+    emit(LoginLoadingState());
+    print('email : $email');
+    print('password : $password');
+
+    try {
+      // get data from API
+      var response =
+          await DioHelper.postData(url: AppConstants.loginPath, data: {
+        'email': email,
+        'password': password,
+      });
+      print('Got Data from Api');
+      // Saving data in UserModel
+      loginUserModel = LoginUserModel.fromJson(response.data);
+      print('User is :${loginUserModel?.user.email}');
+      print('Access token :${loginUserModel?.tokens.accessToken.token}');
+      print('Refresh token ${loginUserModel?.tokens.refreshToken.token}');
+      // Saving Access token and Refresh token for future use
+      await CacheHelper.saveData(
+          key: 'accessToken', value: loginUserModel?.tokens.accessToken.token);
+      AppConstants.accessToken = await CacheHelper.getData(key: 'accessToken');
+      await CacheHelper.saveData(
+          key: 'refreshsToken',
+          value: loginUserModel?.tokens.refreshToken.token);
+      AppConstants.refreshToken =
+          await CacheHelper.getData(key: 'refreshsToken');
+
+      emit(LoginSuccesfulState());
+    } on DioError catch (error) {
+      errorModel = ErrorModel.fromJson(json: error.response?.data);
+      if (kDebugMode) {
+        print(error.toString());
+        print('Error code :${errorModel?.statusCode}');
+        print('Error Message :${errorModel?.message}');
+        // print('Error Stack :${errorModel?.stack}');
+      }
+
+      emit(LoginErrorState(error.toString()));
     }
   }
 }

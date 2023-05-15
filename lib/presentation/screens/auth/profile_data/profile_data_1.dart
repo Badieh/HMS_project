@@ -5,8 +5,8 @@ import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class ProfileData1Screen extends StatelessWidget {
@@ -31,10 +31,10 @@ class ProfileData1Screen extends StatelessWidget {
   static bool isPhoneValid = false;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileDataCubit, ProfileDataStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        ProfileDataCubit cubit = ProfileDataCubit().get(context);
+        AuthCubit cubit = AuthCubit.get(context);
 
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),

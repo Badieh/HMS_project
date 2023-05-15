@@ -7,8 +7,8 @@ import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
 
 class ProfileData3Screen extends StatelessWidget {
   ProfileData3Screen({Key? key}) : super(key: key);
@@ -21,10 +21,10 @@ class ProfileData3Screen extends StatelessWidget {
   static final TextEditingController buildingNumber = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileDataCubit, ProfileDataStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        ProfileDataCubit cubit = ProfileDataCubit().get(context);
+        AuthCubit cubit = AuthCubit.get(context);
 
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),

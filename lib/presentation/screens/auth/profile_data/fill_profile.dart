@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
+
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_1.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_2.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/profile_data_3.dart';
@@ -18,10 +19,10 @@ class FillProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileDataCubit, ProfileDataStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        ProfileDataCubit cubit = ProfileDataCubit().get(context);
+        AuthCubit cubit = AuthCubit.get(context);
         return Scaffold(
           appBar: AppBar(
             title: const Text(AppStrings.fillYourProfile),
@@ -106,19 +107,6 @@ class FillProfileScreen extends StatelessWidget {
                                   ));
                             }
                           }
-                          // if (cubit.pageController.page == 0) {
-                          //   cubit.nextPage();
-                          // } else if (cubit.pageController.page == 1) {
-                          //   cubit.nextPage();
-                          // } else if (cubit.pageController.page == 2) {
-                          //   cubit.nextPage();
-                          // } else if (cubit.pageController.page == 3) {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //         builder: (context) => HomeLayoutScreen(),
-                          //       ));
-                          // }
                         },
                         child: Text(
                           !cubit.endReached
@@ -131,17 +119,6 @@ class FillProfileScreen extends StatelessWidget {
               ],
             ),
           ),
-          // floatingActionButton: cubit.pageController.page != 3
-          //     ? FloatingActionButton(
-          //         onPressed: () {
-          //           cubit.nextPage();
-          //         },
-          //         child: Text('next'),
-          //       )
-          //     : FloatingActionButton(
-          //         onPressed: () {},
-          //         child: Text('submit'),
-          //       ),
         );
       },
     );
