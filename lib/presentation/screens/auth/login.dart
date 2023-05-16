@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
 import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
-import 'package:hospital/presentation/screens/auth/register.dart';
 import 'package:quickalert/quickalert.dart';
 
 import '../routes/routes.dart';
@@ -25,22 +25,25 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
 
-        if (state is LoginSuccesfulState) {
-          Get.offAllNamed(Routes.homeLayoutScreen);
-
+        if (state is LoginSuccessfulState) {
+          if (AppConstants.patientId == 0) {
+            Get.toNamed(Routes.fillProfile);
+          } else {
+            Get.offAllNamed(Routes.homeLayoutScreen);
+          }
         } else if (state is LoginErrorState) {
           QuickAlert.show(
               context: context,
               type: QuickAlertType.error,
               text: cubit.errorModel!.message,
               backgroundColor:
-              Get.isDarkMode ? ColorManager.black : ColorManager.white,
+                  Get.isDarkMode ? ColorManager.black : ColorManager.white,
               titleColor:
-              Get.isDarkMode ? ColorManager.white : ColorManager.black,
+                  Get.isDarkMode ? ColorManager.white : ColorManager.black,
               textColor:
-              Get.isDarkMode ? ColorManager.white : ColorManager.black,
+                  Get.isDarkMode ? ColorManager.white : ColorManager.black,
               confirmBtnColor:
-              Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+                  Get.isDarkMode ? ColorManager.white : ColorManager.primary,
               confirmBtnTextStyle: TextStyle(
                 color: Get.isDarkMode ? ColorManager.black : ColorManager.white,
               ));
@@ -96,7 +99,13 @@ class LoginScreen extends StatelessWidget {
                           keyboardType: TextInputType.visiblePassword,
                           label: AppStrings.password,
                           prefixIcon: Icons.lock,
-                          suffixIcon: Icons.remove_red_eye,
+                          isPassword: cubit.isPassword,
+                          suffixIcon: cubit.isPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off_outlined,
+                          suffixPressed: () {
+                            cubit.changePasswordAppearance();
+                          },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return AppStrings.validator;

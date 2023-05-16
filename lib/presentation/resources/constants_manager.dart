@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hospital/models/user_model.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -21,17 +20,21 @@ class AppConstants {
   // http://192.168.1.100:300
   // 192.168.137.15:39345
   // http://localhost:3000
-  static const backendBaseUrl = 'http://10.0.2.2:3000/v1';
+  static const backendBaseUrl = 'http://10.0.2.2:8080/v1';
   static const loginPath = '$backendBaseUrl/auth/login';
   static const registerPath = '$backendBaseUrl/auth/register';
   static const logoutPath = '$backendBaseUrl/auth/logout';
   static const refreshTokenPath = '$backendBaseUrl/auth//refresh-tokens';
 
-  static const createPatientPath = '$backendBaseUrl/patients';
-  static const getPatientPath = '$backendBaseUrl/patients';
+  static const createPatientPath = '$backendBaseUrl/patients/create';
+  static const getPatientPath = '$backendBaseUrl/patients/get';
+  static const updatePatientPath = '$backendBaseUrl/patients/update';
   static const doctorsPath = '$backendBaseUrl/doctors/fetch';
   static String? accessToken;
   static String? refreshToken;
+  static int userId = CacheHelper.getData(key: 'userId') ?? 0;
+  static int patientId = CacheHelper.getData(key: 'patientId') ?? 0;
+  static int doctorId = CacheHelper.getData(key: 'doctorId') ?? 0;
 
   //  Articles Api
   // https://newsapi.org/v2/top-headlines?

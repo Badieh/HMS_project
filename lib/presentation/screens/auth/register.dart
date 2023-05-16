@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
@@ -25,24 +26,23 @@ class RegisterScreen extends StatelessWidget {
       listener: (context, state) {
         AuthCubit cubit = AuthCubit.get(context);
 
-        if (state is RegisterSuccesfulState) {
+        if (state is RegisterSuccessfulState) {
           Get.offAllNamed(Routes.fillProfile);
           QuickAlert.show(
               context: context,
               type: QuickAlertType.success,
-              text: 'Account Created',
+              text: cubit.registerUserModel!.message,
               backgroundColor:
-              Get.isDarkMode ? ColorManager.black : ColorManager.white,
+                  Get.isDarkMode ? ColorManager.black : ColorManager.white,
               titleColor:
-              Get.isDarkMode ? ColorManager.white : ColorManager.black,
+                  Get.isDarkMode ? ColorManager.white : ColorManager.black,
               textColor:
-              Get.isDarkMode ? ColorManager.white : ColorManager.black,
+                  Get.isDarkMode ? ColorManager.white : ColorManager.black,
               confirmBtnColor:
-              Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+                  Get.isDarkMode ? ColorManager.white : ColorManager.primary,
               confirmBtnTextStyle: TextStyle(
                 color: Get.isDarkMode ? ColorManager.black : ColorManager.white,
               ));
-
         } else if (state is RegisterErrorState) {
           QuickAlert.show(
               context: context,
@@ -112,7 +112,13 @@ class RegisterScreen extends StatelessWidget {
                           keyboardType: TextInputType.visiblePassword,
                           label: AppStrings.password,
                           prefixIcon: Icons.lock,
-                          suffixIcon: Icons.remove_red_eye,
+                          isPassword: cubit.isPassword,
+                          suffixIcon: cubit.isPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off_outlined,
+                          suffixPressed: () {
+                            cubit.changePasswordAppearance();
+                          },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return AppStrings.validator;
@@ -122,7 +128,40 @@ class RegisterScreen extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 50,
                       ),
-
+                      // Patient or Dortor ?
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            children: [
+                              Radio(
+                                  value: UserType.patient,
+                                  groupValue: cubit.userType,
+                                  onChanged: (value) {
+                                    cubit.changeUserType(UserType.patient);
+                                  }),
+                              Text(
+                                AppStrings.patient,
+                                style: TextStyle(fontSize: FontSize.s18),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Radio(
+                                  value: UserType.doctor,
+                                  groupValue: cubit.userType,
+                                  onChanged: (value) {
+                                    cubit.changeUserType(UserType.doctor);
+                                  }),
+                              Text(
+                                AppStrings.doctor,
+                                style: TextStyle(fontSize: FontSize.s18),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                       // remember me check box
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

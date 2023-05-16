@@ -51,9 +51,9 @@ class ProfileData4Screen extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
                   CSCPicker(
-                    currentCountry: cubit.birthCountry ?? 'Birth Country',
-                    currentCity: cubit.birthCity ?? 'Birth City',
-                    currentState: cubit.birthState ?? 'Birth State',
+                    currentCountry: AuthCubit.birthCountry ?? 'Birth Country',
+                    currentCity: AuthCubit.birthCity ?? 'Birth City',
+                    currentState: AuthCubit.birthState ?? 'Birth State',
                     // countryDropdownLabel: 'Nationality',
                     // showStates: false,
                     //defaultCountry: CscCountry.Egypt,
@@ -93,49 +93,55 @@ class ProfileData4Screen extends StatelessWidget {
                         //   return AppStrings.validator;
                         // }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeJob(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-                  // jobBuildingNumber
-                  DefaultTextFormField(
-                      controller: jobBuildingNumber,
-                      keyboardType: TextInputType.number,
-                      TextInputAction: TextInputAction.next,
-                      label: AppStrings.jobBuildingNumber,
-                      validator: (value) {
-                        // if (value == null || value.isEmpty) {
-                        //   return AppStrings.validator;
-                        // }
-                      },
-                      onFieldSubmitted: (value) {}),
-                  SizedBox(height: MediaQuery.of(context).size.height / 45),
+                  // // jobBuildingNumber
+                  // DefaultTextFormField(
+                  //     controller: jobBuildingNumber,
+                  //     keyboardType: TextInputType.number,
+                  //     TextInputAction: TextInputAction.next,
+                  //     label: AppStrings.jobBuildingNumber,
+                  //     validator: (value) {
+                  //       // if (value == null || value.isEmpty) {
+                  //       //   return AppStrings.validator;
+                  //       // }
+                  //     },
+                  //     onFieldSubmitted: (value) {
+                  //       cubit.changejobBuildingNumber(value);
+                  //     }),
+                  // SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-                  // jobStreetName
-                  DefaultTextFormField(
-                      controller: jobStreetName,
-                      keyboardType: TextInputType.name,
-                      label: AppStrings.jobStreetName,
-                      validator: (value) {
-                        // if (value == null || value.isEmpty) {
-                        //   return AppStrings.validator;
-                        // }
-                      },
-                      onFieldSubmitted: (value) {}),
-                  SizedBox(height: MediaQuery.of(context).size.height / 45),
+                  // // jobStreetName
+                  // DefaultTextFormField(
+                  //     controller: jobStreetName,
+                  //     keyboardType: TextInputType.name,
+                  //     label: AppStrings.jobStreetName,
+                  //     validator: (value) {
+                  //       // if (value == null || value.isEmpty) {
+                  //       //   return AppStrings.validator;
+                  //       // }
+                  //     },
+                  //     onFieldSubmitted: (value) {
+                  //       cubit.changejobjobStreetName(value);
+                  //     }),
+                  // SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // jobCity /jobState  /jobCountry
                   CSCPicker(
-                    currentCountry: cubit.jobCountry ?? 'Job Country',
-                    currentCity: cubit.jobCity ?? 'Job City',
-                    currentState: cubit.jobState ?? 'Job State',
+                    currentCountry: AuthCubit.jobCountry ?? 'Job Country',
+                    currentCity: AuthCubit.jobCity ?? 'Job City',
+                    currentState: AuthCubit.jobState ?? 'Job State',
                     onCountryChanged: (value) {
-                      cubit.changeBirthCountry(value);
+                      cubit.changeJobCountry(value);
                     },
                     onStateChanged: (value) {
-                      cubit.changeBirthState(value!);
+                      cubit.changeJobState(value!);
                     },
                     onCityChanged: (value) {
-                      cubit.changeBirthCity(value!);
+                      cubit.changeJobCity(value!);
                     },
                   ),
 

@@ -1,13 +1,22 @@
 class RegisterUserModel {
   final _RegisterUser user;
   final _Tokens tokens;
+  final int statusCode;
+  final String message;
 
-  RegisterUserModel({required this.user, required this.tokens});
+  RegisterUserModel({
+    required this.user,
+    required this.tokens,
+    required this.statusCode,
+    required this.message,
+  });
 
   factory RegisterUserModel.fromJson(Map<String, dynamic> json) {
     return RegisterUserModel(
       user: _RegisterUser.fromJson(json['user']),
       tokens: _Tokens.fromJson(json['tokens']),
+      statusCode: json['statusCode'],
+      message: json['message'],
     );
   }
 }
@@ -15,13 +24,21 @@ class RegisterUserModel {
 class LoginUserModel {
   final _LoginUser user;
   final _Tokens tokens;
-
-  LoginUserModel({required this.user, required this.tokens});
+  final int statusCode;
+  final String message;
+  LoginUserModel({
+    required this.user,
+    required this.tokens,
+    required this.statusCode,
+    required this.message,
+  });
 
   factory LoginUserModel.fromJson(Map<String, dynamic> json) {
     return LoginUserModel(
       user: _LoginUser.fromJson(json['user']),
       tokens: _Tokens.fromJson(json['tokens']),
+      statusCode: json['statusCode'],
+      message: json['message'],
     );
   }
 }

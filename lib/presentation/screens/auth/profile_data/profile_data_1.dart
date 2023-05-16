@@ -214,7 +214,7 @@ class ProfileData1Screen extends StatelessWidget {
                       if (isPhoneValid) {
                         cubit.changePhone(phoneController.text);
                         print('phone is  ${phoneController.text}');
-                        print(cubit.phone);
+                        print(AuthCubit.phone);
                       } else {
                         print('phone deleted');
                         cubit.changePhone(value);

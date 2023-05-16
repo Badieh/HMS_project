@@ -68,7 +68,6 @@ class ProfileData2Screen extends StatelessWidget {
                           dateOfBirth.text =
                               formattedDate; //set output date to TextField value.
                           cubit.changeDate(formattedDate);
-
                         } else {}
                       },
                       validator: (value) {
@@ -76,27 +75,21 @@ class ProfileData2Screen extends StatelessWidget {
                           return AppStrings.validator;
                         }
                       },
-                      onFieldSubmitted: (value) {
-                      }),
+                      onFieldSubmitted: (value) {}),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // religion
-                  // DefaultTextFormField(
-                  //     controller: religion,
-                  //     keyboardType: TextInputType.text,
-                  //     label: AppStrings.religion,
-                  //     validator: (value) {
-                  //       if (value == null || value.isEmpty) {
-                  //         return AppStrings.validator;
-                  //       }
-                  //     },
-                  //     onFieldSubmitted: (value) {}),
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      fillColor: Get.isDarkMode? ColorManager.lightBlack :ColorManager.lightGrey,
-
+                      fillColor: Get.isDarkMode
+                          ? ColorManager.lightBlack
+                          : ColorManager.lightGrey,
                     ),
-                    hint:  Text('Religion',style :TextStyle(color: Get.isDarkMode? ColorManager.secondary :ColorManager.grey)),
+                    hint: Text('Religion',
+                        style: TextStyle(
+                            color: Get.isDarkMode
+                                ? ColorManager.secondary
+                                : ColorManager.grey)),
 
                     value: cubit.religion,
 
@@ -121,10 +114,15 @@ class ProfileData2Screen extends StatelessWidget {
                   // blood type
                   DropdownButtonFormField<String>(
                     decoration: InputDecoration(
-                      fillColor: Get.isDarkMode? ColorManager.lightBlack :ColorManager.lightGrey,
-
+                      fillColor: Get.isDarkMode
+                          ? ColorManager.lightBlack
+                          : ColorManager.lightGrey,
                     ),
-                    hint: Text('Blood type',style :TextStyle(color: Get.isDarkMode? ColorManager.secondary :ColorManager.grey)),
+                    hint: Text('Blood type',
+                        style: TextStyle(
+                            color: Get.isDarkMode
+                                ? ColorManager.secondary
+                                : ColorManager.grey)),
                     value: cubit.bloodType,
                     icon: const Icon(Icons.bloodtype_outlined),
                     isExpanded: true,
@@ -177,10 +175,14 @@ class ProfileData2Screen extends StatelessWidget {
                             border: Border.all(
                                 color: (cubit.isGender && cubit.isMale!)
                                     ? ColorManager.primary
-                                    : Get.isDarkMode ? ColorManager.lightBlack: ColorManager.grey),
+                                    : Get.isDarkMode
+                                        ? ColorManager.lightBlack
+                                        : ColorManager.grey),
                             color: (cubit.isGender && cubit.isMale!)
                                 ? ColorManager.primary
-                                : Get.isDarkMode ? ColorManager.lightBlack:ColorManager.lightGrey,
+                                : Get.isDarkMode
+                                    ? ColorManager.lightBlack
+                                    : ColorManager.lightGrey,
                           ),
                           child: Stack(
                             children: [
@@ -227,7 +229,9 @@ class ProfileData2Screen extends StatelessWidget {
                                     : ColorManager.grey),
                             color: (cubit.isGender && !cubit.isMale!)
                                 ? ColorManager.pink
-                                : Get.isDarkMode ? ColorManager.lightBlack:ColorManager.lightGrey,
+                                : Get.isDarkMode
+                                    ? ColorManager.lightBlack
+                                    : ColorManager.lightGrey,
                           ),
                           child: Stack(
                             children: [
@@ -273,7 +277,6 @@ class ProfileData2Screen extends StatelessWidget {
                             height: AppSizeHeight.s35,
                             child: DefaultTextFormField(
                                 textAlign: TextAlign.center,
-
                                 controller: cubit.heightController,
                                 TextInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.number,
@@ -287,12 +290,13 @@ class ProfileData2Screen extends StatelessWidget {
                                   if (double.tryParse(
                                           cubit.heightController.text)! <
                                       250) {
-                                    cubit.height = double.tryParse(
+                                    AuthCubit.height = double.tryParse(
                                         cubit.heightController.text)!;
                                   } else {
-                                    cubit.height = 250;
+                                    AuthCubit.height = 250;
                                   }
-                                }),
+                                },
+                                hideError: true),
                           ),
                           Text(
                             AppStrings.cm,
@@ -303,10 +307,12 @@ class ProfileData2Screen extends StatelessWidget {
                     ],
                   ),
                   Slider(
-                    inactiveColor: Get.isDarkMode ? ColorManager.grey : ColorManager.darkGrey,
+                    inactiveColor: Get.isDarkMode
+                        ? ColorManager.grey
+                        : ColorManager.darkGrey,
                     min: 0,
                     max: 250,
-                    value: cubit.height,
+                    value: AuthCubit.height,
                     onChanged: (value) {
                       cubit.changeHeight(value);
                     },
@@ -345,12 +351,13 @@ class ProfileData2Screen extends StatelessWidget {
                                   if (double.tryParse(
                                           cubit.weightController.text)! <
                                       250) {
-                                    cubit.weight = double.tryParse(
+                                    AuthCubit.weight = double.tryParse(
                                         cubit.weightController.text)!;
                                   } else {
-                                    cubit.weight = 250;
+                                    AuthCubit.weight = 250;
                                   }
-                                }),
+                                },
+                                hideError: true),
                           ),
                           Text(
                             AppStrings.kg,
@@ -361,11 +368,12 @@ class ProfileData2Screen extends StatelessWidget {
                     ],
                   ),
                   Slider(
-                    inactiveColor: Get.isDarkMode ? ColorManager.grey : ColorManager.darkGrey,
-
+                    inactiveColor: Get.isDarkMode
+                        ? ColorManager.grey
+                        : ColorManager.darkGrey,
                     min: 1,
                     max: 250,
-                    value: cubit.weight,
+                    value: AuthCubit.weight,
                     onChanged: (value) {
                       cubit.changeWeight(value);
                     },

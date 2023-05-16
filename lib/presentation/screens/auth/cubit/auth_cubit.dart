@@ -4,35 +4,32 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hospital/models/error_model.dart';
+import 'package:hospital/models/patient_model.dart';
 import 'package:hospital/models/user_model.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
-import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/quickalert.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
 
   static AuthCubit get(context) => BlocProvider.of(context);
 
-  String? firstName;
-  String? secondName;
-  String? thirdName;
-  String? lastName;
-  String? phone;
-  String? nationalId;
+  static String? firstName;
+  static String? secondName;
+  static String? thirdName;
+  static String? lastName;
+  static String? phone;
+  static String? nationalId;
   void changeFirstName(String value) {
-    secondName = value;
+    firstName = value;
     emit(ChangeFirstNameState());
   }
 
   void changeSecondName(String value) {
-    firstName = value;
+    secondName = value;
     emit(ChangeSecondNameState());
   }
 
@@ -66,10 +63,14 @@ class AuthCubit extends Cubit<AuthStates> {
     'Muslim',
     'Christian',
     'Jewish',
+    'Other'
   ];
+
+  static int? religionIndex;
   String? religion;
   void changeReligion({required String value}) {
     religion = value;
+    religionIndex = religions.indexOf(value);
     emit(ChangeReligionState());
   }
 
@@ -84,13 +85,16 @@ class AuthCubit extends Cubit<AuthStates> {
     'O-'
   ];
   String? bloodType;
+  static int? bloodTypeIndex;
   void changeBloodType({required String type}) {
     bloodType = type;
+    bloodTypeIndex = bloodTypes.indexOf(type);
     emit(ChangeBloodTypeState());
   }
 
-  bool isGender = false;
-  bool? isMale;
+  bool isGender = false; // to specify if the gender is selsected
+  bool? isMale; // Gneder type
+  int gender = -1; // the value sent to API
   void changeGender(bool? value) {
     isMale = value;
 
@@ -99,10 +103,30 @@ class AuthCubit extends Cubit<AuthStates> {
     } else {
       isGender = false;
     }
+    if (isMale == true) {
+      gender = 0;
+    } else if (isMale == false) {
+      gender == 1;
+    }
     emit(ChangeGenderState());
   }
 
   MaritalStatus maritalStatus = MaritalStatus.none;
+  int getMaritalStatusIndex() {
+    switch (maritalStatus) {
+      case MaritalStatus.none:
+        return 0;
+      case MaritalStatus.single:
+        return 1;
+      case MaritalStatus.married:
+        return 2;
+
+      case MaritalStatus.divorced:
+        return 3;
+      case MaritalStatus.widow:
+        return 4;
+    }
+  }
 
   void changeMaritalStatus({required MaritalStatus status}) {
     maritalStatus = status;
@@ -113,14 +137,14 @@ class AuthCubit extends Cubit<AuthStates> {
 
   final TextEditingController weightController = TextEditingController();
 
-  double height = 170.0;
+  static double height = 170.0;
   void changeHeight(double value) {
     height = value;
     heightController.text = value.toStringAsFixed(1);
     emit(ChangeHeightState());
   }
 
-  double weight = 80;
+  static double weight = 80;
   void changeWeight(double value) {
     weight = value;
     weightController.text = value.toStringAsFixed(1);
@@ -129,7 +153,7 @@ class AuthCubit extends Cubit<AuthStates> {
   }
 
   String? nationalitty;
-
+  static int? nationalityIndex;
   void changeNationality(String value) {
     nationalitty = value;
     emit(ChangeNationalityState());
@@ -174,11 +198,11 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(ChangeAddressStateState());
   }
 
-  String? birthCountry;
+  static String? birthCountry;
 
-  String? birthState;
+  static String? birthState;
 
-  String? birthCity;
+  static String? birthCity;
 
   void changeBirthCountry(String value) {
     birthCountry = value;
@@ -195,24 +219,41 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(ChangeBirthStateState());
   }
 
-  String? jobCountry;
+  static String? job;
+  static String? jobBuildingNumber;
+  static String? jobStreetName;
+  static String? jobCountry;
 
-  String? jobState;
+  static String? jobState;
 
-  String? jobCity;
+  static String? jobCity;
+  void changeJob(String value) {
+    job = value;
+    emit(ChangeJobState());
+  }
+
+  void changejobBuildingNumber(String value) {
+    jobBuildingNumber = value;
+    emit(ChangeJobBuildingState());
+  }
+
+  void changejobjobStreetName(String value) {
+    jobStreetName = value;
+    emit(ChangeJobStateState());
+  }
 
   void changeJobCountry(String value) {
-    birthCountry = value;
+    jobStreetName = value;
     emit(ChangeJobCountryState());
   }
 
   void changeJobCity(String value) {
-    birthCity = value;
+    jobCity = value;
     emit(ChangeJobCityState());
   }
 
   void changeJobState(String value) {
-    birthState = value;
+    jobState = value;
     emit(ChangeJobStateState());
   }
 
@@ -251,102 +292,16 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(ChangePage());
   }
 
-  Future<bool> submitProfileData({
-    required BuildContext context,
-  }) async {
-    if (firstName == null ||
-        secondName == null ||
-        thirdName == null ||
-        lastName == null ||
-        nationalId == null ||
-        phone == null ||
-        nationalitty == null ||
-        appartmentNumber == null ||
-        buildingNumber == null ||
-        streetName == null ||
-        addressCountry == null ||
-        dateofBirth == null) {
-      //quick alert Please Complete your Mandatory Data
-      QuickAlert.show(
-        backgroundColor: ColorManager.lightPrimary,
-        context: context,
-        barrierDismissible: false,
-        type: QuickAlertType.warning,
-        width: MediaQuery.of(context).size.width,
-        widget: const Text(AppStrings.mandatoryData),
-        animType: QuickAlertAnimType.slideInDown,
-      );
-      print(firstName);
-      print(secondName);
-      print(thirdName);
-      print('last name $lastName');
-      print(nationalId);
-      print(phone);
-      print(dateofBirth);
-      print('ap $appartmentNumber');
-      print(buildingNumber);
-      print(streetName);
-      print(addressCountry);
-      return false;
-    } else if (addressState == null) {
-      // quick Alert address state is incomplete
-      QuickAlert.show(
-        backgroundColor: ColorManager.lightPrimary,
-        context: context,
-        barrierDismissible: false,
-        type: QuickAlertType.warning,
-        width: MediaQuery.of(context).size.width,
-        widget: const Text(AppStrings.stateEmpty),
-        animType: QuickAlertAnimType.slideInDown,
-      );
-      return false;
-    } else if (!isGender) {
-      // quick Alert Gender is incomplete
-      QuickAlert.show(
-        backgroundColor: ColorManager.lightPrimary,
-        context: context,
-        barrierDismissible: false,
-        type: QuickAlertType.warning,
-        width: MediaQuery.of(context).size.width,
-        widget: const Text('Please Choose your Gender'),
-        animType: QuickAlertAnimType.slideInDown,
-      );
-      return false;
-    } else {
-      emit(SubmitLoadingState());
+  UserType userType = UserType.patient;
+  void changeUserType(UserType type) {
+    userType = type;
+    emit(ChangeUserTypeState());
+  }
 
-      try {
-        //   var response =
-        //   await DioHelper.getData(url: AppConstants.articlesPath, query: {
-        //     'country': AppConstants.country,
-        //     'category': AppConstants.category,
-        //     'apiKey': AppConstants.articlesApiKey,
-        //   });
-        //   //print(response.data['articles'][1]);
-        //   topDoctorsDetails = List.from(response.data['topDoctorsDetails'])
-        //       .map((e) => TopDoctorModel.fromJson(e))
-        //       .toList();
-
-        // print(articles[1]);
-
-        emit(SubmitSuccefulState());
-        return true;
-      } catch (error) {
-        print(error.toString());
-        emit(SubmitErrorState(error.toString()));
-        QuickAlert.show(
-          backgroundColor: ColorManager.lightPrimary,
-          context: context,
-          barrierDismissible: false,
-          type: QuickAlertType.error,
-          width: MediaQuery.of(context).size.width,
-          title: 'Error',
-          text: 'Something went wrong , contact Adminstrator',
-          animType: QuickAlertAnimType.slideInDown,
-        );
-        return false;
-      }
-    }
+  bool isPassword = true;
+  void changePasswordAppearance() {
+    isPassword = !isPassword;
+    emit(ChangePasswordAppearanceState());
   }
 
   ErrorModel? errorModel;
@@ -358,6 +313,7 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(RegisterLoadingState());
     print('email : $email');
     print('password : $password');
+    print('role : ${userType.name}');
 
     try {
       // get data from API
@@ -365,7 +321,7 @@ class AuthCubit extends Cubit<AuthStates> {
           await DioHelper.postData(url: AppConstants.registerPath, data: {
         'email': email,
         'password': password,
-        'role': 'patient',
+        'role': userType.name,
       });
       print('Got Data from Api');
       // Saving data in UserModel
@@ -383,8 +339,14 @@ class AuthCubit extends Cubit<AuthStates> {
           value: registerUserModel?.tokens.refreshToken.token);
       AppConstants.refreshToken =
           await CacheHelper.getData(key: 'refreshsToken');
+      await CacheHelper.saveData(
+          key: 'userId', value: registerUserModel?.user.userId);
+      AppConstants.userId = await CacheHelper.getData(key: 'userId');
+      print('saved user id :${AppConstants.userId}');
+      print('saved refreshToken :${AppConstants.refreshToken}');
+      print('saved accessToken :${AppConstants.accessToken}');
 
-      emit(RegisterSuccesfulState());
+      emit(RegisterSuccessfulState());
     } on DioError catch (error) {
       errorModel = ErrorModel.fromJson(json: error.response?.data);
       if (kDebugMode) {
@@ -414,6 +376,7 @@ class AuthCubit extends Cubit<AuthStates> {
       // Saving data in UserModel
       loginUserModel = LoginUserModel.fromJson(response.data);
       print('User is :${loginUserModel?.user.email}');
+      print('UserID is :${loginUserModel?.user.userId}');
       print('Access token :${loginUserModel?.tokens.accessToken.token}');
       print('Refresh token ${loginUserModel?.tokens.refreshToken.token}');
       // Saving Access token and Refresh token for future use
@@ -425,8 +388,13 @@ class AuthCubit extends Cubit<AuthStates> {
           value: loginUserModel?.tokens.refreshToken.token);
       AppConstants.refreshToken =
           await CacheHelper.getData(key: 'refreshsToken');
-
-      emit(LoginSuccesfulState());
+      await CacheHelper.saveData(
+          key: 'userId', value: loginUserModel?.user.userId);
+      AppConstants.userId = await CacheHelper.getData(key: 'userId');
+      print('saved user id :${AppConstants.userId}');
+      print('saved refreshToken :${AppConstants.refreshToken}');
+      print('saved accessToken :${AppConstants.accessToken}');
+      emit(LoginSuccessfulState());
     } on DioError catch (error) {
       errorModel = ErrorModel.fromJson(json: error.response?.data);
       if (kDebugMode) {
@@ -439,7 +407,134 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(LoginErrorState(error.toString()));
     }
   }
+
+  PatientModel? patientModel;
+  Future<void> submitProfileData({
+    required BuildContext context,
+  }) async {
+    if (firstName == null ||
+        secondName == null ||
+        thirdName == null ||
+        lastName == null ||
+        nationalId == null ||
+        phone == null ||
+        nationalitty == null ||
+        appartmentNumber == null ||
+        buildingNumber == null ||
+        streetName == null ||
+        addressCountry == null ||
+        dateofBirth == null) {
+      //quick alert Please Complete your Mandatory Data
+      errorModel = ErrorModel(message: AppStrings.mandatoryData);
+      emit(CreatePatientErrorState(AppStrings.mandatoryData));
+      if (kDebugMode) {
+        print('firstName $firstName');
+        print('secondName $secondName');
+        print('thirdName $thirdName');
+        print('last name $lastName');
+        print('nationalId $nationalId');
+        print('phone $phone');
+        print('dateofBirth $dateofBirth');
+        print('appartmentNumber $appartmentNumber');
+        print('buildingNumber $buildingNumber');
+        print('streetName $streetName');
+        print('addressCountry $addressCountry');
+      }
+    } else if (addressState == null) {
+      // quick Alert state is incomplete
+      errorModel = ErrorModel(message: AppStrings.stateEmpty);
+      emit(CreatePatientErrorState(AppStrings.stateEmpty));
+    } else if (!isGender) {
+      // quick Alert Gender is incomplete
+      errorModel = ErrorModel(message: AppStrings.genderEmpty);
+      emit(CreatePatientErrorState(AppStrings.genderEmpty));
+    } else {
+      emit(CreatePatientLoadingState());
+
+      try {
+        var response = await DioHelper.postData(
+            url: AppConstants.createPatientPath,
+            data: {
+              "userId": AppConstants.userId,
+              "nationalId": nationalId,
+              "firstName": firstName,
+              "secondName": secondName,
+              "thirdName": thirdName,
+              "lastName": lastName,
+              "birthDate": dateofBirth,
+              "religion": religionIndex,
+              "gender": gender,
+              "maritalStatus": getMaritalStatusIndex(),
+              "nationality": nationalitty,
+              "bloodType": bloodTypeIndex,
+              "country": addressCountry,
+              "state": addressState,
+              "street": streetName,
+              "buildingNumber": buildingNumber,
+              "appartment": appartmentNumber,
+              "phoneNumber": phone,
+              "birthCountry": birthCountry,
+              "birthState": birthState,
+              "birthCity": birthCity,
+              "height": height,
+              "weight": weight,
+              "job": job,
+              "jobCountry": jobCountry,
+              "jobState": jobState,
+              "jobCity": jobCity,
+              "patientPP": null,
+            });
+        patientModel = PatientModel.fromJson(response.data);
+        // Save Patient Id
+
+        await CacheHelper.saveData(
+            key: 'patientId', value: patientModel?.patientData.patientId);
+        AppConstants.patientId = await CacheHelper.getData(key: 'patientId');
+        print('saved patientId :${AppConstants.patientId}');
+
+        emit(CreatePatientSuccessfulState());
+      } on DioError catch (error) {
+        errorModel = ErrorModel.fromJson(json: error.response?.data);
+
+        print(error.toString());
+        emit(CreatePatientErrorState(error.toString()));
+      }
+    }
+  }
+
+  Future<void> getPatient() async {
+    emit(RegisterLoadingState());
+
+    try {
+      // get data from API
+      var response = await DioHelper.getData(
+          url: AppConstants.getPatientPath,
+          query: {'userId': AppConstants.userId});
+      print('Got Data from Api');
+      // Saving data in UserModel
+      patientModel = PatientModel.fromJson(response.data);
+
+      // Saving PatientId for future use
+      await CacheHelper.saveData(
+          key: 'PatientId', value: patientModel?.patientData.patientId);
+      AppConstants.patientId = await CacheHelper.getData(key: 'PatientId');
+
+      emit(RegisterSuccessfulState());
+    } on DioError catch (error) {
+      errorModel = ErrorModel.fromJson(json: error.response?.data);
+      if (kDebugMode) {
+        print(error.toString());
+        print('Error code :${errorModel?.statusCode}');
+        print('Error Message :${errorModel?.message}');
+        // print('Error Stack :${errorModel?.stack}');
+      }
+
+      emit(RegisterErrorState(error.toString()));
+    }
+  }
 }
+
+enum UserType { patient, doctor }
 
 enum MaritalStatus {
   none,
