@@ -56,8 +56,8 @@ class BookAppointmentScreen extends StatelessWidget {
                       controller: problemController,
                       autofocus: true,
                       decoration: InputDecoration(
-                          hintText: AppStrings.howHelp,
-                          ),
+                        hintText: AppStrings.howHelp,
+                      ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return AppStrings.validator;
@@ -82,7 +82,9 @@ class BookAppointmentScreen extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(AppSizeHeight.s16),
-                      color:Get.isDarkMode ?ColorManager.lightBlack : ColorManager.lightPrimary,
+                      color: Get.isDarkMode
+                          ? ColorManager.lightBlack
+                          : ColorManager.lightPrimary,
                     ),
                     child: CalendarDatePicker(
                       initialDate: DateTime.now(),
@@ -116,7 +118,9 @@ class BookAppointmentScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeHeight.s16),
-                              color: Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightPrimary,
+                              color: Get.isDarkMode
+                                  ? ColorManager.lightBlack
+                                  : ColorManager.lightPrimary,
                             ),
                             child: ListView.builder(
                               shrinkWrap: true,
@@ -182,7 +186,7 @@ class BookAppointmentScreen extends StatelessWidget {
                   cubit.selectedTimeIndex = -1;
                   Get.offAllNamed(Routes.homeLayoutScreen);
                   QuickAlert.show(
-                      confirmBtnColor: ColorManager.green,
+                    confirmBtnColor: ColorManager.success,
                     context: context,
                     backgroundColor: ColorManager.white,
                     barrierDismissible: false,
