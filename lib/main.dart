@@ -10,7 +10,8 @@ import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
 import 'package:hospital/presentation/screens/book_appointments/cubit/book_appointment_cubit.dart';
 import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
@@ -27,6 +28,14 @@ void main() async {
   await CacheHelper.init();
   // Initialize articles baseurl
   await DioHelper.init(AppConstants.articlesBaseUrl);
+  await DioHelper.init(AppConstants.backendBaseUrl);
+  // check to see if It is the first time to open the app
+  // to set default value of is logged = false
+  // AppConstants.adminStorage.write('isLogged', false);
+
+  if (AppConstants.adminStorage.read('isLogged') == null) {
+    AppConstants.adminStorage.write('isLogged', false);
+  }
   // Initialize Main baseurl
   //await DioHelper.init(AppConstants.mainBaseUrl);
 
@@ -67,7 +76,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => DoctorsCubit()),
         // Profile Data Cubit
         BlocProvider(
-          create: (context) => ProfileDataCubit(),
+          create: (context) => AuthCubit(),
         ),
         // book appointment
         BlocProvider(

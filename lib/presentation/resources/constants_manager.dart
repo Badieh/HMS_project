@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -12,19 +13,44 @@ class AppConstants {
   static const sliderAnimationTime = 1;
   static const obBoardingSlides = 3;
 
+  // Main Api
+  // emulator
+  // http://10.0.2.2:3000
+
+  // http://127.0.0.1:56224/Nme5DihmL3o=/
+  // http://192.168.1.100:300
+  // 192.168.137.15:39345
+  // http://localhost:3000
+  static const backendBaseUrl = 'http://10.0.2.2:8080/v1';
+  static const loginPath = '$backendBaseUrl/auth/login';
+  static const registerPath = '$backendBaseUrl/auth/register';
+  static const logoutPath = '$backendBaseUrl/auth/logout';
+  static const refreshTokenPath = '$backendBaseUrl/auth//refresh-tokens';
+
+  static const createPatientPath = '$backendBaseUrl/patients/create';
+  static const getPatientPath = '$backendBaseUrl/patients/get';
+  static const updatePatientPath = '$backendBaseUrl/patients/update';
+  static const doctorsPath = '$backendBaseUrl/doctors/fetch';
+  // static String accessToken = CacheHelper.getData(key: 'accessToken') ?? '';
+  // static String refreshToken = CacheHelper.getData(key: 'refreshToken') ?? '';
+
+  // static int userId = CacheHelper.getData(key: 'userId') ?? 0;
+  // static int patientId = CacheHelper.getData(key: 'patientId') ?? 0;
+  // static int doctorId = CacheHelper.getData(key: 'doctorId') ?? 0;
+
+  static GetStorage adminStorage = GetStorage();
+
+  //  Articles Api
   // https://newsapi.org/v2/top-headlines?
   // https://newsapi.org/
-// v2/top-headlines?
-// country=eg&category=business&apiKey=65f7f556ec76449fa7dc7c0069f040ca
-// my apikey : 97a2f0178be846b897d27b8f38d8571c
+  // v2/top-headlines?
+  // country=eg&category=business&apiKey=65f7f556ec76449fa7dc7c0069f040ca
+  // my apikey : 97a2f0178be846b897d27b8f38d8571c
   static const articlesBaseUrl = 'https://newsapi.org/';
   static const articlesPath = '${articlesBaseUrl}v2/top-headlines';
   static const country = 'us';
   static const category = 'health';
   static const articlesApiKey = '97a2f0178be846b897d27b8f38d8571c';
-
-  static const mainBaseUrl = '';
-  static const mainApiKey = '';
 
   static const List<String> specializations = [
     'Anesthetics',
@@ -135,8 +161,7 @@ class AppConstants {
       size: FontSize.s30,
     ), // Sexual Health
     FaIcon(
-      FontAwesomeIcons.toilet
-      ,
+      FontAwesomeIcons.toilet,
       color: ColorManager.primary,
       size: FontSize.s30,
     ), // Urology

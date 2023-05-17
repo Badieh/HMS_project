@@ -175,7 +175,9 @@ class CancelAppointmentScreen extends StatelessWidget {
                         keyboardType: TextInputType.text,
                         controller: problemController,
                         decoration: InputDecoration(
-                            fillColor: Get.isDarkMode ? ColorManager.lightBlack :ColorManager.lightPrimary,
+                            fillColor: Get.isDarkMode
+                                ? ColorManager.lightBlack
+                                : ColorManager.lightPrimary,
                             hintText: 'Let us know if there is a problem..'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -205,9 +207,11 @@ class CancelAppointmentScreen extends StatelessWidget {
                     Navigator.pop(context);
                     Navigator.pop(context);
                     return QuickAlert.show(
-                      confirmBtnColor: ColorManager.green,
+                      confirmBtnColor: ColorManager.success,
                       context: context,
-                      backgroundColor:Get.isDarkMode? ColorManager.darkGrey: ColorManager.lightPrimary,
+                      backgroundColor: Get.isDarkMode
+                          ? ColorManager.darkGrey
+                          : ColorManager.lightPrimary,
                       barrierDismissible: false,
                       type: QuickAlertType.success,
                       width: MediaQuery.of(context).size.width,

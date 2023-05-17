@@ -24,6 +24,8 @@ class AppStrings {
   static const logInToYourAccount = 'Login To Your Account';
   static const forgotThePassword = 'Forgot the password ?';
   static const dontHaveAnAccount = 'Don\'t have an account ?';
+  static const patient = 'Patient';
+  static const doctor = 'Doctor';
 
   // Fill Profile
   static const fillYourProfile = 'Fill your profile';
@@ -53,6 +55,7 @@ class AppStrings {
   static const kg = 'Kg';
 
   static const mandatoryData = 'Please Complete your Mandatory Data';
+  static const genderEmpty = 'Please Choose your Gender';
   static const stateEmpty = 'Address state is incomplete';
   static const address = 'Address';
   static const country = 'Country';
@@ -167,6 +170,10 @@ class AppStrings {
   static const reason6 = 'I just want to cancel';
   static const reason7 = 'I don\'t want to tell';
   static const reason8 = 'Other';
+
+  // logout
+  static const logout = 'Logout';
+  static const confirm = 'Confirm';
 
   // favourite screen
 

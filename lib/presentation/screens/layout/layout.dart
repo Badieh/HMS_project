@@ -2,7 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -11,6 +14,7 @@ import 'package:hospital/presentation/screens/doctors/doctors.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_states.dart';
 import 'package:hospital/presentation/screens/routes/routes.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 
 class HomeLayoutScreen extends StatelessWidget {
   HomeLayoutScreen({Key? key}) : super(key: key);
@@ -20,37 +24,51 @@ class HomeLayoutScreen extends StatelessWidget {
       AppBar(
         toolbarHeight: AppSizeHeight.s70,
         title: Row(
-            // mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                height: AppSizeHeight.s55,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Image.asset(ImageAssets.profile),
+          // mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSizeHeight.s50),
+                color: Get.isDarkMode
+                    ? ColorManager.lightBlack
+                    : ColorManager.white,
               ),
-              SizedBox(
-                width: AppSizeWidth.s18,
+              width: AppSizeWidth.s55,
+              height: AppSizeHeight.s55,
+              child: flutter_blurhash.BlurHash(
+                image: AppConstants.adminStorage.read('patientPP'),
+                hash: imageHash,
+                duration: const Duration(milliseconds: 500),
+                imageFit: BoxFit.cover,
               ),
-              Flexible(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AutoSizeText(
-                        AppStrings.welcomeMessage,
-                        style: TextStyle(fontSize: FontSize.s20),
-                      ),
-                      AutoSizeText(
-                        AppStrings.docName,
-                        style: TextStyle(fontSize: FontSize.s16),
-                      ),
-                    ],
+            ),
+            SizedBox(
+              width: AppSizeWidth.s18,
+            ),
+            Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AutoSizeText(
+                    AppStrings.welcomeMessage,
+                    style: TextStyle(fontSize: FontSize.s20),
                   ),
+                  AutoSizeText(
+                    AppConstants.adminStorage.read('fullName'),
+                    style: TextStyle(
+                        fontSize: FontSize.s16,
+                        color: Get.isDarkMode
+                            ? ColorManager.white
+                            : ColorManager.black
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
         actions: [
           IconButton(
             onPressed: () {

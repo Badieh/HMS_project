@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/style_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/diagnose/case_diagnose_report.dart';
 import 'package:path_provider/path_provider.dart';
@@ -19,8 +20,8 @@ Widget DefaultTextFormField({
   required TextInputType keyboardType,
   required String label,
   IconData? prefixIcon,
-  TextAlign textAlign =TextAlign.start,
-  bool autoFocus=false,
+  TextAlign textAlign = TextAlign.start,
+  bool autoFocus = false,
   IconData? suffixIcon,
   VoidCallback? suffixPressed,
   required FormFieldValidator<String>? validator,
@@ -30,10 +31,10 @@ Widget DefaultTextFormField({
   TextInputAction? TextInputAction,
   bool readOnly = false,
   bool enabled = true,
+  bool hideError = false,
 }) =>
     TextFormField(
-
-      textAlign:textAlign ,
+      textAlign: textAlign,
       controller: controller,
       keyboardType: keyboardType,
       validator: validator,
@@ -41,24 +42,36 @@ Widget DefaultTextFormField({
       autofocus: autoFocus,
       textInputAction: TextInputAction,
       decoration: InputDecoration(
-        fillColor: Get.isDarkMode? ColorManager.lightBlack :ColorManager.lightGrey,
+        fillColor:
+            Get.isDarkMode ? ColorManager.lightBlack : ColorManager.lightGrey,
         labelText: label,
-        labelStyle: TextStyle(color: Get.isDarkMode? ColorManager.secondary :ColorManager.grey),
+        labelStyle: TextStyle(
+            color: Get.isDarkMode ? ColorManager.secondary : ColorManager.grey),
         prefixIcon: prefixIcon == null
             ? null
             : Icon(
                 prefixIcon,
                 size: 25,
-          color:Get.isDarkMode? ColorManager.primary :ColorManager.black,
+                color:
+                    Get.isDarkMode ? ColorManager.primary : ColorManager.black,
               ),
         suffixIcon: suffixIcon == null
             ? null
             : IconButton(
-                icon: Icon(suffixIcon,color:Get.isDarkMode? ColorManager.secondary :ColorManager.grey,
+                icon: Icon(
+                  suffixIcon,
+                  color: Get.isDarkMode
+                      ? ColorManager.secondary
+                      : ColorManager.grey,
                 ),
                 onPressed: suffixPressed,
+              ),
 
-        ),
+        // error style
+        errorStyle: hideError
+            ? getRegularStyle(color: ColorManager.error, fontSize: 0)
+            : getRegularStyle(
+                color: ColorManager.error, fontSize: FontSize.s14),
       ),
       obscureText: isPassword,
       onTapOutside: (value) {
@@ -303,3 +316,15 @@ Future<File> downloadPdf(
   }
   return file;
 }
+
+SnackbarController snackbar({required String message, bool isSuccess = true}) =>
+    Get.snackbar(
+      "Success",
+      message,
+      backgroundColor: isSuccess ? ColorManager.success : ColorManager.error,
+      colorText: Colors.white,
+      icon: isSuccess
+          ? Icon(Icons.check_circle_rounded, color: Colors.white)
+          : Icon(Icons.error, color: Colors.white),
+      snackPosition: SnackPosition.BOTTOM,
+    );

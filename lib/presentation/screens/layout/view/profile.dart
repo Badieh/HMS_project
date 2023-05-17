@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hospital/models/dummy_data.dart';
+import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/network/controller/dark_mode_controller.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
+import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 
 import '../../routes/routes.dart';
 
@@ -13,9 +19,7 @@ class ProfileScreen extends StatelessWidget {
    final darkMode = 'Dark Mode'.obs;
    final lightMode = "Light Mode".obs;
 
-
-
-   @override
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15),
@@ -26,15 +30,21 @@ class ProfileScreen extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  height: 120,
-                  child: Image.asset(
-                    "assets/images/profile.png",
-                  ),
                   clipBehavior: Clip.antiAlias,
-                  width: 120,
                   decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(60)),
+                    borderRadius: BorderRadius.circular(AppSizeHeight.s70),
+                    color: Get.isDarkMode
+                        ? ColorManager.lightBlack
+                        : ColorManager.white,
+                  ),
+                  width: AppSizeWidth.s120,
+                  height: AppSizeHeight.s120,
+                  child: flutter_blurhash.BlurHash(
+                    image: AppConstants.adminStorage.read('patientPP'),
+                    hash: imageHash,
+                    duration: const Duration(milliseconds: 500),
+                    imageFit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(
                   height: AppSizeHeight.s8,
@@ -43,12 +53,12 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Bishoy Shehata",
+                      AppConstants.adminStorage.read('fullName'),
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: FontSize.s18),
                     ),
                     Text(
-                      "Elmasry01285@gmail.com",
+                      AppConstants.adminStorage.read('email'),
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: FontSize.s14),
                     ),
@@ -94,10 +104,10 @@ class ProfileScreen extends StatelessWidget {
               height: MediaQuery.of(context).size.height * .02,
             ),
             InkWell(
-              onTap: (){
-               Get.toNamed(Routes.notificationScreen);
-              }
-              ,child: Row(
+              onTap: () {
+                Get.toNamed(Routes.notificationScreen);
+              },
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
@@ -202,29 +212,57 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      child: Icon(Icons.logout,
-                          size: AppSizeHeight.s25, color: ColorManager.error),
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
-                    ),
-                    Text(
-                      "Logout",
-                      style: TextStyle(
-                          fontSize: FontSize.s18,),
-                    ),
-                  ],
-                ),
+            InkWell(
+              onTap: () {
+                QuickAlert.show(
+                  context: context,
+                  type: QuickAlertType.confirm,
 
-              ],
+                  backgroundColor:
+                      Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
+                  titleColor:
+                      Get.isDarkMode ? ColorManager.white : ColorManager.black,
+                  textColor:
+                      Get.isDarkMode ? ColorManager.white : ColorManager.black,
+                  confirmBtnColor: ColorManager.error,
+                  confirmBtnTextStyle: TextStyle(
+                    color: ColorManager.white,
+                    fontWeight: FontWeight.bold
+                  ),
+                  cancelBtnText: AppStrings.cancel,
+                  confirmBtnText: AppStrings.confirm,
+                  onCancelBtnTap: () {
+                    Get.back();
+                  },
+                  onConfirmBtnTap: () async {
+                    await darkModeControler.logout();
+                  },
+                );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        child: Icon(Icons.logout,
+                            size: AppSizeHeight.s25, color: ColorManager.error),
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
+                      Text(
+                        AppStrings.logout,
+                        style: TextStyle(
+                          fontSize: FontSize.s18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
