@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/network/controller/dark_mode_controller.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
@@ -7,6 +8,7 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 
 import '../../routes/routes.dart';
 
@@ -27,15 +29,21 @@ class Profile_Screen extends StatelessWidget {
             Column(
               children: [
                 Container(
-                  height: 120,
-                  child: Image.asset(
-                    "assets/images/profile.png",
-                  ),
                   clipBehavior: Clip.antiAlias,
-                  width: 120,
                   decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(60)),
+                    borderRadius: BorderRadius.circular(AppSizeHeight.s70),
+                    color: Get.isDarkMode
+                        ? ColorManager.lightBlack
+                        : ColorManager.white,
+                  ),
+                  width: AppSizeWidth.s120,
+                  height: AppSizeHeight.s120,
+                  child: flutter_blurhash.BlurHash(
+                    image: AppConstants.adminStorage.read('patientPP'),
+                    hash: imageHash,
+                    duration: const Duration(milliseconds: 500),
+                    imageFit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(
                   height: AppSizeHeight.s8,

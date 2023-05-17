@@ -27,11 +27,15 @@ class HomeLayoutScreen extends StatelessWidget {
           // mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              height: AppSizeHeight.s55,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
+                borderRadius: BorderRadius.circular(AppSizeHeight.s50),
+                color: Get.isDarkMode
+                    ? ColorManager.lightBlack
+                    : ColorManager.white,
               ),
+              width: AppSizeWidth.s55,
+              height: AppSizeHeight.s55,
               child: flutter_blurhash.BlurHash(
                 image: AppConstants.adminStorage.read('patientPP'),
                 hash: imageHash,
@@ -57,7 +61,8 @@ class HomeLayoutScreen extends StatelessWidget {
                         fontSize: FontSize.s16,
                         color: Get.isDarkMode
                             ? ColorManager.white
-                            : ColorManager.black),
+                            : ColorManager.black
+                    ),
                   ),
                 ],
               ),
