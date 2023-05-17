@@ -26,8 +26,9 @@ class LoginScreen extends StatelessWidget {
         AuthCubit cubit = AuthCubit.get(context);
 
         if (state is LoginSuccessfulState) {
-          if (AppConstants.patientId == 0) {
+          if (AppConstants.adminStorage.read('patientId') == null) {
             Get.toNamed(Routes.fillProfile);
+            snackbar(message: cubit.loginUserModel!.message, isSuccess: true);
           } else {
             Get.offAllNamed(Routes.homeLayoutScreen);
           }
@@ -37,7 +38,7 @@ class LoginScreen extends StatelessWidget {
               type: QuickAlertType.error,
               text: cubit.errorModel!.message,
               backgroundColor:
-                  Get.isDarkMode ? ColorManager.black : ColorManager.white,
+                  Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
               titleColor:
                   Get.isDarkMode ? ColorManager.white : ColorManager.black,
               textColor:

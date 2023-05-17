@@ -25,7 +25,7 @@ class FillProfileScreen extends StatelessWidget {
         AuthCubit cubit = AuthCubit.get(context);
 
         if (state is CreatePatientSuccessfulState &&
-            AppConstants.patientId != 0) {
+            AppConstants.adminStorage.read('patientId') != null) {
           // navigate and show success
           Get.offAllNamed(Routes.homeLayoutScreen);
           QuickAlert.show(

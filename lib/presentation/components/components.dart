@@ -316,3 +316,15 @@ Future<File> downloadPdf(
   }
   return file;
 }
+
+SnackbarController snackbar({required String message, bool isSuccess = true}) =>
+    Get.snackbar(
+      "Success",
+      message,
+      backgroundColor: isSuccess ? ColorManager.success : ColorManager.error,
+      colorText: Colors.white,
+      icon: isSuccess
+          ? Icon(Icons.check_circle_rounded, color: Colors.white)
+          : Icon(Icons.error, color: Colors.white),
+      snackPosition: SnackPosition.BOTTOM,
+    );

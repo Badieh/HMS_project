@@ -28,7 +28,14 @@ void main() async {
   await CacheHelper.init();
   // Initialize articles baseurl
   await DioHelper.init(AppConstants.articlesBaseUrl);
-  await DioHelper.init(AppConstants.articlesBaseUrl);
+  await DioHelper.init(AppConstants.backendBaseUrl);
+  // check to see if It is the first time to open the app
+  // to set default value of is logged = false
+  // AppConstants.adminStorage.write('isLogged', false);
+
+  if (AppConstants.adminStorage.read('isLogged') == null) {
+    AppConstants.adminStorage.write('isLogged', false);
+  }
   // Initialize Main baseurl
   //await DioHelper.init(AppConstants.mainBaseUrl);
 

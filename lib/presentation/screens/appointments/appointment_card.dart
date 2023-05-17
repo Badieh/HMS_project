@@ -35,8 +35,8 @@ class AppointmentCard extends StatelessWidget {
             width: AppSizeWidth.s90,
             height: AppSizeHeight.s90,
             child: flutter_blurhash.BlurHash(
-              image: appointmentModel.departmentImageUrl,
-              hash: appointmentModel.departmentImageHash!,
+              image: appointmentModel.doctorImageUrl,
+              hash: appointmentModel.doctorImageHash!,
               duration: const Duration(milliseconds: 500),
               imageFit: BoxFit.cover,
             ),
@@ -214,7 +214,7 @@ Color getAppointmentStateColor(AppointmentState appointmentState) {
     case AppointmentState.upcoming:
       return ColorManager.primary;
     case AppointmentState.completed:
-      return ColorManager.green;
+      return ColorManager.success;
     case AppointmentState.cancelled:
       return ColorManager.error;
   }

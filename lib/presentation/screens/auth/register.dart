@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
               type: QuickAlertType.success,
               text: cubit.registerUserModel!.message,
               backgroundColor:
-                  Get.isDarkMode ? ColorManager.black : ColorManager.white,
+                  Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
               titleColor:
                   Get.isDarkMode ? ColorManager.white : ColorManager.black,
               textColor:
@@ -49,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
               type: QuickAlertType.error,
               text: cubit.errorModel!.message,
               backgroundColor:
-                  Get.isDarkMode ? ColorManager.black : ColorManager.white,
+                  Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
               titleColor:
                   Get.isDarkMode ? ColorManager.white : ColorManager.black,
               textColor:

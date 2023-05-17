@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -30,11 +31,14 @@ class AppConstants {
   static const getPatientPath = '$backendBaseUrl/patients/get';
   static const updatePatientPath = '$backendBaseUrl/patients/update';
   static const doctorsPath = '$backendBaseUrl/doctors/fetch';
-  static String? accessToken;
-  static String? refreshToken;
-  static int userId = CacheHelper.getData(key: 'userId') ?? 0;
-  static int patientId = CacheHelper.getData(key: 'patientId') ?? 0;
-  static int doctorId = CacheHelper.getData(key: 'doctorId') ?? 0;
+  // static String accessToken = CacheHelper.getData(key: 'accessToken') ?? '';
+  // static String refreshToken = CacheHelper.getData(key: 'refreshToken') ?? '';
+
+  // static int userId = CacheHelper.getData(key: 'userId') ?? 0;
+  // static int patientId = CacheHelper.getData(key: 'patientId') ?? 0;
+  // static int doctorId = CacheHelper.getData(key: 'doctorId') ?? 0;
+
+  static GetStorage adminStorage = GetStorage();
 
   //  Articles Api
   // https://newsapi.org/v2/top-headlines?

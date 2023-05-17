@@ -171,6 +171,10 @@ class AppStrings {
   static const reason7 = 'I don\'t want to tell';
   static const reason8 = 'Other';
 
+  // logout
+  static const logout = 'Logout';
+  static const confirm = 'Confirm';
+
   // favourite screen
 
   static const notificationScreenTitle = 'Notifications';

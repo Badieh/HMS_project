@@ -69,7 +69,7 @@ AppointmentModel appointment1 = const AppointmentModel(
   id: 1,
   doctorName: 'Dr. John Smith',
   hospitalName: hospitalName,
-  departmentImageUrl:
+  doctorImageUrl:
       'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
   date: '2023-05-01',
   startTime: '14:00',
@@ -112,3 +112,5 @@ ClinicsScheduleModel clinicsScheduleModel_4 = const ClinicsScheduleModel(
 );
 
 const String hospitalName = 'General Hospital';
+
+ const imageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';

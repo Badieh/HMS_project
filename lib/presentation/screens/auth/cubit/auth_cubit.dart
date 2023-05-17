@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hospital/models/error_model.dart';
 import 'package:hospital/models/patient_model.dart';
 import 'package:hospital/models/user_model.dart';
@@ -314,6 +315,7 @@ class AuthCubit extends Cubit<AuthStates> {
     print('email : $email');
     print('password : $password');
     print('role : ${userType.name}');
+    AppConstants.adminStorage.write('role', userType.name);
 
     try {
       // get data from API
@@ -330,21 +332,33 @@ class AuthCubit extends Cubit<AuthStates> {
       print('Access token :${registerUserModel?.tokens.accessToken.token}');
       print('Refresh token ${registerUserModel?.tokens.refreshToken.token}');
       // Saving Access token and Refresh token for future use
-      await CacheHelper.saveData(
-          key: 'accessToken',
-          value: registerUserModel?.tokens.accessToken.token);
-      AppConstants.accessToken = await CacheHelper.getData(key: 'accessToken');
-      await CacheHelper.saveData(
-          key: 'refreshsToken',
-          value: registerUserModel?.tokens.refreshToken.token);
-      AppConstants.refreshToken =
-          await CacheHelper.getData(key: 'refreshsToken');
-      await CacheHelper.saveData(
-          key: 'userId', value: registerUserModel?.user.userId);
-      AppConstants.userId = await CacheHelper.getData(key: 'userId');
-      print('saved user id :${AppConstants.userId}');
-      print('saved refreshToken :${AppConstants.refreshToken}');
-      print('saved accessToken :${AppConstants.accessToken}');
+      AppConstants.adminStorage.write('isLogged', true);
+
+      AppConstants.adminStorage.write('userId', registerUserModel?.user.userId);
+      AppConstants.adminStorage
+          .write('accessToken', registerUserModel?.tokens.accessToken.token);
+      AppConstants.adminStorage
+          .write('refreshToken', registerUserModel?.tokens.refreshToken.token);
+      AppConstants.adminStorage.write('email', registerUserModel?.user.email);
+
+      print(AppConstants.adminStorage.read('accessToken'));
+      print(AppConstants.adminStorage.read('refreshToken'));
+      print(AppConstants.adminStorage.read('userId'));
+      // await CacheHelper.saveData(
+      //     key: 'accessToken',
+      //     value: registerUserModel?.tokens.accessToken.token);
+      // AppConstants.accessToken = await CacheHelper.getData(key: 'accessToken');
+      // await CacheHelper.saveData(
+      //     key: 'refreshsToken',
+      //     value: registerUserModel?.tokens.refreshToken.token);
+      // AppConstants.refreshToken =
+      //     await CacheHelper.getData(key: 'refreshsToken');
+      // await CacheHelper.saveData(
+      //     key: 'userId', value: registerUserModel?.user.userId);
+      // AppConstants.userId = await CacheHelper.getData(key: 'userId');
+      // print('saved user id :${AppConstants.userId}');
+      // print('saved refreshToken :${AppConstants.refreshToken}');
+      // print('saved accessToken :${AppConstants.accessToken}');
 
       emit(RegisterSuccessfulState());
     } on DioError catch (error) {
@@ -380,20 +394,19 @@ class AuthCubit extends Cubit<AuthStates> {
       print('Access token :${loginUserModel?.tokens.accessToken.token}');
       print('Refresh token ${loginUserModel?.tokens.refreshToken.token}');
       // Saving Access token and Refresh token for future use
-      await CacheHelper.saveData(
-          key: 'accessToken', value: loginUserModel?.tokens.accessToken.token);
-      AppConstants.accessToken = await CacheHelper.getData(key: 'accessToken');
-      await CacheHelper.saveData(
-          key: 'refreshsToken',
-          value: loginUserModel?.tokens.refreshToken.token);
-      AppConstants.refreshToken =
-          await CacheHelper.getData(key: 'refreshsToken');
-      await CacheHelper.saveData(
-          key: 'userId', value: loginUserModel?.user.userId);
-      AppConstants.userId = await CacheHelper.getData(key: 'userId');
-      print('saved user id :${AppConstants.userId}');
-      print('saved refreshToken :${AppConstants.refreshToken}');
-      print('saved accessToken :${AppConstants.accessToken}');
+      AppConstants.adminStorage.write('isLogged', true);
+      AppConstants.adminStorage
+          .write('accessToken', loginUserModel?.tokens.accessToken.token);
+      AppConstants.adminStorage
+          .write('refreshToken', loginUserModel?.tokens.refreshToken.token);
+      AppConstants.adminStorage.write('userId', loginUserModel?.user.userId);
+      AppConstants.adminStorage.write('email', loginUserModel?.user.email);
+
+      print(AppConstants.adminStorage.read('accessToken'));
+      print(AppConstants.adminStorage.read('refreshToken'));
+      print(AppConstants.adminStorage.read('userId'));
+
+      await getPatient(userId: loginUserModel?.user.userId);
       emit(LoginSuccessfulState());
     } on DioError catch (error) {
       errorModel = ErrorModel.fromJson(json: error.response?.data);
@@ -455,7 +468,7 @@ class AuthCubit extends Cubit<AuthStates> {
         var response = await DioHelper.postData(
             url: AppConstants.createPatientPath,
             data: {
-              "userId": AppConstants.userId,
+              "userId": AppConstants.adminStorage.read('userId'),
               "nationalId": nationalId,
               "firstName": firstName,
               "secondName": secondName,
@@ -487,10 +500,13 @@ class AuthCubit extends Cubit<AuthStates> {
         patientModel = PatientModel.fromJson(response.data);
         // Save Patient Id
 
-        await CacheHelper.saveData(
-            key: 'patientId', value: patientModel?.patientData.patientId);
-        AppConstants.patientId = await CacheHelper.getData(key: 'patientId');
-        print('saved patientId :${AppConstants.patientId}');
+        AppConstants.adminStorage
+            .write('patientId', patientModel?.patientData.patientId);
+        AppConstants.adminStorage
+            .write('fullName', patientModel?.patientData.fullName);
+
+        print(AppConstants.adminStorage.read('patientId'));
+        print(AppConstants.adminStorage.read('fullName'));
 
         emit(CreatePatientSuccessfulState());
       } on DioError catch (error) {
@@ -502,24 +518,32 @@ class AuthCubit extends Cubit<AuthStates> {
     }
   }
 
-  Future<void> getPatient() async {
-    emit(RegisterLoadingState());
+  Future<void> getPatient({int? userId}) async {
+    emit(GetPatientLoadingState());
 
     try {
       // get data from API
       var response = await DioHelper.getData(
           url: AppConstants.getPatientPath,
-          query: {'userId': AppConstants.userId});
+          data: {'userId': userId ?? AppConstants.adminStorage.read('userId')});
       print('Got Data from Api');
       // Saving data in UserModel
       patientModel = PatientModel.fromJson(response.data);
 
       // Saving PatientId for future use
-      await CacheHelper.saveData(
-          key: 'PatientId', value: patientModel?.patientData.patientId);
-      AppConstants.patientId = await CacheHelper.getData(key: 'PatientId');
+      AppConstants.adminStorage
+          .write('patientId', patientModel?.patientData.patientId);
+      AppConstants.adminStorage
+          .write('fullName', patientModel?.patientData.fullName);
+      AppConstants.adminStorage
+          .write('patientPP', patientModel?.patientData.patientPP);
+      // AppConstants.adminStorage.write('fullName',
+      //     '${patientModel?.patientData.firstName} ${patientModel?.patientData.lastName}');
+      print(AppConstants.adminStorage.read('patientId'));
+      print(AppConstants.adminStorage.read('patientId'));
+      print(AppConstants.adminStorage.read('fullName'));
 
-      emit(RegisterSuccessfulState());
+      emit(GetPatientSuccessfulState());
     } on DioError catch (error) {
       errorModel = ErrorModel.fromJson(json: error.response?.data);
       if (kDebugMode) {
@@ -529,7 +553,7 @@ class AuthCubit extends Cubit<AuthStates> {
         // print('Error Stack :${errorModel?.stack}');
       }
 
-      emit(RegisterErrorState(error.toString()));
+      emit(GetPatientErrorState(error.toString()));
     }
   }
 }

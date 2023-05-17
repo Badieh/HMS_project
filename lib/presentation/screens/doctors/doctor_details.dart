@@ -51,7 +51,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                 icon: Icon(
                   Icons.do_not_disturb_on_total_silence,
                   size: AppSizeHeight.s28,
-                  color: ColorManager.green,
+                  color: ColorManager.success,
                 ),
               ),
               IconButton(
