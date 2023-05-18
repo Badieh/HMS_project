@@ -2,7 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/presentation/resources/assets_manager.dart';
+import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -11,112 +14,120 @@ import 'package:hospital/presentation/screens/doctors/doctors.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_cubit.dart';
 import 'package:hospital/presentation/screens/layout/layout_cubit/main_states.dart';
 import 'package:hospital/presentation/screens/routes/routes.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 
 class HomeLayoutScreen extends StatelessWidget {
   HomeLayoutScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
-
-    return BlocConsumer<MainCubit, MainStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-
-        var cubit = MainCubit.get(context);
-        final List appBars = [
-          AppBar(
-            toolbarHeight: AppSizeHeight.s70,
-            title: InkWell(
-              onTap: (){
-                cubit.ChangeNavBarIndex(4);
-              },
-              child: Row(
-                // mainAxisSize: MainAxisSize.min,
+    final List appBars = [
+      AppBar(
+        toolbarHeight: AppSizeHeight.s70,
+        title: Row(
+          // mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppSizeHeight.s50),
+                color: Get.isDarkMode
+                    ? ColorManager.lightBlack
+                    : ColorManager.white,
+              ),
+              width: AppSizeWidth.s55,
+              height: AppSizeHeight.s55,
+              child: flutter_blurhash.BlurHash(
+                image: AppConstants.adminStorage.read('patientPP'),
+                hash: imageHash,
+                duration: const Duration(milliseconds: 500),
+                imageFit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(
+              width: AppSizeWidth.s18,
+            ),
+            Flexible(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: AppSizeHeight.s55,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Image.asset(ImageAssets.profile),
+                  AutoSizeText(
+                    AppStrings.welcomeMessage,
+                    style: TextStyle(fontSize: FontSize.s20),
                   ),
-                  SizedBox(
-                    width: AppSizeWidth.s18,
-                  ),
-                  Flexible(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AutoSizeText(
-                          AppStrings.welcomeMessage,
-                          style: TextStyle(fontSize: FontSize.s20),
-                        ),
-                        AutoSizeText(
-                          AppStrings.docName,
-                          style: TextStyle(fontSize: FontSize.s16),
-                        ),
-                      ],
+                  AutoSizeText(
+                    AppConstants.adminStorage.read('fullName'),
+                    style: TextStyle(
+                        fontSize: FontSize.s16,
+                        color: Get.isDarkMode
+                            ? ColorManager.white
+                            : ColorManager.black
                     ),
                   ),
                 ],
               ),
             ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  Get.toNamed(Routes.notificationScreen);
-                },
-                icon: Icon(
-                  Icons.notifications_active_outlined,
-                  size: AppSizeHeight.s28,
-                ),
-              ),
-              IconButton(
-                onPressed: () async {
-                  final doctorsCubit = context.read<DoctorsCubit>();
-                  await doctorsCubit.getDoctors();
-                  Get.toNamed(Routes.favouriteScreen);
-                },
-                icon: Icon(
-                  Icons.favorite_border,
-                  size: AppSizeHeight.s28,
-                ),
-              ),
-            ],
-          ),
-          null,
-          null,
-          AppBar(
-            title: const Text('Articles'),
-          ),
-          AppBar(
-            toolbarHeight: AppSizeHeight.s70,
-            title: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  height: AppSizeHeight.s40,
-                  width: AppSizeWidth.s40,
-                  clipBehavior: Clip.antiAlias,
-                  decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                  child: Image.asset(
-                    ImageAssets.hands1,
-                  ),
-                ),
-                SizedBox(
-                  width: AppSizeWidth.s18,
-                ),
-                Text(
-                  AppStrings.profile,
-                  style: TextStyle(fontSize: FontSize.s20),
-                ),
-              ],
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(Routes.notificationScreen);
+            },
+            icon: Icon(
+              Icons.notifications_active_outlined,
+              size: AppSizeHeight.s28,
             ),
           ),
-        ];
+          IconButton(
+            onPressed: () async {
+              final doctorsCubit = context.read<DoctorsCubit>();
+              await doctorsCubit.getDoctors();
+              Get.toNamed(Routes.favouriteScreen);
+            },
+            icon: Icon(
+              Icons.favorite_border,
+              size: AppSizeHeight.s28,
+            ),
+          ),
+        ],
+      ),
+      null,
+      null,
+      AppBar(
+        title: const Text('Articles'),
+      ),
+      AppBar(
+        toolbarHeight: AppSizeHeight.s70,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              height: AppSizeHeight.s40,
+              width: AppSizeWidth.s40,
+              clipBehavior: Clip.antiAlias,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(50)),
+              child: Image.asset(
+                ImageAssets.hands1,
+              ),
+            ),
+            SizedBox(
+              width: AppSizeWidth.s18,
+            ),
+            Text(
+              AppStrings.profile,
+              style: TextStyle(fontSize: FontSize.s20),
+            ),
+          ],
+        ),
+      ),
+    ];
+
+    return BlocConsumer<MainCubit, MainStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var cubit = MainCubit.get(context);
         return SafeArea(
           child: Scaffold(
             appBar: appBars[cubit.currentIndex],

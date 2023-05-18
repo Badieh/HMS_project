@@ -7,8 +7,8 @@ import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_cubit.dart';
-import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
+import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
 
 class ProfileData4Screen extends StatelessWidget {
   const ProfileData4Screen({Key? key}) : super(key: key);
@@ -22,10 +22,10 @@ class ProfileData4Screen extends StatelessWidget {
   static final TextEditingController jobStreetName = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProfileDataCubit, ProfileDataStates>(
+    return BlocConsumer<AuthCubit, AuthStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        ProfileDataCubit cubit = ProfileDataCubit().get(context);
+        AuthCubit cubit = AuthCubit.get(context);
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
           padding: const EdgeInsets.all(AppPadding.p10),
@@ -52,6 +52,9 @@ class ProfileData4Screen extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
                   CSCPicker(
+                    currentCountry: AuthCubit.birthCountry ?? 'Birth Country',
+                    currentCity: AuthCubit.birthCity ?? 'Birth City',
+                    currentState: AuthCubit.birthState ?? 'Birth State',
                     dropdownDecoration: BoxDecoration(
                         color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey
                     ),
@@ -59,9 +62,7 @@ class ProfileData4Screen extends StatelessWidget {
                     color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey,
 
                   ),
-                    currentCountry: cubit.birthCountry ?? 'Birth Country',
-                    currentCity: cubit.birthCity ?? 'Birth City',
-                    currentState: cubit.birthState ?? 'Birth State',
+
                     // countryDropdownLabel: 'Nationality',
                     // showStates: false,
                     //defaultCountry: CscCountry.Egypt,
@@ -101,38 +102,47 @@ class ProfileData4Screen extends StatelessWidget {
                         //   return AppStrings.validator;
                         // }
                       },
-                      onFieldSubmitted: (value) {}),
+                      onFieldSubmitted: (value) {
+                        cubit.changeJob(value);
+                      }),
                   SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-                  // jobBuildingNumber
-                  DefaultTextFormField(
-                      controller: jobBuildingNumber,
-                      keyboardType: TextInputType.number,
-                      TextInputAction: TextInputAction.next,
-                      label: AppStrings.jobBuildingNumber,
-                      validator: (value) {
-                        // if (value == null || value.isEmpty) {
-                        //   return AppStrings.validator;
-                        // }
-                      },
-                      onFieldSubmitted: (value) {}),
-                  SizedBox(height: MediaQuery.of(context).size.height / 45),
+                  // // jobBuildingNumber
+                  // DefaultTextFormField(
+                  //     controller: jobBuildingNumber,
+                  //     keyboardType: TextInputType.number,
+                  //     TextInputAction: TextInputAction.next,
+                  //     label: AppStrings.jobBuildingNumber,
+                  //     validator: (value) {
+                  //       // if (value == null || value.isEmpty) {
+                  //       //   return AppStrings.validator;
+                  //       // }
+                  //     },
+                  //     onFieldSubmitted: (value) {
+                  //       cubit.changejobBuildingNumber(value);
+                  //     }),
+                  // SizedBox(height: MediaQuery.of(context).size.height / 45),
 
-                  // jobStreetName
-                  DefaultTextFormField(
-                      controller: jobStreetName,
-                      keyboardType: TextInputType.name,
-                      label: AppStrings.jobStreetName,
-                      validator: (value) {
-                        // if (value == null || value.isEmpty) {
-                        //   return AppStrings.validator;
-                        // }
-                      },
-                      onFieldSubmitted: (value) {}),
-                  SizedBox(height: MediaQuery.of(context).size.height / 45),
+                  // // jobStreetName
+                  // DefaultTextFormField(
+                  //     controller: jobStreetName,
+                  //     keyboardType: TextInputType.name,
+                  //     label: AppStrings.jobStreetName,
+                  //     validator: (value) {
+                  //       // if (value == null || value.isEmpty) {
+                  //       //   return AppStrings.validator;
+                  //       // }
+                  //     },
+                  //     onFieldSubmitted: (value) {
+                  //       cubit.changejobjobStreetName(value);
+                  //     }),
+                  // SizedBox(height: MediaQuery.of(context).size.height / 45),
 
                   // jobCity /jobState  /jobCountry
                   CSCPicker(
+                    currentCountry: AuthCubit.jobCountry ?? 'Job Country',
+                    currentCity: AuthCubit.jobCity ?? 'Job City',
+                    currentState: AuthCubit.jobState ?? 'Job State',
                     dropdownDecoration: BoxDecoration(
                         color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey
                     ),
@@ -140,17 +150,15 @@ class ProfileData4Screen extends StatelessWidget {
                   color: Get.isDarkMode ? ColorManager.lightBlack : ColorManager.grey,
 
                   ),
-                    currentCountry: cubit.jobCountry ?? 'Job Country',
-                    currentCity: cubit.jobCity ?? 'Job City',
-                    currentState: cubit.jobState ?? 'Job State',
+
                     onCountryChanged: (value) {
-                      cubit.changeBirthCountry(value);
+                      cubit.changeJobCountry(value);
                     },
                     onStateChanged: (value) {
-                      cubit.changeBirthState(value!);
+                      cubit.changeJobState(value!);
                     },
                     onCityChanged: (value) {
-                      cubit.changeBirthCity(value!);
+                      cubit.changeJobCity(value!);
                     },
                   ),
 

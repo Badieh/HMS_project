@@ -5,7 +5,6 @@ class ColorManager {
   static Color secondary = const Color(0xff9bbdfc);
   static Color lightPrimary = const Color(0xffecf1fc);
 
-  static Color green = const Color(0xff15bd7b);
 
   static Color black = Colors.black;
   static Color lightBlack = const Color(0xff2a2a2a);
@@ -20,6 +19,7 @@ class ColorManager {
 
   static Color white = const Color(0xffFFFFFF);
   static Color error = const Color(0xffe61f34); // red
+  static Color success = const Color(0xff15bd7b); // red
   // color
   static MaterialColor myCustomColor = MaterialColor(0xff3276fc, {
     50: Color(0xff3276fc).withOpacity(0.1),

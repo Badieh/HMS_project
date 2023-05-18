@@ -28,9 +28,7 @@ class DoctorDetailsScreen extends StatelessWidget {
 
     var size = MediaQuery.of(context).size;
     return BlocConsumer<DoctorsCubit, DoctorsStates>(
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         DoctorsCubit cubit = DoctorsCubit.get(context);
         final DoctorModel doctorModel = cubit.selectedDoctor;
@@ -55,7 +53,7 @@ class DoctorDetailsScreen extends StatelessWidget {
               //   icon: Icon(
               //     Icons.do_not_disturb_on_total_silence,
               //     size: AppSizeHeight.s28,
-              //     color: ColorManager.green,
+              //     color: ColorManager.success,
               //   ),
               // ),
               IconButton(

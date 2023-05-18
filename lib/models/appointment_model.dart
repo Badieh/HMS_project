@@ -5,8 +5,8 @@ class AppointmentModel extends Equatable {
   final String hospitalName;
   final String doctorName;
   final String department;
-  final String departmentImageUrl;
-  final String? departmentImageHash;
+  final String doctorImageUrl;
+  final String? doctorImageHash;
   final String date;
   final String startTime;
   final String endTime;
@@ -16,8 +16,8 @@ class AppointmentModel extends Equatable {
       required this.id,
       required this.hospitalName,
       required this.department,
-      required this.departmentImageUrl,
-      this.departmentImageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I',
+      required this.doctorImageUrl,
+      this.doctorImageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I',
       required this.date,
       required this.startTime,
       required this.endTime});
@@ -27,8 +27,8 @@ class AppointmentModel extends Equatable {
       doctorName: json['doctorName'],
       hospitalName: json['hospitalName'],
       department: json['department'],
-      departmentImageUrl: json['doctorImageUrl'],
-      departmentImageHash: json['doctorImageHash'],
+      doctorImageUrl: json['doctorImageUrl'],
+      doctorImageHash: json['doctorImageHash'],
       date: json['date'],
       startTime: json['startTime'],
       endTime: json['endTime'],
@@ -42,7 +42,7 @@ class AppointmentModel extends Equatable {
         doctorName,
         hospitalName,
         department,
-        departmentImageUrl,
+        doctorImageUrl,
         date,
         startTime,
         endTime,
