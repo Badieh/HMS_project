@@ -60,6 +60,8 @@ class DarkModeController extends GetxController {
       AppConstants.adminStorage.remove('accessToken');
       AppConstants.adminStorage.remove('refreshsToken');
       AppConstants.adminStorage.remove('userId');
+      AppConstants.adminStorage.remove('patientId');
+      AppConstants.adminStorage.remove('doctorId');
 
       Get.offAllNamed(Routes.login);
       snackbar(message: response.data['message'], isSuccess: true);

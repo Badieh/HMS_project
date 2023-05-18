@@ -3,15 +3,17 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hospital/models/error_model.dart';
 import 'package:hospital/models/patient_model.dart';
 import 'package:hospital/models/user_model.dart';
-import 'package:hospital/network/remote/cache_helper.dart';
 import 'package:hospital/network/remote/dio_helper.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_1.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_2.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_3.dart';
+import 'package:hospital/presentation/screens/auth/profile_data/profile_data_4.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
@@ -332,7 +334,6 @@ class AuthCubit extends Cubit<AuthStates> {
       print('Access token :${registerUserModel?.tokens.accessToken.token}');
       print('Refresh token ${registerUserModel?.tokens.refreshToken.token}');
       // Saving Access token and Refresh token for future use
-      AppConstants.adminStorage.write('isLogged', true);
 
       AppConstants.adminStorage.write('userId', registerUserModel?.user.userId);
       AppConstants.adminStorage
@@ -394,7 +395,6 @@ class AuthCubit extends Cubit<AuthStates> {
       print('Access token :${loginUserModel?.tokens.accessToken.token}');
       print('Refresh token ${loginUserModel?.tokens.refreshToken.token}');
       // Saving Access token and Refresh token for future use
-      AppConstants.adminStorage.write('isLogged', true);
       AppConstants.adminStorage
           .write('accessToken', loginUserModel?.tokens.accessToken.token);
       AppConstants.adminStorage
@@ -425,18 +425,18 @@ class AuthCubit extends Cubit<AuthStates> {
   Future<void> submitProfileData({
     required BuildContext context,
   }) async {
-    if (firstName == null ||
-        secondName == null ||
-        thirdName == null ||
-        lastName == null ||
-        nationalId == null ||
-        phone == null ||
+    if (ProfileData1Screen.firstName.text.isEmpty ||
+        ProfileData1Screen.secondName.text.isEmpty ||
+        ProfileData1Screen.thirdName.text.isEmpty ||
+        ProfileData1Screen.lastName.text.isEmpty ||
+        ProfileData1Screen.nationalIdCard.text.isEmpty ||
+        ProfileData1Screen.phoneController.text.isEmpty ||
         nationalitty == null ||
-        appartmentNumber == null ||
-        buildingNumber == null ||
-        streetName == null ||
+        ProfileData3Screen.appartmentNumber.text.isEmpty ||
+        ProfileData3Screen.buildingNumber.text.isEmpty ||
+        ProfileData3Screen.streetName.text.isEmpty ||
         addressCountry == null ||
-        dateofBirth == null) {
+        ProfileData2Screen.dateOfBirth.text.isEmpty) {
       //quick alert Please Complete your Mandatory Data
       errorModel = ErrorModel(message: AppStrings.mandatoryData);
       emit(CreatePatientErrorState(AppStrings.mandatoryData));
@@ -469,12 +469,13 @@ class AuthCubit extends Cubit<AuthStates> {
             url: AppConstants.createPatientPath,
             data: {
               "userId": AppConstants.adminStorage.read('userId'),
-              "nationalId": nationalId,
-              "firstName": firstName,
-              "secondName": secondName,
-              "thirdName": thirdName,
-              "lastName": lastName,
-              "birthDate": dateofBirth,
+              "nationalId":
+                  nationalId ?? ProfileData1Screen.nationalIdCard.text,
+              "firstName": firstName ?? ProfileData1Screen.firstName.text,
+              "secondName": secondName ?? ProfileData1Screen.secondName.text,
+              "thirdName": thirdName ?? ProfileData1Screen.secondName.text,
+              "lastName": lastName ?? ProfileData1Screen.secondName.text,
+              "birthDate": dateofBirth ?? ProfileData2Screen.dateOfBirth.text,
               "religion": religionIndex,
               "gender": gender,
               "maritalStatus": getMaritalStatusIndex(),
@@ -482,16 +483,18 @@ class AuthCubit extends Cubit<AuthStates> {
               "bloodType": bloodTypeIndex,
               "country": addressCountry,
               "state": addressState,
-              "street": streetName,
-              "buildingNumber": buildingNumber,
-              "appartment": appartmentNumber,
-              "phoneNumber": phone,
+              "street": streetName ?? ProfileData3Screen.streetName.text,
+              "buildingNumber":
+                  buildingNumber ?? ProfileData3Screen.buildingNumber.text,
+              "appartment":
+                  appartmentNumber ?? ProfileData3Screen.appartmentNumber.text,
+              "phoneNumber": phone ?? ProfileData1Screen.phoneController.text,
               "birthCountry": birthCountry,
               "birthState": birthState,
               "birthCity": birthCity,
               "height": height,
               "weight": weight,
-              "job": job,
+              "job": job ?? ProfileData4Screen.job.text,
               "jobCountry": jobCountry,
               "jobState": jobState,
               "jobCity": jobCity,
@@ -507,6 +510,8 @@ class AuthCubit extends Cubit<AuthStates> {
 
         print(AppConstants.adminStorage.read('patientId'));
         print(AppConstants.adminStorage.read('fullName'));
+
+        AppConstants.adminStorage.write('isLogged', true);
 
         emit(CreatePatientSuccessfulState());
       } on DioError catch (error) {

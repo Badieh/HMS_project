@@ -80,6 +80,7 @@ class HomeLayoutScreen extends StatelessWidget {
           IconButton(
             onPressed: () async {
               final doctorsCubit = context.read<DoctorsCubit>();
+              doctorsCubit.favourites = true ;
               await doctorsCubit.getDoctors();
               Get.toNamed(Routes.favouriteScreen);
             },
@@ -164,4 +165,6 @@ class HomeLayoutScreen extends StatelessWidget {
       },
     );
   }
+
+
 }

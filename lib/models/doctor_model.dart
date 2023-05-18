@@ -1,6 +1,5 @@
-import 'package:equatable/equatable.dart';
 
-class DoctorModel extends Equatable {
+class DoctorModel {
   final int id;
   final String name;
   final String specialty;
@@ -8,14 +7,14 @@ class DoctorModel extends Equatable {
   final String imageHash;
   final String hospitalName;
   final String nationalIDCard;
-  Map<int , String> degree;
-  Map<int , String> position;
+  final int degree;
+  final int position;
   final String? notes;
-  final int noOfPatient;
+  final int? noOfPatient;
   final double yearsOfExperience;
   final String aboutMe;
 
-   DoctorModel({
+  DoctorModel({
     required this.name,
     required this.id,
     required this.specialty,
@@ -26,7 +25,7 @@ class DoctorModel extends Equatable {
     required this.degree,
     required this.position,
     this.notes,
-    required this.noOfPatient,
+    this.noOfPatient,
     required this.yearsOfExperience,
     required this.aboutMe,
   });
@@ -40,28 +39,12 @@ class DoctorModel extends Equatable {
       imageHash: json['imageHash'],
       hospitalName: json['hospitalName'],
       nationalIDCard: json['National_ID_Card'],
-      degree:  Map<int , String>.from(json['degree']),
-      position:  Map<int , String>.from(json['position']),
+      degree: json['degree'],
+      position: json['position'],
       notes: json['notes'],
       noOfPatient: json['noOfPatient'],
       yearsOfExperience: json['yearsOfExperience'],
       aboutMe: json['aboutMe'],
     );
   }
-
-  @override
-  List<Object> get props => [
-        id,
-        name,
-        specialty,
-        imageUrl,
-        imageHash,
-        hospitalName,
-        nationalIDCard,
-        degree,
-        position,
-        noOfPatient,
-        yearsOfExperience,
-        aboutMe
-      ];
 }

@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hospital/models/doctor_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -32,10 +33,10 @@ class DoctorDetailsScreen extends StatelessWidget {
       builder: (context, state) {
         DoctorsCubit cubit = DoctorsCubit.get(context);
         final DoctorModel doctorModel = cubit.selectedDoctor;
-        int keyDegree = cubit.selectedDoctor.id;
-        String valueDegree = doctorModel.degree[keyDegree]!;
-        int keyPos = cubit.selectedDoctor.id;
-        String valuePos = doctorModel.position[keyPos]!;
+        // int keyDegree = cubit.selectedDoctor.id;
+        // String valueDegree = doctorModel.degree[keyDegree]!;
+        // int keyPos = cubit.selectedDoctor.id;
+        // String valuePos = doctorModel.position[keyPos]!;
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -131,7 +132,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     child: AutoSizeText(
-                                      '$valueDegree',
+                                      AppConstants.degrees[doctorModel.degree],
                                       style: TextStyle(
                                         fontSize: FontSize.s12,
                                       ),
@@ -144,7 +145,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     child: AutoSizeText(
-                                      '$valuePos',
+                                      AppConstants.positions[doctorModel.position],
                                       style: TextStyle(
                                         fontSize: FontSize.s12,
                                       ),

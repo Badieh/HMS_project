@@ -1,6 +1,8 @@
 const String imagePath = 'assets/images';
 
 class ImageAssets {
+  static const uniLogo = '$imagePath/uni_logo.svg';
+  static const facultyLogo = '$imagePath/faculty_logo.svg';
   static const splashLightLogo = '$imagePath/light_logo.svg';
   static const splashDarkLogo = '$imagePath/dark_logo.svg';
   static const onBoardingLogo1 = '$imagePath/onBoarding_1.svg';

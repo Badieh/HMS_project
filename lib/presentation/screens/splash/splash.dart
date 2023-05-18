@@ -36,20 +36,32 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Get.isDarkMode ? ColorManager.black : ColorManager.white,
-      body: Center(
-        child: FadeOutUp(
-          delay: const Duration(milliseconds: 2400),
-          child: BounceInDown(
-            child: Container(
-                child: SvgPicture.asset(
-              Get.isDarkMode
-                  ? ImageAssets.splashDarkLogo
-                  : ImageAssets.splashLightLogo,
-              fit: BoxFit.cover,
-              height: AppSizeHeight.s500,
-            )),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor:
+            Get.isDarkMode ? ColorManager.black : ColorManager.white,
+        body: Center(
+          child: FadeOutUp(
+            delay: const Duration(milliseconds: 2400),
+            child: BounceInDown(
+              child: Container(
+                  child: Column(
+                children: [
+                  SvgPicture.asset(
+                    ImageAssets.facultyLogo,
+                    width: AppSizeWidth.s150,
+
+                  ),
+                  SvgPicture.asset(
+                    Get.isDarkMode
+                        ? ImageAssets.splashDarkLogo
+                        : ImageAssets.splashLightLogo,
+                    fit: BoxFit.cover,
+                    height: AppSizeHeight.s500,
+                  ),
+                ],
+              )),
+            ),
           ),
         ),
       ),
