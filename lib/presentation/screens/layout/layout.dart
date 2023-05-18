@@ -59,9 +59,7 @@ class HomeLayoutScreen extends StatelessWidget {
                     AppConstants.adminStorage.read('fullName'),
                     style: TextStyle(
                         fontSize: FontSize.s16,
-                        color: Get.isDarkMode
-                            ? ColorManager.white
-                            : ColorManager.black
+
                     ),
                   ),
                 ],

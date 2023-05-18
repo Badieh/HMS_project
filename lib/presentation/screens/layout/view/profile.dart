@@ -234,7 +234,7 @@ class ProfileScreen extends StatelessWidget {
                     Get.back();
                   },
                   onConfirmBtnTap: () async {
-                    await darkModeControler.logout();
+                    await DarkModeController().logout();
                   },
                 );
               },

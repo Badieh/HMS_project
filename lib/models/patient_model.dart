@@ -45,8 +45,8 @@ class PatientData {
   final String? birthState;
   final String? birthCity;
   final String phoneNumber;
-  final double? height;
-  final double? weight;
+  final double height;
+  final double weight;
   final String? job;
   final String? jobAddress;
   final String? jobCountry;
@@ -86,8 +86,8 @@ class PatientData {
     this.birthState,
     this.birthCity,
     required this.phoneNumber,
-    this.height,
-    this.weight,
+    required this.height,
+    required this.weight,
     this.job,
     this.jobAddress,
     this.jobCountry,
@@ -129,8 +129,8 @@ class PatientData {
       birthState: json['birthState'],
       birthCity: json['birthCity'],
       phoneNumber: json['phoneNumber'],
-      height: json['height'],
-      weight: json['weight'],
+      height:  json['height'].toDouble(),
+      weight: json['weight'].toDouble(),
       job: json['job'],
       jobAddress: json['jobAddress'],
       jobCountry: json['jobCountry'],
