@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 
 
 class DarkModeController extends GetxController {
+
   var switchValue = false.obs;
   final GetStorage themeStorage = GetStorage();
   final darkThemeKey = "isDark";

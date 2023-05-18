@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
             theme: getLightThemeData(),
             darkTheme: getDarkThemeData(),
             themeMode: DarkModeController().ThemeDataGet,
-            initialRoute: AppRoutes.splashScreen,
+            initialRoute: AppRoutes.doctorHomeScreen,
             getPages: AppRoutes.routes,
           );
         },

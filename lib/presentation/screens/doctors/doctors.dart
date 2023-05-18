@@ -77,11 +77,6 @@ class DoctorsScreen extends StatelessWidget {
                                     doctorsCubit.doctors[index];
                                 await doctorsCubit.getDoctorDetails(
                                     docId: doctorsCubit.doctors[index].id);
-                                print('===============================================');
-
-                                print(doctorsCubit.doctors.length);
-                                print('===============================================');
-
                                 Get.toNamed(Routes.doctorDetails);
 
                                 // Navigator.of(context).push(MaterialPageRoute(
@@ -204,7 +199,7 @@ class DoctorsScreen extends StatelessWidget {
                                               SizedBox(
                                                 width: size.width * 0.24,
                                                 child: AutoSizeText(
-                                                    '$valueDegree' ,
+                                                  '$valueDegree' ,
                                                   style: TextStyle(
                                                     fontSize: FontSize.s14,
                                                   ),

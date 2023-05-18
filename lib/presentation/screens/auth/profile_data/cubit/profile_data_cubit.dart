@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/screens/auth/profile_data/cubit/profile_data_states.dart';
@@ -261,10 +262,11 @@ class ProfileDataCubit extends Cubit<ProfileDataStates> {
         dateofBirth == null) {
       //quick alert Please Complete your Mandatory Data
       QuickAlert.show(
-        backgroundColor: ColorManager.lightPrimary,
+        backgroundColor: Get.isDarkMode ? ColorManager.lightBlack:ColorManager.lightPrimary,
         context: context,
         barrierDismissible: false,
-        type: QuickAlertType.warning,
+        type: QuickAlertType.warning,titleColor: Get.isDarkMode ? ColorManager.white : ColorManager.black,
+        confirmBtnColor: ColorManager.primary,
         width: MediaQuery.of(context).size.width,
         widget: const Text(AppStrings.mandatoryData),
         animType: QuickAlertAnimType.slideInDown,

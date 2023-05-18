@@ -9,7 +9,6 @@ import '../../routes/routes.dart';
 
 class ProfileScreen extends StatelessWidget {
    ProfileScreen({Key? key}) : super(key: key);
-    final darkModeControler = Get.find<DarkModeController>();
    final darkMode = 'Dark Mode'.obs;
    final lightMode = "Light Mode".obs;
 
@@ -188,10 +187,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
                  Switch(
 
-                    value: darkModeControler.switchValue.value,
+                    value: DarkModeController().switchValue.value,
                     onChanged: (value) {
-                      darkModeControler.changeTheme();
-                      darkModeControler.switchValue.value = value;
+                      DarkModeController().changeTheme();
+                      DarkModeController().switchValue.value = value;
                     },
                       activeColor: ColorManager.primary,
                       inactiveThumbColor: ColorManager.grey,

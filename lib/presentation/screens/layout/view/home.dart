@@ -522,7 +522,7 @@ class HomeScreen extends StatelessWidget {
                       fixedSize: Size(MediaQuery.of(context).size.width, 25.h),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AppSizeHeight.s10)),
-                      elevation: 5),
+                      elevation: 5,shadowColor: ColorManager.secondary ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
