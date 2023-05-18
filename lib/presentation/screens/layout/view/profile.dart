@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                   height: AppSizeHeight.s120,
                   child: flutter_blurhash.BlurHash(
                     image: AppConstants.adminStorage.read('patientPP'),
-                    hash: imageHash,
+                    hash: imageHashdummy,
                     duration: const Duration(milliseconds: 500),
                     imageFit: BoxFit.cover,
                   ),

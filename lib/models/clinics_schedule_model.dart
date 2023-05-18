@@ -18,12 +18,12 @@ class ClinicsScheduleModel extends Equatable {
 
   factory ClinicsScheduleModel.fromJson(Map<String, dynamic> json) {
     return ClinicsScheduleModel(
-      day: json['day'],
-      clinicScheduleId: json['clinicScheduleId'],
+      day: json['dayOfWeek'],
+      clinicScheduleId: json['skdId'],
       startTime: json['startTime'],
       endTime: json['endTime'],
-      notes: json['notes'],
-      isAvailable: json['isAvailable'],
+      notes: json['note'],
+      isAvailable: json['isAvaiLable'],
     );
   }
 

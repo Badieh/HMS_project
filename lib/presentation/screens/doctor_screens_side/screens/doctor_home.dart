@@ -52,7 +52,7 @@ class DoctorHomeScreen extends StatelessWidget {
                             doctorsCubit.selectedDoctor =
                                 doctorsCubit.doctors[index];
                             await doctorsCubit.getDoctorDetails(
-                                docId: doctorsCubit.doctors[index].id);
+                                docId: doctorsCubit.doctors[index].userId);
                             Get.toNamed(Routes.doctorDetails);
 
                             // Navigator.of(context).push(MaterialPageRoute(
@@ -76,7 +76,7 @@ class DoctorHomeScreen extends StatelessWidget {
                                   clipBehavior: Clip.antiAlias,
                                   width: AppSizeWidth.s90,
                                   height: AppSizeHeight.s90,
-                                  child: Image.network(doctor.imageUrl),
+                                  child: Image.network(doctor.imageUrl!),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(
                                           AppSizeHeight.s25)),
@@ -97,7 +97,7 @@ class DoctorHomeScreen extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            doctor.name,
+                                            doctor.fullName!,
                                             style: TextStyle(
                                               fontSize: FontSize.s14,
                                               fontWeight: FontWeight.bold,
@@ -131,7 +131,8 @@ class DoctorHomeScreen extends StatelessWidget {
                                         children: [
                                           SizedBox(
                                             child: Text(
-                                              doctor.specialty,
+                                              AppConstants.specializations[
+                                                  doctor.specialty],
                                               style: TextStyle(
                                                 fontSize: FontSize.s14,
                                               ),
@@ -147,7 +148,7 @@ class DoctorHomeScreen extends StatelessWidget {
                                           ),
                                           SizedBox(
                                             child: Text(
-                                              doctor.hospitalName,
+                                              doctor.hospitalName!,
                                               style: TextStyle(
                                                 fontSize: FontSize.s14,
                                               ),

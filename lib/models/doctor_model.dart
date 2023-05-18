@@ -1,50 +1,72 @@
+import 'dummy_data.dart';
 
 class DoctorModel {
-  final int id;
-  final String name;
-  final String specialty;
-  final String imageUrl;
-  final String imageHash;
-  final String hospitalName;
-  final String nationalIDCard;
+  final int doctorId;
+  final int userId;
+  final String nationalId;
+  final String? fullName;
+  final String firstName;
+  final String secondName;
+  final String thirdName;
+  final String lastName;
   final int degree;
   final int position;
-  final String? notes;
-  final int? noOfPatient;
+  final int specialty;
+  final String? hospitalName;
+  final String? imageUrl;
+  final String? imageHash;
+  final int? noOfPatients;
   final double yearsOfExperience;
-  final String aboutMe;
+  final String? aboutMe;
+  final String? note;
+  final String? createdAt;
+  final String? updatedAt;
 
   DoctorModel({
-    required this.name,
-    required this.id,
-    required this.specialty,
-    required this.imageUrl,
-    this.imageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I',
-    required this.hospitalName,
-    required this.nationalIDCard,
+    required this.doctorId,
+    required this.userId,
+    required this.nationalId,
+    this.fullName,
+    required this.firstName,
+    required this.secondName,
+    required this.thirdName,
+    required this.lastName,
     required this.degree,
     required this.position,
-    this.notes,
-    this.noOfPatient,
+    required this.specialty,
+    this.hospitalName,
+    this.imageUrl,
+    this.imageHash = imageHashdummy,
+    this.noOfPatients,
     required this.yearsOfExperience,
-    required this.aboutMe,
+    this.aboutMe,
+    this.note,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
-      name: json['name'],
-      id: json['id'],
-      specialty: json['specialty'],
-      imageUrl: json['imageUrl'],
-      imageHash: json['imageHash'],
-      hospitalName: json['hospitalName'],
-      nationalIDCard: json['National_ID_Card'],
+      doctorId: json['doctorId'],
+      userId: json['userId'],
+      nationalId: json['nationalId'],
+      fullName: json['fullName'],
+      firstName: json['firstName'],
+      secondName: json['secondName'],
+      thirdName: json['thirdName'],
+      lastName: json['lastName'],
       degree: json['degree'],
       position: json['position'],
-      notes: json['notes'],
-      noOfPatient: json['noOfPatient'],
+      specialty: json['departmentId'],
+      hospitalName: json['hospitalName'],
+      imageUrl: json['imageUrl'],
+      imageHash: json['imageHash'],
+      noOfPatients: json['noOfPatients'],
       yearsOfExperience: json['yearsOfExperience'],
       aboutMe: json['aboutMe'],
+      note: json['note'],
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'],
     );
   }
 }

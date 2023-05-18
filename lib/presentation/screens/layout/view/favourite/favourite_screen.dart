@@ -71,7 +71,7 @@ class FavouriteScreen extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           width: AppSizeWidth.s120,
                           height: AppSizeHeight.s120,
-                          child: Image.network(doctor.imageUrl),
+                          child: Image.network(doctor.imageUrl!),
                           decoration: BoxDecoration(
 
                               borderRadius:
@@ -92,7 +92,7 @@ class FavouriteScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    doctor.name,
+                                    doctor.fullName!,
                                     style: TextStyle(
                                       fontSize: FontSize.s14,
                                       fontWeight: FontWeight.bold,
@@ -122,7 +122,7 @@ class FavouriteScreen extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     child: Text(
-                                      doctor.specialty,
+                                      AppConstants.specializations[doctor.specialty],
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),
@@ -135,7 +135,7 @@ class FavouriteScreen extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     child: Text(
-                                      doctor.hospitalName,
+                                      doctor.hospitalName!,
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),
