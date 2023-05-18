@@ -143,6 +143,9 @@ class AppStrings {
   static const workTime = 'work time';
   static const bookAppointment = 'Book Appointment';
   static const rescheduleAppointment = 'Reschedule Appointment';
+// doctor home screen
+  static const todaysPatient = 'today\'s Patients';
+  static const timeTable = 'Week\'s Schedule';
 
   // book appointment
   static const selectDate = 'Select a Date';

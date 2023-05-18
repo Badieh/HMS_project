@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:hospital/network/bindings/dark_mode_binding.dart';
 import 'package:hospital/network/bindings/doctor_main_binding.dart';
 import 'package:hospital/presentation/screens/auth/fill_profile.dart';
 import 'package:hospital/presentation/screens/auth/login.dart';
@@ -25,6 +26,7 @@ class AppRoutes {
     GetPage(
       name: Routes.homeLayoutScreen,
       page: () => HomeLayoutScreen(),
+      binding: DarkModeBinding()
     ),
     GetPage(name: Routes.notificationScreen, page: () => NotificationScreen()),
     GetPage(name: Routes.searchScreen, page: () => Search_Screen()),
@@ -38,6 +40,7 @@ class AppRoutes {
     GetPage(
       name: Routes.profile,
       page: () => ProfileScreen(),
+      binding: DarkModeBinding()
     ),
     GetPage(
         name: Routes.bookAppointment,
@@ -49,7 +52,7 @@ class AppRoutes {
         name: Routes.doctorHomeScreen,
         page: () => DoctorLayoutScreen(),
         bindings: [
-          DoctorMainBinding(),
+          DoctorMainBinding(),DarkModeBinding()
         ]),
   ];
 }

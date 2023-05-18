@@ -18,7 +18,7 @@ class PatientModel {
 }
 
 class PatientData {
-  final int patientId;
+  final int? patientId;
   final int userId;
   final String nationalId;
   final String? fullName;
@@ -59,7 +59,7 @@ class PatientData {
   final String? patientPPHash;
 
   const PatientData({
-    required this.patientId,
+    this.patientId,
     required this.userId,
     required this.nationalId,
     this.fullName,

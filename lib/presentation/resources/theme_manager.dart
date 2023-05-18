@@ -131,6 +131,7 @@ ThemeData getLightThemeData() {
         borderRadius: BorderRadius.circular(AppSizeWidth.s8),
       ),
     ),
+
     checkboxTheme: CheckboxThemeData(
       shape: const StadiumBorder(),
       //checkColor: MaterialStateProperty.all(ColorManager.primary),
