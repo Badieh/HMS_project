@@ -76,7 +76,7 @@ class SpecializationsScreen extends StatelessWidget {
               onTap: () async {
                 cubit.specialization = index;
                 await cubit.getDoctors();
-                Get.offAllNamed(Routes.doctors);
+                Get.toNamed(Routes.doctors);
               },
             ),
           ),
@@ -99,7 +99,7 @@ class SpecializationsScreen extends StatelessWidget {
             onTap: () async {
               cubit.specialization = index;
               await cubit.getDoctors();
-              Get.offAllNamed(Routes.doctors);
+              Get.toNamed(Routes.doctors);
 
               // Navigator.push(
               //     context,

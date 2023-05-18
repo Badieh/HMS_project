@@ -14,6 +14,7 @@ import 'package:hospital/presentation/screens/history/diagnose/case_diagnose_rep
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:quickalert/quickalert.dart';
 
 Widget DefaultTextFormField({
   required TextEditingController controller,
@@ -328,3 +329,16 @@ SnackbarController snackbar({required String message, bool isSuccess = true}) =>
           : Icon(Icons.error, color: Colors.white),
       snackPosition: SnackPosition.BOTTOM,
     );
+
+underDevelopment(context) => QuickAlert.show(
+    context: context,
+    type: QuickAlertType.info,
+    text: 'Feature Under Development',
+    backgroundColor:
+        Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
+    titleColor: Get.isDarkMode ? ColorManager.white : ColorManager.black,
+    textColor: Get.isDarkMode ? ColorManager.white : ColorManager.black,
+    confirmBtnColor: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    confirmBtnTextStyle: TextStyle(
+      color: Get.isDarkMode ? ColorManager.black : ColorManager.white,
+    ));

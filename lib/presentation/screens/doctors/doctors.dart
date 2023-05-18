@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -39,6 +40,7 @@ class DoctorsScreen extends StatelessWidget {
               doctorsCubit.specialization = null;
               doctorsCubit.degree = null;
               doctorsCubit.position = null;
+              doctorsCubit.favourites = false;
               Navigator.pop(context);
               //Get.offAllNamed(Routes.homeLayoutScreen);
             },
@@ -54,7 +56,6 @@ class DoctorsScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
                   SizedBox(
                     height: AppSizeHeight.s10,
                   ),
@@ -67,16 +68,16 @@ class DoctorsScreen extends StatelessWidget {
                           physics: BouncingScrollPhysics(),
                           itemBuilder: (context, index) {
                             var doctor = doctorsCubit.doctors[index];
-                            int keyDegree = doctor.degree.keys.elementAt(index);
-                            String valueDegree = doctor.degree[keyDegree]!;
-                            int keyPos = doctor.position.keys.elementAt(index);
-                            String valuePos = doctor.position[keyPos]!;
+                            // int keyDegree = doctor.degree.keys.elementAt(index);
+                            // String valueDegree = doctor.degree[keyDegree]!;
+                            // int keyPos = doctor.position.keys.elementAt(index);
+                            // String valuePos = doctor.position[keyPos]!;
                             return InkWell(
                               onTap: () async {
                                 doctorsCubit.selectedDoctor =
                                     doctorsCubit.doctors[index];
                                 await doctorsCubit.getDoctorDetails(
-                                    docId: doctorsCubit.doctors[index].id);
+                                    docId: doctorsCubit.doctors[index].userId);
                                 Get.toNamed(Routes.doctorDetails);
 
                                 // Navigator.of(context).push(MaterialPageRoute(
@@ -100,7 +101,7 @@ class DoctorsScreen extends StatelessWidget {
                                       clipBehavior: Clip.antiAlias,
                                       width: AppSizeWidth.s90,
                                       height: AppSizeHeight.s90,
-                                      child: Image.network(doctor.imageUrl),
+                                      child: Image.network(doctor.imageUrl!),
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(
                                               AppSizeHeight.s25)),
@@ -123,7 +124,7 @@ class DoctorsScreen extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                doctor.name,
+                                                doctor.fullName!,
                                                 style: TextStyle(
                                                   fontSize: FontSize.s14,
                                                   fontWeight: FontWeight.bold,
@@ -160,7 +161,8 @@ class DoctorsScreen extends StatelessWidget {
                                             children: [
                                               SizedBox(
                                                 child: Text(
-                                                  doctor.specialty,
+                                                  AppConstants.specializations[
+                                                      doctor.specialty],
                                                   style: TextStyle(
                                                     fontSize: FontSize.s14,
                                                   ),
@@ -174,7 +176,7 @@ class DoctorsScreen extends StatelessWidget {
                                               ),
                                               SizedBox(
                                                 child: Text(
-                                                  doctor.hospitalName,
+                                                  doctor.hospitalName!,
                                                   style: TextStyle(
                                                     fontSize: FontSize.s14,
                                                   ),
@@ -199,7 +201,7 @@ class DoctorsScreen extends StatelessWidget {
                                               SizedBox(
                                                 width: size.width * 0.24,
                                                 child: AutoSizeText(
-                                                  '$valueDegree' ,
+                                                  AppConstants.degrees[index],
                                                   style: TextStyle(
                                                     fontSize: FontSize.s14,
                                                   ),
@@ -223,7 +225,7 @@ class DoctorsScreen extends StatelessWidget {
                                               SizedBox(
                                                 width: size.width * 0.24,
                                                 child: AutoSizeText(
-                                                  '$valuePos',
+                                                  AppConstants.positions[index],
                                                   // 'Key: $key, Value: $value'
                                                   style: TextStyle(
                                                     fontSize: FontSize.s14,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -84,7 +85,8 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.lightBlueAccent.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 2,
-                        offset: const Offset(2, 2), // changes position of shadow
+                        offset:
+                            const Offset(2, 2), // changes position of shadow
                       ),
                     ],
                   ),
@@ -133,6 +135,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .03,
             ),
+            // Doctor Specializations
             Row(
               children: [
                 Expanded(
@@ -164,319 +167,322 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .015,
             ),
-            Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.width * .3,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.width * .16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Icon(
-                          Icons.people,
-                          size: FontSize.s35,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "General",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.width * .16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: FaIcon(
-                          FontAwesomeIcons.tooth,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "Dentist",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.width * .16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: FaIcon(
-                          FontAwesomeIcons.solidEye,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "ophthalmologist",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.width * .16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: FaIcon(
-                          FontAwesomeIcons.nutritionix,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "Nutrition",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              // height: MediaQuery.of(context).size.width * .25,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.width * 0.16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: FaIcon(
-                          FontAwesomeIcons.brain,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "neurologist",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.width * .16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: FaIcon(
-                          FontAwesomeIcons.baby,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "pediatrician",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.width * .16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: FaIcon(
-                          FontAwesomeIcons.xRay,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                          size: FontSize.s35,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "radiologist",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        height: MediaQuery.of(context).size.width * .16,
-                        width: MediaQuery.of(context).size.width * .16,
-                        decoration: BoxDecoration(
-                          color: Get.isDarkMode
-                              ? ColorManager.lightBlack
-                              : ColorManager.lightPrimary,
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Icon(
-                          Icons.more_horiz,
-                          size: 30,
-                          color: Get.isDarkMode
-                              ? ColorManager.white
-                              : ColorManager.primary,
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * .005,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        width: MediaQuery.of(context).size.width * .18,
-                        child: const Text(
-                          "More",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            showGrid(),
+            // showGrid(cubit);
+            // Container(
+            //   width: double.infinity,
+            //   height: MediaQuery.of(context).size.width * .3,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Column(
+            //         children: [
+            //           Container(
+            //             height: MediaQuery.of(context).size.width * .16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: Icon(
+            //               Icons.people,
+            //               size: FontSize.s35,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "General",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Column(
+            //         children: [
+            //           Container(
+            //             alignment: Alignment.center,
+            //             height: MediaQuery.of(context).size.width * .16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: FaIcon(
+            //               FontAwesomeIcons.tooth,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //               size: FontSize.s35,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "Dentist",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Column(
+            //         children: [
+            //           Container(
+            //             alignment: Alignment.center,
+            //             height: MediaQuery.of(context).size.width * .16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: FaIcon(
+            //               FontAwesomeIcons.solidEye,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //               size: FontSize.s35,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "ophthalmologist",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Column(
+            //         children: [
+            //           Container(
+            //             alignment: Alignment.center,
+            //             height: MediaQuery.of(context).size.width * .16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: FaIcon(
+            //               FontAwesomeIcons.nutritionix,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //               size: FontSize.s35,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "Nutrition",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // Container(
+            //   width: double.infinity,
+            //   // height: MediaQuery.of(context).size.width * .25,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Column(
+            //         children: [
+            //           Container(
+            //             alignment: Alignment.center,
+            //             height: MediaQuery.of(context).size.width * 0.16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: FaIcon(
+            //               FontAwesomeIcons.brain,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //               size: FontSize.s35,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "neurologist",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Column(
+            //         children: [
+            //           Container(
+            //             alignment: Alignment.center,
+            //             height: MediaQuery.of(context).size.width * .16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: FaIcon(
+            //               FontAwesomeIcons.baby,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //               size: FontSize.s35,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "pediatrician",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Column(
+            //         children: [
+            //           Container(
+            //             alignment: Alignment.center,
+            //             height: MediaQuery.of(context).size.width * .16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: FaIcon(
+            //               FontAwesomeIcons.xRay,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //               size: FontSize.s35,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "radiologist",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Column(
+            //         children: [
+            //           Container(
+            //             height: MediaQuery.of(context).size.width * .16,
+            //             width: MediaQuery.of(context).size.width * .16,
+            //             decoration: BoxDecoration(
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.lightBlack
+            //                   : ColorManager.lightPrimary,
+            //               borderRadius: BorderRadius.circular(50),
+            //             ),
+            //             child: Icon(
+            //               Icons.more_horiz,
+            //               size: 30,
+            //               color: Get.isDarkMode
+            //                   ? ColorManager.white
+            //                   : ColorManager.primary,
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             height: MediaQuery.of(context).size.height * .005,
+            //           ),
+            //           Container(
+            //             alignment: Alignment.center,
+            //             width: MediaQuery.of(context).size.width * .18,
+            //             child: const Text(
+            //               "More",
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //               textAlign: TextAlign.center,
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * .04,
             ),
@@ -506,45 +512,148 @@ class HomeScreen extends StatelessWidget {
             //         )),
             //   ],
             // ),
+            // Doctors button
             Container(
-
-              width:MediaQuery.of(context).size.width,
-               alignment: Alignment.center,
-               child : ElevatedButton(
-                  onPressed: ()  async {
-                    final doctorsCubit = context.read<DoctorsCubit>();
-                    await doctorsCubit.getDoctors();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => DoctorsScreen()));
-                    },
-                  style: ElevatedButton.styleFrom(
+              width: MediaQuery.of(context).size.width,
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () async {
+                  final doctorsCubit = context.read<DoctorsCubit>();
+                  await doctorsCubit.getDoctors();
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => DoctorsScreen()));
+                },
+                style: ElevatedButton.styleFrom(
                     alignment: Alignment.center,
-                      fixedSize: Size(MediaQuery.of(context).size.width, 25.h),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AppSizeHeight.s10)),
-                      elevation: 5,shadowColor: ColorManager.secondary ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                     Row(
-                       children: [
-                         FaIcon(FontAwesomeIcons.userDoctor,size: AppSizeHeight.s20,color: ColorManager.white ,),
-                         SizedBox(width: AppSizeWidth.s8,),
-                         Text("Hospital Doctors",
-                             style: TextStyle(fontSize: FontSize.s15),
-                             textAlign: TextAlign.center),
-                       ],
-                     ),
-                      Icon(Icons.arrow_forward_ios,size:  AppSizeHeight.s20,)
-                    ],
-                  ),
+                    fixedSize: Size(MediaQuery.of(context).size.width, 25.h),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(AppSizeHeight.s10)),
+                    elevation: 5,
+                    shadowColor: ColorManager.secondary),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.userDoctor,
+                          size: AppSizeHeight.s20,
+                          color: ColorManager.white,
+                        ),
+                        SizedBox(
+                          width: AppSizeWidth.s8,
+                        ),
+                        Text("Hospital Doctors",
+                            style: TextStyle(fontSize: FontSize.s15),
+                            textAlign: TextAlign.center),
+                      ],
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: AppSizeHeight.s20,
+                    )
+                  ],
                 ),
-
-
+              ),
             )
           ],
         ),
       ),
     );
   }
+
+  Widget showGrid() => GridView.builder(
+        shrinkWrap: true,
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+        itemBuilder: (context, index) {
+          return InkWell(
+            radius: 30,
+            borderRadius: BorderRadius.circular(80),
+            onTap: () async {
+              final doctorsCubit = context.read<DoctorsCubit>();
+              doctorsCubit.specialization = index;
+              await doctorsCubit.getDoctors();
+              Get.toNamed(Routes.doctors);
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  height: MediaQuery.of(context).size.width * .16,
+                  width: MediaQuery.of(context).size.width * .16,
+                  decoration: BoxDecoration(
+                    color: Get.isDarkMode
+                        ? ColorManager.lightBlack
+                        : ColorManager.lightPrimary,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: homeScreenSpecializationIcons[index],
+                ),
+                // SizedBox(
+                //   height: MediaQuery.of(context).size.height * .005,
+                // ),
+                Container(
+                  width: MediaQuery.of(context).size.width * .28,
+                  child: Text(
+                    AppConstants.specializations[index],
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+        physics: const BouncingScrollPhysics(),
+        itemCount: homeScreenSpecializationIcons.length,
+      );
 }
+
+List<Widget> homeScreenSpecializationIcons = [
+  FaIcon(
+    FontAwesomeIcons.syringe,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // Anesthetics
+  FaIcon(
+    FontAwesomeIcons.heartPulse,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // Cardiology
+  FaIcon(
+    FontAwesomeIcons.earListen,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // Ear, nose and throat (ENT)
+  FaIcon(
+    FontAwesomeIcons.nutritionix,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // Gastroenterology
+  Icon(
+    Icons.healing,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // General Surgery
+  Icon(
+    Icons.woman,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // Gynecology
+  FaIcon(
+    FontAwesomeIcons.droplet,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // Hematology
+  FaIcon(
+    FontAwesomeIcons.baby,
+    color: Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+    size: FontSize.s30,
+  ), // Neonatal Unit
+];

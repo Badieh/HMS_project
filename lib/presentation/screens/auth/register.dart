@@ -163,17 +163,22 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
                       // remember me check box
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Checkbox(
-                            value: false,
-                            onChanged: (bool? value) {},
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          const Text(AppStrings.rememberMe),
-                        ],
+                      InkWell(
+                        onTap: () {
+                          underDevelopment(context);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: false,
+                              onChanged: (bool? value) {},
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            const Text(AppStrings.rememberMe),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 80,
@@ -231,7 +236,9 @@ class RegisterScreen extends StatelessWidget {
                           InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s30),
-                            onTap: () {},
+                            onTap: () {
+                              underDevelopment(context);
+                            },
                             child: Container(
                               height: AppSizeHeight.s50,
                               width: AppSizeWidth.s90,
@@ -253,7 +260,9 @@ class RegisterScreen extends StatelessWidget {
                           InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s30),
-                            onTap: () {},
+                            onTap: () {
+                              underDevelopment(context);
+                            },
                             child: Container(
                               height: AppSizeHeight.s50,
                               width: AppSizeWidth.s90,
@@ -275,7 +284,9 @@ class RegisterScreen extends StatelessWidget {
                           InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s30),
-                            onTap: () {},
+                            onTap: () {
+                              underDevelopment(context);
+                            },
                             child: Container(
                               height: AppSizeHeight.s50,
                               width: AppSizeWidth.s90,

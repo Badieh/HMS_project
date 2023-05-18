@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hospital/models/doctor_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -32,10 +33,10 @@ class DoctorDetailsScreen extends StatelessWidget {
       builder: (context, state) {
         DoctorsCubit cubit = DoctorsCubit.get(context);
         final DoctorModel doctorModel = cubit.selectedDoctor;
-        int keyDegree = cubit.selectedDoctor.id;
-        String valueDegree = doctorModel.degree[keyDegree]!;
-        int keyPos = cubit.selectedDoctor.id;
-        String valuePos = doctorModel.position[keyPos]!;
+        // int keyDegree = cubit.selectedDoctor.id;
+        // String valueDegree = doctorModel.degree[keyDegree]!;
+        // int keyPos = cubit.selectedDoctor.id;
+        // String valuePos = doctorModel.position[keyPos]!;
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -44,7 +45,7 @@ class DoctorDetailsScreen extends StatelessWidget {
               },
               icon: Icon(Icons.arrow_back_outlined),
             ),
-            title: Text(doctorModel.name,
+            title: Text(doctorModel.fullName!,
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontSize: FontSize.s20)),
             actions: [
@@ -83,7 +84,9 @@ class DoctorDetailsScreen extends StatelessWidget {
                     width: double.infinity,
                     height: size.height * 0.2,
                     decoration: BoxDecoration(
-                        color: Get.isDarkMode ?  ColorManager.lightBlack:ColorManager.white,
+                        color: Get.isDarkMode
+                            ? ColorManager.lightBlack
+                            : ColorManager.white,
                         borderRadius: BorderRadius.circular(AppSizeHeight.s25)),
                     child: Row(
                       children: [
@@ -91,7 +94,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           height: size.height * 0.17,
                           width: size.height * 0.17,
-                          child: Image.network(doctorModel.imageUrl),
+                          child: Image.network(doctorModel.imageUrl!),
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeHeight.s25)),
@@ -107,7 +110,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                             Container(
                               width: size.width * 0.5,
                               child: Text(
-                                doctorModel.name,
+                                doctorModel.fullName!,
                                 style: TextStyle(
                                   fontSize: FontSize.s14,
                                   fontWeight: FontWeight.bold,
@@ -131,7 +134,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     child: AutoSizeText(
-                                      '$valueDegree',
+                                      AppConstants.degrees[doctorModel.degree],
                                       style: TextStyle(
                                         fontSize: FontSize.s12,
                                       ),
@@ -144,7 +147,8 @@ class DoctorDetailsScreen extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     child: AutoSizeText(
-                                      '$valuePos',
+                                      AppConstants
+                                          .positions[doctorModel.position],
                                       style: TextStyle(
                                         fontSize: FontSize.s12,
                                       ),
@@ -157,7 +161,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     child: AutoSizeText(
-                                      doctorModel.hospitalName,
+                                      doctorModel.hospitalName!,
                                       style: TextStyle(
                                         fontSize: FontSize.s12,
                                       ),
@@ -187,13 +191,17 @@ class DoctorDetailsScreen extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: FaIcon(
                                   FontAwesomeIcons.peopleGroup,
-                                  color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
+                                  color: Get.isDarkMode
+                                      ? ColorManager.white
+                                      : ColorManager.primary,
                                   size: FontSize.s35,
                                 ),
                                 height: MediaQuery.of(context).size.width * .16,
                                 width: MediaQuery.of(context).size.width * .3,
                                 decoration: BoxDecoration(
-                                  color:Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightPrimary,
+                                  color: Get.isDarkMode
+                                      ? ColorManager.lightBlack
+                                      : ColorManager.lightPrimary,
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                               ),
@@ -204,11 +212,13 @@ class DoctorDetailsScreen extends StatelessWidget {
                               Container(
                                 width: MediaQuery.of(context).size.width * .18,
                                 child: Text(
-                                 doctorModel.noOfPatient.toString(),
+                                  doctorModel.noOfPatients.toString(),
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: FontSize.s18,
-                                    color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: FontSize.s18,
+                                    color: Get.isDarkMode
+                                        ? ColorManager.white
+                                        : ColorManager.primary,
                                   ),
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
@@ -224,7 +234,9 @@ class DoctorDetailsScreen extends StatelessWidget {
                                   AppStrings.noofpatient_txt,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Get.isDarkMode ? ColorManager.primary: ColorManager.grey,
+                                    color: Get.isDarkMode
+                                        ? ColorManager.primary
+                                        : ColorManager.grey,
                                   ),
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
@@ -241,13 +253,17 @@ class DoctorDetailsScreen extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: Icon(
                                   Icons.auto_graph,
-                                  color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
+                                  color: Get.isDarkMode
+                                      ? ColorManager.white
+                                      : ColorManager.primary,
                                   size: FontSize.s35,
                                 ),
                                 height: MediaQuery.of(context).size.width * .16,
                                 width: MediaQuery.of(context).size.width * .3,
                                 decoration: BoxDecoration(
-                                  color:Get.isDarkMode ? ColorManager.lightBlack: ColorManager.lightPrimary,
+                                  color: Get.isDarkMode
+                                      ? ColorManager.lightBlack
+                                      : ColorManager.lightPrimary,
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                               ),
@@ -259,9 +275,11 @@ class DoctorDetailsScreen extends StatelessWidget {
                                 child: Text(
                                   doctorModel.yearsOfExperience.toString(),
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: FontSize.s18,
-                                    color: Get.isDarkMode ? ColorManager.white: ColorManager.primary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: FontSize.s18,
+                                    color: Get.isDarkMode
+                                        ? ColorManager.white
+                                        : ColorManager.primary,
                                   ),
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
@@ -277,7 +295,9 @@ class DoctorDetailsScreen extends StatelessWidget {
                                   AppStrings.yearsofexperience_txt,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Get.isDarkMode ? ColorManager.primary: ColorManager.grey,
+                                    color: Get.isDarkMode
+                                        ? ColorManager.primary
+                                        : ColorManager.grey,
                                   ),
                                   textAlign: TextAlign.center,
                                   maxLines: 1,
@@ -303,7 +323,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                     height: size.height * .01,
                   ),
                   ReadMoreText(
-                    doctorModel.aboutMe,
+                    doctorModel.aboutMe!,
                     textAlign: TextAlign.justify,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: AppStrings.viewmore,

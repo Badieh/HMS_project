@@ -36,72 +36,46 @@ FileModel file1 = const FileModel(
     fileUrl:
         'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf');
 DoctorModel Doctor1 = DoctorModel(
-  id: 1,
-  name: 'Dr. John Lamie',
-  specialty: 'Cardiologist',
+  userId: 125,
+  doctorId: 1,
+  firstName: 'john',
+  secondName: 'lamei',
+  thirdName: 'tawfik',
+  lastName: 'salah',
+  fullName: 'john lamei tawfik salah',
+  specialty: 4,
   imageUrl:
       'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
-  nationalIDCard: '555-1234',
+  nationalId: '555-1234',
   hospitalName: hospitalName,
-  degree: {
-    0: 'Bachelor',
-    1: 'Postgraduate Diploma',
-    2: 'Egyptian Associate degree',
-    3: 'Fellowship',
-    4: 'Royal Membership',
-    5: 'Master',
-    6: 'Phd',
-  },
-  position: {
-    0: 'Internship Doctor',
-    1: 'Resident Doctor',
-    2: 'Specialist Doctor',
-    3: 'senior specialist',
-    4: 'consultant Doctor',
-    5: 'Senior consultant',
-    6: 'Chief resident',
-    7: 'Head of department',
-    8: 'Medical director',
-  },
-  noOfPatient: 5500,
+  degree: 1,
+  position: 1,
+  noOfPatients: 5500,
+  yearsOfExperience: 5.5,
+  aboutMe:
+      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
+);
+DoctorModel Doctor2 = DoctorModel(
+  userId: 126,
+  doctorId: 2,
+  firstName: 'bishoy',
+  secondName: 'shehata',
+  thirdName: 'tawfik',
+  lastName: 'salah',
+  fullName: 'bishoy shehata tawfik salah',
+  specialty: 9,
+  imageUrl:
+      'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
+  nationalId: '555-1234',
+  hospitalName: hospitalName,
+  degree: 1,
+  position: 1,
+  noOfPatients: 5500,
   yearsOfExperience: 5.5,
   aboutMe:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
 );
 
-DoctorModel Doctor2 = DoctorModel(
-  id: 1,
-  name: 'Dr. John Smith',
-  specialty: 'Cardiologist',
-  imageUrl:
-      'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
-  nationalIDCard: '555-1234',
-  hospitalName: hospitalName,
-  degree: {
-    0: 'Bachelor',
-    1: 'Postgraduate Diploma',
-    2: 'Egyptian Associate degree',
-    3: 'Fellowship',
-    4: 'Royal Membership',
-    5: 'Master',
-    6: 'Phd',
-  },
-  position: {
-    0: 'Internship Doctor',
-    1: 'Resident Doctor',
-    2: 'Specialist Doctor',
-    3: 'senior specialist',
-    4: 'consultant Doctor',
-    5: 'Senior consultant',
-    6: 'Chief resident',
-    7: 'Head of department',
-    8: 'Medical director',
-  },
-  noOfPatient: 5500,
-  yearsOfExperience: 5.5,
-  aboutMe:
-      'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
-);
 AppointmentModel appointment1 = const AppointmentModel(
   id: 1,
   doctorName: 'Dr. John Smith',
@@ -150,7 +124,7 @@ ClinicsScheduleModel clinicsScheduleModel_4 = const ClinicsScheduleModel(
 
 const String hospitalName = 'General Hospital';
 
-const imageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';
+const imageHashdummy = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';
 
 PatientModel patientModel1 = PatientModel(
     patientData:  PatientData(
@@ -174,6 +148,6 @@ PatientModel patientModel1 = PatientModel(
         age: 23,
       patientPP: "https://as2.ftcdn.net/v2/jpg/03/20/52/31/1000_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg",
       patientPPHash:imageHash
-        
+
 
     ), statusCode: 200 ,message: "");

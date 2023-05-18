@@ -14,6 +14,7 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
   var degree;
   var position;
   var specialization;
+  bool favourites = false;
   Future<void> getDoctors() async {
     emit(GetDoctorsLoadingState());
 
@@ -39,9 +40,6 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
           Doctor2,
           Doctor1,
           Doctor1,
-
-
-
         ];
         emit(GetDoctorsSuccessState());
       } catch (error) {
@@ -104,6 +102,34 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
         print(error.toString());
         emit(GetDoctorsErrorState(error.toString()));
       }
+    } else if (favourites == true) {
+      try {
+        //   var response =
+        //   await DioHelper.getData(url: AppConstants.articlesPath, query: {
+        //     'country': AppConstants.country,
+        //     'category': AppConstants.category,
+        //     'apiKey': AppConstants.articlesApiKey,
+        //   });
+        //   //print(response.data['articles'][1]);
+        //   topDoctors = List.from(response.data['topDoctors'])
+        //       .map((e) => TopDoctorModel.fromJson(e))
+        //       .toList();
+
+        // print(articles[1]);
+
+        print('trying to get Favourite doctors');
+        doctors = [
+          Doctor1,
+          Doctor2,
+          Doctor1,
+          Doctor1,
+        ];
+        emit(GetDoctorsSuccessState());
+      } catch (error) {
+        print(error.toString());
+        emit(GetDoctorsErrorState(error.toString()));
+      }
+      favourites = false;
     } else {
       try {
         //   var response =
@@ -128,7 +154,6 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
           Doctor2,
           Doctor2,
           Doctor2,
-
         ];
         emit(GetDoctorsSuccessState());
       } catch (error) {

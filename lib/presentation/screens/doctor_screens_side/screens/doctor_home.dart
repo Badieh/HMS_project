@@ -1,11 +1,9 @@
-import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hospital/network/controller/doctor_main_controller.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
-import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
 import 'package:hospital/presentation/screens/doctors/doctor_details_cubit/data_table.dart';
@@ -77,98 +75,185 @@ class DoctorHomeScreen extends StatelessWidget {
                           return InkWell(
                             onTap: ()  {
 
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(AppPadding.p4),
-                              // height: AppSizeHeight.s100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(AppPadding.p18),
-                              ),
-                              child: Row(
-                                children: [
-                                  // Department photo
-                                  Container(
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(AppPadding.p18),
-                                      //color: ColorManager.grey,
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         DoctorDetailsScreen()));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: AppSizeHeight.s8,
+                                right: AppSizeHeight.s8),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Get.isDarkMode
+                                    ? ColorManager.lightBlack
+                                    : ColorManager.white,
+                                borderRadius: BorderRadius.circular(
+                                    AppSizeHeight.s25)),
+                            child: Row(
+                              children: [
+                                Container(
+                                  clipBehavior: Clip.antiAlias,
+                                  width: AppSizeWidth.s90,
+                                  height: AppSizeHeight.s90,
+                                  child: Image.network(doctor.imageUrl),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          AppSizeHeight.s25)),
+                                ),
+                                SizedBox(
+                                  width: AppSizeWidth.s4,
+                                ),
+                                Column(
+                                  children: [
+                                    SizedBox(
+                                      height: AppSizeHeight.s18,
                                     ),
-                                    width: AppSizeWidth.s90,
-                                    height: AppSizeHeight.s100,
-                                    child: flutter_blurhash.BlurHash(
-                                      image: homeController.allPatientDataList[index].patientData.patientPP,
-                                      hash: '${homeController.allPatientDataList[index].patientData.patientPPHash}',
-                                      imageFit: BoxFit.cover,
+                                    Container(
+                                      width: MediaQuery.of(context)
+                                          .size
+                                          .width *
+                                          0.5,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            doctor.name,
+                                            style: TextStyle(
+                                              fontSize: FontSize.s14,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          Icon(
+                                            Icons.favorite_border,
+                                            color: ColorManager.primary,
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width / 45,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        // Department Name
-                                        Text(
-                                          '${homeController.allPatientDataList[index].patientData.firstName}',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Divider(),
-                                        // Doctor Name
-                                        Text(
-                                          '${homeController.allPatientDataList[index].patientData.country}',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        //Date and time
-                                        Text(
-                                          'Age : ${homeController.allPatientDataList[index].patientData.age} years old',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s14,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          '${homeController.allPatientDataList[index].patientData.state}',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s14,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
+                                    Container(
+                                        width: MediaQuery.of(context)
+                                            .size
+                                            .width *
+                                            0.5,
+                                        child: Divider(
+                                          color: ColorManager.grey2,
+                                        )),
+                                    SizedBox(
+                                      height: AppSizeHeight.s2,
                                     ),
-                                  ),
-                                ],
-                              ),
+                                    Container(
+                                      width: MediaQuery.of(context)
+                                          .size
+                                          .width *
+                                          0.5,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            child: Text(
+                                              doctor.specialty,
+                                              style: TextStyle(
+                                                fontSize: FontSize.s14,
+                                              ),
+                                              maxLines: 1,
+                                              overflow:
+                                              TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context).size.height * .01,
+                                          ),
+                                          SizedBox(
+                                            child: Text(
+                                              doctor.hospitalName,
+                                              style: TextStyle(
+                                                fontSize: FontSize.s14,
+                                              ),
+                                              maxLines: 1,
+                                              overflow:
+                                              TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: AppSizeHeight.s12,
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context)
+                                          .size
+                                          .width *
+                                          0.5,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.24,
+                                            child: AutoSizeText(
+                                              '$valueDegree' ,
+                                              style: TextStyle(
+                                                fontSize: FontSize.s14,
+                                              ),
+                                              maxLines: 1,
+                                              overflow:
+                                              TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            child: AutoSizeText(
+                                              "|",
+                                              style: TextStyle(
+                                                fontSize: FontSize.s14,
+                                              ),
+                                              maxLines: 1,
+                                              overflow:
+                                              TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.24,
+                                            child: AutoSizeText(
+                                              '$valuePos',
+                                              // 'Key: $key, Value: $value'
+                                              style: TextStyle(
+                                                fontSize: FontSize.s14,
+                                              ),
+                                              maxLines: 1,
+                                              overflow:
+                                              TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => SizedBox(
-                          height:
-                          MediaQuery.of(context).size.height *0.01,
-                        ),
-                        itemCount:homeController.allPatientDataList.length),
-                  ),
-                  fallback: (context) => Container(
-                      height: AppSizeHeight.s500,
-                      child: Center(child: CircularProgressIndicator())),
-                ))
-              ],
-            ),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) => Container(
+                        color: Colors.transparent,
+                        height:
+                        MediaQuery.of(context).size.height * .009,
+                      ),
+                      itemCount: doctorsCubit.doctors.length),
+                ),
+                fallback: (context) => Container(
+                    height: AppSizeHeight.s500,
+                    child: Center(child: CircularProgressIndicator())),
+              )
+            ],
           ),
-
-      );
+        ),
+      ),
+    );
   }
 }

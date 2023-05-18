@@ -38,7 +38,7 @@ class HomeLayoutScreen extends StatelessWidget {
               height: AppSizeHeight.s55,
               child: flutter_blurhash.BlurHash(
                 image: AppConstants.adminStorage.read('patientPP'),
-                hash: imageHash,
+                hash: imageHashdummy,
                 duration: const Duration(milliseconds: 500),
                 imageFit: BoxFit.cover,
               ),
@@ -80,6 +80,7 @@ class HomeLayoutScreen extends StatelessWidget {
           IconButton(
             onPressed: () async {
               final doctorsCubit = context.read<DoctorsCubit>();
+              doctorsCubit.favourites = true ;
               await doctorsCubit.getDoctors();
               Get.toNamed(Routes.favouriteScreen);
             },
@@ -164,4 +165,6 @@ class HomeLayoutScreen extends StatelessWidget {
       },
     );
   }
+
+
 }

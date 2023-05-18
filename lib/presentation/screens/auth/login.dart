@@ -26,10 +26,13 @@ class LoginScreen extends StatelessWidget {
         AuthCubit cubit = AuthCubit.get(context);
 
         if (state is LoginSuccessfulState) {
+          print(AppConstants.adminStorage.read('patientId'));
           if (AppConstants.adminStorage.read('patientId') == null) {
             Get.toNamed(Routes.fillProfile);
             snackbar(message: cubit.loginUserModel!.message, isSuccess: true);
           } else {
+            AppConstants.adminStorage.write('isLogged', true);
+
             Get.offAllNamed(Routes.homeLayoutScreen);
           }
         } else if (state is LoginErrorState) {
@@ -118,17 +121,22 @@ class LoginScreen extends StatelessWidget {
                       ),
 
                       // remember me check box
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Checkbox(
-                            value: true,
-                            onChanged: (bool? value) {},
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          const Text(AppStrings.rememberMe),
-                        ],
+                      InkWell(
+                        onTap: () {
+                          underDevelopment(context);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Checkbox(
+                              value: true,
+                              onChanged: (bool? value) {},
+                              materialTapTargetSize:
+                                  MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            const Text(AppStrings.rememberMe),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 80,
@@ -184,7 +192,9 @@ class LoginScreen extends StatelessWidget {
                           InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s30),
-                            onTap: () {},
+                            onTap: () {
+                              underDevelopment(context);
+                            },
                             child: Container(
                               height: AppSizeHeight.s50,
                               width: AppSizeWidth.s90,
@@ -206,7 +216,9 @@ class LoginScreen extends StatelessWidget {
                           InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s30),
-                            onTap: () {},
+                            onTap: () {
+                              underDevelopment(context);
+                            },
                             child: Container(
                               height: AppSizeHeight.s50,
                               width: AppSizeWidth.s90,
@@ -228,7 +240,9 @@ class LoginScreen extends StatelessWidget {
                           InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppSizeWidth.s30),
-                            onTap: () {},
+                            onTap: () {
+                              underDevelopment(context);
+                            },
                             child: Container(
                               height: AppSizeHeight.s50,
                               width: AppSizeWidth.s90,

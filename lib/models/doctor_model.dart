@@ -1,67 +1,72 @@
-import 'package:equatable/equatable.dart';
+import 'dummy_data.dart';
 
-class DoctorModel extends Equatable {
-  final int id;
-  final String name;
-  final String specialty;
-  final String imageUrl;
-  final String imageHash;
-  final String hospitalName;
-  final String nationalIDCard;
-  Map<int , String> degree;
-  Map<int , String> position;
-  final String? notes;
-  final int noOfPatient;
+class DoctorModel {
+  final int doctorId;
+  final int userId;
+  final String nationalId;
+  final String? fullName;
+  final String firstName;
+  final String secondName;
+  final String thirdName;
+  final String lastName;
+  final int degree;
+  final int position;
+  final int specialty;
+  final String? hospitalName;
+  final String? imageUrl;
+  final String? imageHash;
+  final int? noOfPatients;
   final double yearsOfExperience;
-  final String aboutMe;
+  final String? aboutMe;
+  final String? note;
+  final String? createdAt;
+  final String? updatedAt;
 
-   DoctorModel({
-    required this.name,
-    required this.id,
-    required this.specialty,
-    required this.imageUrl,
-    this.imageHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I',
-    required this.hospitalName,
-    required this.nationalIDCard,
+  DoctorModel({
+    required this.doctorId,
+    required this.userId,
+    required this.nationalId,
+    this.fullName,
+    required this.firstName,
+    required this.secondName,
+    required this.thirdName,
+    required this.lastName,
     required this.degree,
     required this.position,
-    this.notes,
-    required this.noOfPatient,
+    required this.specialty,
+    this.hospitalName,
+    this.imageUrl,
+    this.imageHash = imageHashdummy,
+    this.noOfPatients,
     required this.yearsOfExperience,
-    required this.aboutMe,
+    this.aboutMe,
+    this.note,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
     return DoctorModel(
-      name: json['name'],
-      id: json['id'],
-      specialty: json['specialty'],
+      doctorId: json['doctorId'],
+      userId: json['userId'],
+      nationalId: json['nationalId'],
+      fullName: json['fullName'],
+      firstName: json['firstName'],
+      secondName: json['secondName'],
+      thirdName: json['thirdName'],
+      lastName: json['lastName'],
+      degree: json['degree'],
+      position: json['position'],
+      specialty: json['departmentId'],
+      hospitalName: json['hospitalName'],
       imageUrl: json['imageUrl'],
       imageHash: json['imageHash'],
-      hospitalName: json['hospitalName'],
-      nationalIDCard: json['National_ID_Card'],
-      degree:  Map<int , String>.from(json['degree']),
-      position:  Map<int , String>.from(json['position']),
-      notes: json['notes'],
-      noOfPatient: json['noOfPatient'],
+      noOfPatients: json['noOfPatients'],
       yearsOfExperience: json['yearsOfExperience'],
       aboutMe: json['aboutMe'],
+      note: json['note'],
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'],
     );
   }
-
-  @override
-  List<Object> get props => [
-        id,
-        name,
-        specialty,
-        imageUrl,
-        imageHash,
-        hospitalName,
-        nationalIDCard,
-        degree,
-        position,
-        noOfPatient,
-        yearsOfExperience,
-        aboutMe
-      ];
 }

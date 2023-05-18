@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -47,10 +48,10 @@ class FavouriteScreen extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
                 var doctor = doctorsCubit.doctors[index];
-                int keyDegree = doctor.degree.keys.elementAt(index);
-                String valueDegree = doctor.degree[keyDegree]!;
-                int keyPos = doctor.position.keys.elementAt(index);
-                String valuePos = doctor.position[keyPos]!;
+                // int keyDegree = doctor.degree.keys.elementAt(index);
+                // String valueDegree = doctor.degree[keyDegree]!;
+                // int keyPos = doctor.position.keys.elementAt(index);
+                // String valuePos = doctor.position[keyPos]!;
                 return InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -70,7 +71,7 @@ class FavouriteScreen extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           width: AppSizeWidth.s120,
                           height: AppSizeHeight.s120,
-                          child: Image.network(doctor.imageUrl),
+                          child: Image.network(doctor.imageUrl!),
                           decoration: BoxDecoration(
 
                               borderRadius:
@@ -91,7 +92,7 @@ class FavouriteScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    doctor.name,
+                                    doctor.fullName!,
                                     style: TextStyle(
                                       fontSize: FontSize.s14,
                                       fontWeight: FontWeight.bold,
@@ -121,7 +122,7 @@ class FavouriteScreen extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                     child: Text(
-                                      doctor.specialty,
+                                      AppConstants.specializations[doctor.specialty],
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),
@@ -134,7 +135,7 @@ class FavouriteScreen extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     child: Text(
-                                      doctor.hospitalName,
+                                      doctor.hospitalName!,
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),
@@ -155,7 +156,7 @@ class FavouriteScreen extends StatelessWidget {
                                   SizedBox(
                                     width: size.width * 0.24,
                                     child: AutoSizeText(
-                                      '$valueDegree',
+                                      AppConstants.degrees[index],
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),
@@ -177,7 +178,7 @@ class FavouriteScreen extends StatelessWidget {
                                   SizedBox(
                                     width: size.width * 0.24,
                                     child: AutoSizeText(
-                                      '$valuePos',
+                                      AppConstants.positions[index],
                                       style: TextStyle(
                                         fontSize: FontSize.s14,
                                       ),
