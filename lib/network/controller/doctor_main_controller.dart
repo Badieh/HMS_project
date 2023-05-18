@@ -152,7 +152,7 @@ class DoctorMainController extends GetxController {
             height: AppSizeHeight.s55,
             child: flutter_blurhash.BlurHash(
               image: AppConstants.adminStorage.read('patientPP'),
-              hash: imageHash,
+              hash: imageHashdummy,
               duration: const Duration(milliseconds: 500),
               imageFit: BoxFit.cover,
             ),

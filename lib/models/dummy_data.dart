@@ -147,7 +147,7 @@ PatientModel patientModel1 = PatientModel(
         weight:102,
         age: 23,
       patientPP: "https://as2.ftcdn.net/v2/jpg/03/20/52/31/1000_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg",
-      patientPPHash:imageHash
+      patientPPHash:imageHashdummy
 
 
     ), statusCode: 200 ,message: "");
