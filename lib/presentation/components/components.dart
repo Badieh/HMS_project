@@ -1,16 +1,21 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:card_loading/card_loading.dart';
 import 'package:dio/dio.dart';
 import 'package:blurhash/blurhash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hospital/models/case_diagnose_model.dart';
+import 'package:hospital/presentation/resources/assets_manager.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/style_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/history/diagnose/case_diagnose_report.dart';
+import 'package:hospital/presentation/screens/routes/routes.dart';
+import 'package:lottie/lottie.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
@@ -329,6 +334,119 @@ SnackbarController snackbar({required String message, bool isSuccess = true}) =>
           : Icon(Icons.error, color: Colors.white),
       snackPosition: SnackPosition.BOTTOM,
     );
+
+// screenLoading()=> Container(
+//   color: ColorManager.white,
+//   child: CustomScrollView(
+//     physics: const BouncingScrollPhysics(),
+//     slivers: [
+//       SliverPadding(
+//         padding: const EdgeInsets.all(20),
+//         sliver: SliverList(
+//           delegate: SliverChildBuilderDelegate(
+//                 (context, index) {
+//               return Padding(
+//                 padding: const EdgeInsets.only(bottom: 20),
+//                 child: Column(
+//                   crossAxisAlignment: CrossAxisAlignment.start,
+//                   children: const [
+//                     CardLoading(
+//                       height: 30,
+//                       borderRadius:
+//                       BorderRadius.all(Radius.circular(15)),
+//                       width: 100,
+//                       margin: EdgeInsets.only(bottom: 10),
+//                     ),
+//                     CardLoading(
+//                       height: 100,
+//                       borderRadius:
+//                       BorderRadius.all(Radius.circular(15)),
+//                       margin: EdgeInsets.only(bottom: 10),
+//                     ),
+//                     CardLoading(
+//                       height: 30,
+//                       width: 200,
+//                       borderRadius:
+//                       BorderRadius.all(Radius.circular(15)),
+//                       margin: EdgeInsets.only(bottom: 10),
+//                     ),
+//                   ],
+//                 ),
+//               );
+//             },
+//             childCount: 10,
+//           ),
+//         ),
+//       ),
+//     ],
+//   ),
+// );
+
+Widget screenLoading(BuildContext context,String specilization) {
+
+  Timer( const Duration(seconds: 5), () {
+    QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        text: 'There is no Doctors available in ',
+        backgroundColor:
+            Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
+        titleColor: Get.isDarkMode ? ColorManager.white : ColorManager.black,
+        textColor: Get.isDarkMode ? ColorManager.white : ColorManager.black,
+        onConfirmBtnTap: () {
+          Get.offAllNamed(Routes.homeLayoutScreen);
+        },
+        confirmBtnColor:
+            Get.isDarkMode ? ColorManager.white : ColorManager.primary,
+        confirmBtnTextStyle: TextStyle(
+          color: Get.isDarkMode ? ColorManager.black : ColorManager.white,
+        ));
+  });
+
+  return Container(
+    color: Colors.white,
+    child: CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverPadding(
+          padding: const EdgeInsets.all(20),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      CardLoading(
+                        height: 30,
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        width: 100,
+                        margin: EdgeInsets.only(bottom: 10),
+                      ),
+                      CardLoading(
+                        height: 100,
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        margin: EdgeInsets.only(bottom: 10),
+                      ),
+                      CardLoading(
+                        height: 30,
+                        width: 200,
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        margin: EdgeInsets.only(bottom: 10),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              childCount: 10,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
 
 underDevelopment(context) => QuickAlert.show(
     context: context,

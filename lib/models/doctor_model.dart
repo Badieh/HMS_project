@@ -1,5 +1,29 @@
 import 'dummy_data.dart';
 
+class DoctorsListOfModels {
+  final List<DoctorModel> doctors;
+  final int statusCode;
+  final String message;
+
+  DoctorsListOfModels(
+      {required this.doctors, required this.statusCode, required this.message});
+
+  factory DoctorsListOfModels.fromJson(Map<String, dynamic> json) {
+    List<DoctorModel> doctorList = [];
+    if (json['doctors'] != null) {
+      var doctorsJson = json['doctors'] as List;
+      doctorList = doctorsJson
+          .map((doctorJson) => DoctorModel.fromJson(doctorJson))
+          .toList();
+    }
+    return DoctorsListOfModels(
+      doctors: doctorList,
+      statusCode: json['statusCode'],
+      message: json['message'],
+    );
+  }
+}
+
 class DoctorModel {
   final int doctorId;
   final int userId;
@@ -62,7 +86,7 @@ class DoctorModel {
       imageUrl: json['imageUrl'],
       imageHash: json['imageHash'],
       noOfPatients: json['noOfPatients'],
-      yearsOfExperience: json['yearsOfExperience'],
+      yearsOfExperience: json['yearsOfExperience'].toDouble(),
       aboutMe: json['aboutMe'],
       note: json['note'],
       createdAt: json['createdAt'],

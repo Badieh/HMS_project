@@ -41,26 +41,32 @@ class _SplashScreenState extends State<SplashScreen> {
         backgroundColor:
             Get.isDarkMode ? ColorManager.black : ColorManager.white,
         body: Center(
-          child: FadeOutUp(
-            delay: const Duration(milliseconds: 2400),
-            child: BounceInDown(
-              child: Container(
-                  child: Column(
-                children: [
-                  SvgPicture.asset(
-                    ImageAssets.facultyLogo,
-                    width: AppSizeWidth.s150,
-
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                FadeOut(
+                  delay: const Duration(milliseconds: 2400),
+                  child: FadeIn(
+                    child: SvgPicture.asset(
+                      ImageAssets.facultyLogo,
+                      width: AppSizeWidth.s150,
+                    ),
                   ),
-                  SvgPicture.asset(
-                    Get.isDarkMode
-                        ? ImageAssets.splashDarkLogo
-                        : ImageAssets.splashLightLogo,
-                    fit: BoxFit.cover,
-                    height: AppSizeHeight.s500,
+                ),
+                FadeOutUp(
+                  delay: const Duration(milliseconds: 2400),
+                  child: BounceInDown(
+                    child: SvgPicture.asset(
+                      Get.isDarkMode
+                          ? ImageAssets.splashDarkLogo
+                          : ImageAssets.splashLightLogo,
+                      fit: BoxFit.cover,
+                      height: AppSizeHeight.s500,
+                    ),
                   ),
-                ],
-              )),
+                ),
+              ],
             ),
           ),
         ),

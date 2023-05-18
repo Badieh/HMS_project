@@ -165,7 +165,8 @@ class BookAppointmentScreen extends StatelessWidget {
                       fallback: (context) => Center(
                               child: Lottie.asset(
                             ImageAssets.notAvailable,
-                          ))),
+                          ))
+                  ),
                 ],
               ),
             ),

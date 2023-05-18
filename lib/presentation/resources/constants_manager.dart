@@ -30,7 +30,13 @@ class AppConstants {
   static const createPatientPath = '$backendBaseUrl/patients/create';
   static const getPatientPath = '$backendBaseUrl/patients/get';
   static const updatePatientPath = '$backendBaseUrl/patients/update';
-  static const doctorsPath = '$backendBaseUrl/doctors/fetch';
+  static const getAllDoctorsPath = '$backendBaseUrl/doctors';
+  static const getDoctorBySpecializationPath =
+      '$backendBaseUrl/doctors/department';
+  static const getDoctorByDegreePath = '$backendBaseUrl/doctors/degree';
+  static const getDoctorByPositionPath = '$backendBaseUrl/doctors/position';
+  static const getFavouriteDoctorPath = '$backendBaseUrl/doctors/favourite';
+  static const getClinisShedulePath = '$backendBaseUrl/clinicsSkds/doctor';
   // static String accessToken = CacheHelper.getData(key: 'accessToken') ?? '';
   // static String refreshToken = CacheHelper.getData(key: 'refreshToken') ?? '';
 
@@ -52,28 +58,6 @@ class AppConstants {
   static const category = 'health';
   static const articlesApiKey = '97a2f0178be846b897d27b8f38d8571c';
 
-  static const List<String> specializations = [
-    'Anesthetics',
-    'Cardiology',
-    'Ear, nose and throat (ENT)',
-    'Gastroenterology',
-    'General Surgery',
-    'Gynecology',
-    'Hematology',
-    'Neonatal Unit',
-    'Neurology',
-    'Nutrition and dietetics',
-    'Obstetrics and gynecology units',
-    'Oncology',
-    'Ophthalmology',
-    'Orthopedics',
-    'Physiotherapy',
-    'Renal Unit',
-    'Sexual Health',
-    'Urology',
-    'Dentistry',
-    'neorocycatric',
-  ];
   static List<Widget> specializationIcons = [
     FaIcon(
       FontAwesomeIcons.syringe,
@@ -175,6 +159,29 @@ class AppConstants {
       color: ColorManager.primary,
       size: FontSize.s30,
     ), // neurology
+  ];
+
+  static const List<String> specializations = [
+    'Anesthetics',
+    'Cardiology',
+    'Ear, nose and throat (ENT)',
+    'Gastroenterology',
+    'General Surgery',
+    'Gynecology',
+    'Hematology',
+    'Neonatal Unit',
+    'Neurology',
+    'Nutrition and dietetics',
+    'Obstetrics and gynecology units',
+    'Oncology',
+    'Ophthalmology',
+    'Orthopedics',
+    'Physiotherapy',
+    'Renal Unit',
+    'Sexual Health',
+    'Urology',
+    'Dentistry',
+    'neorocycatric',
   ];
 
   static const List<String> degrees = [

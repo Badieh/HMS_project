@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:hospital/models/doctor_model.dart';
+import 'package:hospital/presentation/components/components.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -49,16 +50,10 @@ class DoctorDetailsScreen extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontSize: FontSize.s20)),
             actions: [
-              // IconButton(
-              //   onPressed: () {},
-              //   icon: Icon(
-              //     Icons.do_not_disturb_on_total_silence,
-              //     size: AppSizeHeight.s28,
-              //     color: ColorManager.success,
-              //   ),
-              // ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  underDevelopment(context);
+                },
                 icon: Icon(
                   Icons.favorite_border,
                   size: AppSizeHeight.s28,
@@ -94,10 +89,13 @@ class DoctorDetailsScreen extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           height: size.height * 0.17,
                           width: size.height * 0.17,
-                          child: Image.network(doctorModel.imageUrl!),
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(AppSizeHeight.s25)),
+                          child: Image.network(
+                            doctorModel.imageUrl!,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         SizedBox(
                           width: AppSizeWidth.s4,

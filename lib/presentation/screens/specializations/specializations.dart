@@ -74,7 +74,7 @@ class SpecializationsScreen extends StatelessWidget {
               title: Text(AppConstants.specializations[index]),
               trailing: const Icon(Icons.arrow_forward),
               onTap: () async {
-                cubit.specialization = index;
+                cubit.specialization = AppConstants.specializations[index];
                 await cubit.getDoctors();
                 Get.toNamed(Routes.doctors);
               },
@@ -97,7 +97,7 @@ class SpecializationsScreen extends StatelessWidget {
             radius: 30,
             borderRadius: BorderRadius.circular(80),
             onTap: () async {
-              cubit.specialization = index;
+              cubit.specialization = AppConstants.specializations[index];
               await cubit.getDoctors();
               Get.toNamed(Routes.doctors);
 

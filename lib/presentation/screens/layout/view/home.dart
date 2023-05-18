@@ -572,7 +572,7 @@ class HomeScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(80),
             onTap: () async {
               final doctorsCubit = context.read<DoctorsCubit>();
-              doctorsCubit.specialization = index;
+              doctorsCubit.specialization =AppConstants.specializations[index];
               await doctorsCubit.getDoctors();
               Get.toNamed(Routes.doctors);
             },

@@ -1,5 +1,32 @@
 import 'package:equatable/equatable.dart';
 
+class ClinicsListOfModels {
+  final List<ClinicsScheduleModel> clinicsSheduleList;
+  final int statusCode;
+  final String message;
+
+  ClinicsListOfModels(
+      {required this.clinicsSheduleList,
+      required this.statusCode,
+      required this.message});
+
+  factory ClinicsListOfModels.fromJson(Map<String, dynamic> json) {
+    List<ClinicsScheduleModel> clinicsSheduleList = [];
+    if (json['clinicsSkds'] != null) {
+      var clinicsSkdsJson = json['clinicsSkds'] as List;
+      clinicsSheduleList = clinicsSkdsJson
+          .map((clinicsSkdsJson) =>
+              ClinicsScheduleModel.fromJson(clinicsSkdsJson))
+          .toList();
+    }
+    return ClinicsListOfModels(
+      clinicsSheduleList: clinicsSheduleList,
+      statusCode: json['statusCode'],
+      message: json['message'],
+    );
+  }
+}
+
 class ClinicsScheduleModel extends Equatable {
   final int clinicScheduleId;
   final int day;

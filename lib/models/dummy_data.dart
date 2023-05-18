@@ -127,14 +127,14 @@ const String hospitalName = 'General Hospital';
 const imageHashdummy = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';
 
 PatientModel patientModel1 = PatientModel(
-    patientData:  PatientData(
+    patientData: PatientData(
         userId: 0,
         nationalId: "nationalId",
         firstName: "Bishoy",
         secondName: "Shehata",
         thirdName: "Morris",
         lastName: "lastName",
-        birthDate:DateTime.parse("2000-12-09"),
+        birthDate: DateTime.parse("2000-12-09"),
         gender: 1,
         nationality: "Egyptian",
         country: "Egypt",
@@ -143,11 +143,11 @@ PatientModel patientModel1 = PatientModel(
         buildingNumber: 8,
         appartment: 4,
         phoneNumber: "01220709149",
-        height:180 ,
-        weight:102,
+        height: 180,
+        weight: 102,
         age: 23,
-      patientPP: "https://as2.ftcdn.net/v2/jpg/03/20/52/31/1000_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg",
-      patientPPHash:imageHashdummy
-
-
-    ), statusCode: 200 ,message: "");
+        patientPP:
+            "https://as2.ftcdn.net/v2/jpg/03/20/52/31/1000_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg",
+        patientPPHash: imageHashdummy),
+    statusCode: 200,
+    message: "");
