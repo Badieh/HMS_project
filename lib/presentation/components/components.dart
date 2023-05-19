@@ -382,13 +382,12 @@ SnackbarController snackbar({required String message, bool isSuccess = true}) =>
 //   ),
 // );
 
-Widget screenLoading(BuildContext context,String specilization) {
-
-  Timer( const Duration(seconds: 5), () {
+Widget screenLoading(BuildContext context, String message) {
+  Timer(const Duration(seconds: 5), () {
     QuickAlert.show(
         context: context,
         type: QuickAlertType.error,
-        text: 'There is no Doctors available in ',
+        text: 'There is no $message availble',
         backgroundColor:
             Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
         titleColor: Get.isDarkMode ? ColorManager.white : ColorManager.black,

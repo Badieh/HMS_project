@@ -247,7 +247,7 @@ class DoctorsScreen extends StatelessWidget {
                 itemCount: doctorsCubit.doctors.length),
           ),
           fallback: (context) =>
-              screenLoading(context, doctorsCubit.specialization),
+              screenLoading(context, '${doctorsCubit.specialization} doctos'),
         ),
       );
     });
