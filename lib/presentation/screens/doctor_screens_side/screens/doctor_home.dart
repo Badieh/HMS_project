@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,8 @@ class DoctorHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var homeController = Get.find<DoctorMainController>();
+    var size = MediaQuery.of(context).size;
+
     return Padding(
       padding: EdgeInsets.all(AppSizeHeight.s8),
       child: SingleChildScrollView(
@@ -61,113 +64,107 @@ class DoctorHomeScreen extends StatelessWidget {
             SizedBox(
               height: AppSizeHeight.s10,
             ),
-            Obx(() => ConditionalBuilder(
-                  condition: homeController.allPatientDataList.isNotEmpty,
-                  builder: (context) => Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(AppSizeHeight.s12),
+            ConditionalBuilder(
+              condition: homeController.allPatientDataList.isNotEmpty,
+              builder: (context) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(AppSizeHeight.s12),
+                ),
+                padding: EdgeInsets.all(AppSizeHeight.s4),
+                width: double.infinity,
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {},
+                        child: Container(
+                          padding: const EdgeInsets.all(AppPadding.p4),
+                          // height: AppSizeHeight.s100,
+                          decoration: BoxDecoration(
+
+                            borderRadius: BorderRadius.circular(AppPadding.p18),
+                          ),
+                          child: Row(
+                            children: [
+                              // Department photo
+                              Container(
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(AppPadding.p18),
+                                  //color: ColorManager.grey,
+                                ),
+                                width: AppSizeWidth.s90,
+                                height: AppSizeHeight.s100,
+                                child: flutter_blurhash.BlurHash(
+                                  image: homeController.allPatientDataList[index]
+                                      .patientData.patientPP,
+                                  hash:
+                                  '${homeController.allPatientDataList[index].patientData.patientPPHash}',
+                                  imageFit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width / 45,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Department Name
+                                    Text(
+                                      '${homeController.allPatientDataList[index].patientData.firstName}',
+                                      style: TextStyle(
+                                        fontSize: FontSize.s20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Divider(),
+                                    // Doctor Name
+                                    Text(
+                                      '${homeController.allPatientDataList[index].patientData.country}',
+                                      style: TextStyle(
+                                        fontSize: FontSize.s16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    //Date and time
+                                    Text(
+                                      'Age : ${homeController.allPatientDataList[index].patientData.age} years old',
+                                      style: TextStyle(
+                                        fontSize: FontSize.s14,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    Text(
+                                      '${homeController.allPatientDataList[index].patientData.state}',
+                                      style: TextStyle(
+                                        fontSize: FontSize.s14,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) => SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
                     ),
-                    padding: EdgeInsets.all(AppSizeHeight.s4),
-                    width: double.infinity,
-                    child: ListView.separated(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {},
-                            child: Container(
-                              padding: const EdgeInsets.all(AppPadding.p4),
-                              // height: AppSizeHeight.s100,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(AppPadding.p18),
-                              ),
-                              child: Row(
-                                children: [
-                                  // Department photo
-                                  Container(
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(AppPadding.p18),
-                                      //color: ColorManager.grey,
-                                    ),
-                                    width: AppSizeWidth.s90,
-                                    height: AppSizeHeight.s100,
-                                    child: flutter_blurhash.BlurHash(
-                                      image: homeController
-                                          .allPatientDataList[index]
-                                          .patientData
-                                          .patientPP,
-                                      hash:
-                                          '${homeController.allPatientDataList[index].patientData.patientPPHash}',
-                                      imageFit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 45,
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        // Department Name
-                                        Text(
-                                          '${homeController.allPatientDataList[index].patientData.firstName}',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Divider(),
-                                        // Doctor Name
-                                        Text(
-                                          '${homeController.allPatientDataList[index].patientData.country}',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        //Date and time
-                                        Text(
-                                          'Age : ${homeController.allPatientDataList[index].patientData.age} years old',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s14,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text(
-                                          '${homeController.allPatientDataList[index].patientData.state}',
-                                          style: TextStyle(
-                                            fontSize: FontSize.s14,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.01,
-                            ),
-                        itemCount: homeController.allPatientDataList.length),
-                  ),
-                  fallback: (context) => screenLoading(context, 'patients'),
-                ))
+                    itemCount: homeController.allPatientDataList.length),
+              ),
+              fallback: (context) => screenLoading(context, 'patients'),
+            )
           ],
         ),
       ),

@@ -22,6 +22,7 @@ class DoctorLayoutScreen extends StatelessWidget {
         return SafeArea(
           child: Obx((){
             return Scaffold(
+
               appBar: controller.appBars[controller.currentIndex.value],
               bottomNavigationBar: BottomNavigationBar(
                 type: BottomNavigationBarType.shifting,

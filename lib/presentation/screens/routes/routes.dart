@@ -6,6 +6,7 @@ import 'package:hospital/presentation/screens/auth/login.dart';
 import 'package:hospital/presentation/screens/auth/register.dart';
 import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
 import 'package:hospital/presentation/screens/doctor_screens_side/layout/doctor_layout.dart';
+import 'package:hospital/presentation/screens/doctor_screens_side/screens/doctor_follow_up.dart';
 import 'package:hospital/presentation/screens/doctors/doctor_details.dart';
 import 'package:hospital/presentation/screens/doctors/doctors.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
@@ -20,14 +21,14 @@ import 'package:hospital/presentation/screens/splash/splash.dart';
 class AppRoutes {
   static const splashScreen = Routes.splashScreen;
   static const doctorHomeScreen = Routes.doctorHomeScreen;
+  static const doctorFollowUpScreen = Routes.doctorFollowUpScreen;
 
   static final routes = [
     GetPage(name: Routes.splashScreen, page: () => SplashScreen()),
     GetPage(
-      name: Routes.homeLayoutScreen,
-      page: () => HomeLayoutScreen(),
-      binding: DarkModeBinding()
-    ),
+        name: Routes.homeLayoutScreen,
+        page: () => HomeLayoutScreen(),
+        binding: DarkModeBinding()),
     GetPage(name: Routes.notificationScreen, page: () => NotificationScreen()),
     GetPage(name: Routes.searchScreen, page: () => Search_Screen()),
     GetPage(name: Routes.favouriteScreen, page: () => FavouriteScreen()),
@@ -38,10 +39,9 @@ class AppRoutes {
     GetPage(name: Routes.doctors, page: () => DoctorsScreen()),
     GetPage(name: Routes.onBoarding, page: () => OnBoardingScreen()),
     GetPage(
-      name: Routes.profile,
-      page: () => ProfileScreen(),
-      binding: DarkModeBinding()
-    ),
+        name: Routes.profile,
+        page: () => ProfileScreen(),
+        binding: DarkModeBinding()),
     GetPage(
         name: Routes.bookAppointment,
         page: () => BookAppointmentScreen(
@@ -52,8 +52,13 @@ class AppRoutes {
         name: Routes.doctorHomeScreen,
         page: () => DoctorLayoutScreen(),
         bindings: [
-          DoctorMainBinding(),DarkModeBinding()
+          DoctorMainBinding(),
+          DoctorMainBinding(),
         ]),
+    GetPage(
+      name: Routes.doctorFollowUpScreen,
+      page: () => DoctorFollowUpScreen(),
+    ),
   ];
 }
 
@@ -75,4 +80,5 @@ class Routes {
   static const bookAppointment = '/bookAppointment';
   static const doctorDetails = '/doctorDetails';
   static const doctorHomeScreen = '/doctorHomeScreen';
+  static const doctorFollowUpScreen = '/doctorFollowUpScreen';
 }

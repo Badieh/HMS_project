@@ -20,8 +20,12 @@ class AppConstants {
   // http://127.0.0.1:56224/Nme5DihmL3o=/
   // http://192.168.1.100:300
   // 192.168.137.15:39345
-  // http://localhost:3000
-  static const backendBaseUrl = 'http://10.0.2.2:8080/v1';
+  // http://localhost:300
+  // 10.5.150.83
+
+  // john hotspot
+  // 192.168.9.192
+  static const backendBaseUrl = 'http://10.5.150.83:8080/v1';
   static const loginPath = '$backendBaseUrl/auth/login';
   static const registerPath = '$backendBaseUrl/auth/register';
   static const logoutPath = '$backendBaseUrl/auth/logout';

@@ -75,18 +75,48 @@ DoctorModel Doctor2 = DoctorModel(
   aboutMe:
       'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).',
 );
-
-AppointmentModel appointment1 = const AppointmentModel(
-  id: 1,
-  doctorName: 'Dr. John Smith',
-  hospitalName: hospitalName,
+AppointmentModel appointment1 = AppointmentModel(
+  apptId: 21,
+  patientId: 23,
+  clinicsSkdId: 27,
+  date: "2023-05-17T22:00:00.000Z",
+  startTime: "14:55:44",
+  endTime: "25:55:44",
+  doctorName: "Dr.Wilbert Abrams",
+  hospitalName: "General Hospital",
+  departmentId: 5,
   doctorImageUrl:
-      'https://www.freepnglogos.com/uploads/doctor-png/doctor-bulk-billing-doctors-chapel-hill-health-care-medical-3.png',
-  date: '2023-05-01',
-  startTime: '14:00',
-  endTime: '15:00',
-  department: 'neurology',
+      "https://media.istockphoto.com/id/1425458510/photo/happy-medical-doctor-black-man-smile-and-healthcare-professional-experience-hospital-career.jpg?s=612x612&w=0&k=20&c=-H71rgH03EyrnCXM4VnQixIlyAHcLpPtOrrQSC31Lws=",
+  doctorImageHash: null,
+  apptState: "upcoming",
+  report: null,
+  patientComplaint: "ta3ban ya captain",
+  note: null,
+  cancelReason: null,
+  updatedAt: "2023-05-19T12:09:04.433Z",
+  createdAt: "2023-05-19T12:09:04.433Z",
 );
+AppointmentModel appointment2 = AppointmentModel(
+  apptId: 42,
+  patientId: 35,
+  clinicsSkdId: 48,
+  date: "2023-05-20T22:00:00.000Z",
+  startTime: "09:30:00",
+  endTime: "10:15:00",
+  doctorName: "Dr. Emily Thompson",
+  hospitalName: "City Medical Center",
+  departmentId: 8,
+  doctorImageUrl: "https://example.com/doctor2.jpg",
+  doctorImageHash: "abc123",
+  apptState: "scheduled",
+  report: null,
+  patientComplaint: "I have been experiencing back pain.",
+  note: null,
+  cancelReason: null,
+  updatedAt: "2023-05-19T15:25:10.123Z",
+  createdAt: "2023-05-19T15:25:10.123Z",
+);
+
 
 ClinicsScheduleModel clinicsScheduleModel_1 = const ClinicsScheduleModel(
   clinicScheduleId: 1,

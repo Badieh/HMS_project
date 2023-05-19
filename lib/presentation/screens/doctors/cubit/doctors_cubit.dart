@@ -34,7 +34,7 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
 
     if (specialization != null) {
       try {
-        var response = await DioHelper.getData(
+        var response = await DioHelper.postData(
             url: AppConstants.getDoctorBySpecializationPath,
             data: {'departmentName': specialization});
         doctorsResponse = DoctorsListOfModels.fromJson(response.data);
@@ -53,7 +53,7 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
       }
     } else if (degree != null) {
       try {
-        var response = await DioHelper.getData(
+        var response = await DioHelper.postData(
             url: AppConstants.getDoctorByDegreePath, data: {'degree': degree});
         doctorsResponse = DoctorsListOfModels.fromJson(response.data);
 
@@ -67,7 +67,7 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
       }
     } else if (position != null) {
       try {
-        var response = await DioHelper.getData(
+        var response = await DioHelper.postData(
             url: AppConstants.getDoctorByPositionPath,
             data: {'position': position});
         doctorsResponse = DoctorsListOfModels.fromJson(response.data);
@@ -82,7 +82,7 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
       }
     } else if (favourites == true) {
       try {
-        var response = await DioHelper.getData(
+        var response = await DioHelper.postData(
             url: AppConstants.getFavouriteDoctorPath,
             data: {'userId': AppConstants.adminStorage.read('userId')});
         doctorsResponse = DoctorsListOfModels.fromJson(response.data);
@@ -99,6 +99,7 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
     } else {
       try {
         var response = await DioHelper.getData(
+          data: {},
           url: AppConstants.getAllDoctorsPath,
         );
         doctorsResponse = DoctorsListOfModels.fromJson(response.data);
@@ -121,7 +122,7 @@ class DoctorsCubit extends Cubit<DoctorsStates> {
     emit(GetDoctorDetailsLoadingState());
 
     try {
-      var response = await DioHelper.getData(
+      var response = await DioHelper.postData(
           url: AppConstants.getClinisShedulePath, data: {'doctorId': docId});
       _clinicsListOfModels = ClinicsListOfModels.fromJson(response.data);
 

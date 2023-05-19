@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hospital/models/appointment_model.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
+import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
@@ -22,7 +23,9 @@ class AppointmentCard extends StatelessWidget {
       padding: const EdgeInsets.all(AppPadding.p10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppPadding.p18),
-        color: Get.isDarkMode ? ColorManager.lightBlack: ColorManager.veryLightGrey,
+        color: Get.isDarkMode
+            ? ColorManager.lightBlack
+            : ColorManager.veryLightGrey,
       ),
       child: Row(
         children: [
@@ -120,7 +123,8 @@ class AppointmentCard extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.28,
                     child: Center(
                       child: Text(
-                        appointmentModel.department,
+                        AppConstants
+                            .specializations[appointmentModel.departmentId],
                         style: TextStyle(
                           fontSize: FontSize.s14,
                         ),
@@ -149,8 +153,8 @@ class AppointmentCard extends StatelessWidget {
                         style: TextStyle(
                           fontSize: FontSize.s14,
                         ),
-                         maxLines: 1,
-                         overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),

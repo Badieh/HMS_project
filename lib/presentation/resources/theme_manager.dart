@@ -42,8 +42,8 @@ ThemeData getLightThemeData() {
       backgroundColor: ColorManager.white, // Set the background color
       selectedItemColor: ColorManager.primary, // Set the selected item color
       unselectedItemColor: Colors.grey,
-      selectedIconTheme: IconThemeData(color:ColorManager.primary ),
-      unselectedIconTheme: IconThemeData(color:ColorManager.darkGrey ),
+      selectedIconTheme: IconThemeData(color: ColorManager.primary),
+      unselectedIconTheme: IconThemeData(color: ColorManager.darkGrey),
       selectedLabelStyle: TextStyle(color: ColorManager.primary),
       unselectedLabelStyle: TextStyle(color: ColorManager.grey),
     ),
@@ -175,12 +175,10 @@ ThemeData getDarkThemeData() {
 
     // cardView theme
     cardTheme: CardTheme(
-      color: ColorManager.lightBlack,
-      shadowColor: ColorManager.lightPrimary,
-      elevation: AppSizeWidth.s4,
-      surfaceTintColor: ColorManager.lightBlack
-
-    ),
+        color: ColorManager.lightBlack,
+        shadowColor: ColorManager.lightPrimary,
+        elevation: AppSizeWidth.s4,
+        surfaceTintColor: ColorManager.lightBlack),
 
     //button theme
     buttonTheme: ButtonThemeData(
@@ -207,7 +205,6 @@ ThemeData getDarkThemeData() {
 
     //   =======================     text theme     =============================
     textTheme: TextTheme(
-
         displayLarge:
             getBoldStyle(color: ColorManager.white, fontSize: FontSize.s35),
         headlineLarge:
@@ -220,8 +217,8 @@ ThemeData getDarkThemeData() {
             getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s16)),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color:ColorManager.primary ),
-      unselectedIconTheme: IconThemeData(color:ColorManager.grey ),
+      selectedIconTheme: IconThemeData(color: ColorManager.primary),
+      unselectedIconTheme: IconThemeData(color: ColorManager.grey),
       backgroundColor: Colors.black, // Set the background color
       selectedItemColor: ColorManager.primary, // Set the selected item color
       unselectedItemColor: Colors.grey,
@@ -230,6 +227,7 @@ ThemeData getDarkThemeData() {
     ),
 
     // ========================      input decoration theme     ==============================
+
     inputDecorationTheme: InputDecorationTheme(
       fillColor: ColorManager.lightBlack,
       filled: true,
@@ -290,5 +288,4 @@ ThemeData getDarkThemeData() {
       backgroundColor: ColorManager.white,
     ),
   );
-
 }
