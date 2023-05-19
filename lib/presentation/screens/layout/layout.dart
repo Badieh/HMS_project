@@ -128,7 +128,9 @@ class HomeLayoutScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = MainCubit.get(context);
         return SafeArea(
-          child: Scaffold(
+          child: Obx(() => Scaffold(
+            backgroundColor: context.theme.colorScheme.background,
+
             appBar: appBars[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               // backgroundColor: Colors.white,
@@ -147,20 +149,20 @@ class HomeLayoutScreen extends StatelessWidget {
             body: cubit.tabs[cubit.currentIndex],
             floatingActionButton: cubit.currentIndex == 1
                 ? FloatingActionButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DoctorsScreen(),
-                          ));
-                    },
-                    child: Icon(
-                      Icons.add,
-                      size: AppSizeHeight.s30,
-                    ),
-                  )
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DoctorsScreen(),
+                    ));
+              },
+              child: Icon(
+                Icons.add,
+                size: AppSizeHeight.s30,
+              ),
+            )
                 : null,
-          ),
+          ),)
         );
       },
     );

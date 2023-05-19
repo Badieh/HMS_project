@@ -6,6 +6,7 @@ import 'package:hospital/presentation/screens/auth/login.dart';
 import 'package:hospital/presentation/screens/auth/register.dart';
 import 'package:hospital/presentation/screens/book_appointments/book_appointments.dart';
 import 'package:hospital/presentation/screens/doctor_screens_side/layout/doctor_layout.dart';
+import 'package:hospital/presentation/screens/doctor_screens_side/screens/follow_up/doctor_home/patient_details.dart';
 import 'package:hospital/presentation/screens/doctors/doctor_details.dart';
 import 'package:hospital/presentation/screens/doctors/doctors.dart';
 import 'package:hospital/presentation/screens/layout/layout.dart';
@@ -53,6 +54,11 @@ class AppRoutes {
         page: () => DoctorLayoutScreen(),
         bindings: [
           DoctorMainBinding(),DarkModeBinding()
+        ]), GetPage(
+        name: Routes.patienDetails,
+        page: () => PatienDetails(),
+        bindings: [
+          DoctorMainBinding()
         ]),
   ];
 }
@@ -75,4 +81,5 @@ class Routes {
   static const bookAppointment = '/bookAppointment';
   static const doctorDetails = '/doctorDetails';
   static const doctorHomeScreen = '/doctorHomeScreen';
+  static const patienDetails = '/patienDetails';
 }

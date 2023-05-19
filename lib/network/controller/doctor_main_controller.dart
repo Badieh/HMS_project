@@ -1,4 +1,3 @@
-
 import 'package:flutter_blurhash/flutter_blurhash.dart' as flutter_blurhash;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -13,27 +12,20 @@ import 'package:hospital/presentation/resources/font_manager.dart';
 import 'package:hospital/presentation/resources/strings_manager.dart';
 import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/doctor_screens_side/screens/doctor_add_appointment.dart';
-import 'package:hospital/presentation/screens/doctor_screens_side/screens/doctor_follow_up.dart';
-import 'package:hospital/presentation/screens/doctor_screens_side/screens/doctor_home.dart';
+import 'package:hospital/presentation/screens/doctor_screens_side/screens/follow_up/tabs/doctor_follow_up.dart';
+import 'package:hospital/presentation/screens/doctor_screens_side/screens/follow_up/doctor_home/doctor_home.dart';
 import 'package:hospital/presentation/screens/doctor_screens_side/screens/doctor_setting.dart';
 import 'package:hospital/presentation/screens/doctor_screens_side/screens/finished_appoinmetns.dart';
 import 'package:hospital/presentation/screens/layout/view/profile.dart';
 
 import '../../presentation/screens/routes/routes.dart';
 
-
 class DoctorMainController extends GetxController {
-
   RxInt currentIndex = 0.obs;
 
-  List<PatientModel> allPatientDataList = [
-    patientModel1,
-    patientModel1,
-    patientModel1,
-    patientModel1
-  ].obs;
+  List<PatientModel> allPatientDataList =
+      [patientModel1, patientModel2, patientModel1, patientModel1].obs;
   var isLoading = true.obs;
-
 
   final tabs = [
     DoctorHomeScreen(),
@@ -41,7 +33,7 @@ class DoctorMainController extends GetxController {
     DoctorAddAppointmentScreen(),
     DoctorFinishedAppointmentScreen(),
     ProfileScreen(),
-  // DoctorSettingScreen()
+    // DoctorSettingScreen()
   ].obs;
   List<BottomNavigationBarItem> items = [
     BottomNavigationBarItem(
@@ -63,8 +55,7 @@ class DoctorMainController extends GetxController {
       ),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.calendar_month_outlined
-      ),
+      icon: Icon(Icons.calendar_month_outlined),
       label: 'Appointments',
       activeIcon: Icon(
         Icons.calendar_month,
@@ -90,9 +81,7 @@ class DoctorMainController extends GetxController {
     ),
   ].obs;
 
-
   // ========================  get all allPatients  ==============================
-
 
 //   void getAllPatients() async {
 //     PatientModel allPatients = await AllPatientServices.allPatientDetails();
@@ -144,9 +133,8 @@ class DoctorMainController extends GetxController {
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppSizeHeight.s50),
-              color: Get.isDarkMode
-                  ? ColorManager.lightBlack
-                  : ColorManager.white,
+              color:
+                  Get.isDarkMode ? ColorManager.lightBlack : ColorManager.white,
             ),
             width: AppSizeWidth.s55,
             height: AppSizeHeight.s55,
@@ -170,10 +158,9 @@ class DoctorMainController extends GetxController {
                   style: TextStyle(fontSize: FontSize.s20),
                 ),
                 AutoSizeText(
-                  AppConstants.adminStorage.read('fullName'),
+                  AppConstants.adminStorage.read('userId').toString(),
                   style: TextStyle(
                     fontSize: FontSize.s16,
-
                   ),
                 ),
               ],
@@ -193,7 +180,12 @@ class DoctorMainController extends GetxController {
         ),
       ],
     ),
-    null,
+    AppBar(
+      leading: Icon(Icons.pending_actions_outlined,size: AppSizeHeight.s25,color: Get.isDarkMode ? Colors.white :ColorManager.primary,),
+      toolbarHeight: AppSizeHeight.s70,
+      title: Text("Follow Up", style: TextStyle(fontSize: FontSize.s25,fontWeight: FontWeight.bold),)
+
+    ),
     null,
     AppBar(
       title: const Text('Articles'),
@@ -207,8 +199,7 @@ class DoctorMainController extends GetxController {
             height: AppSizeHeight.s40,
             width: AppSizeWidth.s40,
             clipBehavior: Clip.antiAlias,
-            decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(50)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
             child: Image.asset(
               ImageAssets.hands1,
             ),
@@ -243,10 +234,10 @@ class DoctorMainController extends GetxController {
         'To',
       ],
       ...clinicsScheduleList.map((schedule) => [
-        AppConstants.weekDayNames[schedule.day],
-        schedule.startTime,
-        schedule.endTime,
-      ])
+            AppConstants.weekDayNames[schedule.day],
+            schedule.startTime,
+            schedule.endTime,
+          ])
     ];
     return nestedList;
   }

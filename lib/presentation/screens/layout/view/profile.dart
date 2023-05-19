@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      AppConstants.adminStorage.read('fullName'),
+                      AppConstants.adminStorage.read('fullName').toString(),
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: FontSize.s18),
                     ),

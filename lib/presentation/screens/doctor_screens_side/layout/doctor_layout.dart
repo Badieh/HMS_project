@@ -20,8 +20,8 @@ class DoctorLayoutScreen extends StatelessWidget {
       var controller = Get.find<DoctorMainController>();
 
         return SafeArea(
-          child: Obx((){
-            return Scaffold(
+          child: Obx(() => Scaffold(
+              backgroundColor: context.theme.colorScheme.background,
               appBar: controller.appBars[controller.currentIndex.value],
               bottomNavigationBar: BottomNavigationBar(
                 type: BottomNavigationBarType.shifting,
@@ -31,15 +31,14 @@ class DoctorLayoutScreen extends StatelessWidget {
                 showUnselectedLabels: true,
                 currentIndex:controller.currentIndex.value,
                 onTap: (index){
-                controller.currentIndex.value = index;
-            },
+                  controller.currentIndex.value = index;
+                },
               ),
               body:  IndexedStack(
                 index: controller.currentIndex.value,
                 children: controller.tabs,
               )
-            );
-          })
+          ))
         );
 
   }

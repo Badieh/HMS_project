@@ -11,7 +11,6 @@ import 'package:hospital/presentation/resources/theme_manager.dart';
 import 'package:hospital/presentation/screens/appointments/cubit/appointment_cubit.dart';
 import 'package:hospital/presentation/screens/articles/cubit/articles_cubit.dart';
 import 'package:hospital/presentation/screens/auth/cubit/auth_cubit.dart';
-import 'package:hospital/presentation/screens/auth/cubit/auth_states.dart';
 import 'package:hospital/presentation/screens/book_appointments/cubit/book_appointment_cubit.dart';
 import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
 import 'package:hospital/presentation/screens/history/cubit/history_cubit.dart';
@@ -100,7 +99,7 @@ class MyApp extends StatelessWidget {
             theme: getLightThemeData(),
             darkTheme: getDarkThemeData(),
             themeMode: DarkModeController().ThemeDataGet,
-            initialRoute: AppRoutes.splashScreen,
+            initialRoute: AppRoutes.doctorHomeScreen,
             getPages: AppRoutes.routes,
           );
         },

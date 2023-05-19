@@ -11,7 +11,7 @@ import 'package:hospital/presentation/resources/values_manager.dart';
 import 'package:hospital/presentation/screens/doctors/cubit/doctors_cubit.dart';
 import 'package:hospital/presentation/screens/doctors/doctor_details_cubit/data_table.dart';
 
-import '../../routes/routes.dart';
+import '../../../../routes/routes.dart';
 
 class DoctorHomeScreen extends StatelessWidget {
   const DoctorHomeScreen({Key? key}) : super(key: key);
@@ -74,7 +74,10 @@ class DoctorHomeScreen extends StatelessWidget {
                         physics: BouncingScrollPhysics(),
                         itemBuilder: (context, index) {
                           return InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.patienDetails , arguments: index);
+                              
+                            },
                             child: Container(
                               padding: const EdgeInsets.all(AppPadding.p4),
                               // height: AppSizeHeight.s100,

@@ -130,10 +130,14 @@ PatientModel patientModel1 = PatientModel(
     patientData: PatientData(
         userId: 0,
         nationalId: "nationalId",
-        firstName: "Bishoy",
+        firstName: "John",
         secondName: "Shehata",
         thirdName: "Morris",
         lastName: "lastName",
+        fullName: "John Shehata Morris El-Sayeh",
+        address: "8 SidiBeshr Street Alexandria-Egypt",
+        bloodType: 2,
+        religion: 0,
         birthDate: DateTime.parse("2000-12-09"),
         gender: 1,
         nationality: "Egyptian",
@@ -148,6 +152,43 @@ PatientModel patientModel1 = PatientModel(
         age: 23,
         patientPP:
             "https://as2.ftcdn.net/v2/jpg/03/20/52/31/1000_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg",
-        patientPPHash: imageHashdummy),
+        patientPPHash: imageHashdummy,
+
+
+
+    ),
+    statusCode: 200,
+    message: "");
+PatientModel patientModel2 = PatientModel(
+    patientData: PatientData(
+        userId: 0,
+        nationalId: "nationalId",
+        firstName: "Bishoy",
+        secondName: "Shehata",
+        thirdName: "Morris",
+        lastName: "lastName",
+        fullName: "Bishoy Shehata Morris El-Sayeh",
+        address: "8 El-Zhoor Street Alexandria-Egypt",
+        bloodType: 2,
+        religion: 0,
+        birthDate: DateTime.parse("2000-12-09"),
+        gender: 1,
+        nationality: "Egyptian",
+        country: "Egypt",
+        state: "Alexandria",
+        street: "El_Teen",
+        buildingNumber: 8,
+        appartment: 4,
+        phoneNumber: "01220709149",
+        height: 180,
+        weight: 102,
+        age: 23,
+        patientPP:
+            "https://as2.ftcdn.net/v2/jpg/03/20/52/31/1000_F_320523164_tx7Rdd7I2XDTvvKfz2oRuRpKOPE5z0ni.jpg",
+        patientPPHash: imageHashdummy,
+
+
+
+    ),
     statusCode: 200,
     message: "");
