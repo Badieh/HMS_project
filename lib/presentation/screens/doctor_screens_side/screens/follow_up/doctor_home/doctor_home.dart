@@ -19,6 +19,8 @@ class DoctorHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var homeController = Get.find<DoctorMainController>();
+    var size = MediaQuery.of(context).size;
+
     return Padding(
       padding: EdgeInsets.all(AppSizeHeight.s8),
       child: SingleChildScrollView(
@@ -76,7 +78,7 @@ class DoctorHomeScreen extends StatelessWidget {
                           return InkWell(
                             onTap: () {
                               Get.toNamed(Routes.patienDetails , arguments: index);
-                              
+
                             },
                             child: Container(
                               padding: const EdgeInsets.all(AppPadding.p4),

@@ -177,10 +177,12 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         context: context,
         builder: (context) {
           return Container(
-              decoration: BoxDecoration(
-                color: Get.isDarkMode ? ColorManager.lightBlack:ColorManager.white ,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(AppSizeHeight.s20))
-              ),
+            decoration: BoxDecoration(
+                color: Get.isDarkMode
+                    ? ColorManager.lightBlack
+                    : ColorManager.white,
+                borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(AppSizeHeight.s20))),
             height: MediaQuery.of(context).size.height / 3,
             child: Padding(
               padding: const EdgeInsets.all(AppPadding.p8),
@@ -233,8 +235,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => CancelAppointmentScreen(
-                                    appointmentId:
-                                        cubit.upcomingAppointments[index].id),
+                                    appointmentId: cubit
+                                        .upcomingAppointments[index].apptId),
                               ));
                         },
                         style: ElevatedButton.styleFrom(

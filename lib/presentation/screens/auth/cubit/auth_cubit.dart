@@ -528,7 +528,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
     try {
       // get data from API
-      var response = await DioHelper.getData(
+      var response = await DioHelper.postData(
           url: AppConstants.getPatientPath,
           data: {'userId': userId ?? AppConstants.adminStorage.read('userId')});
       print('Got Data from Api');

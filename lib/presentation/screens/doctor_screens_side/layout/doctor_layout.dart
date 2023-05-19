@@ -31,8 +31,8 @@ class DoctorLayoutScreen extends StatelessWidget {
                 showUnselectedLabels: true,
                 currentIndex:controller.currentIndex.value,
                 onTap: (index){
-                  controller.currentIndex.value = index;
-                },
+                controller.currentIndex.value = index;
+            },
               ),
               body:  IndexedStack(
                 index: controller.currentIndex.value,
