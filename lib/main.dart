@@ -68,8 +68,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AppointmentsCubit()
             ..getUpcomingAppointmentsList()
-            ..getCompletedAppointmentsList()
-            ..getCancelledAppointmentsList(),
         ),
         // Doctors
         BlocProvider(create: (context) => DoctorsCubit()),
@@ -99,7 +97,7 @@ class MyApp extends StatelessWidget {
             theme: getLightThemeData(),
             darkTheme: getDarkThemeData(),
             themeMode: DarkModeController().ThemeDataGet,
-            initialRoute: AppRoutes.doctorHomeScreen,
+            initialRoute: AppRoutes.splashScreen,
             getPages: AppRoutes.routes,
           );
         },

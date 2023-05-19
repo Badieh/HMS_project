@@ -41,6 +41,11 @@ class AppConstants {
   static const getDoctorByPositionPath = '$backendBaseUrl/doctors/position';
   static const getFavouriteDoctorPath = '$backendBaseUrl/doctors/favourite';
   static const getClinisShedulePath = '$backendBaseUrl/clinicsSkds/doctor';
+
+  static const getUpcomingAppointments = '$backendBaseUrl/appts/upcoming';
+  static const getCompletedAppointments = '$backendBaseUrl/appts/completed';
+  static const getCancelledAppointments = '$backendBaseUrl/appts/cancelled';
+
   // static String accessToken = CacheHelper.getData(key: 'accessToken') ?? '';
   // static String refreshToken = CacheHelper.getData(key: 'refreshToken') ?? '';
 

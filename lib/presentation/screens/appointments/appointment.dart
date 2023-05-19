@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -65,81 +66,89 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   physics: const BouncingScrollPhysics(),
                   children: <Widget>[
-                    ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppPadding.p4),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        itemCount: cubit.cancelledAppointments.length,
-                        itemBuilder: (context, index) => Column(
-                              children: [
-                                AppointmentCard(
-                                  appointmentState: AppointmentState.upcoming,
-                                  appointmentModel:
-                                      cubit.upcomingAppointments[index],
-                                ),
-                                separator(),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: AppPadding.p8,
-                                      bottom: AppPadding.p2),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () async {
-                                          await cancelAppointment(
-                                              cubit: cubit, index: index);
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            fixedSize: Size(AppSizeWidth.s150,
-                                                AppSizeHeight.s30),
-                                            backgroundColor: ColorManager.white,
-                                            foregroundColor:
-                                                ColorManager.primary,
-                                            side: BorderSide(
-                                                color: ColorManager.primary,
-                                                width: 2)),
-                                        child: const Text(
-                                          AppStrings.cancel,
-                                          style: TextStyle(),
-                                        ),
-                                      ),
-                                      //SizedBox(width: MediaQuery.of(context).size.width/45,),
-                                      ElevatedButton(
-                                        onPressed: () async {
-                                          await cubit.getClinicsSchedule(
-                                              docId: cubit
-                                                  .upcomingAppointments[index]
-                                                  .doctorName);
-
-                                          Navigator.push(context,
-                                              MaterialPageRoute(
-                                            builder: (context) {
-                                              return BookAppointmentScreen(
-                                                // cubit: cubit,
-                                                title: AppStrings
-                                                    .rescheduleAppointment,
-                                              );
+                    ConditionalBuilder(
+                        condition: cubit.upcomingAppointments.isNotEmpty,
+                        builder: (context) => ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: AppPadding.p4),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            itemCount: cubit.upcomingAppointments.length,
+                            itemBuilder: (context, index) => Column(
+                                  children: [
+                                    AppointmentCard(
+                                      appointmentState:
+                                          AppointmentState.upcoming,
+                                      appointmentModel:
+                                          cubit.upcomingAppointments[index],
+                                    ),
+                                    separator(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: AppPadding.p8,
+                                          bottom: AppPadding.p2),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          ElevatedButton(
+                                            onPressed: () async {
+                                              await cancelAppointment(
+                                                  cubit: cubit, index: index);
                                             },
-                                          ));
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          fixedSize: Size(
-                                            AppSizeWidth.s150,
-                                            AppSizeHeight.s30,
+                                            style: ElevatedButton.styleFrom(
+                                                fixedSize: Size(
+                                                    AppSizeWidth.s150,
+                                                    AppSizeHeight.s30),
+                                                backgroundColor:
+                                                    ColorManager.white,
+                                                foregroundColor:
+                                                    ColorManager.primary,
+                                                side: BorderSide(
+                                                    color: ColorManager.primary,
+                                                    width: 2)),
+                                            child: const Text(
+                                              AppStrings.cancel,
+                                              style: TextStyle(),
+                                            ),
                                           ),
-                                        ),
-                                        child: const Text(
-                                          AppStrings.reschedule,
-                                        ),
+                                          //SizedBox(width: MediaQuery.of(context).size.width/45,),
+                                          ElevatedButton(
+                                            onPressed: () async {
+                                              await cubit.getClinicsSchedule(
+                                                  docId: cubit
+                                                      .upcomingAppointments[
+                                                          index]
+                                                      .doctorName);
+
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(
+                                                builder: (context) {
+                                                  return BookAppointmentScreen(
+                                                    // cubit: cubit,
+                                                    title: AppStrings
+                                                        .rescheduleAppointment,
+                                                  );
+                                                },
+                                              ));
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              fixedSize: Size(
+                                                AppSizeWidth.s150,
+                                                AppSizeHeight.s30,
+                                              ),
+                                            ),
+                                            child: const Text(
+                                              AppStrings.reschedule,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )),
+                                    ),
+                                  ],
+                                )),
+                        fallback: (context) =>
+                            screenLoading(context, 'Upcoming Appointments')),
                     ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         padding: const EdgeInsets.symmetric(
@@ -170,6 +179,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     );
   }
 
+  // BOTTOM SHEET CONFIRMATION
   Future cancelAppointment(
           {required AppointmentsCubit cubit, required int index}) =>
       showModalBottomSheet(

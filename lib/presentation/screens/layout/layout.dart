@@ -128,7 +128,7 @@ class HomeLayoutScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = MainCubit.get(context);
         return SafeArea(
-          child: Obx(() => Scaffold(
+          child:  Scaffold(
             backgroundColor: context.theme.colorScheme.background,
 
             appBar: appBars[cubit.currentIndex],
@@ -162,7 +162,7 @@ class HomeLayoutScreen extends StatelessWidget {
               ),
             )
                 : null,
-          ),)
+          ),
         );
       },
     );

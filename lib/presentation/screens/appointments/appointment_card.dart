@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hospital/models/appointment_model.dart';
+import 'package:hospital/models/dummy_data.dart';
 import 'package:hospital/presentation/resources/color_manager.dart';
 import 'package:hospital/presentation/resources/constants_manager.dart';
 import 'package:hospital/presentation/resources/font_manager.dart';
@@ -39,7 +40,7 @@ class AppointmentCard extends StatelessWidget {
             height: AppSizeHeight.s90,
             child: flutter_blurhash.BlurHash(
               image: appointmentModel.doctorImageUrl,
-              hash: appointmentModel.doctorImageHash!,
+              hash: appointmentModel.doctorImageHash ??imageHashdummy,
               duration: const Duration(milliseconds: 500),
               imageFit: BoxFit.cover,
             ),

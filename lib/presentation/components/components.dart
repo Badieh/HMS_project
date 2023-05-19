@@ -383,7 +383,7 @@ SnackbarController snackbar({required String message, bool isSuccess = true}) =>
 // );
 
 Widget screenLoading(BuildContext context, String message) {
-  Timer(const Duration(seconds: 5), () {
+  Timer(const Duration(seconds: 20), () {
     QuickAlert.show(
         context: context,
         type: QuickAlertType.error,
@@ -403,7 +403,7 @@ Widget screenLoading(BuildContext context, String message) {
   });
 
   return Container(
-    color: Colors.white,
+    color: Get.isDarkMode ? ColorManager.black:Colors.white,
     child: CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [

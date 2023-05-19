@@ -1,6 +1,33 @@
-import 'package:equatable/equatable.dart';
+import 'package:hospital/models/dummy_data.dart';
 
-class AppointmentModel extends Equatable {
+class AppointmentsListofModels {
+  final List<AppointmentModel> appointmentModels;
+  final int statusCode;
+  final String message;
+
+  AppointmentsListofModels(
+      {required this.appointmentModels,
+      required this.statusCode,
+      required this.message});
+
+  factory AppointmentsListofModels.fromJson(Map<String, dynamic> json) {
+    List<AppointmentModel> appointmentModels = [];
+    if (json['appointments'] != null) {
+      var appointmentModelsJson = json['appointments'] as List;
+      appointmentModels = appointmentModelsJson
+          .map((appointmentModelsJson) =>
+              AppointmentModel.fromJson(appointmentModelsJson))
+          .toList();
+    }
+    return AppointmentsListofModels(
+      appointmentModels: appointmentModels,
+      statusCode: json['statusCode'],
+      message: json['message'],
+    );
+  }
+}
+
+class AppointmentModel {
   final int apptId;
   final int patientId;
   final int clinicsSkdId;
@@ -14,7 +41,7 @@ class AppointmentModel extends Equatable {
   final String? doctorImageHash;
   final String apptState;
   final String? report;
-  final String patientComplaint;
+  final String? patientComplaint;
   final String? note;
   final String? cancelReason;
   final String updatedAt;
@@ -31,10 +58,10 @@ class AppointmentModel extends Equatable {
     required this.hospitalName,
     required this.departmentId,
     required this.doctorImageUrl,
-    this.doctorImageHash,
+    this.doctorImageHash = imageHashdummy,
     required this.apptState,
     this.report,
-    required this.patientComplaint,
+    this.patientComplaint,
     this.note,
     this.cancelReason,
     required this.updatedAt,
@@ -63,26 +90,4 @@ class AppointmentModel extends Equatable {
       createdAt: json['createdAt'],
     );
   }
-
-  @override
-  List<Object?> get props => [
-    apptId,
-    patientId,
-    clinicsSkdId,
-    date,
-    startTime,
-    endTime,
-    doctorName,
-    hospitalName,
-    departmentId,
-    doctorImageUrl,
-    doctorImageHash,
-    apptState,
-    report,
-    patientComplaint,
-    note,
-    cancelReason,
-    updatedAt,
-    createdAt,
-  ];
 }

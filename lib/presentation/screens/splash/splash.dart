@@ -45,15 +45,15 @@ class _SplashScreenState extends State<SplashScreen> {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                FadeOut(
-                  delay: const Duration(milliseconds: 2400),
-                  child: FadeIn(
-                    child: SvgPicture.asset(
-                      ImageAssets.facultyLogo,
-                      width: AppSizeWidth.s150,
-                    ),
-                  ),
-                ),
+                // FadeOut(
+                //   delay: const Duration(milliseconds: 2400),
+                //   child: FadeIn(
+                //     child: SvgPicture.asset(
+                //       ImageAssets.facultyLogo,
+                //       width: AppSizeWidth.s150,
+                //     ),
+                //   ),
+                // ),
                 FadeOutUp(
                   delay: const Duration(milliseconds: 2400),
                   child: BounceInDown(
