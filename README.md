@@ -20,7 +20,7 @@ src="HMS_screenshots/fillData_4.png" height="200em" > <img
 src="HMS_screenshots/home.png" height="200em" > <img
 src="HMS_screenshots/available_doctors.png" height="200em" > <img
 src="HMS_screenshots/doctors_dark.png" height="200em" > <img src="HMS_screenshots/doctor_details.png" height="200em" > <img
-src="HMS_screenshots/doctor_details_dark.png" height="200em" > < img
+src="HMS_screenshots/doctor_details_dark.png" height="200em" > <img
 src="HMS_screenshots/book_appointment.png" height="200em" > <img
 src="HMS_screenshots/book_appointment_dark.png" height="200em" > <img
 src="HMS_screenshots/profile.png" height="200em" > <img
