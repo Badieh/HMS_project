@@ -9,10 +9,10 @@ Flutter 3.0.4
 https://github.com/Badieh/HMS_project/assets/54133250/208efab6-1a66-48ae-993d-2f8d7765da22
 
 ## Snapshots
-<img src="HMS_screenshots/splash.png" height="250em" > <img src="HMS_screenshots/onBoarding.png" height="250em" > <img 
-src="HMS_screenshots/login.png" height="250em" > <img
-src="HMS_screenshots/login_dark.png" height="250em" > <img
-src="HMS_screenshots/register.png" height="250em" >
+<img src="HMS_screenshots/splash.png" height="200em" > <img src="HMS_screenshots/onBoarding.png" height="200em" > <img 
+src="HMS_screenshots/login.png" height="200em" > <img
+src="HMS_screenshots/login_dark.png" height="200em" > <img
+src="HMS_screenshots/register.png" height="200em" >
 
 ## Application Features
 * Bloc State Managment.
