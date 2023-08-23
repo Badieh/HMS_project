@@ -1,7 +1,6 @@
 # Healthy Care App
 
-A new Flutter project.
-
+Healthy Care is a Flutter mobile app that provides a comprehensive healthcare solution for both patients and doctors. The app features a robust authentication system, a seamless user interface, and a wide range of features to help users manage their health.
 
 ## Preview
 https://github.com/Badieh/HMS_project/assets/54133250/208efab6-1a66-48ae-993d-2f8d7765da22
@@ -43,8 +42,12 @@ src="HMS_screenshots/medical_article.png" height="200em" > <img
 src="HMS_screenshots/notifications.png" height="200em" > <img
 src="HMS_screenshots/notifications_dark.png" height="200em" >
 
+## Technical Details
+The Healthy Care App is built using Flutter and uses a Node.js backend server. The app is designed to be scalable and secure, and it uses a variety of plugins to provide a rich user experience.
+
 ## Application Features
-* Bloc State Managment & Getx state Managment
+* Bloc State Management & Getx State Management
+* Designed the application to cater to two main user roles: patients and doctors
 * Robust authentication system for both patients and doctors.
 * Effectively integrated the app with a Node.js backend server
 * Comprehensive review of patient medical history, including reports and
