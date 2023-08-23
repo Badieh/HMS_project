@@ -35,7 +35,7 @@ src="HMS_screenshots/favourite_doctors.png" height="200em" > <img
 src="HMS_screenshots/diagnoses_history.png" height="200em" > <img
 src="HMS_screenshots/case_diagnose.png" height="200em" > <img
 src="HMS_screenshots/treatment_history.png" height="200em" ><img
-src="HMS_screenshots/treatment_history_dark.png" height="200em" > <img
+src="HMS_screenshots/treatment_dark.png" height="200em" > <img
 src="HMS_screenshots/pdfFiles_history.png" height="200em" > <img
 src="HMS_screenshots/pdfFile_upload.jpg" height="200em" > <img
 src="HMS_screenshots/pdfFile_opened.jpg" height="200em" > <img
