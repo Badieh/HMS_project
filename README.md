@@ -6,7 +6,7 @@ A new Flutter project.
 Flutter 3.0.4 
 
 ## Preview
-https://github.com/Badieh/HMS_project/blob/e6261e1fda9dc17db1580fae4c6799fe87047548/HMS_screenshots/app_promo.mp4
+https://github.com/Badieh/HMS_project/assets/54133250/208efab6-1a66-48ae-993d-2f8d7765da22
 
 ## Snapshots
 <img src="HMS_screenshots/splash.png" height="250em" > <img src="HMS_screenshots/onBoarding.png" height="250em" > <img 
