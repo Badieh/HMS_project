@@ -12,7 +12,38 @@ https://github.com/Badieh/HMS_project/assets/54133250/208efab6-1a66-48ae-993d-2f
 <img src="HMS_screenshots/splash.png" height="200em" > <img src="HMS_screenshots/onBoarding.png" height="200em" > <img 
 src="HMS_screenshots/login.png" height="200em" > <img
 src="HMS_screenshots/login_dark.png" height="200em" > <img
-src="HMS_screenshots/register.png" height="200em" >
+src="HMS_screenshots/register.png" height="200em" ><img
+src="HMS_screenshots/fillData_1.png" height="200em" ><img
+src="HMS_screenshots/fillData_2.png" height="200em" ><img
+src="HMS_screenshots/fillData_3.png" height="200em" ><img
+src="HMS_screenshots/fillData_4.png" height="200em" ><img
+src="HMS_screenshots/home.png" height="200em" ><img
+src="HMS_screenshots/available_doctors.png" height="200em" ><img
+src="HMS_screenshots/doctors_dark.png" height="200em" ><img src="HMS_screenshots/doctor_details.png" height="200em" ><img
+src="HMS_screenshots/doctor_details_dark.png" height="200em" ><img
+src="HMS_screenshots/book_appointment.png" height="200em" ><img
+src="HMS_screenshots/book_appointment_dark.png" height="200em" ><img
+src="HMS_screenshots/profile.png" height="200em" ><img
+src="HMS_screenshots/profile_dark.png" height="200em" ><img
+src="HMS_screenshots/upcoming_appointments.png" height="200em" ><img
+src="HMS_screenshots/completed_appointments.png" height="200em" ><img
+src="HMS_screenshots/cancelled_appointments.png" height="200em" ><img
+src="HMS_screenshots/cancel_appointment.png" height="200em" ><img
+src="HMS_screenshots/cancel_appointment_reason.png" height="200em" ><img
+src="HMS_screenshots/cancel_appointment_confirmed.png" height="200em" ><img src="HMS_screenshots/reschedule_appointment.png" height="200em" ><img
+src="HMS_screenshots/favourite_doctors.png" height="200em" ><img
+src="HMS_screenshots/diagnoses_history.png" height="200em" ><img
+src="HMS_screenshots/case_diagnose.png" height="200em" ><img
+src="HMS_screenshots/treatment_history.png" height="200em" ><img
+src="HMS_screenshots/treatment_history_dark.png" height="200em" ><img
+src="HMS_screenshots/pdfFiles_history.png" height="200em" ><img
+src="HMS_screenshots/pdfFile_upload.png" height="200em" ><img
+src="HMS_screenshots/pdfFile_opened.png" height="200em" ><img
+src="HMS_screenshots/pdfFile_upload_confirmed.png" height="200em" ><img
+src="HMS_screenshots/medical_articles.png" height="200em" ><img
+src="HMS_screenshots/medical_article.png" height="200em" ><img
+src="HMS_screenshots/notifications.png" height="200em" ><img
+src="HMS_screenshots/notifications_dark.png" height="200em" >
 
 ## Application Features
 * Bloc State Managment.
