@@ -45,20 +45,19 @@ src="HMS_screenshots/notifications_dark.png" height="200em" >
 
 ## Application Features
 * Bloc State Managment & Getx state Managment
-▪ Robust authentication system for both patients and doctors.
-▪ Effectively integrated the app with a Node.js backend server
-▪ Comprehensive review of patient medical history, including reports and
+* Robust authentication system for both patients and doctors.
+* Effectively integrated the app with a Node.js backend server
+* Comprehensive review of patient medical history, including reports and
 laboratory tests, with a built-in PDF reader for seamless viewing, downloading,
 and sharing.
-▪ Convenient upload of previous medical history using the built-in PDF scanner.
-▪ Access to doctor diagnoses and treatments.
-▪ User-friendly interface for browsing a list of all doctors or selecting doctors by
-specialization.
-▪ Detailed doctor profiles with information on available appointments.
-▪ Efficient booking, rescheduling, and cancellation of appointments.
-▪ Recent medical articles section for staying up-to-date with relevant information.
-▪ Effective notification management system.
-▪ Dark mode feature for enhanced user experience.
+* Convenient upload of previous medical history using the built-in PDF scanner.
+* Access to doctor diagnoses and treatments.
+* User-friendly interface for browsing a list of all doctors or selecting doctors by specialization.
+* Detailed doctor profiles with information on available appointments.
+* Efficient booking, rescheduling, and cancellation of appointments.
+* Recent medical articles section for staying up-to-date with relevant information.
+* Effective notification management system.
+* Dark mode feature for enhanced user experience.
 
 
 ## Flutter Version
