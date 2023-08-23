@@ -6,14 +6,10 @@ A new Flutter project.
 Flutter 3.0.4 
 
 ## Preview
-[App Promo](https://github.com/Badieh/HMS_project/blob/e6261e1fda9dc17db1580fae4c6799fe87047548/HMS_screenshots/app_promo.mp4)
+https://github.com/Badieh/HMS_project/blob/e6261e1fda9dc17db1580fae4c6799fe87047548/HMS_screenshots/app_promo.mp4
 
 ## Snapshots
-<img src="HMS_screenshots/splash.png" height="250em" > 
-<img src="HMS_screenshots/onBoarding.png" height="250em" > 
-<img src="HMS_screenshots/login" height="250em" > 
-<img src="HMS_screenshots/login_dark" height="250em" > 
-<img src="HMS_screenshots/register" height="250em" > 
+<img src="HMS_screenshots/splash.png" height="250em" > <img src="HMS_screenshots/onBoarding.png" height="250em" > <img src="HMS_screenshots/login" height="250em" > <img src="HMS_screenshots/login_dark" height="250em" > <img src="HMS_screenshots/register" height="250em" >
 
 ## Application Features
 * Bloc State Managment.
